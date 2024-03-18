@@ -1,1 +1,3 @@
-# Bachelor-Thesis
+# Bachelor Thesis
+
+Work in progress... 
