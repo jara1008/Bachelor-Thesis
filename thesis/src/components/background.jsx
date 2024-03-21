@@ -9,7 +9,7 @@ function Background() {
     { top: '85%', left: '15%', width: '22px', height: '22px', blur: '5px' },
     { top: '10%', left: '95%', width: '15px', height: '15px', blur: '4px' },
     { top: '23%', left: '82%', width: '20px', height: '20px', blur: '4px' },
-    { top: '50%', left: '85%', width: '20px', height: '20px', blur: '4px' },
+    { top: '50%', left: '85%', width: '22px', height: '22px', blur: '5px' },
     { top: '72%', left: '93%', width: '15px', height: '15px', blur: '4px' },
     { top: '90%', left: '80%', width: '25px', height: '25px', blur: '5px' },
   ]);
