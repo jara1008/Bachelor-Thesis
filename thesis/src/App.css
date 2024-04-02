@@ -9,7 +9,7 @@
   z-index: 1;
 }
 
-.box {
+.container {
   position: absolute;
   top: 55%; 
   left: 50%; 
