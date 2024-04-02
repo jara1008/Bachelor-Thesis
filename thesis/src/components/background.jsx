@@ -3,15 +3,15 @@ import './background.css';
 
 function Background() {
   const [ellipses_white, setEllipses_white] = useState([
-    { top: '12%', left: '18%', width: '25px', height: '25px', blur: '5px' },
-    { top: '30%', left: '12%', width: '18px', height: '18px', blur: '4px' },
-    { top: '70%', left: '10%', width: '20px', height: '20px', blur: '4px' },
-    { top: '85%', left: '15%', width: '22px', height: '22px', blur: '5px' },
-    { top: '10%', left: '95%', width: '15px', height: '15px', blur: '4px' },
-    { top: '23%', left: '82%', width: '20px', height: '20px', blur: '4px' },
-    { top: '50%', left: '85%', width: '22px', height: '22px', blur: '5px' },
-    { top: '72%', left: '93%', width: '15px', height: '15px', blur: '4px' },
-    { top: '90%', left: '80%', width: '25px', height: '25px', blur: '5px' },
+    { top: '12%', left: '10%', width: '25px', height: '25px', blur: '5px' },
+    { top: '30%', left: '6%', width: '18px', height: '18px', blur: '4px' },
+    { top: '70%', left: '4%', width: '20px', height: '20px', blur: '4px' },
+    { top: '85%', left: '8%', width: '22px', height: '22px', blur: '5px' },
+    { top: '10%', left: '97%', width: '15px', height: '15px', blur: '4px' },
+    { top: '23%', left: '90%', width: '20px', height: '20px', blur: '4px' },
+    { top: '50%', left: '95%', width: '22px', height: '22px', blur: '5px' },
+    { top: '72%', left: '95%', width: '15px', height: '15px', blur: '4px' },
+    { top: '90%', left: '90%', width: '25px', height: '25px', blur: '5px' },
   ]);
 
   const [ellipses_blue, setEllipses_blue] = useState([

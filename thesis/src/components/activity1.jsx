@@ -6,6 +6,7 @@ export const Box = () => {
     return (
         <div className="container">
             <div className="white-box" >
+                <span className="text-wrapper">Verbinde die Sterne miteinander:</span>
                 <img src={cloud} alt="Cloud" style={{position: "absolute", top: "40%", left: "0%", height: "58%", width: "48%"}} />
                 <img src={cloud} alt="Cloud" style={{position: "absolute", top: "40%", right: "1%", height: "58%", width: "48%"}} />
             </div>
