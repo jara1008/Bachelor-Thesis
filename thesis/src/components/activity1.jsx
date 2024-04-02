@@ -15,6 +15,11 @@ const rightCloudPositions = [
 ];
 
 const generateStars = (count, positions) => {
+
+    const handleStarClick = (index) => {
+        console.log(`Star ${index + 1} clicked!`);
+    };
+
     return positions.slice(0, count).map((pos, index) => (
         <img
             key={index}
@@ -26,6 +31,7 @@ const generateStars = (count, positions) => {
                 top: `${pos.top}%`,
                 left: `${pos.left}%`,
             }}
+            onClick={() => handleStarClick(index)}
         />
     ));
 };
