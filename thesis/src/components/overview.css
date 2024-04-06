@@ -1,0 +1,11 @@
+.rectangle {
+    background-color: #eceefa;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px #00000040, 0px 0px 15px 8px #bec3f1d6;
+    top: 0;
+    left: 0;
+    position: relative;
+    width: 9.5vw;
+    aspect-ratio: 1/1;
+}
+  

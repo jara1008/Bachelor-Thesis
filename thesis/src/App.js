@@ -1,15 +1,18 @@
-import { Component } from 'react';
+import React, { useState } from 'react';
+import Background from './components/background';
+import { Box } from './components/activity1';
+import Overview from './components/overview';
 import './App.css';
-import Background from './components/background'
-import { Box } from './components/activity1'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Background className="background"></Background>
-      <Box className="test"></Box>
+    <div>
+      <Background />
+      <div className="content">
+        <Overview />
+      </div>
     </div>
   );
-}
+};
 
 export default App;

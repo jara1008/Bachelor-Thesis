@@ -23,7 +23,7 @@ function Background() {
   ]);
 
   return (
-    <div className="main">
+    <div className="background">
       <div className="div">
         {ellipses_blue.map((ellipse, index) => (
             <div
