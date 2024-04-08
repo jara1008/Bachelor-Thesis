@@ -81,10 +81,10 @@ function ActivityOne() {
 
     return (
         <div className="container">
-            <Link to={"/"}>
-                <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "5%", left: "78%" }} />
-            </Link>
             <div className="white-box" >
+                <Link to={"/"}>
+                    <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
+                </Link>
                 <span className="text-wrapper">Verbinde die Sterne miteinander:</span>
                 <div style={{ position: "relative", height: "100%", width: "100%" }}>
                     <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "30%", left: "0%", height: "58%", width: "48%" }} />

@@ -4,7 +4,7 @@ import "./overview.css";
 
 function Overview() {
     const [boxes, setBoxes] = useState([
-        { id: 1, top: '14%', left: '37%', path: "/activityOne" },
+        { id: 1, top: '14%', left: '37%', path: "/instructionsOne" },
         { id: 2, top: '14%', left: '52%' },
         { id: 3, top: '14%', left: '67%' },
         { id: 4, top: '41%', left: '37%' },
