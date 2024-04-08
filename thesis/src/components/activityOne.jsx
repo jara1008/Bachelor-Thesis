@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./activityOne.css";
 import cloud from "../images/cloud.png";
 import star from "../images/star.svg";
+import { Link } from 'react-router-dom';
+import home_icon from '../images/home_icon.png';
 
 const leftCloudPositions = [
     { top: 67, left: 20 }, { top: 45, left: 35 }, { top: 62, left: 6 }, 
@@ -79,6 +81,9 @@ function ActivityOne() {
 
     return (
         <div className="container">
+            <Link to={"/"}>
+                <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "5%", left: "78%" }} />
+            </Link>
             <div className="white-box" >
                 <span className="text-wrapper">Verbinde die Sterne miteinander:</span>
                 <div style={{ position: "relative", height: "100%", width: "100%" }}>
