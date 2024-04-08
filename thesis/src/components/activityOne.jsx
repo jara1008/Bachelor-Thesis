@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./activity1.css";
+import "./activityOne.css";
 import cloud from "../images/cloud.png";
-import star from "../images/star.svg"
+import star from "../images/star.svg";
 
 const leftCloudPositions = [
     { top: 67, left: 20 }, { top: 45, left: 35 }, { top: 62, left: 6 }, 
@@ -15,7 +15,7 @@ const rightCloudPositions = [
 ];
 
 
-export const Box = () => {
+function ActivityOne() {
 
     const [clickedStars, setClickedStars] = useState([]);
     const [allStars, setAllStars] = useState({ left: [], right: [] });
@@ -92,3 +92,5 @@ export const Box = () => {
         </div>
     );
 };
+
+export default ActivityOne;

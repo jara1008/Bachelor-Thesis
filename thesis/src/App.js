@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Background from './components/background';
-import { Box } from './components/activity1';
+import ActivityOne from './components/activityOne';
 import Overview from './components/overview';
 import './App.css';
 
@@ -9,7 +10,12 @@ const App = () => {
     <div>
       <Background />
       <div className="content">
-        <Overview />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Overview />} />
+            <Route path="/activityOne" element={<ActivityOne />} />
+          </Routes>
+        </Router>
       </div>
     </div>
   );
