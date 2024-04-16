@@ -22,42 +22,36 @@ function ActivityOne() {
     const [clickedStars, setClickedStars] = useState([]);
     const [allStars, setAllStars] = useState({ left: [], right: [] });
     const [lines, setLines] = useState([]);
-    const [drawnLines, setDrawnLines] = useState([])
 
     useEffect(() => {
         const firstCloudCount = Math.floor(Math.random() * leftCloudPositions.length) + 1;
         const secondCloudCount = Math.floor(Math.random() * rightCloudPositions.length) + 1;
 
-        const starsInFirstCloud = generateStars(firstCloudCount, leftCloudPositions);
-        const starsInSecondCloud = generateStars(secondCloudCount, rightCloudPositions);
+        const starsInFirstCloud = generateStars(firstCloudCount, leftCloudPositions, 'left');
+        const starsInSecondCloud = generateStars(secondCloudCount, rightCloudPositions, 'right');
 
         setAllStars({ left: starsInFirstCloud, right: starsInSecondCloud });
     }, []);
 
-    useEffect(() => {
-        setDrawnLines(renderLines());
-    }, [lines])
-
-
     const handleStarClick = (position) => {
-        setClickedStars(prevStars => {
-            const updatedStars = [...prevStars, position];
-            
-            if (updatedStars.length === 2) {
-                console.log("two stars selected: ", updatedStars);
-                setLines(prevLines => [...prevLines, { start: updatedStars[0], end: updatedStars[1] }]);
-                console.log(clickedStars)
+        console.log("clicked");
+        setClickedStars((clickedStars) => {
+            if (clickedStars.length === 1) {
+                return [clickedStars, position];
+            } else if (clickedStars.length === 0) {
+                return [position];
+            }
+            else {
                 return [];
             }
-            console.log(clickedStars)
-            return updatedStars;
         });
     };
+    
 
-    const generateStars = (count, positions) => {
+    const generateStars = (count, positions, cloudSide) => {
         return positions.slice(0, count).map((pos, index) => (
             <img
-                key={index}
+                key={`${cloudSide}-${index}`}
                 src={star}
                 className="star"
                 alt="Star"
@@ -66,21 +60,20 @@ function ActivityOne() {
                     top: `${pos.top}%`,
                     left: `${pos.left}%`,
                 }}
-                onClick={() => handleStarClick(pos)}
+                onClick={() => handleStarClick({ ...pos, cloudSide })}
             />
         ));
     };
 
     const renderLines = () => {
-        console.log("Drawing lines: ",lines)
         return lines.map((line, index) => (
-        <svg key={index} style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%" }}>
+        <svg key={index} style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%", pointerEvents: "none" }}>
             <line x1={`${line.start.left}%`} y1={`${line.start.top}%`} x2={`${line.end.left}%`} y2={`${line.end.top}%`} stroke="black" strokeWidth="2" />
         </svg>
     ))};
 
     return (
-        <div className="container">
+        <div className="container" >
             <div className="white-box" >
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
@@ -91,7 +84,7 @@ function ActivityOne() {
                     {allStars.left}
                     <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "30%", right: "1%", height: "58%", width: "48%" }} />
                     {allStars.right}
-                    {drawnLines}
+                    {renderLines()}
                 </div>
             </div>
         </div>

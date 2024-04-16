@@ -20,16 +20,9 @@ body, html {
     box-shadow: 8px 8px 4px #00000040;
     height: 80%;
     width: 80%; 
-    max-width: 800px; /* Optional: Add a maximum width to prevent it from getting too large */
     padding: 20px;
     box-sizing: border-box;
     position: relative;
-  }
-  
-  @media (max-width: 768px) {
-    .white-box {
-      width: 80%; /* Adjust the width for smaller screens */
-    }
   }
   
   .svg-overlay {
@@ -37,14 +30,19 @@ body, html {
     top: 55%;
     left: 30%;
     transform: translate(-50%, -50%);
-}
+  }
 
-.text-wrapper {
-    font-family: 'Patrick Hand', sans-serif;
-    display: flex;
-    justify-content: center;
-    font-size: 35px;
-    color: #000000;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
+  .star {
+    width: 2.8vw;
+    aspect-ratio: 1/1;
+  }
+
+  .text-wrapper {
+      font-family: 'Patrick Hand', sans-serif;
+      display: flex;
+      justify-content: center;
+      font-size: 35px;
+      color: #000000;
+      font-weight: bold;
+      letter-spacing: 2px;
+  }

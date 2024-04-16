@@ -5,6 +5,7 @@ import Background from './components/background';
 import ActivityOne from './components/activityOne';
 import Overview from './components/overview';
 import InstrOne from './components/instructionsOne';
+import ActivityTwo from './components/activityTwo';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
             <Route path="/" element={<Overview />} />
             <Route path="/instructionsOne" element={<InstrOne />} />
             <Route path="/activityOne" element={<ActivityOne />} />
+            <Route path="/activityTwo" element={<ActivityTwo />} />
           </Routes>
         </Router>
       </div>
