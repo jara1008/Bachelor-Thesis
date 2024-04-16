@@ -8,13 +8,43 @@ function ActivityTwo() {
     const [numCubesFirstRow, setNumCubesFirstRow] = useState(0);
     const [numCubesSecondRow, setNumCubesSecondRow] = useState(0);
     const [inputValue, setInputValue] = useState('');
+    const [isCorrect, setIsCorrect] = useState(false);
+    const [displayCorrectness, setCorrectnessLabel] = useState(false);
+    const [roundCount, setRoundCount] = useState(1);
 
     useEffect(() => {
         const randomNumCubesFirstRow = Math.floor(Math.random() * 10) + 1;
         const randomNumCubesSecondRow = Math.floor(Math.random() * 10) + 1;
         setNumCubesFirstRow(randomNumCubesFirstRow);
         setNumCubesSecondRow(randomNumCubesSecondRow);
+        setIsCorrect(false);
     }, []);
+
+    const checkInput = () => {
+        setCorrectnessLabel(true);
+        if ((inputValue === '<' && numCubesFirstRow < numCubesSecondRow) ||
+            (inputValue === '>' && numCubesFirstRow > numCubesSecondRow) ||
+            (inputValue === '=' && numCubesFirstRow === numCubesSecondRow)) {
+            setIsCorrect(true);
+            setRoundCount(roundCount + 1);
+        } else {
+            setIsCorrect(false);
+        }
+    };
+
+    const handleNext = () => {
+        if (roundCount===5) {
+            /* TODO: display nice congratulation here */
+            /* navigate to overview */
+        }
+        const randomNumCubesFirstRow = Math.floor(Math.random() * 10) + 1;
+        const randomNumCubesSecondRow = Math.floor(Math.random() * 10) + 1;
+        setNumCubesFirstRow(randomNumCubesFirstRow);
+        setNumCubesSecondRow(randomNumCubesSecondRow);
+        setInputValue('');
+        setIsCorrect(false);
+        setCorrectnessLabel(false);
+    };
 
     return (
         <div className="container" >
@@ -47,10 +77,15 @@ function ActivityTwo() {
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder=""
                         className="info-input"
+                        readOnly={isCorrect}
                     />
                     <span>{numCubesSecondRow} </span>
                 </div>
-                <div className="button">Prüfen</div>
+                {isCorrect && displayCorrectness && <div className="correctness-label-correct">Richtig!</div>}
+                {!!!isCorrect && displayCorrectness && <div className="correctness-label-false">Versuche es nochmals!</div>}
+                <button onClick={isCorrect ? handleNext : checkInput} className="button">
+                    {isCorrect ? "Weiter" : "Prüfen"}
+                </button>
             </div>
         </div>
     );
