@@ -108,10 +108,8 @@ body, html {
   border-radius: 50px;
   height: 12%;
   width: 22%;
-  top: 35%; 
-  left: 87%; 
   transform: translate(-50%, -50%);
-  position: relative;
+  position: absolute;
   border: none;
   font-family: 'Patrick Hand', sans-serif;
   display: flex;
@@ -139,4 +137,15 @@ body, html {
   position: absolute; 
   bottom: 22%; 
   left: 65%; 
+}
+
+.congratulation-message {
+  font-family: 'Patrick Hand', sans-serif;
+  font-size: 2.5vw;
+  width: 100%;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  position: absolute;
+  text-align: center;
 }

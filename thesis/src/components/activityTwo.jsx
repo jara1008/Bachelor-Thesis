@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './activityTwo.css';
 import { Link } from 'react-router-dom';
 import home_icon from '../images/home_icon.png';
+import congratulation_icon from '../images/congratulation_icon.png';
 
 
 function ActivityTwo() {
@@ -33,18 +34,39 @@ function ActivityTwo() {
     };
 
     const handleNext = () => {
-        if (roundCount===5) {
-            /* TODO: display nice congratulation here */
-            /* navigate to overview */
+        if (roundCount<5) {
+            const randomNumCubesFirstRow = Math.floor(Math.random() * 10) + 1;
+            const randomNumCubesSecondRow = Math.floor(Math.random() * 10) + 1;
+            setNumCubesFirstRow(randomNumCubesFirstRow);
+            setNumCubesSecondRow(randomNumCubesSecondRow);
+            setInputValue('');
+            setIsCorrect(false);
+            setCorrectnessLabel(false);
         }
-        const randomNumCubesFirstRow = Math.floor(Math.random() * 10) + 1;
-        const randomNumCubesSecondRow = Math.floor(Math.random() * 10) + 1;
-        setNumCubesFirstRow(randomNumCubesFirstRow);
-        setNumCubesSecondRow(randomNumCubesSecondRow);
-        setInputValue('');
-        setIsCorrect(false);
-        setCorrectnessLabel(false);
     };
+
+    if (roundCount >= 5) {
+        // Message that the game is completed
+        return (
+            <div className="container">
+                <div className="white-box">
+                    <Link to={"/"}>
+                        <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
+                    </Link>
+                    <div className="congratulation-message">
+                        Gratulation! Du hast Level xy geschafft!
+                        { /* Add party icon */ }
+                    </div>
+                    <Link to={"/"}>
+                        <button className='button'
+                            style={{ top: '85%', left: '50%', width: '30%' }} >
+                            zur Übersicht
+                        </button>
+                    </Link>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="container" >
@@ -83,7 +105,8 @@ function ActivityTwo() {
                 </div>
                 {isCorrect && displayCorrectness && <div className="correctness-label-correct">Richtig!</div>}
                 {!!!isCorrect && displayCorrectness && <div className="correctness-label-false">Versuche es nochmals!</div>}
-                <button onClick={isCorrect ? handleNext : checkInput} className="button">
+                <button onClick={isCorrect ? handleNext : checkInput} className="button" 
+                    style={{ top: '88%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
             </div>
