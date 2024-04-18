@@ -12,7 +12,7 @@ function InstrOne() {
                 </Link>
                 <span className="text-wrapper">Anleitung:</span>
                 <Link to={"/activityOne"} style={{ textDecoration: 'none' }}>
-                    <button className="button">Verstanden</button>
+                    <button className="button_instr">Verstanden</button>
                 </Link>
             </div>
         </div>
