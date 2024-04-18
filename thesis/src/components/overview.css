@@ -8,4 +8,25 @@
     width: 9.5vw;
     aspect-ratio: 1/1;
 }
-  
+
+.progress-line {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #eceefa;
+    border-radius: 10px;
+    box-shadow: 8px 8px 10px #00000040;
+    height: 72%;
+    left: 25%;
+    position: absolute;
+    top: 14%;
+    width: 0.5%;
+}
+
+.dot {
+    background-color: #eceefa;
+    border-radius: 50%;
+    box-shadow: 8px 8px 10px #00000040;
+    height: 1vw;
+    width: 1vw;
+}
