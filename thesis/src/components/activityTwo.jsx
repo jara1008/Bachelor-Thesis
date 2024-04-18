@@ -12,13 +12,10 @@ function ActivityTwo() {
     const [isCorrect, setIsCorrect] = useState(false);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
     const [roundCount, setRoundCount] = useState(1);
+    const [lastDigits, setLastDigits] = useState({ leftValue: -1, rightValue: -1 });
 
     useEffect(() => {
-        const randomNumCubesFirstRow = Math.floor(Math.random() * 10) + 1;
-        const randomNumCubesSecondRow = Math.floor(Math.random() * 10) + 1;
-        setNumCubesFirstRow(randomNumCubesFirstRow);
-        setNumCubesSecondRow(randomNumCubesSecondRow);
-        setIsCorrect(false);
+        shuffleCubes();
     }, []);
 
     const checkInput = () => {
@@ -34,16 +31,26 @@ function ActivityTwo() {
     };
 
     const handleNext = () => {
+        shuffleCubes();
+    };
+
+    const shuffleCubes = () => {
         if (roundCount<5) {
-            const randomNumCubesFirstRow = Math.floor(Math.random() * 10) + 1;
-            const randomNumCubesSecondRow = Math.floor(Math.random() * 10) + 1;
+            let randomNumCubesFirstRow;
+            let randomNumCubesSecondRow;
+            do {
+                randomNumCubesFirstRow = Math.floor(Math.random() * 10) + 1;
+                randomNumCubesSecondRow = Math.floor(Math.random() * 10) + 1;
+            } while (randomNumCubesFirstRow === lastDigits.leftValue && randomNumCubesSecondRow === lastDigits.rightValue);
             setNumCubesFirstRow(randomNumCubesFirstRow);
             setNumCubesSecondRow(randomNumCubesSecondRow);
+            setLastDigits({ leftValue: randomNumCubesFirstRow, rightValue: randomNumCubesSecondRow });
+            setIsCorrect(false);
             setInputValue('');
             setIsCorrect(false);
             setCorrectnessLabel(false);
         }
-    };
+    }
 
     if (roundCount >= 5) {
         // Message that the game is completed
