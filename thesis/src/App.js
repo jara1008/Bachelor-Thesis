@@ -6,6 +6,7 @@ import ActivityOne from './components/activityOne';
 import Overview from './components/overview';
 import InstrOne from './components/instructionsOne';
 import ActivityTwo from './components/activityTwo';
+import ActivityFive from './components/activityFive';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
             <Route path="/instructionsOne" element={<InstrOne />} />
             <Route path="/activityOne" element={<ActivityOne />} />
             <Route path="/activityTwo" element={<ActivityTwo />} />
+            <Route path="/activityFive" element={<ActivityFive />} />
           </Routes>
         </Router>
       </div>

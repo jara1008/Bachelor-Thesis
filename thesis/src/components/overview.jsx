@@ -8,7 +8,7 @@ function Overview() {
         { id: 2, top: '14%', left: '52%', path: "/activityTwo" },
         { id: 3, top: '14%', left: '67%' },
         { id: 4, top: '41%', left: '37%' },
-        { id: 5, top: '41%', left: '52%' },
+        { id: 5, top: '41%', left: '52%', path: "/activityFive" },
         { id: 6, top: '41%', left: '67%' },
         { id: 7, top: '68%', left: '37%' },
         { id: 8, top: '68%', left: '52%' },
