@@ -16,12 +16,13 @@ const rightCloudPositions = [
     { top: 45, left: 84 }  
 ];
 
-
 function ActivityOne() {
 
-    const [clickedStars, setClickedStars] = useState([]);
     const [allStars, setAllStars] = useState({ left: [], right: [] });
+    const [firstPos, setFirstPos] = useState(null);
+    const [secondPos, setSecondPos] = useState(null);
     const [lines, setLines] = useState([]);
+
 
     useEffect(() => {
         const firstCloudCount = Math.floor(Math.random() * leftCloudPositions.length) + 1;
@@ -34,20 +35,26 @@ function ActivityOne() {
     }, []);
 
     const handleStarClick = (position) => {
-        console.log("clicked");
-        setClickedStars((clickedStars) => {
-            if (clickedStars.length === 1) {
-                return [clickedStars, position];
-            } else if (clickedStars.length === 0) {
-                return [position];
-            }
-            else {
-                return [];
-            }
-        });
+        if (!firstPos) {
+            console.log("here");
+            setFirstPos(position);
+        } 
+        else if (!secondPos) {
+            console.log("here2");
+            setSecondPos(position);
+    
+            if (firstPos.cloudSide !== position.cloudSide) {
+                setLines(prevLines => [
+                    ...prevLines,
+                { start: firstPos, end: position }
+            ]);
+        }
+        setFirstPos(null);
+        setSecondPos(null);
+        console.log(firstPos, secondPos);
+        }
     };
     
-
     const generateStars = (count, positions, cloudSide) => {
         return positions.slice(0, count).map((pos, index) => (
             <img
@@ -65,13 +72,6 @@ function ActivityOne() {
         ));
     };
 
-    const renderLines = () => {
-        return lines.map((line, index) => (
-        <svg key={index} style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%", pointerEvents: "none" }}>
-            <line x1={`${line.start.left}%`} y1={`${line.start.top}%`} x2={`${line.end.left}%`} y2={`${line.end.top}%`} stroke="black" strokeWidth="2" />
-        </svg>
-    ))};
-
     return (
         <div className="container" >
             <div className="white-box" >
@@ -84,7 +84,14 @@ function ActivityOne() {
                     {allStars.left}
                     <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "30%", right: "1%", height: "58%", width: "48%" }} />
                     {allStars.right}
-                    {renderLines()}
+                    <svg style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%", pointerEvents: "none" }}>
+                        {lines.map((line, index) => (
+                            <line key={index}
+                                  x1={`${line.start.x}%`} y1={`${line.start.y}%`}
+                                  x2={`${line.end.x}%`} y2={`${line.end.y}%`}
+                                  stroke="black" strokeWidth="2" />
+                        ))}
+                    </svg>
                 </div>
             </div>
         </div>
