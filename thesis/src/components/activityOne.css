@@ -46,3 +46,22 @@ body, html {
       font-weight: bold;
       letter-spacing: 2px;
   }
+
+  .correctness-label-correct1 {
+    font-family: 'Patrick Hand', sans-serif;
+    font-size: 2.5vw;
+    position: absolute; 
+    bottom: 5%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+}
+
+.correctness-label-false1 {
+    font-family: 'Patrick Hand', sans-serif;
+    font-size: 2.5vw;
+    width: 100%;
+    position: absolute; 
+    bottom: 5%; 
+    left: 85%; 
+    transform: translate(-50%, -50%); 
+}
