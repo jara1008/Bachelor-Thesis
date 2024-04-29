@@ -47,7 +47,6 @@ function ActivityTwo() {
             setLastDigits({ leftValue: randomNumCubesFirstRow, rightValue: randomNumCubesSecondRow });
             setIsCorrect(false);
             setInputValue('');
-            setIsCorrect(false);
             setCorrectnessLabel(false);
         }
     }

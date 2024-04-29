@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./activityOne.css";
 import cloud from "../images/cloud.png";
 import star from "../images/star.svg";
@@ -22,7 +22,8 @@ function ActivityOne() {
     const [firstPos, setFirstPos] = useState(null);
     const [secondPos, setSecondPos] = useState(null);
     const [lines, setLines] = useState([]);
-
+    const firstPosRef = useRef(firstPos);
+    const secondPosRef = useRef(secondPos);
 
     useEffect(() => {
         const firstCloudCount = Math.floor(Math.random() * leftCloudPositions.length) + 1;
@@ -35,26 +36,35 @@ function ActivityOne() {
     }, []);
 
     const handleStarClick = (position) => {
-        if (!firstPos) {
-            console.log("here");
+        if (!firstPosRef.current) {
+            console.log("First star clicked");
             setFirstPos(position);
         } 
-        else if (!secondPos) {
-            console.log("here2");
+        else if (!secondPosRef.current) {
+            console.log("Second star clicked");
             setSecondPos(position);
     
-            if (firstPos.cloudSide !== position.cloudSide) {
+            if (firstPosRef.current.cloudSide !== position.cloudSide) {
                 setLines(prevLines => [
                     ...prevLines,
-                { start: firstPos, end: position }
+                { start: firstPosRef.current, end: position }
             ]);
+            setFirstPos(null);
+            setSecondPos(null);
         }
-        setFirstPos(null);
-        setSecondPos(null);
-        console.log(firstPos, secondPos);
         }
     };
+
+    useEffect(() => {
+        firstPosRef.current = firstPos;
+        console.log("Updated firstPos:", firstPos);
+    }, [firstPos]);
     
+    useEffect(() => {
+        secondPosRef.current = secondPos;
+        console.log("Updated secondPos:", secondPos);
+    }, [secondPos]);
+
     const generateStars = (count, positions, cloudSide) => {
         return positions.slice(0, count).map((pos, index) => (
             <img
@@ -87,8 +97,8 @@ function ActivityOne() {
                     <svg style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%", pointerEvents: "none" }}>
                         {lines.map((line, index) => (
                             <line key={index}
-                                  x1={`${line.start.x}%`} y1={`${line.start.y}%`}
-                                  x2={`${line.end.x}%`} y2={`${line.end.y}%`}
+                                  x1={`calc(${line.start.left}% + 1.4vw)`} y1={`calc(${line.start.top}% + 1.4vw)`}
+                                  x2={`calc(${line.end.left}% + 1.4vw)`} y2={`calc(${line.end.top}% + 1.4vw)`}
                                   stroke="black" strokeWidth="2" />
                         ))}
                     </svg>
