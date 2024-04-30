@@ -52,14 +52,13 @@ function ActivityOne() {
             console.log("Second star clicked");
             setSecondPos(position);
     
-            if (firstPosRef.current.cloudSide !== position.cloudSide) {
-                setLines(prevLines => [
-                    ...prevLines,
-                { start: firstPosRef.current, end: position }
+            
+            setLines(prevLines => [
+                ...prevLines,
+            { start: firstPosRef.current, end: position }
             ]);
             setFirstPos(null);
             setSecondPos(null);
-        }
         }
     };
 

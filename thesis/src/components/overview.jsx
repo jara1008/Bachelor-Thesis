@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import "./overview.css";
 
 function Overview() {
-    const [boxes, setBoxes] = useState([
+    const [boxes] = useState([
         { id: 1, top: '14%', left: '37%', path: "/instructionsOne" },
         { id: 2, top: '14%', left: '52%', path: "/activityTwo" },
         { id: 3, top: '14%', left: '67%' },

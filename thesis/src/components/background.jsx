@@ -3,7 +3,7 @@ import './background.css';
 import sparkle from '../images/sparkle.svg';
 
 function Background() {
-  const [ellipses_white, setEllipses_white] = useState([
+  const [ellipses_white] = useState([
     { top: '12%', left: '17%', width: '25px', height: '25px', blur: '5px' },
     { top: '30%', left: '10%', width: '18px', height: '18px', blur: '4px' },
     { top: '60%', left: '12%', width: '18px', height: '18px', blur: '4px' },
@@ -15,7 +15,7 @@ function Background() {
     { top: '90%', left: '93%', width: '25px', height: '25px', blur: '5px' },
   ]);
 
-  const [ellipses_blue, setEllipses_blue] = useState([
+  const [ellipses_blue] = useState([
     { top: '8%', left: '90%', width: '400px', height: '400px', blur: '100px' },
     { top: '30%', left: '2%', width: '350px', height: '350px', blur: '100px' },
     { top: '90%', left: '10%', width: '400px', height: '400px', blur: '100px' },
@@ -23,7 +23,7 @@ function Background() {
     { top: '85%', left: '85%', width: '400px', height: '400px', blur: '100px' },
   ]);
 
-  const [sparkles, setSparkles] = useState([
+  const [sparkles] = useState([
     { top: '18%', left: '5%', size: '8%', opacity: '0.9' },
     { top: '40%', left: '85%', size: '10%', opacity: '0.9' },
     { top: '52%', left: '17%', size: '10%', opacity: '0.9' },
