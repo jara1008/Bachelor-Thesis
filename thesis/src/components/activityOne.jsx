@@ -5,29 +5,34 @@ import star from "../images/star.svg";
 import { Link } from 'react-router-dom';
 import home_icon from '../images/home_icon.png';
 
+/* define fix positions for stars */
 const leftCloudPositions = [
     { top: 49, left: 20 }, { top: 27, left: 35 }, { top: 44, left: 6 }, 
-    { top: 55, left: 28 }, { top: 20, left: 25 }, { top: 32, left: 17 }, 
+    { top: 53, left: 28 }, { top: 20, left: 25 }, { top: 32, left: 17 }, 
     { top: 43, left: 38 } 
 ];
 const rightCloudPositions = [
-    { top: 33, left: 67 }, { top: 19, left: 75 }, { top: 54, left: 68 }, 
+    { top: 33, left: 67 }, { top: 19, left: 75 }, { top: 53, left: 68 }, 
     { top: 39, left: 90 }, { top: 44, left: 80 }, { top: 41, left: 57 }, 
     { top: 27, left: 84 }  
 ];
 
 function ActivityOne() {
-    const [allStars, setAllStars] = useState({ left: [], right: [] });
-    const [firstPos, setFirstPos] = useState(null);
-    const [secondPos, setSecondPos] = useState(null);
-    const [lines, setLines] = useState([]);
-    const firstPosRef = useRef(firstPos);
+    const [allStars, setAllStars] = useState({ left: [], right: [] }); /* positions of stars in the left and right cloud*/
+    const [firstPos, setFirstPos] = useState(null); /* start point of a line */
+    const [secondPos, setSecondPos] = useState(null); /* end point of a line */
+    const [lines, setLines] = useState([]); /* stored lines */
+    const firstPosRef = useRef(firstPos); 
     const secondPosRef = useRef(secondPos);
-    const [isCorrect, setIsCorrect] = useState(false);
-    const [displayCorrectness, setCorrectnessLabel] = useState(false);
-    const [roundCount, setRoundCount] = useState(1);
-    const [firstCloudCount, setFirstCloudCount] = useState(0);
-    const [secondCloudCount, setSecondCloudCount] = useState(0);
+    const [isCorrect, setIsCorrect] = useState(false); /* tracks if the stars are correctly connected */
+    const [displayCorrectness, setCorrectnessLabel] = useState(false); /* enables a message that confirmes correctness */
+    const [roundCount, setRoundCount] = useState(1); /* counts the amount of repetitions played */
+    const [firstCloudCount, setFirstCloudCount] = useState(0); /* track #stars in left cloud */
+    const [secondCloudCount, setSecondCloudCount] = useState(0); /* track #stars in right cloud */
+    const [isCheckedLeft, setIsLeftChecked] = useState(false);
+    const [isCheckedRight, setIsRightChecked] = useState(false);
+    const [checkBoxCorrectness, setCheckBoxCorrectness] = useState(false);
+
 
     useEffect(() => {
         setFirstCloudCount(Math.floor(Math.random() * leftCloudPositions.length) + 1);
@@ -43,16 +48,22 @@ function ActivityOne() {
         }
     }, [firstCloudCount, secondCloudCount, leftCloudPositions, rightCloudPositions]);
 
+    useEffect(() => {
+        firstPosRef.current = firstPos;
+    }, [firstPos]);
+    
+    useEffect(() => {
+        secondPosRef.current = secondPos;
+    }, [secondPos]);
+
+    /* tracks clicked stars */ 
     const handleStarClick = (position) => {
         if (!firstPosRef.current) {
-            console.log("First star clicked");
             setFirstPos(position);
         } 
         else if (!secondPosRef.current) {
-            console.log("Second star clicked");
             setSecondPos(position);
     
-            
             setLines(prevLines => [
                 ...prevLines,
             { start: firstPosRef.current, end: position }
@@ -61,16 +72,6 @@ function ActivityOne() {
             setSecondPos(null);
         }
     };
-
-    useEffect(() => {
-        firstPosRef.current = firstPos;
-        console.log("Updated firstPos:", firstPos);
-    }, [firstPos]);
-    
-    useEffect(() => {
-        secondPosRef.current = secondPos;
-        console.log("Updated secondPos:", secondPos);
-    }, [secondPos]);
 
     const generateStars = (count, positions, cloudSide) => {
         return positions.slice(0, count).map((pos, index) => (
@@ -94,6 +95,8 @@ function ActivityOne() {
         const seenPositions = new Set();
         
         if (lines.length !== Math.min(firstCloudCount, secondCloudCount)) {
+            setIsLeftChecked(false);
+            setIsRightChecked(false);
             setLines([]);
             return;
         }
@@ -102,7 +105,8 @@ function ActivityOne() {
             const { start, end } = line;
             if (!((start.cloudSide === 'left' && end.cloudSide === 'right') || 
                   (start.cloudSide === 'right' && end.cloudSide === 'left'))) {
-                console.log("Invalid line configuration:", line);
+                setIsLeftChecked(false);
+                setIsRightChecked(false);
                 setLines([]);
                 return;
             }
@@ -111,13 +115,34 @@ function ActivityOne() {
             const endPos = `end-${end.top}-${end.left}`;
     
             if (seenPositions.has(startPos) || seenPositions.has(endPos)) {
-                console.log("Duplicate positions found:", line);
+                setIsLeftChecked(false);
+                setIsRightChecked(false);
                 setLines([]);
                 return;
             }
             seenPositions.add(startPos);
             seenPositions.add(endPos);
         }
+
+        if (firstCloudCount > secondCloudCount && (!!!isCheckedLeft || isCheckedRight)) {
+            setIsLeftChecked(false);
+            setIsRightChecked(false);
+            setLines([]);
+            return;
+        }
+        else if (secondCloudCount > firstCloudCount && (!!!isCheckedRight || isCheckedLeft)) {
+            setIsLeftChecked(false);
+            setIsRightChecked(false);
+            setLines([]);
+            return;
+        }
+
+        if (!!!isCheckedLeft && !!!isCheckedRight && (firstCloudCount !== secondCloudCount)) {
+            setCheckBoxCorrectness(true);
+            return;
+        }
+        
+        setCheckBoxCorrectness(false);
         setIsCorrect(true);
         setRoundCount(roundCount + 1);
     };
@@ -132,11 +157,24 @@ function ActivityOne() {
     
             setAllStars({ left: starsInFirstCloud, right: starsInSecondCloud });
         }
+        setIsLeftChecked(false);
+        setIsRightChecked(false);
+        setCheckBoxCorrectness(false);
         setIsCorrect(false);
         setCorrectnessLabel(false);
         setLines([]);
     };
 
+    const handleLeftCheckboxChange = (event) => {
+        console.log("is checked left");
+        setIsLeftChecked(event.target.checked);
+    };
+
+    const handleRightCheckboxChange = (event) => {
+        setIsRightChecked(event.target.checked);
+    };
+
+    /* the game is finished */
     if (roundCount >= 5) {
         // Message that the game is completed
         return (
@@ -166,11 +204,23 @@ function ActivityOne() {
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <span className="text-wrapper">Verbinde die Sterne miteinander:</span>
+                <span className="text-wrapper">Verbinde die Sterne miteinander und wähle die Wolke mit MEHR Sternen an:</span>
                 <div style={{ position: "relative", height: "100%", width: "100%" }}>
-                    <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "12%", left: "0%", height: "58%", width: "48%" }} />
+                    <input
+                        type="checkbox"
+                        checked={isCheckedLeft}
+                        onChange={handleLeftCheckboxChange}
+                        style={{ position: "absolute", top: "6%", left: "25%", height: "5%", width: "5%", zIndex: 2 }}
+                    />
+                    <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "10%", left: "0%", height: "58%", width: "48%" }} />
                     {allStars.left}
-                    <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "12%", right: "1%", height: "58%", width: "48%" }} />
+                    <input
+                        type="checkbox"
+                        checked={isCheckedRight}
+                        onChange={handleRightCheckboxChange}
+                        style={{ position: "absolute", top: "6%", left: "75%", height: "5%", width: "5%", zIndex: 2 }}
+                    />
+                    <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "10%", right: "1%", height: "58%", width: "48%" }} />
                     {allStars.right}
                     <svg style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%", pointerEvents: "none" }}>
                         {lines.map((line, index) => (
@@ -180,11 +230,12 @@ function ActivityOne() {
                                   stroke="black" strokeWidth="2" />
                         ))}
                     </svg>
-                </div>
                 {isCorrect && displayCorrectness && <div className="correctness-label-correct1">Richtig!</div>}
                 {!!!isCorrect && displayCorrectness && <div className="correctness-label-false1">Versuche es nochmals!</div>}
+                {checkBoxCorrectness && !!!displayCorrectness && <div className="correctness-label-false1">Wähle das richtige Kästchen!</div>}
+                </div>
                 <button onClick={isCorrect ? handleNext : checkInput} className="button" 
-                    style={{ top: '88%', left: '85%' }} >
+                    style={{ top: '91%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
             </div>
