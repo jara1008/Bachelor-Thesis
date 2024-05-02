@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import "./overview.css";
+import rocket from "../images/rocket.png";
+import planet from "../images/planet.png";
 
 function Overview() {
     const [boxes] = useState([
@@ -18,6 +20,10 @@ function Overview() {
     const [dots, setDots] = useState([]);
     const numberOfDots = 9; 
 
+    const [rocketPosition, setRocketPosition] = useState('92%');
+    const [rocketPositionTop, setRocketPositionTop] = useState('28.25%');
+    const levelNr = 0;
+
     useEffect(() => {
         const topOffset = 8; 
         const bottomOffset = 90;
@@ -30,6 +36,22 @@ function Overview() {
 
     return (
         <div className="overview">
+            <img src={rocket} alt="Rocket" style={{
+                position: 'absolute',
+                left: rocketPositionTop,
+                height: "55px",
+                width: "55px",
+                transform: 'translate(-50%, -50%)', // Center the rocket image on the dot
+                top: rocketPosition,
+            }} />
+            <img src={planet} alt="Planet" style={{
+                position: 'absolute',
+                left: '28.25%',
+                height: "110px",
+                width: "110px",
+                transform: 'translate(-50%, -50%)', // Center the rocket image on the dot
+                top: '10%'
+            }} />
            <div className="progress-line">
                 {dots.map((dot) => (
                     <div key={dot.id} style={{ 
