@@ -124,6 +124,12 @@ function ActivityOne() {
             seenPositions.add(endPos);
         }
 
+        if  (!!!isCheckedLeft && !!!isCheckedRight) {
+            setCheckBoxCorrectness(true);
+            return;
+        }
+        setCheckBoxCorrectness(false);
+
         if (firstCloudCount > secondCloudCount && (!!!isCheckedLeft || isCheckedRight)) {
             setIsLeftChecked(false);
             setIsRightChecked(false);
@@ -137,12 +143,6 @@ function ActivityOne() {
             return;
         }
 
-        if (!!!isCheckedLeft && !!!isCheckedRight && (firstCloudCount !== secondCloudCount)) {
-            setCheckBoxCorrectness(true);
-            return;
-        }
-        
-        setCheckBoxCorrectness(false);
         setIsCorrect(true);
         setRoundCount(roundCount + 1);
     };
@@ -231,8 +231,8 @@ function ActivityOne() {
                         ))}
                     </svg>
                 {isCorrect && displayCorrectness && <div className="correctness-label-correct1">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-false1">Versuche es nochmals!</div>}
-                {checkBoxCorrectness && !!!displayCorrectness && <div className="correctness-label-false1">Wähle das richtige Kästchen!</div>}
+                {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <div className="correctness-label-false1">Versuche es nochmals!</div>}
+                {checkBoxCorrectness && <div className="correctness-label-false1">Wähle das richtige Kästchen!</div>}
                 </div>
                 <button onClick={isCorrect ? handleNext : checkInput} className="button" 
                     style={{ top: '91%', left: '85%' }} >
