@@ -8,7 +8,7 @@ function Overview() {
     const [boxes] = useState([
         { id: 1, top: '14%', left: '37%', path: "/instructionsOne" },
         { id: 2, top: '14%', left: '52%', path: "/activityTwo" },
-        { id: 3, top: '14%', left: '67%' },
+        { id: 3, top: '14%', left: '67%', path: "/activityThree" },
         { id: 4, top: '41%', left: '37%' },
         { id: 5, top: '41%', left: '52%', path: "/activityFive" },
         { id: 6, top: '41%', left: '67%' },
@@ -49,7 +49,7 @@ function Overview() {
                 left: '28.25%',
                 height: "110px",
                 width: "110px",
-                transform: 'translate(-50%, -50%)', // Center the rocket image on the dot
+                transform: 'translate(-50%, -50%)',
                 top: '10%'
             }} />
            <div className="progress-line">
