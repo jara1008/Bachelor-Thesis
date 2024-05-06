@@ -13,7 +13,7 @@ function Overview() {
         { id: 5, top: '41%', left: '52%', path: "/activityFive" },
         { id: 6, top: '41%', left: '67%' },
         { id: 7, top: '68%', left: '37%' },
-        { id: 8, top: '68%', left: '52%' },
+        { id: 8, top: '68%', left: '52%', path: "/activityEight" },
         { id: 9, top: '68%', left: '67%' }
     ])
 
