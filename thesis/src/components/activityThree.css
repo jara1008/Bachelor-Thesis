@@ -85,6 +85,11 @@ body, html {
     font-family: 'Patrick Hand', sans-serif; 
 }
 
+.active-coin {
+    background-color: red; 
+}
+
+
 .button {
   background-color: #BFC4F2;
   border-radius: 50px;
