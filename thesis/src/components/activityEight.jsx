@@ -12,13 +12,19 @@ function ActivityEight() {
     const [isCorrect, setIsCorrect] = useState(false);
     const [roundCount, setRoundCount] = useState(1);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
-    const [position, setPosition] = useState(Math.random(-6, 8));
 
     const leftNumbers = [7, 6, 5, 4, 3, 2, 1];
     const rightNumbers = [1, 2, 3, 4, 5, 6, 7];
+    const allNumbers = [...leftNumbers, ...rightNumbers];
 
-    const [carPosition, setCarPosition] = useState(Math.floor(Math.random() * (leftNumbers.length + rightNumbers.length + 1)));
-    console.log(carPosition);
+    const [carPosition, setCarPosition] = useState(Math.floor(Math.random() * (leftNumbers.length + rightNumbers.length)));
+    const [carIndex, setCarIndex] = useState(allNumbers[carPosition]);
+
+    const [rectangleValues, setRectangleValues] = useState([
+        { leftValue: carIndex, rightValue: carIndex, leftColor: '#eceefa', rightColor: '#eceefa' },
+        { leftValue: carIndex, rightValue: carIndex, leftColor: '#eceefa', rightColor: '#eceefa' },
+        { leftValue: -carIndex, rightValue: `+${carIndex}`, leftColor: '#eceefa', rightColor: '#eceefa' }
+    ]);
 
     const renderNumberLine = () => (
         <div>
@@ -30,27 +36,57 @@ function ActivityEight() {
                 height: '40px',
                 transform:'translate(-50%)',
             }}></img>
-            <img src={car} style={{ 
-                left: `${2 + (carPosition * 6.1)}%`, //TODO: make resizable...
-                position: 'relative',
-                top: '10.2vh',
-                width: '6%',
-                height: '3%',
-                transform:'translateX(-50%)',
-            }}></img>
             <div className="number-line">
                 {leftNumbers.map((num, index) => (
                     <div key={`left-${index}`} className="number-dot red-dot">
                         {num}
+                        {index === carPosition && <img src={car} className='car_img'/>}
                     </div>
                 ))}
                 <div key={ 'zero' } className="number-dot">0</div>
                 {rightNumbers.map((num, index) => (
-                    <div key={`right-${index}`} className="number-dot blue-dot">{num}</div>
+                    <div key={`right-${index}`} className="number-dot blue-dot">
+                        {num}
+                        {index === (carPosition-leftNumbers.length) && <img src={car} className='car_img'/>}
+                    </div>
                 ))}
             </div>
         </div>
     );
+
+    const renderRectangles = () => (
+        <div className="rectangle-container">
+            {rectangleValues.map((rect, index) => (
+                <div key={index} className="rectangle2">
+                    <div className={`square ${index === 0 ? 'red-text' : 'black-text'}`} 
+                    onClick={() => handleSquareClick(index, 'left')}
+                    style={{ backgroundColor: rect.leftColor }}>
+                        {index === 1 && <div>&larr;</div>}
+                        <div>{rect.leftValue}</div>
+                    </div>
+                    <div className={`square ${index === 0 ? 'blue-text' : 'black-text'}`} 
+                    onClick={() => handleSquareClick(index, 'right')}
+                    style={{ backgroundColor: rect.rightColor }}>
+                        {index === 1 && <div>&rarr;</div>}
+                        <div>{rect.rightValue}</div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+
+    const handleSquareClick = (index, side) => {
+        setRectangleValues(prev => prev.map((rect, idx) => {
+            if (idx === index) {
+                if (side === 'left' && rect.rightColor !== '#BFC4F2') {
+                    return { ...rect, leftColor: rect.leftColor === '#eceefa' ? '#BFC4F2' : '#eceefa' };
+                } else if (side === 'right' && rect.leftColor !== '#BFC4F2') {
+                    return { ...rect, rightColor: rect.rightColor === '#eceefa' ? '#BFC4F2' : '#eceefa' };
+                }
+            }
+            return rect;
+        }));
+    };
 
     const checkInput = () => {
         
@@ -91,6 +127,7 @@ function ActivityEight() {
                 </Link>
                 <span className="text-wrapper">TODO: </span>
                 {renderNumberLine()}
+                {renderRectangles()}
                 {isCorrect && displayCorrectness && <div className="correctness-label-correct">Richtig!</div>}
                 {!!!isCorrect && displayCorrectness && <div className="correctness-label-false">Versuche es nochmals!</div>}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button" 
