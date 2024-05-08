@@ -20,11 +20,44 @@ function ActivityEight() {
     const [carPosition, setCarPosition] = useState(Math.floor(Math.random() * (leftNumbers.length + rightNumbers.length)));
     const [carIndex, setCarIndex] = useState(allNumbers[carPosition]);
 
-    const [rectangleValues, setRectangleValues] = useState([
-        { leftValue: carIndex, rightValue: carIndex, leftColor: '#eceefa', rightColor: '#eceefa' },
-        { leftValue: carIndex, rightValue: carIndex, leftColor: '#eceefa', rightColor: '#eceefa' },
-        { leftValue: -carIndex, rightValue: `+${carIndex}`, leftColor: '#eceefa', rightColor: '#eceefa' }
-    ]);
+    const [rectangleValues, setRectangleValues] = useState(() => {
+        const isLeftRed = Math.random() < 0.5;
+        const isLeftLeft = Math.random() < 0.5;
+        const isLeftPos = Math.random() < 0.5;
+
+        return [
+            {
+                leftValue: carIndex,
+                rightValue: carIndex,
+                leftColor: '#eceefa',
+                rightColor: '#eceefa',
+                leftTextColor: isLeftRed ? 'red-text' : 'blue-text',
+                rightTextColor: isLeftRed ? 'blue-text' : 'red-text',
+                leftArrow: null,
+                rightArrow: null
+            },
+            {
+                leftValue: carIndex,
+                rightValue: carIndex,
+                leftColor: '#eceefa',
+                rightColor: '#eceefa',
+                leftTextColor: 'black-text',
+                rightTextColor: 'black-text',
+                leftArrow: isLeftLeft ? <div>&larr;</div> : <div>&rarr;</div>,
+                rightArrow: isLeftLeft ? <div>&rarr;</div> : <div>&larr;</div>
+            },
+            {
+                leftValue: isLeftPos ? -carIndex : `+${carIndex}`,
+                rightValue: isLeftPos ? `+${carIndex}` : -carIndex,
+                leftColor: '#eceefa',
+                rightColor: '#eceefa',
+                leftTextColor: 'black-text',
+                rightTextColor: 'black-text',
+                leftArrow: null,
+                rightArrow: null
+            }
+        ];
+    });
 
     const renderNumberLine = () => (
         <div>
@@ -52,28 +85,30 @@ function ActivityEight() {
                 ))}
             </div>
         </div>
-    );
+    );    
 
-    const renderRectangles = () => (
-        <div className="rectangle-container">
-            {rectangleValues.map((rect, index) => (
-                <div key={index} className="rectangle2">
-                    <div className={`square ${index === 0 ? 'red-text' : 'black-text'}`} 
-                    onClick={() => handleSquareClick(index, 'left')}
-                    style={{ backgroundColor: rect.leftColor }}>
-                        {index === 1 && <div>&larr;</div>}
-                        <div>{rect.leftValue}</div>
+    const renderRectangles = () => {
+        return (
+            <div className="rectangle-container">
+                {rectangleValues.map((rect, index) => (
+                    <div key={index} className="rectangle2">
+                        <div className={`square ${rect.leftTextColor}`}
+                            onClick={() => handleSquareClick(index, 'left')}
+                            style={{ backgroundColor: rect.leftColor }}>
+                            {rect.leftArrow}
+                            <div>{rect.leftValue}</div>
+                        </div>
+                        <div className={`square ${rect.rightTextColor}`}
+                            onClick={() => handleSquareClick(index, 'right')}
+                            style={{ backgroundColor: rect.rightColor }}>
+                            {rect.rightArrow}
+                            <div>{rect.rightValue}</div>
+                        </div>
                     </div>
-                    <div className={`square ${index === 0 ? 'blue-text' : 'black-text'}`} 
-                    onClick={() => handleSquareClick(index, 'right')}
-                    style={{ backgroundColor: rect.rightColor }}>
-                        {index === 1 && <div>&rarr;</div>}
-                        <div>{rect.rightValue}</div>
-                    </div>
-                </div>
-            ))}
-        </div>
-    );
+                ))}
+            </div>
+        );
+    };
 
     const handleSquareClick = (index, side) => {
         setRectangleValues(prev => prev.map((rect, idx) => {
