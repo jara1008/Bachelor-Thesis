@@ -10,7 +10,7 @@ function ActivityEight() {
     const [numbers, setNumbers] = useState({ largeNum: 0, smallNum: 0 });
     const [inputValue, setInputValue] = useState('');
     const [isCorrect, setIsCorrect] = useState(false);
-    const [roundCount, setRoundCount] = useState(1);
+    const [roundCount, setRoundCount] = useState(0);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
 
     const leftNumbers = [7, 6, 5, 4, 3, 2, 1];
@@ -19,11 +19,13 @@ function ActivityEight() {
 
     const [carPosition, setCarPosition] = useState(Math.floor(Math.random() * (leftNumbers.length + rightNumbers.length)));
     const [carIndex, setCarIndex] = useState(allNumbers[carPosition]);
+    const pickedNumbers = new Set();
+    pickedNumbers.add(carPosition);
 
+    const [isLeftRed, setIsLeftRed] = useState(Math.random() < 0.5);
+    const [isLeftLeft, setIsLeftLeft] = useState(Math.random() < 0.5);
+    const [isLeftPos, setIsLeftPos] = useState(Math.random() < 0.5);
     const [rectangleValues, setRectangleValues] = useState(() => {
-        const isLeftRed = Math.random() < 0.5;
-        const isLeftLeft = Math.random() < 0.5;
-        const isLeftPos = Math.random() < 0.5;
 
         return [
             {
@@ -47,8 +49,8 @@ function ActivityEight() {
                 rightArrow: isLeftLeft ? <div>&rarr;</div> : <div>&larr;</div>
             },
             {
-                leftValue: isLeftPos ? -carIndex : `+${carIndex}`,
-                rightValue: isLeftPos ? `+${carIndex}` : -carIndex,
+                leftValue: isLeftPos ? `+${carIndex}` : -carIndex,
+                rightValue: isLeftPos ? -carIndex : `+${carIndex}`,
                 leftColor: '#eceefa',
                 rightColor: '#eceefa',
                 leftTextColor: 'black-text',
@@ -124,11 +126,78 @@ function ActivityEight() {
     };
 
     const checkInput = () => {
-        
+        setCorrectnessLabel(true);
+        if (carPosition <= 6) {
+            if (((isLeftRed && rectangleValues[0].leftColor === '#BFC4F2') || (!isLeftRed && rectangleValues[0].rightColor === '#BFC4F2')) &&
+                ((isLeftLeft && rectangleValues[1].leftColor === '#BFC4F2') || (!isLeftLeft && rectangleValues[1].rightColor === '#BFC4F2')) &&
+                ((!isLeftPos && rectangleValues[2].leftColor === '#BFC4F2') || (isLeftPos && rectangleValues[2].rightColor === '#BFC4F2'))) {
+                setIsCorrect(true);
+                setRoundCount(roundCount + 1);
+            }
+        }
+        else if (carPosition >= 7) {
+            if (((!isLeftRed && rectangleValues[0].leftColor === '#BFC4F2') || (isLeftRed && rectangleValues[0].rightColor === '#BFC4F2')) &&
+                ((!isLeftLeft && rectangleValues[1].leftColor === '#BFC4F2') || (isLeftLeft && rectangleValues[1].rightColor === '#BFC4F2')) &&
+                ((isLeftPos && rectangleValues[2].leftColor === '#BFC4F2') || (!isLeftPos && rectangleValues[2].rightColor === '#BFC4F2'))) {
+                setIsCorrect(true);
+                setRoundCount(roundCount + 1);
+            }
+        }
     };
 
     const handleNext = () => {
-        
+        setIsCorrect(false);
+        setCorrectnessLabel(false);
+
+        let newCarPosition = Math.floor(Math.random() * (leftNumbers.length + rightNumbers.length));
+        while (pickedNumbers.has(newCarPosition)) {
+            newCarPosition = Math.floor(Math.random() * (leftNumbers.length + rightNumbers.length));
+        }
+        pickedNumbers.add(newCarPosition);
+        const newIsLeftRed = Math.random() < 0.5;
+        const newIsLeftLeft = Math.random() < 0.5;
+        const newIsLeftPos = Math.random() < 0.5;
+        const newCarIndex = allNumbers[newCarPosition];
+
+        setCarPosition(newCarPosition);
+        setCarIndex(newCarIndex);
+        setIsLeftRed(newIsLeftRed);
+        setIsLeftLeft(newIsLeftLeft);
+        setIsLeftPos(newIsLeftPos);
+
+
+        setRectangleValues([
+            {
+                leftValue: newCarIndex,
+                rightValue: newCarIndex,
+                leftColor: '#eceefa',
+                rightColor: '#eceefa',
+                leftTextColor: newIsLeftRed ? 'red-text' : 'blue-text',
+                rightTextColor: newIsLeftRed ? 'blue-text' : 'red-text',
+                leftArrow: null,
+                rightArrow: null
+            },
+            {
+                leftValue: newCarIndex,
+                rightValue: newCarIndex,
+                leftColor: '#eceefa',
+                rightColor: '#eceefa',
+                leftTextColor: 'black-text',
+                rightTextColor: 'black-text',
+                leftArrow: newIsLeftLeft ? <div>&larr;</div> : <div>&rarr;</div>,
+                rightArrow: newIsLeftLeft ? <div>&rarr;</div> : <div>&larr;</div>
+            },
+            {
+                leftValue: newIsLeftPos ? `+${newCarIndex}` : -newCarIndex,
+                rightValue: newIsLeftPos ? -newCarIndex : `+${newCarIndex}`,
+                leftColor: '#eceefa',
+                rightColor: '#eceefa',
+                leftTextColor: 'black-text',
+                rightTextColor: 'black-text',
+                leftArrow: null,
+                rightArrow: null
+            }
+        ]);
     };
 
     if (roundCount >= 5) {
