@@ -71,8 +71,10 @@ body, html {
 
 .coin-stack {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 0.1vw;
+    width: 45%;
+    justify-content: center;
 }
 
 .coin {

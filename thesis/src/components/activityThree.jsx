@@ -6,10 +6,10 @@ import congratulation_icon from '../images/congratulation_icon.png'; // Assuming
 
 function ActivityThree() {
     const [roundCount, setRoundCount] = useState(1);
-    const [leftCoinsTen, setLeftCoinsTen] = useState(Math.floor(Math.random() * 2) + 1); 
-    const [leftCoinsOne, setLeftCoinsOne] = useState(Math.floor(Math.random() * 6) + 1); 
-    const [rightCoinsTen, setRightCoinsTen] = useState(Math.floor(Math.random() * 2) + 1); 
-    const [rightCoinsOne, setRightCoinsOne] = useState(Math.floor(Math.random() * 6) + 1);
+    const [leftCoinsTen, setLeftCoinsTen] = useState(Math.floor(Math.random() * 3) + 1); 
+    const [leftCoinsOne, setLeftCoinsOne] = useState(Math.floor(Math.random() * 9) + 1); 
+    const [rightCoinsTen, setRightCoinsTen] = useState(Math.floor(Math.random() * 3) + 1); 
+    const [rightCoinsOne, setRightCoinsOne] = useState(Math.floor(Math.random() * 9) + 1);
     const [activeCoins, setActiveCoins] = useState(new Set());
     const [leftVisibility, setLeftVisibility] = useState({
         tens: Array(leftCoinsTen).fill(true),
@@ -110,10 +110,10 @@ function ActivityThree() {
 
     function handleNext() {
         if (roundCount < 5) {
-            const newLeftCoinsTen = Math.floor(Math.random() * 2) + 1;
-            const newLeftCoinsOne = Math.floor(Math.random() * 6) + 1;
-            const newRightCoinsTen = Math.floor(Math.random() * 2) + 1;
-            const newRightCoinsOne = Math.floor(Math.random() * 6) + 1;
+            const newLeftCoinsTen = Math.floor(Math.random() * 3) + 1;
+            const newLeftCoinsOne = Math.floor(Math.random() * 9) + 1;
+            const newRightCoinsTen = Math.floor(Math.random() * 3) + 1;
+            const newRightCoinsOne = Math.floor(Math.random() * 9) + 1;
     
             setLeftCoinsTen(newLeftCoinsTen);
             setLeftCoinsOne(newLeftCoinsOne);

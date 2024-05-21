@@ -8,10 +8,10 @@ function ActivitySix() {
     let initialLeftCoinsTen, initialLeftCoinsOne, initialRightCoinsTen, initialRightCoinsOne;
     let initialLeftVal, initialRightVal;
     do {
-        initialLeftCoinsTen = Math.floor(Math.random() * 2) + 1;
-        initialLeftCoinsOne = Math.floor(Math.random() * 6) + 1;
-        initialRightCoinsTen = Math.floor(Math.random() * 2) + 1;
-        initialRightCoinsOne = Math.floor(Math.random() * 6) + 1;
+        initialLeftCoinsTen = Math.floor(Math.random() * 3) + 1;
+        initialLeftCoinsOne = Math.floor(Math.random() * 9) + 1;
+        initialRightCoinsTen = Math.floor(Math.random() * 3) + 1;
+        initialRightCoinsOne = Math.floor(Math.random() * 9) + 1;
         initialLeftVal = initialLeftCoinsOne + initialLeftCoinsTen * 10;
         initialRightVal = initialRightCoinsOne + initialRightCoinsTen * 10;
     } while (initialLeftVal <= initialRightVal);
@@ -36,10 +36,11 @@ function ActivitySix() {
     const [isCorrect, setIsCorrect] = useState(false);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
     const [inputValue, setInputValue] = useState('');
+    const [displayMinus, setDisplayMinus] = useState(true);
 
     function CoinRowUpper({ coinsTen, coinsOne, type }) {
         return (
-            <div className="coin-stack">
+            <div className="coin-stack-6">
                 {Array.from({ length: coinsTen }, (_, i) => {
                     const coinKey = `${type}-tens-${i}`;
                     const isActive = activeCoins.has(coinKey)
@@ -64,7 +65,7 @@ function ActivitySix() {
 
     function CoinRowLower({ coinsTen, coinsOne, type, visibility }) {
         return (
-            <div className="coin-stack">
+            <div className="coin-stack-6">
                 {Array.from({ length: coinsTen }, (_, i) => visibility.tens[i] && (
                     <div key={`ten-${i}`} className={`coin ${type}-coin`}>10</div>
                 ))}
@@ -77,7 +78,7 @@ function ActivitySix() {
 
     function handleCoinClick(type, denomination, index) {
         const coinKey = `${type}-${denomination}-${index}`;
-
+    
         setActiveCoins(prevActiveCoins => {
             const newActiveCoins = new Set(prevActiveCoins);
             if (leftVisibility[denomination][index] != rightVisibility[denomination][index]) {
@@ -103,6 +104,15 @@ function ActivitySix() {
                 updateVisibility(rightVisibility, setRightVisibility);
             }
         }
+
+        const hasNoCoins = !rightVisibility.tens.some(isVisible => isVisible) && !rightVisibility.ones.some(isVisible => isVisible);
+        if (hasNoCoins) {
+            console.log("HUHUUUUU");
+            setDisplayMinus(false);
+        }
+        else {
+            setDisplayMinus(true);
+        }
     }
 
     function checkInput() {
@@ -119,10 +129,10 @@ function ActivitySix() {
         if (roundCount < 5) {
             let newLeftCoinsTen, newLeftCoinsOne, newRightCoinsTen, newRightCoinsOne, newLeftVal, newRightVal;
             do {
-                newLeftCoinsTen = Math.floor(Math.random() * 2) + 1;
-                newLeftCoinsOne = Math.floor(Math.random() * 6) + 1;
-                newRightCoinsTen = Math.floor(Math.random() * 2) + 1;
-                newRightCoinsOne = Math.floor(Math.random() * 6) + 1;
+                newLeftCoinsTen = Math.floor(Math.random() * 3) + 1;
+                newLeftCoinsOne = Math.floor(Math.random() * 9) + 1;
+                newRightCoinsTen = Math.floor(Math.random() * 3) + 1;
+                newRightCoinsOne = Math.floor(Math.random() * 9) + 1;
                 newLeftVal = newLeftCoinsOne + newLeftCoinsTen * 10;
                 newRightVal = newRightCoinsOne + newRightCoinsTen * 10;
             } while (newLeftVal <= newRightVal);
@@ -131,6 +141,8 @@ function ActivitySix() {
             setLeftCoinsOne(newLeftCoinsOne);
             setRightCoinsTen(newRightCoinsTen);
             setRightCoinsOne(newRightCoinsOne);
+
+            setDisplayMinus(true);
     
             setLeftVisibility({
                 tens: Array(newLeftCoinsTen).fill(true),
@@ -150,7 +162,8 @@ function ActivitySix() {
 
     function handleConversion() {
         const hasVisibleTens = leftVisibility.tens.some(isVisible => isVisible);
-        if (leftCoinsTen > 0 && hasVisibleTens) {
+        const hasVisibleTensRight = rightVisibility.tens.some(isVisible => isVisible);
+        if (leftCoinsTen > 0 && hasVisibleTens && !hasVisibleTensRight) {
             const newLeftCoinsTen = leftCoinsTen - 1;
             const newLeftCoinsOne = leftCoinsOne + 10;
             
@@ -194,31 +207,31 @@ function ActivitySix() {
                 </Link>
                 <div className='text-wrapper'>TODO</div>
                 <span className='text-wrapper-abs' style={{ '--left': '12%', '--top': '20%' }}>{leftVal} - {rightVal}</span>
-                <div className="coin-row" style={{ '--top': '28%' }}>
+                <div className="coin-row-6" style={{ '--top': '28%' }}>
                     <span className='text-wrapper-abs' style={{ '--left': '-2%' }}>=</span>
                     <CoinRowUpper coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='upper' visibility={leftVisibility} setVisibility={setLeftVisibility} />
                     <span className='text-wrapper-abs' style={{ '--left': '50%' }}>-</span>
                     <CoinRowUpper coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type='upper' visibility={rightVisibility} setVisibility={setRightVisibility} />
                 </div>
-                <div className="coin-row" style={{ '--top': '55%' }}>
+                <div className="coin-row-6" style={{ '--top': '54%' }}>
                     <span className='text-wrapper-abs' style={{ '--left': '-2%' }}>=</span>
                     <CoinRowLower coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='lower' visibility={leftVisibility} setVisibility={setLeftVisibility} />
-                    <span className='text-wrapper-abs' style={{ '--left': '50%' }}>-</span>
+                    {displayMinus && <span className='text-wrapper-abs' style={{ '--left': '50%' }}>-</span>}
                     <CoinRowLower coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type='lower' visibility={rightVisibility} setVisibility={setRightVisibility} />
                 </div>
-                <div className="coin-row" style={{ '--top': '85%' }}>
+                <div className="coin-row-6" style={{ '--top': '85%' }}>
                     <span className='text-wrapper-abs' style={{ '--left': '-2%' }}>=</span>
                     <input
                     type="text" 
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder=""
-                        className="info-input-5"
+                        className="info-input-6"
                         readOnly={isCorrect}
                     />
                 </div>
-                {isCorrect && displayCorrectness && <div className="correctness-label-correct-bottom">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-false-bottom">Versuche es nochmals!</div>}
+                {isCorrect && displayCorrectness && <div className="correctness-label-correct">Richtig!</div>}
+                {!!!isCorrect && displayCorrectness && <div className="correctness-label-false-6">Versuche es nochmals!</div>}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button" 
                     style={{ top: '88%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}

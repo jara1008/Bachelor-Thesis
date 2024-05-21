@@ -58,16 +58,17 @@ body, html {
     transform: translate(-50%, -50%);
 }
 
-.coin-row {
+.coin-row-6 {
     position: absolute;
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 90%;
     margin-left: 2%;
     margin-top: 0.2vw; 
+    top: var(--top, 15%);
 }
 
-.coin-stack {
+.coin-stack-6 {
     display: flex;
     flex-wrap: wrap;
     gap: 0.1vw;
@@ -111,7 +112,7 @@ body, html {
   cursor: pointer;
 }
 
-.info-input-5 {
+.info-input-6 {
     width: 6vw; 
     height: 4vw;
     text-align: center; 
@@ -128,25 +129,22 @@ body, html {
     transform: translate(-50%, -50%);
 }
 
-  .correctness-label-correct-bottom {
+.correctness-label-correct {
+    font-family: 'Patrick Hand', sans-serif;
+    font-size: 2.5vw;
+    position: absolute; 
+    bottom: 22%; 
+    left: 65%;  
+  }
+  
+  .correctness-label-false-6 {
     font-family: 'Patrick Hand', sans-serif;
     font-size: 2.5vw;
     width: 100%;
     position: absolute; 
-    bottom: 8%;  
-    display: flex;
-    justify-content: center;
-}
-
-.correctness-label-false-bottom {
-    font-family: 'Patrick Hand', sans-serif;
-    font-size: 2.5vw;
-    width: 100%;
-    position: absolute; 
-    bottom: 8%; 
-    display: flex;
-    justify-content: center;
-}
+    bottom: 20%; 
+    left: 65%; 
+  }
 
 .congratulation-message {
   font-family: 'Patrick Hand', sans-serif;
