@@ -8,6 +8,7 @@ import ActivityOne from './components/activityOne';
 import ActivityTwo from './components/activityTwo';
 import ActivityThree from './components/activityThree';
 import ActivityFive from './components/activityFive';
+import ActivitySix from './components/activitySix';
 import ActivityEight from './components/activityEight';
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/activityTwo" element={<ActivityTwo />} />
             <Route path="/activityThree" element={<ActivityThree />} />
             <Route path="/activityFive" element={<ActivityFive />} />
+            <Route path="/activitySix" element={<ActivitySix />} />
             <Route path="/activityEight" element={<ActivityEight />} />
           </Routes>
         </Router>
