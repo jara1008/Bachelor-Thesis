@@ -59,17 +59,17 @@ function ActivityFive() {
     if (roundCount >= 5) {
         // Message that the game is completed
         return (
-            <div className="container">
-                <div className="white-box">
+            <div className="container-A5">
+                <div className="white-box-A5">
                     <Link to={"/"}>
                         <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                     </Link>
-                    <div className="congratulation-message">
+                    <div className="congratulation-message-A5">
                         Gratulation! Du hast Level xy geschafft!
                         { /* Add party icon */ }
                     </div>
                     <Link to={"/"}>
-                        <button className='button'
+                        <button className='button-A5'
                             style={{ top: '85%', left: '50%', width: '30%' }} >
                             zur Übersicht
                         </button>
@@ -80,27 +80,27 @@ function ActivityFive() {
     }
 
     return (
-        <div className="container" >
-            <div className="white-box" >
+        <div className="container-A5" >
+            <div className="white-box-A5" >
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <span className="text-wrapper">Fülle das Kästchen so, dass die Rechnung stimmt: </span>
-                <div className="info-five">
+                <span className="text-wrapper-A5">Fülle das Kästchen so, dass die Rechnung stimmt: </span>
+                <div className="info-A5">
                     {numbers.smallNum} + 
                     <input
                         type="text" 
                         value={inputValue}
                         placeholder=""
                         onChange={handleInputChange}
-                        className="info-input-five"
+                        className="info-input-A5"
                         readOnly={isCorrect}
                     />
                     = {numbers.largeNum}
                 </div>
-                {isCorrect && displayCorrectness && <div className="correctness-label-correct">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-false">Versuche es nochmals!</div>}
-                <button onClick={isCorrect ? handleNext : checkInput} className="button" 
+                {isCorrect && displayCorrectness && <div className="correctness-label-A5">Richtig!</div>}
+                {!!!isCorrect && displayCorrectness && <div className="correctness-label-A5">Versuche es nochmals!</div>}
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-A5" 
                     style={{ top: '88%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
