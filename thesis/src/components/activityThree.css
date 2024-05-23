@@ -128,10 +128,6 @@ body, html {
     font-size: 10vh; 
     font-family: 'Patrick Hand', sans-serif;
     color: #000000;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-95%, -50%);
   }
 
   .correctness-label-correct-bottom {
@@ -164,3 +160,26 @@ body, html {
   position: absolute;
   text-align: center;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 4vh;
+}
+  
+.operator-button {
+    width: 4vw;
+    height: 4vw;
+    background-color: #BFC4F2;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5vw;
+    font-family: 'Patrick Hand', sans-serif;
+    cursor: pointer;
+    outline: none;
+    margin: 2%; 
+}
+  

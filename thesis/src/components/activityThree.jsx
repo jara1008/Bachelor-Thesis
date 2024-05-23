@@ -93,6 +93,10 @@ function ActivityThree() {
         }
     }
 
+    const handleButtonClick = (value) => {
+        setInputValue(value);
+    }; 
+
     function checkInput() {
         setCorrectnessLabel(true);
         const leftVal = leftCoinsOne + leftCoinsTen*10;
@@ -182,6 +186,11 @@ function ActivityThree() {
                         readOnly={isCorrect}
                     />
                     <CoinRowLower coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type='lower' visibility={rightVisibility} setVisibility={setRightVisibility} />
+                </div>
+                <div className="button-container">
+                    <button className="operator-button" onClick={() => handleButtonClick('<')}>{'<'}</button>
+                    <button className="operator-button" onClick={() => handleButtonClick('=')}>{'='}</button>
+                    <button className="operator-button" onClick={() => handleButtonClick('>')}>{'>'}</button>
                 </div>
                 {isCorrect && displayCorrectness && <div className="correctness-label-correct-bottom">Richtig!</div>}
                 {!!!isCorrect && displayCorrectness && <div className="correctness-label-false-bottom">Versuche es nochmals!</div>}

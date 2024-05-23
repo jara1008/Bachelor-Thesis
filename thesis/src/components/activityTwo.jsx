@@ -30,6 +30,10 @@ function ActivityTwo() {
         }
     };
 
+    const handleButtonClick = (value) => {
+        setInputValue(value);
+    };    
+
     const handleNext = () => {
         shuffleCubes();
     };
@@ -108,6 +112,11 @@ function ActivityTwo() {
                         readOnly={isCorrect}
                     />
                     <span>{numCubesSecondRow} </span>
+                </div>
+                <div className="button-container-2">
+                    <button className="operator-button-2" onClick={() => handleButtonClick('<')}>{'<'}</button>
+                    <button className="operator-button-2" onClick={() => handleButtonClick('=')}>{'='}</button>
+                    <button className="operator-button-2" onClick={() => handleButtonClick('>')}>{'>'}</button>
                 </div>
                 {isCorrect && displayCorrectness && <div className="correctness-label-correct">Richtig!</div>}
                 {!!!isCorrect && displayCorrectness && <div className="correctness-label-false">Versuche es nochmals!</div>}
