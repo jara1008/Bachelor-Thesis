@@ -26,11 +26,11 @@ function ActivityThree() {
     function CoinRowUpper({ coinsTen, coinsOne, type }) {
         console.log("UPPER: ", coinsTen, coinsOne, type);
         return (
-            <div className="coin-stack">
+            <div className="coin-stack-A3">
                 {Array.from({ length: coinsTen }, (_, i) => {
                     const coinKey = `${type}-tens-${i}`;
                     const isActive = activeCoins.has(coinKey)
-                    const className = `coin ${type}-coin ${isActive ? 'active-coin' : ''}`;
+                    const className = `coin-A3 ${type}-coin ${isActive ? 'active-coin-A3' : ''}`;
                     return (
                         <div key={`ten-${i}`} className={className}
                             onClick={() => handleCoinClick(type, 'tens', i)}>10</div>
@@ -39,7 +39,7 @@ function ActivityThree() {
                 {Array.from({ length: coinsOne }, (_, i) => {
                     const coinKey = `${type}-ones-${i}`;
                     const isActive = activeCoins.has(coinKey)
-                    const className = `coin ${type}-coin ${isActive ? 'active-coin' : ''}`;
+                    const className = `coin-A3 ${type}-coin ${isActive ? 'active-coin-A3' : ''}`;
                     return (
                         <div key={`one-${i}`} className={className}
                             onClick={() => handleCoinClick(type, 'ones', i)}>1</div>
@@ -52,12 +52,12 @@ function ActivityThree() {
     function CoinRowLower({ coinsTen, coinsOne, type, visibility }) {
         console.log("LOWER: ", coinsTen, coinsOne, type, visibility);
         return (
-            <div className="coin-stack">
+            <div className="coin-stack-A3">
                 {Array.from({ length: coinsTen }, (_, i) => visibility.tens[i] && (
-                    <div key={`ten-${i}`} className={`coin ${type}-coin`}>10</div>
+                    <div key={`ten-${i}`} className={`coin-A3 ${type}-coin`}>10</div>
                 ))}
                 {Array.from({ length: coinsOne }, (_, i) => visibility.ones[i] && (
-                    <div key={`one-${i}`} className={`coin ${type}-coin`}>1</div>
+                    <div key={`one-${i}`} className={`coin-A3 ${type}-coin`}>1</div>
                 ))}
             </div>
         );
@@ -143,12 +143,12 @@ function ActivityThree() {
 
     if (roundCount >= 5) {
         return (
-            <div className="container">
-                <div className="white-box">
+            <div className="container-A3">
+                <div className="white-box-A3">
                     <Link to={"/"}>
                         <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                     </Link>
-                    <div className="congratulation-message">
+                    <div className="congratulation-message-A3">
                         Gratulation! Du hast Level xy geschafft!
                     </div>
                     <Link to={"/"}>
@@ -162,39 +162,41 @@ function ActivityThree() {
     }
 
     return (
-        <div className="container">
-            <div className="white-box-small">
+        <div className="container-A3">
+            <div className="white-box-A3">
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <div className='text-wrapper'>Wähle {"<, >, ="} passend:</div>
-                <div className="coin-row">
+                <div className='text-wrapper-A3'>Wähle {"<, >, ="} passend:</div>
+                <div className="coin-row-A3">
                     <CoinRowUpper coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='upper' visibility={leftVisibility} setVisibility={setLeftVisibility} />
-                    <span className='text-wrapper-abs' style={{ '--left': '50%' }}>?</span>
+                    <span className='text-wrapper-A3' style={{ '--left': '50%' }}>?</span>
                     <CoinRowUpper coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type='upper' visibility={rightVisibility} setVisibility={setRightVisibility} />
                 </div>
-                <span className='text-wrapper-abs' style={{ '--top': '45%', '--left': '25%' }}>↓</span>
-                <span className='text-wrapper-abs' style={{ '--top': '45%', '--left': '75%' }}>↓</span>
-                <div className="coin-row" style={{ '--top': '38%' }}>
+                <div className='arrows-A3'>
+                    <span className='text-wrapper-A3'>↓</span>
+                    <span className='text-wrapper-A3'>↓</span>
+                </div>
+                <div className="coin-row-A3">
                     <CoinRowLower coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='lower' visibility={leftVisibility} setVisibility={setLeftVisibility} />
                     <input
                     type="text" 
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder=""
-                        className="info-input-3"
+                        className="info-input-A3"
                         readOnly={isCorrect}
                     />
                     <CoinRowLower coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type='lower' visibility={rightVisibility} setVisibility={setRightVisibility} />
                 </div>
-                <div className="button-container">
-                    <button className="operator-button" onClick={() => handleButtonClick('<')}>{'<'}</button>
-                    <button className="operator-button" onClick={() => handleButtonClick('=')}>{'='}</button>
-                    <button className="operator-button" onClick={() => handleButtonClick('>')}>{'>'}</button>
+                <div className="button-container-A3">
+                    <button className="operator-button-A3" onClick={() => handleButtonClick('<')}>{'<'}</button>
+                    <button className="operator-button-A3" onClick={() => handleButtonClick('=')}>{'='}</button>
+                    <button className="operator-button-A3" onClick={() => handleButtonClick('>')}>{'>'}</button>
                 </div>
-                {isCorrect && displayCorrectness && <div className="correctness-label-correct-bottom">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-false-bottom">Versuche es nochmals!</div>}
-                <button onClick={isCorrect ? handleNext : checkInput} className="button" 
+                {isCorrect && displayCorrectness && <div className="correctness-label-A3">Richtig!</div>}
+                {!!!isCorrect && displayCorrectness && <div className="correctness-label-A3">Versuche es nochmals!</div>}
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-A3" 
                     style={{ top: '88%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>

@@ -58,17 +58,17 @@ function ActivityTwo() {
     if (roundCount >= 5) {
         // Message that the game is completed
         return (
-            <div className="container">
-                <div className="white-box">
+            <div className="container-A2">
+                <div className="white-box-A2">
                     <Link to={"/"}>
                         <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                     </Link>
-                    <div className="congratulation-message">
+                    <div className="congratulation-message-A2">
                         Gratulation! Du hast Level xy geschafft!
                         { /* Add party icon */ }
                     </div>
                     <Link to={"/"}>
-                        <button className='button'
+                        <button className='button-A2'
                             style={{ top: '85%', left: '50%', width: '30%' }} >
                             zur Übersicht
                         </button>
@@ -79,48 +79,48 @@ function ActivityTwo() {
     }
 
     return (
-        <div className="container" >
-            <div className="white-box" >
+        <div className="container-A2" >
+            <div className="white-box-A2" >
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <span className="text-wrapper">Wähle {"<, >, ="} passend: </span>
-                <div className="cube-rows">
-                    <div className="cube-row">
+                <span className="text-wrapper-A2">Wähle {"<, >, ="} passend: </span>
+                <div className="cube-rows-A2">
+                    <div className="cube-row-A2">
                         {Array.from({ length: numCubesFirstRow }, (_, index) => (
-                            <div key={index} className="cube">
-                                <span className="cube-label">1cm</span>
+                            <div key={index} className="cube-A2">
+                                <span className="cube-label-A2">1cm</span>
                             </div>
                         ))}
                     </div>
-                    <div className="cube-row">
+                    <div className="cube-row-A2">
                         {Array.from({ length: numCubesSecondRow }, (_, index) => (
-                            <div key={index} className="cube">
-                                <span className="cube-label">1cm</span>
+                            <div key={index} className="cube-A2">
+                                <span className="cube-label-A2">1cm</span>
                             </div>
                         ))}
                     </div>
                 </div>
-                <div className="info">
+                <div className="info-A2">
                     <span>{numCubesFirstRow} </span>
                     <input 
                         type="text" 
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder=""
-                        className="info-input"
+                        className="info-input-A2"
                         readOnly={isCorrect}
                     />
                     <span>{numCubesSecondRow} </span>
                 </div>
-                <div className="button-container-2">
-                    <button className="operator-button-2" onClick={() => handleButtonClick('<')}>{'<'}</button>
-                    <button className="operator-button-2" onClick={() => handleButtonClick('=')}>{'='}</button>
-                    <button className="operator-button-2" onClick={() => handleButtonClick('>')}>{'>'}</button>
+                <div className="button-container-A2">
+                    <button className="operator-button-A2" onClick={() => handleButtonClick('<')}>{'<'}</button>
+                    <button className="operator-button-A2" onClick={() => handleButtonClick('=')}>{'='}</button>
+                    <button className="operator-button-A2" onClick={() => handleButtonClick('>')}>{'>'}</button>
                 </div>
-                {isCorrect && displayCorrectness && <div className="correctness-label-correct">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-false">Versuche es nochmals!</div>}
-                <button onClick={isCorrect ? handleNext : checkInput} className="button" 
+                {isCorrect && displayCorrectness && <div className="correctness-label-A2">Richtig!</div>}
+                {!!!isCorrect && displayCorrectness && <div className="correctness-label-A2">Versuche es nochmals!</div>}
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-A2" 
                     style={{ top: '88%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>

@@ -78,7 +78,7 @@ function ActivityOne() {
             <img
                 key={`${cloudSide}-${index}`}
                 src={star}
-                className="star"
+                className="star-A1"
                 alt="Star"
                 style={{
                     position: "absolute",
@@ -178,8 +178,8 @@ function ActivityOne() {
     if (roundCount >= 5) {
         // Message that the game is completed
         return (
-            <div className="container">
-                <div className="white-box">
+            <div className="container-A1">
+                <div className="white-box-A1">
                     <Link to={"/"}>
                         <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                     </Link>
@@ -199,12 +199,12 @@ function ActivityOne() {
     }
 
     return (
-        <div className="container" >
-            <div className="white-box" >
+        <div className="container-A1" >
+            <div className="white-box-A1" >
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <span className="text-wrapper">Verbinde die Sterne miteinander und wähle die Wolke mit MEHR Sternen an:</span>
+                <span className="text-wrapper-A1">Verbinde die Sterne miteinander und wähle die Wolke mit MEHR Sternen an:</span>
                 <div style={{ position: "relative", height: "100%", width: "100%" }}>
                     <input
                         type="checkbox"
@@ -230,9 +230,9 @@ function ActivityOne() {
                                   stroke="black" strokeWidth="2" />
                         ))}
                     </svg>
-                {isCorrect && displayCorrectness && <div className="correctness-label-correct1">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <div className="correctness-label-false1">Versuche es nochmals!</div>}
-                {checkBoxCorrectness && <div className="correctness-label-false1">Wähle das richtige Kästchen!</div>}
+                {isCorrect && displayCorrectness && <div className="correctness-label-A1">Richtig!</div>}
+                {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <div className="correctness-label-A1">Versuche es nochmals!</div>}
+                {checkBoxCorrectness && <div className="correctness-label-A1">Wähle das richtige Kästchen!</div>}
                 </div>
                 <button onClick={isCorrect ? handleNext : checkInput} className="button" 
                     style={{ top: '91%', left: '85%' }} >
