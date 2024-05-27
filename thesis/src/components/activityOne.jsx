@@ -7,12 +7,12 @@ import home_icon from '../images/home_icon.png';
 
 /* define fix positions for stars */
 const leftCloudPositions = [
-    { top: 49, left: 20 }, { top: 27, left: 35 }, { top: 44, left: 6 }, 
-    { top: 53, left: 28 }, { top: 20, left: 25 }, { top: 32, left: 17 }, 
-    { top: 43, left: 38 } 
+    { top: 48, left: 20 }, { top: 27, left: 35 }, { top: 42, left: 6 }, 
+    { top: 52, left: 28 }, { top: 20, left: 25 }, { top: 32, left: 17 }, 
+    { top: 40, left: 38 } 
 ];
 const rightCloudPositions = [
-    { top: 33, left: 67 }, { top: 19, left: 75 }, { top: 53, left: 68 }, 
+    { top: 33, left: 67 }, { top: 19, left: 75 }, { top: 52, left: 68 }, 
     { top: 39, left: 90 }, { top: 44, left: 80 }, { top: 41, left: 57 }, 
     { top: 27, left: 84 }  
 ];
@@ -32,7 +32,37 @@ function ActivityOne() {
     const [isCheckedLeft, setIsLeftChecked] = useState(false);
     const [isCheckedRight, setIsRightChecked] = useState(false);
     const [checkBoxCorrectness, setCheckBoxCorrectness] = useState(false);
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 }); /* mouse position */
+    const [offsets, setOffsets] = useState({ offsetx: 0, offsety: 0 }); /* offsets */
 
+    const updateOffsets = () => {
+        const vw = window.innerWidth / 10;
+        const vh = window.innerHeight / 10;
+        const offsetx = 4.35 * vh;
+        const offsety = 1.45 * vw;
+        setOffsets({ offsetx, offsety });
+    };
+
+    useEffect(() => {
+        updateOffsets(); 
+        window.addEventListener('resize', updateOffsets);
+
+        return () => {
+            window.removeEventListener('resize', updateOffsets);
+        };
+    }, []);
+
+    useEffect(() => {
+        const handleMouseMove = (event) => {
+            setMousePos({ x: event.clientX - offsets.offsetx, y: event.clientY - offsets.offsety });
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, [offsets]);
 
     useEffect(() => {
         setFirstCloudCount(Math.floor(Math.random() * leftCloudPositions.length) + 1);
@@ -111,8 +141,8 @@ function ActivityOne() {
                 return;
             }
     
-            const startPos = `start-${start.top}-${start.left}`;
-            const endPos = `end-${end.top}-${end.left}`;
+            const startPos = `${start.top}-${start.left}`;
+            const endPos = `${end.top}-${end.left}`;
     
             if (seenPositions.has(startPos) || seenPositions.has(endPos)) {
                 setIsLeftChecked(false);
@@ -212,7 +242,7 @@ function ActivityOne() {
                         onChange={handleLeftCheckboxChange}
                         style={{ position: "absolute", top: "6%", left: "25%", height: "5%", width: "5%", zIndex: 2 }}
                     />
-                    <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "10%", left: "0%", height: "58%", width: "48%" }} />
+                    <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "8%", left: "0%", height: "58%", width: "48%" }} />
                     {allStars.left}
                     <input
                         type="checkbox"
@@ -220,7 +250,7 @@ function ActivityOne() {
                         onChange={handleRightCheckboxChange}
                         style={{ position: "absolute", top: "6%", left: "75%", height: "5%", width: "5%", zIndex: 2 }}
                     />
-                    <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "10%", right: "1%", height: "58%", width: "48%" }} />
+                    <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "8%", right: "1%", height: "58%", width: "48%" }} />
                     {allStars.right}
                     <svg style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%", pointerEvents: "none" }}>
                         {lines.map((line, index) => (
@@ -229,12 +259,18 @@ function ActivityOne() {
                                   x2={`calc(${line.end.left}% + 1.4vw)`} y2={`calc(${line.end.top}% + 1.4vw)`}
                                   stroke="black" strokeWidth="2" />
                         ))}
+                        {firstPos && (
+                            <line
+                                x1={`calc(${firstPos.left}% + 1.4vw)`} y1={`calc(${firstPos.top}% + 1.4vw)`}
+                                x2={mousePos.x} y2={mousePos.y}
+                                stroke="black" strokeWidth="2" />
+                        )}
                     </svg>
                 {isCorrect && displayCorrectness && <div className="correctness-label-A1">Richtig!</div>}
                 {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <div className="correctness-label-A1">Versuche es nochmals!</div>}
                 {checkBoxCorrectness && <div className="correctness-label-A1">Wähle das richtige Kästchen!</div>}
                 </div>
-                <button onClick={isCorrect ? handleNext : checkInput} className="button" 
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-A1" 
                     style={{ top: '91%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>

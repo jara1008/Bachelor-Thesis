@@ -93,6 +93,24 @@ function ActivityThree() {
         }
     }
 
+    function handleConversion() {
+        const hasVisibleTens = leftVisibility.tens.some(isVisible => isVisible);
+        const hasVisibleTensRight = rightVisibility.tens.some(isVisible => isVisible);
+        if (leftCoinsTen > 0 && hasVisibleTens && !hasVisibleTensRight) {
+            const newLeftCoinsTen = leftCoinsTen - 1;
+            const newLeftCoinsOne = leftCoinsOne + 10;
+            
+            const newLeftVisibility = {
+                tens: leftVisibility.tens.slice(0, newLeftCoinsTen),
+                ones: leftVisibility.ones.concat(Array(10).fill(true))
+            };
+    
+            setLeftCoinsTen(newLeftCoinsTen);
+            setLeftCoinsOne(newLeftCoinsOne);
+            setLeftVisibility(newLeftVisibility);
+        }
+    } 
+
     const handleButtonClick = (value) => {
         setInputValue(value);
     }; 
@@ -199,6 +217,10 @@ function ActivityThree() {
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-A3" 
                     style={{ top: '88%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
+                </button>
+
+                <button onClick={handleConversion} className="button-A3" style={{ top: '76%', left: '85%' }}>
+                    Tauschen
                 </button>
             </div>
         </div>

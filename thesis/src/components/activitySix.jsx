@@ -107,7 +107,6 @@ function ActivitySix() {
 
         const hasNoCoins = !rightVisibility.tens.some(isVisible => isVisible) && !rightVisibility.ones.some(isVisible => isVisible);
         if (hasNoCoins) {
-            console.log("HUHUUUUU");
             setDisplayMinus(false);
         }
         else {

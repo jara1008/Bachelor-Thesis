@@ -21,7 +21,7 @@ body, html {
   border-radius: 10px;
   box-shadow: 8px 8px 4px #00000040;
   height: 80%;
-  width: 62%;
+  width: 70%;
   padding: 20px 10px;
   box-sizing: border-box;
   position: relative;
@@ -66,8 +66,8 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3vw;
-  height: 3vw;
+  width: 2.7vw;
+  height: 2.7vw;
   background-color: #BFC4F2;
   border: 2px solid #000;
   border-radius: 50%;
@@ -88,8 +88,8 @@ body, html {
 .button-A3 {
   background-color: #BFC4F2;
   border-radius: 50px;
-  height: 12%;
-  width: 22%;
+  height: 10%;
+  width: 20%;
   transform: translate(-50%, -50%);
   position: absolute;
   border: none;
