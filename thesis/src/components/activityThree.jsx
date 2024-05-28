@@ -11,14 +11,14 @@ function ActivityThree() {
     const [rightCoinsTen, setRightCoinsTen] = useState(Math.floor(Math.random() * 3) + 1); 
     const [rightCoinsOne, setRightCoinsOne] = useState(Math.floor(Math.random() * 9) + 1);
     const [activeCoins, setActiveCoins] = useState(new Set());
-    const [leftVisibility, setLeftVisibility] = useState({
-        tens: Array(leftCoinsTen).fill(true),
-        ones: Array(leftCoinsOne).fill(true)
-    });
-    const [rightVisibility, setRightVisibility] = useState({
-        tens: Array(rightCoinsTen).fill(true),
-        ones: Array(rightCoinsOne).fill(true)
-    });
+    
+    const [leftCoinsVisibleOne, setLeftCoinsVisibleOne] = useState(leftCoinsOne);
+    const [leftCoinsVisibleTen, setLeftCoinsVisibleTen] = useState(leftCoinsTen);
+    const [rightCoinsVisibleOne, setRightCoinsVisibleOne] = useState(rightCoinsOne);
+    const [rightCoinsVisibleTen, setRightCoinsVisibleTen] = useState(rightCoinsTen);
+
+    const [coinColors, setCoinColors] = useState(new Map());
+
     const [isCorrect, setIsCorrect] = useState(false);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
     const [inputValue, setInputValue] = useState('');
@@ -49,67 +49,86 @@ function ActivityThree() {
         );
     }    
 
-    function CoinRowLower({ coinsTen, coinsOne, type, visibility }) {
-        console.log("LOWER: ", coinsTen, coinsOne, type, visibility);
+    function CoinRowLower({ coinsTen, coinsOne, type }) {
+        console.log("LOWER: ", coinsTen, coinsOne, type);
         return (
             <div className="coin-stack-A3">
-                {Array.from({ length: coinsTen }, (_, i) => visibility.tens[i] && (
+                {Array.from({ length: coinsTen }, (_, i) => (
                     <div key={`ten-${i}`} className={`coin-A3 ${type}-coin`}>10</div>
                 ))}
-                {Array.from({ length: coinsOne }, (_, i) => visibility.ones[i] && (
+                {Array.from({ length: coinsOne }, (_, i) => (
                     <div key={`one-${i}`} className={`coin-A3 ${type}-coin`}>1</div>
                 ))}
             </div>
         );
     }
 
-    function handleCoinClick(type, denomination, index) {
-        const coinKey = `${type}-${denomination}-${index}`;
-
-        setActiveCoins(prevActiveCoins => {
-            const newActiveCoins = new Set(prevActiveCoins);
-            if (leftVisibility[denomination][index] != rightVisibility[denomination][index]) {
-                alert("WRONG!"); //BETTER: make a disclaimer!
-            }
-            else if (newActiveCoins.has(coinKey)) {
-                newActiveCoins.delete(coinKey);
-            } else {
-                newActiveCoins.add(coinKey);
-            }
-            return newActiveCoins;
-        });
-
-        if (leftVisibility[denomination][index] === rightVisibility[denomination][index]) {
-            const updateVisibility = (visibility, setVisibility) => {
-                const newVisibility = {...visibility};
-                newVisibility[denomination][index] = !newVisibility[denomination][index];
-                setVisibility(newVisibility);
-            };
-
-            if (type === 'upper') {
-                updateVisibility(leftVisibility, setLeftVisibility);
-                updateVisibility(rightVisibility, setRightVisibility);
-            }
-        }
-    }
-
     function handleConversion() {
-        const hasVisibleTens = leftVisibility.tens.some(isVisible => isVisible);
-        const hasVisibleTensRight = rightVisibility.tens.some(isVisible => isVisible);
-        if (leftCoinsTen > 0 && hasVisibleTens && !hasVisibleTensRight) {
+        if (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen > 0) {
             const newLeftCoinsTen = leftCoinsTen - 1;
             const newLeftCoinsOne = leftCoinsOne + 10;
-            
-            const newLeftVisibility = {
-                tens: leftVisibility.tens.slice(0, newLeftCoinsTen),
-                ones: leftVisibility.ones.concat(Array(10).fill(true))
-            };
     
             setLeftCoinsTen(newLeftCoinsTen);
             setLeftCoinsOne(newLeftCoinsOne);
-            setLeftVisibility(newLeftVisibility);
+            setLeftCoinsVisibleOne(newLeftCoinsOne);
+            setLeftCoinsVisibleTen(newLeftCoinsTen);
         }
     } 
+
+    function handleCoinClick(type, denomination, index) {
+        const coinKey = `${type}-${denomination}-${index}`;
+        const oppositeType = type === 'left' ? 'right' : 'left';
+
+        setActiveCoins(prevActiveCoins => {
+            const newActiveCoins = new Set(prevActiveCoins);
+    
+            if (newActiveCoins.has(coinKey)) {
+                newActiveCoins.delete(coinKey);
+    
+                let found = false;
+                const maxCoins = denomination === "tens" ? leftCoinsTen : leftCoinsOne;
+                for (let i = 0; i < maxCoins; i++) {
+                    const oppositeCoinKey = `${oppositeType}-${denomination}-${i}`;
+                    if (newActiveCoins.has(oppositeCoinKey)) {
+                        newActiveCoins.delete(oppositeCoinKey);
+                        found = true;
+                        break;
+                    }
+                }
+    
+                if (denomination === "tens") {
+                    setLeftCoinsVisibleTen(prevCount => prevCount + 1);
+                    setRightCoinsVisibleTen(prevCount => prevCount + 1);
+                } else {
+                    setLeftCoinsVisibleOne(prevCount => prevCount + 1);
+                    setRightCoinsVisibleOne(prevCount => prevCount + 1);
+                }
+            } else if ((denomination === "tens" && leftCoinsVisibleTen > 0 && rightCoinsVisibleTen > 0) || (denomination === "ones" && leftCoinsVisibleOne > 0 && rightCoinsVisibleOne > 0)) {
+                newActiveCoins.add(coinKey);
+    
+                let found = false;
+                const maxCoins = denomination === "tens" ? leftCoinsTen : leftCoinsOne;
+                for (let i = 0; i < maxCoins; i++) {
+                    const oppositeCoinKey = `${oppositeType}-${denomination}-${i}`;
+                    if (!newActiveCoins.has(oppositeCoinKey)) {
+                        newActiveCoins.add(oppositeCoinKey);
+                        found = true;
+                        break;
+                    }
+                }
+    
+                if (denomination === "tens") {
+                    setLeftCoinsVisibleTen(prevCount => prevCount - 1);
+                    setRightCoinsVisibleTen(prevCount => prevCount - 1);
+                } else if (leftCoinsVisibleOne > 0 && rightCoinsVisibleOne > 0) {
+                    setLeftCoinsVisibleOne(prevCount => prevCount - 1);
+                    setRightCoinsVisibleOne(prevCount => prevCount - 1);
+                }
+            }
+    
+            return newActiveCoins;
+        });
+    }
 
     const handleButtonClick = (value) => {
         setInputValue(value);
@@ -141,15 +160,12 @@ function ActivityThree() {
             setLeftCoinsOne(newLeftCoinsOne);
             setRightCoinsTen(newRightCoinsTen);
             setRightCoinsOne(newRightCoinsOne);
-    
-            setLeftVisibility({
-                tens: Array(newLeftCoinsTen).fill(true),
-                ones: Array(newLeftCoinsOne).fill(true)
-            });
-            setRightVisibility({
-                tens: Array(newRightCoinsTen).fill(true),
-                ones: Array(newRightCoinsOne).fill(true)
-            });
+            
+            setLeftCoinsVisibleOne(newLeftCoinsOne);
+            setLeftCoinsVisibleTen(newLeftCoinsTen);
+            setRightCoinsVisibleOne(newRightCoinsOne);
+            setRightCoinsVisibleTen(newRightCoinsTen);
+            
 
             setActiveCoins(new Set());
             setIsCorrect(false);
@@ -187,16 +203,16 @@ function ActivityThree() {
                 </Link>
                 <div className='text-wrapper-A3'>Wähle {"<, >, ="} passend:</div>
                 <div className="coin-row-A3">
-                    <CoinRowUpper coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='upper' visibility={leftVisibility} setVisibility={setLeftVisibility} />
+                    <CoinRowUpper coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='left' />
                     <span className='text-wrapper-A3' style={{ '--left': '50%' }}>?</span>
-                    <CoinRowUpper coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type='upper' visibility={rightVisibility} setVisibility={setRightVisibility} />
+                    <CoinRowUpper coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type='right' />
                 </div>
                 <div className='arrows-A3'>
                     <span className='text-wrapper-A3'>↓</span>
                     <span className='text-wrapper-A3'>↓</span>
                 </div>
                 <div className="coin-row-A3">
-                    <CoinRowLower coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='lower' visibility={leftVisibility} setVisibility={setLeftVisibility} />
+                    <CoinRowLower coinsTen={leftCoinsVisibleTen} coinsOne={leftCoinsVisibleOne} type='left' />
                     <input
                     type="text" 
                         value={inputValue}
@@ -205,7 +221,7 @@ function ActivityThree() {
                         className="info-input-A3"
                         readOnly={isCorrect}
                     />
-                    <CoinRowLower coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type='lower' visibility={rightVisibility} setVisibility={setRightVisibility} />
+                    <CoinRowLower coinsTen={rightCoinsVisibleTen} coinsOne={rightCoinsVisibleOne} type='right' />
                 </div>
                 <div className="button-container-A3">
                     <button className="operator-button-A3" onClick={() => handleButtonClick('<')}>{'<'}</button>
