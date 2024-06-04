@@ -6,9 +6,9 @@ import congratulation_icon from '../images/congratulation_icon.png'; // Assuming
 
 function ActivityThree() {
     const [roundCount, setRoundCount] = useState(1);
-    const [leftCoinsTen, setLeftCoinsTen] = useState(Math.floor(Math.random() * 3) + 1); 
+    const [leftCoinsTen, setLeftCoinsTen] = useState(Math.floor(Math.random() * 2) + 1); 
     const [leftCoinsOne, setLeftCoinsOne] = useState(Math.floor(Math.random() * 9) + 1); 
-    const [rightCoinsTen, setRightCoinsTen] = useState(Math.floor(Math.random() * 3) + 1); 
+    const [rightCoinsTen, setRightCoinsTen] = useState(Math.floor(Math.random() * 2) + 1); 
     const [rightCoinsOne, setRightCoinsOne] = useState(Math.floor(Math.random() * 9) + 1);
     const [activeCoins, setActiveCoins] = useState(new Set());
     
@@ -63,15 +63,34 @@ function ActivityThree() {
         );
     }
 
-    function handleConversion() {
-        if (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen > 0) {
+    function handleConversionLeft() {
+        if (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen === 0) {
             const newLeftCoinsTen = leftCoinsTen - 1;
+            const newLeftCoinsVisibleTen = leftCoinsVisibleTen - 1;
             const newLeftCoinsOne = leftCoinsOne + 10;
+            const newLeftCoinsVisibleOne = leftCoinsVisibleOne + 10;
     
             setLeftCoinsTen(newLeftCoinsTen);
             setLeftCoinsOne(newLeftCoinsOne);
-            setLeftCoinsVisibleOne(newLeftCoinsOne);
-            setLeftCoinsVisibleTen(newLeftCoinsTen);
+            setLeftCoinsVisibleOne(newLeftCoinsVisibleOne);
+            setLeftCoinsVisibleTen(newLeftCoinsVisibleTen);
+        }
+    } 
+
+    function handleConversionRight() {
+        if (rightCoinsVisibleTen > 0 && leftCoinsVisibleTen === 0) {
+            const newRightCoinsTen = rightCoinsTen - 1;
+            const newRightCoinsVisibleTen = rightCoinsVisibleTen - 1;
+            const newRightCoinsOne = rightCoinsOne + 10;
+            const newRightCoinsVisibleOne = rightCoinsVisibleOne + 10;
+
+            setRightCoinsTen(newRightCoinsTen);
+            setRightCoinsOne(newRightCoinsOne);
+            setRightCoinsVisibleOne(newRightCoinsVisibleOne);
+            setRightCoinsVisibleTen(newRightCoinsVisibleTen);
+        }
+        else {
+            return (<span>Streich zuerst so viele 10er wie möglich!</span>);
         }
     } 
 
@@ -151,9 +170,9 @@ function ActivityThree() {
 
     function handleNext() {
         if (roundCount < 5) {
-            const newLeftCoinsTen = Math.floor(Math.random() * 3) + 1;
+            const newLeftCoinsTen = Math.floor(Math.random() * 2) + 1;
             const newLeftCoinsOne = Math.floor(Math.random() * 9) + 1;
-            const newRightCoinsTen = Math.floor(Math.random() * 3) + 1;
+            const newRightCoinsTen = Math.floor(Math.random() * 2) + 1;
             const newRightCoinsOne = Math.floor(Math.random() * 9) + 1;
     
             setLeftCoinsTen(newLeftCoinsTen);
@@ -202,6 +221,16 @@ function ActivityThree() {
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
                 <div className='text-wrapper-A3'>Wähle {"<, >, ="} passend:</div>
+
+                <div style={{ display: "flex", justifyContent: "space-around", width: "100%" }}>
+                <button onClick={handleConversionLeft} className="button-A3" style={{}}>
+                    Tauschen
+                </button>
+                <button onClick={handleConversionRight} className="button-A3" style={{}}>
+                    Tauschen
+                </button>
+                </div>
+
                 <div className="coin-row-A3">
                     <CoinRowUpper coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='left' />
                     <span className='text-wrapper-A3' style={{ '--left': '50%' }}>?</span>
@@ -230,13 +259,9 @@ function ActivityThree() {
                 </div>
                 {isCorrect && displayCorrectness && <div className="correctness-label-A3">Richtig!</div>}
                 {!!!isCorrect && displayCorrectness && <div className="correctness-label-A3">Versuche es nochmals!</div>}
-                <button onClick={isCorrect ? handleNext : checkInput} className="button-A3" 
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-absolute-A3" 
                     style={{ top: '88%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
-                </button>
-
-                <button onClick={handleConversion} className="button-A3" style={{ top: '76%', left: '85%' }}>
-                    Tauschen
                 </button>
             </div>
         </div>

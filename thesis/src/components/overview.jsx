@@ -3,17 +3,19 @@ import { Link } from 'react-router-dom';
 import "./overview.css";
 import rocket from "../images/rocket.png";
 import planet from "../images/planet.png";
+import star_empty from "../images/star_empty.svg";
+import lock from "../images/lock.png";
 
 function Overview() {
     const [boxes] = useState([
-        { id: 1, top: '14%', left: '37%', path: "/instructionsOne" },
-        { id: 2, top: '14%', left: '52%', path: "/activityTwo" },
-        { id: 3, top: '14%', left: '67%', path: "/activityThree" },
+        { id: 1, top: '14%', left: '37%', path: "/instructionsOne", title: "Mengen Vergleich" },
+        { id: 2, top: '14%', left: '52%', path: "/activityTwo", title: "Längen Vergleich" },
+        { id: 3, top: '14%', left: '67%', path: "/activityThree", title: "Münz Vergleich" },
         { id: 4, top: '41%', left: '37%' },
-        { id: 5, top: '41%', left: '52%', path: "/activityFive" },
-        { id: 6, top: '41%', left: '67%', path: "/activitySix" },
+        { id: 5, top: '41%', left: '52%', path: "/activityFive", title: "Additions-rätsel" },
+        { id: 6, top: '41%', left: '67%', path: "/activitySix", title: "Münzen subtrahieren" },
         { id: 7, top: '68%', left: '37%' },
-        { id: 8, top: '68%', left: '52%', path: "/activityEight" },
+        { id: 8, top: '68%', left: '52%', path: "/activityEight", title: "Distanzen erkennen" },
         { id: 9, top: '68%', left: '67%' }
     ])
 
@@ -64,7 +66,9 @@ function Overview() {
             </div>
             {boxes.map((box) => (
                 <Link to={box.path} key={box.id} style={{ position: 'absolute', top: box.top, left: box.left }}>
-                    <div className="rectangle" />
+                    <div className="rectangle">
+                        { box.title }
+                    </div>
                 </Link>
             ))}
         </div>

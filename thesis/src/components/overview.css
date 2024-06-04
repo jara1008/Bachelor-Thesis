@@ -8,6 +8,15 @@
     width: 9.5vw;
     aspect-ratio: 1/1;
     /*px 0px 15px 8px #bec3f1d6; USE LATER FOR LEVEL INDICATION*/ 
+
+    font-family: 'Patrick Hand', sans-serif;
+    display: flex;
+    font-size: 1.5vw;
+    text-align: center;
+    color: #000;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 0.5vw;
 }
 
 .progress-line {
