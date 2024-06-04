@@ -5,6 +5,7 @@ import home_icon from '../images/home_icon.png';
 import congratulation_icon from '../images/congratulation_icon.png';
 import tree from '../images/tree.png';
 import car from '../images/car_large.png';
+import { incrementHighestUnlockedLevel } from "../utils/utils.jsx";
 
 function ActivityEight() {
     const [numbers, setNumbers] = useState({ largeNum: 0, smallNum: 0 });
@@ -214,7 +215,8 @@ function ActivityEight() {
                     </div>
                     <Link to={"/"}>
                         <button className='button'
-                            style={{ top: '85%', left: '50%', width: '30%' }} >
+                            style={{ top: '85%', left: '50%', width: '30%' }} 
+                            onClick={incrementHighestUnlockedLevel}>
                             zur Übersicht
                         </button>
                     </Link>

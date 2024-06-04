@@ -4,6 +4,7 @@ import cloud from "../images/cloud.png";
 import star from "../images/star.svg";
 import { Link } from 'react-router-dom';
 import home_icon from '../images/home_icon.png';
+import { incrementHighestUnlockedLevel } from "../utils/utils.jsx";
 
 /* define fix positions for stars */
 const leftCloudPositions = [
@@ -205,7 +206,7 @@ function ActivityOne() {
     };
 
     /* the game is finished */
-    if (roundCount >= 5) {
+    if (roundCount >= 2) {
         // Message that the game is completed
         return (
             <div className="container-A1">
@@ -219,7 +220,8 @@ function ActivityOne() {
                     </div>
                     <Link to={"/"}>
                         <button className='button'
-                            style={{ top: '85%', left: '50%', width: '30%' }} >
+                            style={{ top: '85%', left: '50%', width: '30%' }} 
+                            onClick={incrementHighestUnlockedLevel(1)}>
                             zur Übersicht
                         </button>
                     </Link>

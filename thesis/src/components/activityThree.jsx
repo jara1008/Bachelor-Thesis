@@ -3,6 +3,7 @@ import './activityThree.css';
 import { Link } from 'react-router-dom';
 import home_icon from '../images/home_icon.png';
 import congratulation_icon from '../images/congratulation_icon.png'; // Assuming this will be used later
+import { incrementHighestUnlockedLevel } from "../utils/utils.jsx";
 
 function ActivityThree() {
     const [roundCount, setRoundCount] = useState(1);
@@ -205,9 +206,10 @@ function ActivityThree() {
                         Gratulation! Du hast Level xy geschafft!
                     </div>
                     <Link to={"/"}>
-                        <button className='button' style={{ top: '85%', left: '50%', width: '30%' }}>
-                            zur Übersicht
-                        </button>
+                        <button className='button' 
+                            style={{ top: '85%', left: '50%', width: '30%' }}
+                            onClick={incrementHighestUnlockedLevel}
+                        />zur Übersicht
                     </Link>
                 </div>
             </div>

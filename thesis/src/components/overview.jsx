@@ -17,14 +17,16 @@ function Overview() {
         { id: 7, top: '68%', left: '37%' },
         { id: 8, top: '68%', left: '52%', path: "/activityEight", title: "Distanzen erkennen" },
         { id: 9, top: '68%', left: '67%' }
-    ])
+    ]);
 
     const [dots, setDots] = useState([]);
     const numberOfDots = 9; 
 
     const [rocketPosition, setRocketPosition] = useState('92%');
     const [rocketPositionTop, setRocketPositionTop] = useState('28.25%');
-    const levelNr = 0;
+
+    // Get the highest unlocked level from local storage or set it to 1 if not available
+    const highestUnlockedLevel = parseInt(localStorage.getItem('highestUnlockedLevel')) || 1;
 
     useEffect(() => {
         const topOffset = 8; 
@@ -66,8 +68,23 @@ function Overview() {
             </div>
             {boxes.map((box) => (
                 <Link to={box.path} key={box.id} style={{ position: 'absolute', top: box.top, left: box.left }}>
-                    <div className="rectangle">
+                    <div className="rectangle" style={box.id === highestUnlockedLevel ? { boxShadow: "0px 0px 15px 8px #bec3f1d6" } : {}}>
                         { box.title }
+                        { box.id <= highestUnlockedLevel ? (
+                            <>
+                                <div className="stars-upper" style={{ marginTop: "5%" }}>
+                                    <img src={star_empty} alt="Star" className="star" style={{ paddingRight: "2%" }}/>
+                                    <img src={star_empty} alt="Star" className="star" style={{ paddingLeft: "2%" }}/>
+                                </div>
+                                <div className="stars-lower" style={{ marginTop: "-5%" }}>
+                                    <img src={star_empty} alt="Star" className="star" />
+                                </div>
+                            </>
+                        ) : (
+                            <div className="lock-div" style={{ marginTop: "7%" }}>
+                                <img src={lock} alt="Lock" className="lock" />
+                            </div>
+                        )}
                     </div>
                 </Link>
             ))}

@@ -3,7 +3,7 @@ import './activityTwo.css';
 import { Link } from 'react-router-dom';
 import home_icon from '../images/home_icon.png';
 import congratulation_icon from '../images/congratulation_icon.png';
-
+import { incrementHighestUnlockedLevel } from "../utils/utils.jsx";
 
 function ActivityTwo() {
     const [numCubesFirstRow, setNumCubesFirstRow] = useState(0);
@@ -69,7 +69,8 @@ function ActivityTwo() {
                     </div>
                     <Link to={"/"}>
                         <button className='button-A2'
-                            style={{ top: '85%', left: '50%', width: '30%' }} >
+                            style={{ top: '85%', left: '50%', width: '30%' }} 
+                            onClick={incrementHighestUnlockedLevel(2)}>
                             zur Übersicht
                         </button>
                     </Link>
