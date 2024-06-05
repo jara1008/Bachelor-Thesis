@@ -192,7 +192,7 @@ function ActivitySix() {
                     <Link to={"/"}>
                         <button className='button' 
                             style={{ top: '85%', left: '50%', width: '30%' }}
-                            onClick={incrementHighestUnlockedLevel}>
+                            onClick={incrementHighestUnlockedLevel(6)}>
                             zur Übersicht
                         </button>
                     </Link>

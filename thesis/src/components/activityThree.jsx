@@ -208,8 +208,8 @@ function ActivityThree() {
                     <Link to={"/"}>
                         <button className='button' 
                             style={{ top: '85%', left: '50%', width: '30%' }}
-                            onClick={incrementHighestUnlockedLevel}
-                        />zur Übersicht
+                            onClick={incrementHighestUnlockedLevel(3)}
+                        >zur Übersicht</button>
                     </Link>
                 </div>
             </div>

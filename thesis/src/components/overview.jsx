@@ -11,12 +11,12 @@ function Overview() {
         { id: 1, top: '14%', left: '37%', path: "/instructionsOne", title: "Mengen Vergleich" },
         { id: 2, top: '14%', left: '52%', path: "/activityTwo", title: "Längen Vergleich" },
         { id: 3, top: '14%', left: '67%', path: "/activityThree", title: "Münz Vergleich" },
-        { id: 4, top: '41%', left: '37%' },
+        { id: 4, top: '41%', left: '37%', title: "TODO" },
         { id: 5, top: '41%', left: '52%', path: "/activityFive", title: "Additions-rätsel" },
         { id: 6, top: '41%', left: '67%', path: "/activitySix", title: "Münzen subtrahieren" },
-        { id: 7, top: '68%', left: '37%' },
+        { id: 7, top: '68%', left: '37%', title: "TODO"},
         { id: 8, top: '68%', left: '52%', path: "/activityEight", title: "Distanzen erkennen" },
-        { id: 9, top: '68%', left: '67%' }
+        { id: 9, top: '68%', left: '67%', title: "TODO" }
     ]);
 
     const [dots, setDots] = useState([]);
@@ -67,26 +67,29 @@ function Overview() {
                 ))}
             </div>
             {boxes.map((box) => (
-                <Link to={box.path} key={box.id} style={{ position: 'absolute', top: box.top, left: box.left }}>
-                    <div className="rectangle" style={box.id === highestUnlockedLevel ? { boxShadow: "0px 0px 15px 8px #bec3f1d6" } : {}}>
-                        { box.title }
-                        { box.id <= highestUnlockedLevel ? (
-                            <>
-                                <div className="stars-upper" style={{ marginTop: "5%" }}>
-                                    <img src={star_empty} alt="Star" className="star" style={{ paddingRight: "2%" }}/>
-                                    <img src={star_empty} alt="Star" className="star" style={{ paddingLeft: "2%" }}/>
-                                </div>
-                                <div className="stars-lower" style={{ marginTop: "-5%" }}>
-                                    <img src={star_empty} alt="Star" className="star" />
-                                </div>
-                            </>
-                        ) : (
+                box.id <= highestUnlockedLevel ? (
+                    <Link to={box.path} key={box.id} style={{ position: 'absolute', top: box.top, left: box.left }}>
+                        <div className="rectangle" style={box.id === highestUnlockedLevel ? { boxShadow: "0px 0px 15px 8px #bec3f1d6" } : {}}>
+                            {box.title}
+                            <div className="stars-upper" style={{ marginTop: "5%" }}>
+                                <img src={star_empty} alt="Star" className="star" style={{ paddingRight: "2%" }} />
+                                <img src={star_empty} alt="Star" className="star" style={{ paddingLeft: "2%" }} />
+                            </div>
+                            <div className="stars-lower" style={{ marginTop: "-5%" }}>
+                                <img src={star_empty} alt="Star" className="star" />
+                            </div>
+                        </div>
+                    </Link>
+                ) : (
+                    <div key={box.id} style={{ position: 'absolute', top: box.top, left: box.left }}>
+                        <div className="rectangle inactive" style={box.id === highestUnlockedLevel ? { boxShadow: "0px 0px 15px 8px #bec3f1d6" } : {}}>
+                            {box.title}
                             <div className="lock-div" style={{ marginTop: "7%" }}>
                                 <img src={lock} alt="Lock" className="lock" />
                             </div>
-                        )}
+                        </div>
                     </div>
-                </Link>
+                )
             ))}
         </div>
     );

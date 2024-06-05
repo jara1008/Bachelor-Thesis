@@ -72,7 +72,7 @@ function ActivityFive() {
                     <Link to={"/"}>
                         <button className='button-A5'
                             style={{ top: '85%', left: '50%', width: '30%' }} 
-                            onClick={incrementHighestUnlockedLevel}>
+                            onClick={incrementHighestUnlockedLevel(5)}>
                             zur Übersicht
                         </button>
                     </Link>
