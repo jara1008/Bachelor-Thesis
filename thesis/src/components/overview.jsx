@@ -22,11 +22,12 @@ function Overview() {
     const [dots, setDots] = useState([]);
     const numberOfDots = 9; 
 
-    const [rocketPosition, setRocketPosition] = useState('92%');
-    const [rocketPositionTop, setRocketPositionTop] = useState('28.25%');
+    const [rocketPosition, setRocketPosition] = useState('28.25%');
+    const [rocketPositionTop, setRocketPositionTop] = useState('92%');
 
     // Get the highest unlocked level from local storage or set it to 1 if not available
-    const highestUnlockedLevel = parseInt(localStorage.getItem('highestUnlockedLevel')) || 1;
+    //const highestUnlockedLevel = parseInt(localStorage.getItem('highestUnlockedLevel')) || 1;
+    const highestUnlockedLevel = 8;
 
     useEffect(() => {
         const topOffset = 8; 
@@ -42,11 +43,11 @@ function Overview() {
         <div className="overview">
             <img src={rocket} alt="Rocket" style={{
                 position: 'absolute',
-                left: rocketPositionTop,
-                height: "55px",
-                width: "55px",
+                left: rocketPosition,
+                height: "4.5vw",
+                width: "4.5vw",
                 transform: 'translate(-50%, -50%)', // Center the rocket image on the dot
-                top: rocketPosition,
+                top: rocketPositionTop,
             }} />
             <img src={planet} alt="Planet" style={{
                 position: 'absolute',
