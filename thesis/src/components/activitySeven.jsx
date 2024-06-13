@@ -29,12 +29,30 @@ function ActivitySeven() {
     }
 
     const checkInput = () => {
-        // Add your input checking logic here
+        const sol = parseInt(numberLarge.join('')) - parseInt(numberSmall.join(''));
+        const input = parseInt(rows[rows.length-1].valuesTop.join(''));
+        if (sol === input) {
+            setIsCorrect(true);
+            setRoundCount(roundCount + 1);
+        }
+        else {
+            const newInputRow = { type: 'input', valuesTop: Array(4).fill(''), valuesBottom: Array(4).fill('') };
+            setRows([newInputRow]);
+        }
     }
 
     const handleNext = () => {
-        // Add your logic for handling the next round here
+        const numberOne = generateRandomNumber();
+        const numberTwo = generateRandomNumber();
+        setNumberLarge(String(Math.max(numberOne, numberTwo)).padStart(4, '0').split('').map(Number));
+        setNumberSmall(String(Math.min(numberOne, numberTwo)).padStart(4, '0').split('').map(Number));
+        
+        const newInputRow = { type: 'input', valuesTop: Array(4).fill(''), valuesBottom: Array(4).fill('') };
+        setRows([newInputRow]);
+
+        setIsCorrect(false);
     }
+
 
     const handleRowInputChangeTop = (rowIndex, colIndex, event) => {
         const newRows = [...rows];
@@ -51,9 +69,22 @@ function ActivitySeven() {
     const handleDecrease = (index) => {
         // Create a copy of the current input values
         const newRowValues = [...rows];
-        // Parse the current value to an integer$
-        var currentTopValues = newRowValues[newRowValues.length-1].valuesTop.map(value => parseInt(value));
-        var currentBotValues = newRowValues[newRowValues.length-1].valuesBottom.map(value => parseInt(value));
+        // Parse the current value to an integer
+        var currentTopValues = newRowValues[newRowValues.length-1].valuesTop.map(value => {
+            const parsedValue = parseInt(value, 10);
+            return isNaN(parsedValue) ? 0 : parsedValue;
+        });
+
+        var currentBotValues = newRowValues[newRowValues.length-1].valuesBottom.map(value => {
+            const parsedValue = parseInt(value, 10);
+            return isNaN(parsedValue) ? 0 : parsedValue;
+        });
+
+        if (rows.length < 2) {
+            if (!checkIntermediate(currentTopValues, currentBotValues)) {
+                return
+            }
+        }
         
         // Increase the next value by 10
         if(currentTopValues[index]<1) return;
@@ -73,6 +104,34 @@ function ActivitySeven() {
         newRows.push(newInputRow);
 
         setRows(newRows);
+    }
+
+    const checkIntermediate = (currentTopValues, currentBotValues) => {
+        for (let i=0; i<currentTopValues.length; i++) {
+            const topNr = parseInt(numberLarge[i]);
+            const botNr = parseInt(numberSmall[i]);
+            console.log("NR: ", topNr, botNr, currentTopValues[i], currentBotValues[i])
+            if (botNr < topNr) {
+                if (topNr-botNr !== currentTopValues[i] || currentBotValues[i] !== 0) {
+                    setCorrectnessLabel(true);
+                    return false;
+                }
+            }
+            else if (botNr > topNr) {
+                if (botNr-topNr !== currentBotValues[i] || currentTopValues[i] !== 0) {
+                    setCorrectnessLabel(true);
+                    return false;
+                }
+            }
+            else if (botNr === topNr) {
+                if (currentBotValues[i] !== 0 || currentTopValues[i] !== 0) {
+                    setCorrectnessLabel(true);
+                    return false;
+                }
+            }
+        }
+        setCorrectnessLabel(false);
+        return true;
     }
 
     if (roundCount >= 5) {
@@ -170,7 +229,7 @@ function ActivitySeven() {
                 </table>
 
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-A7" 
-                    style={{ top: '88%', left: '85%' }} >
+                    style={{ top: '88%', left: '89%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
             </div>
