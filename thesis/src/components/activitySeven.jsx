@@ -9,8 +9,6 @@ function ActivitySeven() {
     const [isCorrect, setIsCorrect] = useState(false);
     const [roundCount, setRoundCount] = useState(1);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
-    const [inputValuesTop, setInputValuesTop] = useState(Array(4).fill(''));
-    const [inputValuesBottom, setInputValuesBottom] = useState(Array(4).fill(''));
     const [numberLarge, setNumberLarge] = useState([]);
     const [numberSmall, setNumberSmall] = useState([]);
     const [rows, setRows] = useState([]);
@@ -20,10 +18,14 @@ function ActivitySeven() {
         const numberTwo = generateRandomNumber();
         setNumberLarge(String(Math.max(numberOne, numberTwo)).padStart(4, '0').split('').map(Number));
         setNumberSmall(String(Math.min(numberOne, numberTwo)).padStart(4, '0').split('').map(Number));
+        const newRows = [];
+        const newInputRow = { type: 'input', valuesTop: Array(4).fill(''), valuesBottom: Array(4).fill('') };
+        newRows.push(newInputRow);
+        setRows(newRows);
     }, []); // Empty dependency array to run only once on mount
 
     const generateRandomNumber = () => {
-        Math.floor(Math.random() * 8999 + 1000) + 1;
+        return Math.floor(Math.random() * 8999 + 1000) + 1;
     }
 
     const checkInput = () => {
@@ -32,18 +34,6 @@ function ActivitySeven() {
 
     const handleNext = () => {
         // Add your logic for handling the next round here
-    }
-
-    const handleChangeTop = (index, event) => {
-        const newInputValues = [...inputValuesTop];
-        newInputValues[index] = event.target.value;
-        setInputValuesTop(newInputValues);
-    }
-
-    const handleChangeBottom = (index, event) => {
-        const newInputValues = [...inputValuesBottom];
-        newInputValues[index] = event.target.value;
-        setInputValuesBottom(newInputValues);
     }
 
     const handleRowInputChangeTop = (rowIndex, colIndex, event) => {
@@ -60,25 +50,21 @@ function ActivitySeven() {
 
     const handleDecrease = (index) => {
         // Create a copy of the current input values
-        const newRowValues = [...inputValuesTop];
-
-        // Parse the current value to an integer
-        const currentValue = parseInt(newRowValues[index], 10);
-
-        // Check if the current value is a number and greater than 0
-        if (!isNaN(currentValue) && currentValue > 0) {
-            newRowValues[index] = (currentValue - 1).toString();
-        }
-
+        const newRowValues = [...rows];
+        // Parse the current value to an integer$
+        var currentTopValues = newRowValues[newRowValues.length-1].valuesTop.map(value => parseInt(value));
+        var currentBotValues = newRowValues[newRowValues.length-1].valuesBottom.map(value => parseInt(value));
+        
         // Increase the next value by 10
-        const nextValue = parseInt(newRowValues[index + 1], 10) || 0;
-        newRowValues[index + 1] = (nextValue + 10).toString();
+        if(currentTopValues[index]<1) return;
+        currentTopValues[index] = currentTopValues[index]-1;
+        currentTopValues[index+1] += 10;
 
         // Add new rows
         const newRows = [...rows];
-        const newRow = newRowValues.map((value, idx) => ({
+        const newRow = currentTopValues.map((value, idx) => ({
             top: value,
-            bottom: inputValuesBottom[idx]
+            bottom: currentBotValues[idx]
         }));
         newRows.push(newRow);
 
@@ -147,25 +133,6 @@ function ActivitySeven() {
                                         {index === 0 && <span className="minus-sign-A7">-</span>}
                                         {numberSmall[index]}
                                     </div>
-                                </td>
-                            ))}
-                        </tr>
-                        <tr>
-                            {inputValuesTop.map((value, index) => (
-                                <td key={index} className="number-cell">
-                                    <input
-                                        type="text"
-                                        value={value}
-                                        onChange={(event) => handleChangeTop(index, event)}
-                                        className="input-field-A7"
-                                    />
-                                    <input
-                                        type="text"
-                                        value={inputValuesBottom[index]}
-                                        onChange={(event) => handleChangeBottom(index, event)}
-                                        className="input-field-A7"
-                                        style={{ marginTop: '5px' }} 
-                                    />
                                 </td>
                             ))}
                         </tr>
