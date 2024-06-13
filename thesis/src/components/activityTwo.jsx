@@ -64,7 +64,7 @@ function ActivityTwo() {
                         <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                     </Link>
                     <div className="congratulation-message-A2">
-                        Gratulation! Du hast Level xy geschafft!
+                        Gratulation! Du hast das Level Längen Vergleich geschafft!
                         { /* Add party icon */ }
                     </div>
                     <Link to={"/"}>

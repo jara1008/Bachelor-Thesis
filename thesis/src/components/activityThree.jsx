@@ -203,7 +203,7 @@ function ActivityThree() {
                         <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                     </Link>
                     <div className="congratulation-message-A3">
-                        Gratulation! Du hast Level xy geschafft!
+                        Gratulation! Du hast das Level Münz Vergleich geschafft!
                     </div>
                     <Link to={"/"}>
                         <button className='button' 

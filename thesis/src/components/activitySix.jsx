@@ -207,7 +207,7 @@ function ActivitySix() {
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <div className='text-wrapper'>TODO</div>
+                <div className='text-wrapper'>Löse die Rechnung:</div>
                 <span className='text-wrapper-abs' style={{ '--left': '12%', '--top': '20%' }}>{leftVal} - {rightVal}</span>
                 <div className="coin-row-6" style={{ '--top': '28%' }}>
                     <span className='text-wrapper-abs' style={{ '--left': '-2%' }}>=</span>

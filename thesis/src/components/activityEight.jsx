@@ -144,6 +144,9 @@ function ActivityEight() {
                 setRoundCount(roundCount + 1);
             }
         }
+        else {
+            
+        }
     };
 
     const handleNext = () => {
@@ -231,7 +234,7 @@ function ActivityEight() {
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <span className="text-wrapper">TODO: </span>
+                <span className="text-wrapper">Wo ist das Auto? Wähle die richtigen Kästchen aus: </span>
                 {renderNumberLine()}
                 {renderRectangles()}
                 {isCorrect && displayCorrectness && <div className="correctness-label-correct">Richtig!</div>}

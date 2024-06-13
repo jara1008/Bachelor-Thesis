@@ -14,7 +14,7 @@ function Overview() {
         { id: 4, top: '41%', left: '37%', title: "TODO" },
         { id: 5, top: '41%', left: '52%', path: "/activityFive", title: "Additions-rätsel" },
         { id: 6, top: '41%', left: '67%', path: "/activitySix", title: "Münzen subtrahieren" },
-        { id: 7, top: '68%', left: '37%', title: "TODO"},
+        { id: 7, top: '68%', left: '37%', path: "/activitySeven", title: "Tabellen-subtraktion" },
         { id: 8, top: '68%', left: '52%', path: "/activityEight", title: "Distanzen erkennen" },
         { id: 9, top: '68%', left: '67%', title: "TODO" }
     ]);

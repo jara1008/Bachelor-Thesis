@@ -205,6 +205,7 @@ function ActivityOne() {
         setIsRightChecked(event.target.checked);
     };
 
+
     /* the game is finished */
     if (roundCount >= 2) {
         // Message that the game is completed
@@ -215,7 +216,7 @@ function ActivityOne() {
                         <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                     </Link>
                     <div className="congratulation-message">
-                        Gratulation! Du hast Level xy geschafft!
+                        Gratulation! Du hast das Level Mengen Vergleich geschafft!
                         { /* Add party icon */ }
                     </div>
                     <Link to={"/"}>
@@ -236,7 +237,7 @@ function ActivityOne() {
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <span className="text-wrapper-A1">Verbinde die Sterne miteinander und wähle die Wolke mit MEHR Sternen an:</span>
+                <span className="text-wrapper-A1">Verbinde die Sterne miteinander. Wähle die Wolke mit MEHR Sternen aus:</span>
                 <div style={{ position: "relative", height: "100%", width: "100%" }}>
                     <input
                         type="checkbox"
