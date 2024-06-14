@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './activityTwo.css';
-import { Link } from 'react-router-dom';
-import home_icon from '../images/home_icon.png';
-import congratulation_icon from '../images/congratulation_icon.png';
-import { incrementHighestUnlockedLevel } from "../utils/utils.jsx";
+import { HomeLink, EndOfGame, ROUNDCOUNT } from '../defaults';
 
 function ActivityTwo() {
     const [numCubesFirstRow, setNumCubesFirstRow] = useState(0);
@@ -12,19 +9,41 @@ function ActivityTwo() {
     const [isCorrect, setIsCorrect] = useState(false);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
     const [roundCount, setRoundCount] = useState(1);
-    const [lastDigits, setLastDigits] = useState({ leftValue: -1, rightValue: -1 });
+    const [, setLastDigits] = useState({ leftValue: -1, rightValue: -1 });
+
+    const shuffleCubes = useCallback(() => {
+        setLastDigits((prevLastDigits) => {
+            let randomNumCubesFirstRow;
+            let randomNumCubesSecondRow;
+            do {
+                randomNumCubesFirstRow = Math.floor(Math.random() * 10) + 1;
+                randomNumCubesSecondRow = Math.floor(Math.random() * 10) + 1;
+            } while (
+                randomNumCubesFirstRow === prevLastDigits.leftValue &&
+                randomNumCubesSecondRow === prevLastDigits.rightValue
+            );
+            setNumCubesFirstRow(randomNumCubesFirstRow);
+            setNumCubesSecondRow(randomNumCubesSecondRow);
+            setIsCorrect(false);
+            setInputValue('');
+            setCorrectnessLabel(false);
+            return { leftValue: randomNumCubesFirstRow, rightValue: randomNumCubesSecondRow };
+        });
+    }, []);
 
     useEffect(() => {
         shuffleCubes();
-    }, []);
+    }, [shuffleCubes]);
 
     const checkInput = () => {
         setCorrectnessLabel(true);
-        if ((inputValue === '<' && numCubesFirstRow < numCubesSecondRow) ||
+        if (
+            (inputValue === '<' && numCubesFirstRow < numCubesSecondRow) ||
             (inputValue === '>' && numCubesFirstRow > numCubesSecondRow) ||
-            (inputValue === '=' && numCubesFirstRow === numCubesSecondRow)) {
+            (inputValue === '=' && numCubesFirstRow === numCubesSecondRow)
+        ) {
             setIsCorrect(true);
-            setRoundCount(roundCount + 1);
+            setRoundCount((prevRoundCount) => prevRoundCount + 1);
         } else {
             setIsCorrect(false);
         }
@@ -32,59 +51,21 @@ function ActivityTwo() {
 
     const handleButtonClick = (value) => {
         setInputValue(value);
-    };    
+    };
 
     const handleNext = () => {
         shuffleCubes();
     };
 
-    const shuffleCubes = () => {
-        if (roundCount<5) {
-            let randomNumCubesFirstRow;
-            let randomNumCubesSecondRow;
-            do {
-                randomNumCubesFirstRow = Math.floor(Math.random() * 10) + 1;
-                randomNumCubesSecondRow = Math.floor(Math.random() * 10) + 1;
-            } while (randomNumCubesFirstRow === lastDigits.leftValue && randomNumCubesSecondRow === lastDigits.rightValue);
-            setNumCubesFirstRow(randomNumCubesFirstRow);
-            setNumCubesSecondRow(randomNumCubesSecondRow);
-            setLastDigits({ leftValue: randomNumCubesFirstRow, rightValue: randomNumCubesSecondRow });
-            setIsCorrect(false);
-            setInputValue('');
-            setCorrectnessLabel(false);
-        }
-    }
-
-    if (roundCount >= 5) {
-        // Message that the game is completed
-        return (
-            <div className="container">
-                <div className="white-box-regular">
-                    <Link to={"/"}>
-                        <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
-                    </Link>
-                    <div className="congratulation-message">
-                        Gratulation! Du hast das Level Längen Vergleich geschafft!
-                        { /* Add party icon */ }
-                    </div>
-                    <Link to={"/"}>
-                        <button className='button-default'
-                            style={{ top: '85%', left: '50%', width: '30%' }} 
-                            onClick={incrementHighestUnlockedLevel(2)}>
-                            zur Übersicht
-                        </button>
-                    </Link>
-                </div>
-            </div>
-        );
+    if (roundCount >= ROUNDCOUNT) {
+        /* Message that the game is completed */
+        return <EndOfGame levelName="Längen Vergleich" levelNr={2} />;
     }
 
     return (
-        <div className="container" >
-            <div className="white-box-regular" >
-                <Link to={"/"}>
-                    <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
-                </Link>
+        <div className="container">
+            <div className="white-box-regular">
+                <HomeLink />
                 <span className="title-text">Wähle {"<, >, ="} passend: </span>
                 <div className="cube-rows-A2">
                     <div className="cube-row-A2">
@@ -104,8 +85,8 @@ function ActivityTwo() {
                 </div>
                 <div className="info-A2">
                     <span>{numCubesFirstRow} </span>
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder=""
@@ -121,9 +102,12 @@ function ActivityTwo() {
                 </div>
                 {isCorrect && displayCorrectness && <div className="correctness-label">Richtig!</div>}
                 {!!!isCorrect && displayCorrectness && <div className="correctness-label">Versuche es nochmals!</div>}
-                <button onClick={isCorrect ? handleNext : checkInput} className="button-A2" 
-                    style={{ top: '88%', left: '85%' }} >
-                    {isCorrect ? "Weiter" : "Prüfen"}
+                <button
+                    onClick={isCorrect ? handleNext : checkInput}
+                    className="button-default"
+                    style={{ top: '90%', left: '50%' }}
+                >
+                    {isCorrect ? 'Weiter' : 'Prüfen'}
                 </button>
             </div>
         </div>

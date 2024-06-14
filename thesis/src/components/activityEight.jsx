@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './activityEight.css';
 import '../defaults.css';
-import { Link } from 'react-router-dom';
-import home_icon from '../images/home_icon.png';
-import congratulation_icon from '../images/congratulation_icon.png';
+import { HomeLink, EndOfGame, ROUNDCOUNT } from '../defaults';
 import tree from '../images/tree.png';
 import car from '../images/car_large.png';
-import { incrementHighestUnlockedLevel } from "../utils/utils.jsx";
 
 function ActivityEight() {
-    const [numbers, setNumbers] = useState({ largeNum: 0, smallNum: 0 });
-    const [inputValue, setInputValue] = useState('');
     const [isCorrect, setIsCorrect] = useState(false);
     const [roundCount, setRoundCount] = useState(0);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
@@ -65,7 +60,7 @@ function ActivityEight() {
 
     const renderNumberLine = () => (
         <div>
-            <img src={tree} style={{
+            <img src={tree} alt={tree} style={{
                 position: 'relative',
                 top: '10vh',
                 left: '50%',
@@ -77,14 +72,14 @@ function ActivityEight() {
                 {leftNumbers.map((num, index) => (
                     <div key={`left-${index}`} className="number-dot red-dot">
                         {num}
-                        {index === carPosition && <img src={car} className='car_img'/>}
+                        {index === carPosition && <img src={car} alt={car} className='car_img'/>}
                     </div>
                 ))}
                 <div key={ 'zero' } className="number-dot">0</div>
                 {rightNumbers.map((num, index) => (
                     <div key={`right-${index}`} className="number-dot blue-dot">
                         {num}
-                        {index === (carPosition-leftNumbers.length) && <img src={car} className='car_img'/>}
+                        {index === (carPosition-leftNumbers.length) && <img src={car} alt={car} className='car_img'/>}
                     </div>
                 ))}
             </div>
@@ -205,43 +200,22 @@ function ActivityEight() {
         ]);
     };
 
-    if (roundCount >= 5) {
-        // Message that the game is completed
-        return (
-            <div className="container">
-                <div className="white-box">
-                    <Link to={"/"}>
-                        <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
-                    </Link>
-                    <div className="congratulation-message">
-                        Gratulation! Du hast Level xy geschafft!
-                        { /* Add party icon */ }
-                    </div>
-                    <Link to={"/"}>
-                        <button className='button-default'
-                            style={{ top: '85%', left: '50%', width: '30%' }} 
-                            onClick={incrementHighestUnlockedLevel(8)}>
-                            zur Übersicht
-                        </button>
-                    </Link>
-                </div>
-            </div>
-        );
+    if (roundCount >= ROUNDCOUNT) {
+        /* Message that the game is completed */
+        return <EndOfGame levelName="Distanzen erkennen" levelNr={8} />;
     }
 
     return (
         <div className="container" >
             <div className="white-box-regular" >
-                <Link to={"/"}>
-                    <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
-                </Link>
+                <HomeLink />
                 <span className="title-text">Wo ist das Auto? Wähle die richtigen Kästchen aus: </span>
                 {renderNumberLine()}
                 {renderRectangles()}
                 {isCorrect && displayCorrectness && <div className="correctness-label-default">Richtig!</div>}
                 {!!!isCorrect && displayCorrectness && <div className="correctness-label-default">Versuche es nochmals!</div>}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
-                    style={{ top: '88%', left: '85%' }} >
+                    style={{ top: '90%', left: '50%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
             </div>

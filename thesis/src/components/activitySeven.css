@@ -33,16 +33,3 @@
     border: 1px solid var(--text-color);
     border-radius: 5%;
 }
-
-.header-button-A7 {
-    margin: 0.5%;
-    padding: 1.5%;
-    height: 18%;
-    width: 90%;
-    font-family: var(--font-family);
-    font-size: 3vh;
-    background-color: var(--primary-color);
-    border-radius: 50px;
-    cursor: pointer;
-    border: none;
-}

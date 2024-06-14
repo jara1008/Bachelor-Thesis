@@ -9,8 +9,8 @@
 .cube-row-A2 {
   display: flex;
   justify-content: center;
-  margin-top: 7vh;
-  margin-left: 2vw;
+  margin-top: 4vh;
+  margin-left: 1.5vw;
 }
 
 .cube-A2 {
@@ -37,7 +37,7 @@
   font-family: var(--font-family);
   font-size: 4vw;
   position: relative;
-  margin-top: 4vh;
+  margin-top: 2.5vh;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -61,7 +61,6 @@
 .button-container-A2 {
   display: flex;
   justify-content: center;
-  margin-top: 4vh;
 }
 
 .operator-button-A2 {
@@ -77,5 +76,5 @@
   font-family: var(--font-family);
   cursor: pointer;
   outline: none;
-  margin: 2%;
+  margin: 1.5%;
 }

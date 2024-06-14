@@ -1,21 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./activityOne.css";
 import "../defaults.css";
+import { HomeLink, EndOfGame, ROUNDCOUNT } from "../defaults.jsx";
 import cloud from "../images/cloud.png";
 import star from "../images/star.svg";
-import { Link } from 'react-router-dom';
-import home_icon from '../images/home_icon.png';
-import { incrementHighestUnlockedLevel } from "../utils/utils.jsx";
 
 /* define fix positions for stars */
 const leftCloudPositions = [
-    { top: 48, left: 20 }, { top: 27, left: 35 }, { top: 42, left: 6 }, 
-    { top: 52, left: 28 }, { top: 20, left: 25 }, { top: 32, left: 17 }, 
-    { top: 40, left: 38 } 
+    { top: 55, left: 20 }, { top: 27, left: 35 }, { top: 52, left: 6 }, 
+    { top: 60, left: 28 }, { top: 20, left: 25 }, { top: 32, left: 17 }, 
+    { top: 42, left: 38 } 
 ];
 const rightCloudPositions = [
-    { top: 33, left: 67 }, { top: 19, left: 75 }, { top: 52, left: 68 }, 
-    { top: 39, left: 90 }, { top: 44, left: 80 }, { top: 41, left: 57 }, 
+    { top: 33, left: 67 }, { top: 19, left: 75 }, { top: 59, left: 68 }, 
+    { top: 39, left: 90 }, { top: 54, left: 80 }, { top: 48, left: 57 }, 
     { top: 27, left: 84 }  
 ];
 
@@ -44,6 +42,23 @@ function ActivityOne() {
         const offsety = 1.45 * vw;
         setOffsets({ offsetx, offsety });
     };
+
+    const generateStars = useCallback((count, positions, cloudSide) => {
+        return positions.slice(0, count).map((pos, index) => (
+            <img
+                key={`${cloudSide}-${index}`}
+                src={star}
+                className="star-A1"
+                alt="Star"
+                style={{
+                    position: "absolute",
+                    top: `${pos.top}%`,
+                    left: `${pos.left}%`,
+                }}
+                onClick={() => handleStarClick({ ...pos, cloudSide })}
+            />
+        ));
+    }, []);
 
     useEffect(() => {
         updateOffsets(); 
@@ -78,7 +93,7 @@ function ActivityOne() {
     
             setAllStars({ left: starsInFirstCloud, right: starsInSecondCloud });
         }
-    }, [firstCloudCount, secondCloudCount, leftCloudPositions, rightCloudPositions]);
+    }, [firstCloudCount, secondCloudCount, generateStars]);
 
     useEffect(() => {
         firstPosRef.current = firstPos;
@@ -103,23 +118,6 @@ function ActivityOne() {
             setFirstPos(null);
             setSecondPos(null);
         }
-    };
-
-    const generateStars = (count, positions, cloudSide) => {
-        return positions.slice(0, count).map((pos, index) => (
-            <img
-                key={`${cloudSide}-${index}`}
-                src={star}
-                className="star-A1"
-                alt="Star"
-                style={{
-                    position: "absolute",
-                    top: `${pos.top}%`,
-                    left: `${pos.left}%`,
-                }}
-                onClick={() => handleStarClick({ ...pos, cloudSide })}
-            />
-        ));
     };
 
     const checkInput = () => {
@@ -198,7 +196,6 @@ function ActivityOne() {
     };
 
     const handleLeftCheckboxChange = (event) => {
-        console.log("is checked left");
         setIsLeftChecked(event.target.checked);
     };
 
@@ -208,36 +205,15 @@ function ActivityOne() {
 
 
     /* the game is finished */
-    if (roundCount >= 2) {
-        // Message that the game is completed
-        return (
-            <div className="container">
-                <div className="white-box-regular">
-                    <Link to={"/"}>
-                        <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
-                    </Link>
-                    <div className="congratulation-message">
-                        Gratulation! Du hast das Level Mengen Vergleich geschafft!
-                        { /* Add party icon */ }
-                    </div>
-                    <Link to={"/"}>
-                        <button className='button'
-                            style={{ top: '85%', left: '50%', width: '30%' }} 
-                            onClick={incrementHighestUnlockedLevel(1)}>
-                            zur Übersicht
-                        </button>
-                    </Link>
-                </div>
-            </div>
-        );
+    if (roundCount >= ROUNDCOUNT) {
+        /* Message that the game is completed */
+        return <EndOfGame levelName="Mengen Vergleich" levelNr={1} />;
     }
 
     return (
         <div className="container" >
             <div className="white-box-regular" >
-                <Link to={"/"}>
-                    <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
-                </Link>
+                <HomeLink />
                 <span className="title-text">Verbinde die Sterne miteinander. Wähle die Wolke mit MEHR Sternen aus:</span>
                 <div style={{ position: "relative", height: "100%", width: "100%" }}>
                     <input
@@ -246,7 +222,7 @@ function ActivityOne() {
                         onChange={handleLeftCheckboxChange}
                         style={{ position: "absolute", top: "6%", left: "25%", height: "5%", width: "5%", zIndex: 2 }}
                     />
-                    <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "8%", left: "0%", height: "58%", width: "48%" }} />
+                    <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "8%", left: "0%", height: "44vh", width: "28vw" }} />
                     {allStars.left}
                     <input
                         type="checkbox"
@@ -254,7 +230,7 @@ function ActivityOne() {
                         onChange={handleRightCheckboxChange}
                         style={{ position: "absolute", top: "6%", left: "75%", height: "5%", width: "5%", zIndex: 2 }}
                     />
-                    <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "8%", right: "1%", height: "58%", width: "48%" }} />
+                    <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "8%", right: "1%", height: "44vh", width: "28vw" }} />
                     {allStars.right}
                     <svg style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%", pointerEvents: "none" }}>
                         {lines.map((line, index) => (
@@ -275,7 +251,7 @@ function ActivityOne() {
                 {checkBoxCorrectness && <div className="correctness-label">Wähle das richtige Kästchen!</div>}
                 </div>
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
-                    style={{ top: '91%', left: '85%' }} >
+                    style={{ top: '90%', left: '50%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
             </div>

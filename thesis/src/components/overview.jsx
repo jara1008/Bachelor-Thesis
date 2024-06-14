@@ -22,8 +22,8 @@ function Overview() {
     const [dots, setDots] = useState([]);
     const numberOfDots = 9; 
 
-    const [rocketPosition, setRocketPosition] = useState('28.25%');
-    const [rocketPositionTop, setRocketPositionTop] = useState('92%');
+    const [rocketPosition] = useState('28.25%');
+    const [rocketPositionTop] = useState('92%');
 
     // Get the highest unlocked level from local storage or set it to 1 if not available
     //const highestUnlockedLevel = parseInt(localStorage.getItem('highestUnlockedLevel')) || 1;

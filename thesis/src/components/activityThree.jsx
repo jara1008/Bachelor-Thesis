@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import './activityThree.css';
 import '../defaults.css';
-import { Link } from 'react-router-dom';
-import home_icon from '../images/home_icon.png';
-import congratulation_icon from '../images/congratulation_icon.png'; // Assuming this will be used later
-import { incrementHighestUnlockedLevel } from "../utils/utils.jsx";
+import { HomeLink, EndOfGame, ROUNDCOUNT } from '../defaults';
 
 function ActivityThree() {
     const [roundCount, setRoundCount] = useState(1);
@@ -18,8 +15,6 @@ function ActivityThree() {
     const [leftCoinsVisibleTen, setLeftCoinsVisibleTen] = useState(leftCoinsTen);
     const [rightCoinsVisibleOne, setRightCoinsVisibleOne] = useState(rightCoinsOne);
     const [rightCoinsVisibleTen, setRightCoinsVisibleTen] = useState(rightCoinsTen);
-
-    const [coinColors, setCoinColors] = useState(new Map());
 
     const [isCorrect, setIsCorrect] = useState(false);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
@@ -106,13 +101,11 @@ function ActivityThree() {
             if (newActiveCoins.has(coinKey)) {
                 newActiveCoins.delete(coinKey);
     
-                let found = false;
                 const maxCoins = denomination === "tens" ? leftCoinsTen : leftCoinsOne;
                 for (let i = 0; i < maxCoins; i++) {
                     const oppositeCoinKey = `${oppositeType}-${denomination}-${i}`;
                     if (newActiveCoins.has(oppositeCoinKey)) {
                         newActiveCoins.delete(oppositeCoinKey);
-                        found = true;
                         break;
                     }
                 }
@@ -127,13 +120,11 @@ function ActivityThree() {
             } else if ((denomination === "tens" && leftCoinsVisibleTen > 0 && rightCoinsVisibleTen > 0) || (denomination === "ones" && leftCoinsVisibleOne > 0 && rightCoinsVisibleOne > 0)) {
                 newActiveCoins.add(coinKey);
     
-                let found = false;
                 const maxCoins = denomination === "tens" ? leftCoinsTen : leftCoinsOne;
                 for (let i = 0; i < maxCoins; i++) {
                     const oppositeCoinKey = `${oppositeType}-${denomination}-${i}`;
                     if (!newActiveCoins.has(oppositeCoinKey)) {
                         newActiveCoins.add(oppositeCoinKey);
-                        found = true;
                         break;
                     }
                 }
@@ -196,40 +187,20 @@ function ActivityThree() {
     }
     
 
-    if (roundCount >= 5) {
-        return (
-            <div className="container">
-                <div className="white-box-regular">
-                    <Link to={"/"}>
-                        <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
-                    </Link>
-                    <div className="congratulation-message">
-                        Gratulation! Du hast das Level Münz Vergleich geschafft!
-                    </div>
-                    <Link to={"/"}>
-                        <button className='button-default' 
-                            style={{ top: '85%', left: '50%', width: '30%' }}
-                            onClick={incrementHighestUnlockedLevel(3)}
-                        >zur Übersicht</button>
-                    </Link>
-                </div>
-            </div>
-        );
+    if (roundCount >= ROUNDCOUNT) {
+        return <EndOfGame levelName="Münz Vergleich" levelNr={3} />;
     }
 
     return (
-        <div className="container-">
+        <div className="container">
             <div className="white-box-large">
-                <Link to={"/"}>
-                    <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
-                </Link>
+                <HomeLink />
                 <div className='title-text'>Wähle {"<, >, ="} passend:</div>
-
                 <div style={{ display: "flex", justifyContent: "space-around", width: "100%" }}>
-                <button onClick={handleConversionLeft} className="button-default" style={{}}>
+                <button onClick={handleConversionLeft} className="header-button" style={{ left: "25%", marginTop: "2vh" }}>
                     Tauschen
                 </button>
-                <button onClick={handleConversionRight} className="button-default" style={{}}>
+                <button onClick={handleConversionRight} className="header-button" style={{ left: "75%", marginTop: "2vh" }}>
                     Tauschen
                 </button>
                 </div>
@@ -262,8 +233,8 @@ function ActivityThree() {
                 </div>
                 {isCorrect && displayCorrectness && <div className="correctness-label">Richtig!</div>}
                 {!!!isCorrect && displayCorrectness && <div className="correctness-label">Versuche es nochmals!</div>}
-                <button onClick={isCorrect ? handleNext : checkInput} className="button-absolute-A3" 
-                    style={{ top: '88%', left: '85%' }} >
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
+                    style={{ top: '90%', left: '50%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
             </div>

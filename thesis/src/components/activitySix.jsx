@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import './activitySix.css';
 import '../defaults.css';
-import { Link } from 'react-router-dom';
-import home_icon from '../images/home_icon.png';
-import congratulation_icon from '../images/congratulation_icon.png'; // Assuming this will be used later
-import { incrementHighestUnlockedLevel } from "../utils/utils.jsx";
+import { HomeLink, EndOfGame, ROUNDCOUNT } from '../defaults';
 
 function ActivitySix() {
     let initialLeftCoinsTen, initialLeftCoinsOne, initialRightCoinsTen, initialRightCoinsOne;
@@ -83,7 +80,7 @@ function ActivitySix() {
     
         setActiveCoins(prevActiveCoins => {
             const newActiveCoins = new Set(prevActiveCoins);
-            if (leftVisibility[denomination][index] != rightVisibility[denomination][index]) {
+            if (leftVisibility[denomination][index] !== rightVisibility[denomination][index]) {
                 alert("WRONG!"); //BETTER: make a disclaimer!
             }
             else if (newActiveCoins.has(coinKey)) {
@@ -118,7 +115,7 @@ function ActivitySix() {
 
     function checkInput() {
         setCorrectnessLabel(true);
-        if (inputValue == leftVal-rightVal) {
+        if (inputValue === leftVal-rightVal) {
             setIsCorrect(true);
             setRoundCount(roundCount + 1);
         } else {
@@ -127,38 +124,36 @@ function ActivitySix() {
     }
 
     function handleNext() {
-        if (roundCount < 5) {
-            let newLeftCoinsTen, newLeftCoinsOne, newRightCoinsTen, newRightCoinsOne, newLeftVal, newRightVal;
-            do {
-                newLeftCoinsTen = Math.floor(Math.random() * 3) + 1;
-                newLeftCoinsOne = Math.floor(Math.random() * 9) + 1;
-                newRightCoinsTen = Math.floor(Math.random() * 3) + 1;
-                newRightCoinsOne = Math.floor(Math.random() * 9) + 1;
-                newLeftVal = newLeftCoinsOne + newLeftCoinsTen * 10;
-                newRightVal = newRightCoinsOne + newRightCoinsTen * 10;
-            } while (newLeftVal <= newRightVal);
-    
-            setLeftCoinsTen(newLeftCoinsTen);
-            setLeftCoinsOne(newLeftCoinsOne);
-            setRightCoinsTen(newRightCoinsTen);
-            setRightCoinsOne(newRightCoinsOne);
+        let newLeftCoinsTen, newLeftCoinsOne, newRightCoinsTen, newRightCoinsOne, newLeftVal, newRightVal;
+        do {
+            newLeftCoinsTen = Math.floor(Math.random() * 3) + 1;
+            newLeftCoinsOne = Math.floor(Math.random() * 9) + 1;
+            newRightCoinsTen = Math.floor(Math.random() * 3) + 1;
+            newRightCoinsOne = Math.floor(Math.random() * 9) + 1;
+            newLeftVal = newLeftCoinsOne + newLeftCoinsTen * 10;
+            newRightVal = newRightCoinsOne + newRightCoinsTen * 10;
+        } while (newLeftVal <= newRightVal);
 
-            setDisplayMinus(true);
-    
-            setLeftVisibility({
-                tens: Array(newLeftCoinsTen).fill(true),
-                ones: Array(newLeftCoinsOne).fill(true)
-            });
-            setRightVisibility({
-                tens: Array(newRightCoinsTen).fill(true),
-                ones: Array(newRightCoinsOne).fill(true)
-            });
+        setLeftCoinsTen(newLeftCoinsTen);
+        setLeftCoinsOne(newLeftCoinsOne);
+        setRightCoinsTen(newRightCoinsTen);
+        setRightCoinsOne(newRightCoinsOne);
 
-            setActiveCoins(new Set());
-            setIsCorrect(false);
-            setCorrectnessLabel(false);
-            setInputValue('');
-        }
+        setDisplayMinus(true);
+
+        setLeftVisibility({
+            tens: Array(newLeftCoinsTen).fill(true),
+            ones: Array(newLeftCoinsOne).fill(true)
+        });
+        setRightVisibility({
+            tens: Array(newRightCoinsTen).fill(true),
+            ones: Array(newRightCoinsOne).fill(true)
+        });
+
+        setActiveCoins(new Set());
+        setIsCorrect(false);
+        setCorrectnessLabel(false);
+        setInputValue('');
     }
 
     function handleConversion() {
@@ -180,36 +175,16 @@ function ActivitySix() {
     }   
 
 
-    if (roundCount >= 5) {
-        return (
-            <div className="container">
-                <div className="white-box-regular">
-                    <Link to={"/"}>
-                        <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
-                    </Link>
-                    <div className="congratulation-message">
-                        Gratulation! Du hast Level xy geschafft!
-                    </div>
-                    <Link to={"/"}>
-                        <button className='button-default' 
-                            style={{ top: '85%', left: '50%', width: '30%' }}
-                            onClick={incrementHighestUnlockedLevel(6)}>
-                            zur Übersicht
-                        </button>
-                    </Link>
-                </div>
-            </div>
-        );
+    if (roundCount >= ROUNDCOUNT) {
+        return <EndOfGame levelName="Münzen subtrahieren" levelNr={6} />;
     }
 
     return (
         <div className="container">
-            <div className="white-box-regular">
-                <Link to={"/"}>
-                    <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
-                </Link>
+            <div className="white-box-large" >
+                <HomeLink />
                 <div className='title-text'>Löse die Rechnung:</div>
-                <span className='text-wrapper-abs' style={{ '--left': '12%', '--top': '20%' }}>{leftVal} - {rightVal}</span>
+                <span className='text-wrapper-abs' style={{ '--top': '20%', '--left': '14%' }}>{leftVal} - {rightVal}</span>
                 <div className="coin-row-A6" style={{ '--top': '28%' }}>
                     <span className='text-wrapper-abs' style={{ '--left': '-2%' }}>=</span>
                     <CoinRowUpper coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='upper' visibility={leftVisibility} setVisibility={setLeftVisibility} />
@@ -235,15 +210,13 @@ function ActivitySix() {
                 </div>
                 {isCorrect && displayCorrectness && <div className="correctness-label-default">Richtig!</div>}
                 {!!!isCorrect && displayCorrectness && <div className="correctness-label-default">Versuche es nochmals!</div>}
-                <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
-                    style={{ top: '88%', left: '85%' }} >
-                    {isCorrect ? "Weiter" : "Prüfen"}
-                </button>
-
-                <button onClick={handleConversion} className="button-default" style={{ top: '88%', left: '60%' }}>
+                <button onClick={handleConversion} className="header-button" style={{ marginTop: "2vh" }} >
                     Tauschen
                 </button>
-
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
+                    style={{ top: '90%', left: '50% '}}>
+                    {isCorrect ? "Weiter" : "Prüfen"}
+                </button>
             </div>
         </div>
     );    

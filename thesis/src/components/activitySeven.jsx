@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './activitySeven.css';
-import { Link } from 'react-router-dom';
-import home_icon from '../images/home_icon.png';
-import congratulation_icon from '../images/congratulation_icon.png';
-import { incrementHighestUnlockedLevel } from '../utils/utils.jsx';
+import '../defaults.css';
+import { HomeLink, EndOfGame, ROUNDCOUNT } from '../defaults';
 
 function ActivitySeven() {
     const [isCorrect, setIsCorrect] = useState(false);
@@ -134,36 +132,15 @@ function ActivitySeven() {
         return true;
     }
 
-    if (roundCount >= 5) {
-        // Message that the game is completed
-        return (
-            <div className="container">
-                <div className="white-box-regular">
-                    <Link to={"/"}>
-                        <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
-                    </Link>
-                    <div className="congratulation-message">
-                        Gratulation! Du hast Level Tabellensubtraktion geschafft!
-                        <img src={congratulation_icon} alt="congratulation_icon" style={{ display: "block", margin: "0 auto" }} />
-                    </div>
-                    <Link to={"/"}>
-                        <button className='button-default'
-                            style={{ top: '85%', left: '50%', width: '30%' }} 
-                            onClick={incrementHighestUnlockedLevel(5)}>
-                            zur Übersicht
-                        </button>
-                    </Link>
-                </div>
-            </div>
-        );
+    if (roundCount >= ROUNDCOUNT) {
+        /* Message that the game is completed */
+        return <EndOfGame levelName="Tabellensubtraktion" levelNr={7} />;
     }
 
     return (
         <div className="container" >
             <div className="white-box-regular" >
-                <Link to={"/"}>
-                    <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
-                </Link>
+                <HomeLink />
                 <span className="title-text">TODO</span>
                 {isCorrect && displayCorrectness && <div className="correctness-label-default">Richtig!</div>}
                 {!!!isCorrect && displayCorrectness && <div className="correctness-label-default">Versuche es nochmals!</div>}
@@ -171,9 +148,9 @@ function ActivitySeven() {
                 <table className="number-table-A7">
                     <thead>
                         <tr>
-                            <th style={{ border:'none' }}><button className="header-button-A7" onClick={() => handleDecrease(0)}>Tauschen</button></th>
-                            <th style={{ border:'none' }}><button className="header-button-A7" onClick={() => handleDecrease(1)}>Tauschen</button></th>
-                            <th style={{ border:'none' }}><button className="header-button-A7" onClick={() => handleDecrease(2)}>Tauschen</button></th>
+                            <th style={{ border:'none' }}><button className="header-button" onClick={() => handleDecrease(0)}>Tauschen</button></th>
+                            <th style={{ border:'none' }}><button className="header-button" onClick={() => handleDecrease(1)}>Tauschen</button></th>
+                            <th style={{ border:'none' }}><button className="header-button" onClick={() => handleDecrease(2)}>Tauschen</button></th>
                             <th style={{ border:'none' }}></th>
                         </tr>
                         <tr>
@@ -229,7 +206,7 @@ function ActivitySeven() {
                 </table>
 
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
-                    style={{ top: '88%', left: '89%' }} >
+                    style={{ top: '90%', left: '89%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
             </div>
