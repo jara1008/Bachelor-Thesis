@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './activityEight.css';
+import '../defaults.css';
 import { Link } from 'react-router-dom';
 import home_icon from '../images/home_icon.png';
 import congratulation_icon from '../images/congratulation_icon.png';
@@ -217,7 +218,7 @@ function ActivityEight() {
                         { /* Add party icon */ }
                     </div>
                     <Link to={"/"}>
-                        <button className='button'
+                        <button className='button-default'
                             style={{ top: '85%', left: '50%', width: '30%' }} 
                             onClick={incrementHighestUnlockedLevel(8)}>
                             zur Übersicht
@@ -230,16 +231,16 @@ function ActivityEight() {
 
     return (
         <div className="container" >
-            <div className="white-box" >
+            <div className="white-box-regular" >
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <span className="text-wrapper">Wo ist das Auto? Wähle die richtigen Kästchen aus: </span>
+                <span className="title-text">Wo ist das Auto? Wähle die richtigen Kästchen aus: </span>
                 {renderNumberLine()}
                 {renderRectangles()}
-                {isCorrect && displayCorrectness && <div className="correctness-label-correct">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-false">Versuche es nochmals!</div>}
-                <button onClick={isCorrect ? handleNext : checkInput} className="button" 
+                {isCorrect && displayCorrectness && <div className="correctness-label-default">Richtig!</div>}
+                {!!!isCorrect && displayCorrectness && <div className="correctness-label-default">Versuche es nochmals!</div>}
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
                     style={{ top: '88%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>

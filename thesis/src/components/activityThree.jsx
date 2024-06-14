@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './activityThree.css';
+import '../defaults.css';
 import { Link } from 'react-router-dom';
 import home_icon from '../images/home_icon.png';
 import congratulation_icon from '../images/congratulation_icon.png'; // Assuming this will be used later
@@ -197,16 +198,16 @@ function ActivityThree() {
 
     if (roundCount >= 5) {
         return (
-            <div className="container-A3">
-                <div className="white-box-A3">
+            <div className="container">
+                <div className="white-box-regular">
                     <Link to={"/"}>
                         <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                     </Link>
-                    <div className="congratulation-message-A3">
+                    <div className="congratulation-message">
                         Gratulation! Du hast das Level Münz Vergleich geschafft!
                     </div>
                     <Link to={"/"}>
-                        <button className='button' 
+                        <button className='button-default' 
                             style={{ top: '85%', left: '50%', width: '30%' }}
                             onClick={incrementHighestUnlockedLevel(3)}
                         >zur Übersicht</button>
@@ -217,30 +218,30 @@ function ActivityThree() {
     }
 
     return (
-        <div className="container-A3">
-            <div className="white-box-A3">
+        <div className="container-">
+            <div className="white-box-large">
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <div className='text-wrapper-A3'>Wähle {"<, >, ="} passend:</div>
+                <div className='title-text'>Wähle {"<, >, ="} passend:</div>
 
                 <div style={{ display: "flex", justifyContent: "space-around", width: "100%" }}>
-                <button onClick={handleConversionLeft} className="button-A3" style={{}}>
+                <button onClick={handleConversionLeft} className="button-default" style={{}}>
                     Tauschen
                 </button>
-                <button onClick={handleConversionRight} className="button-A3" style={{}}>
+                <button onClick={handleConversionRight} className="button-default" style={{}}>
                     Tauschen
                 </button>
                 </div>
 
                 <div className="coin-row-A3">
                     <CoinRowUpper coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='left' />
-                    <span className='text-wrapper-A3' style={{ '--left': '50%' }}>?</span>
+                    <span className='title-text' style={{ '--left': '50%' }}>?</span>
                     <CoinRowUpper coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type='right' />
                 </div>
                 <div className='arrows-A3'>
-                    <span className='text-wrapper-A3'>↓</span>
-                    <span className='text-wrapper-A3'>↓</span>
+                    <span className='title-text'>↓</span>
+                    <span className='title-text'>↓</span>
                 </div>
                 <div className="coin-row-A3">
                     <CoinRowLower coinsTen={leftCoinsVisibleTen} coinsOne={leftCoinsVisibleOne} type='left' />
@@ -259,8 +260,8 @@ function ActivityThree() {
                     <button className="operator-button-A3" onClick={() => handleButtonClick('=')}>{'='}</button>
                     <button className="operator-button-A3" onClick={() => handleButtonClick('>')}>{'>'}</button>
                 </div>
-                {isCorrect && displayCorrectness && <div className="correctness-label-A3">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-A3">Versuche es nochmals!</div>}
+                {isCorrect && displayCorrectness && <div className="correctness-label">Richtig!</div>}
+                {!!!isCorrect && displayCorrectness && <div className="correctness-label">Versuche es nochmals!</div>}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-absolute-A3" 
                     style={{ top: '88%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}

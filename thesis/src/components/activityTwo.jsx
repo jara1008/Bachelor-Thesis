@@ -58,17 +58,17 @@ function ActivityTwo() {
     if (roundCount >= 5) {
         // Message that the game is completed
         return (
-            <div className="container-A2">
-                <div className="white-box-A2">
+            <div className="container">
+                <div className="white-box-regular">
                     <Link to={"/"}>
                         <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                     </Link>
-                    <div className="congratulation-message-A2">
+                    <div className="congratulation-message">
                         Gratulation! Du hast das Level Längen Vergleich geschafft!
                         { /* Add party icon */ }
                     </div>
                     <Link to={"/"}>
-                        <button className='button-A2'
+                        <button className='button-default'
                             style={{ top: '85%', left: '50%', width: '30%' }} 
                             onClick={incrementHighestUnlockedLevel(2)}>
                             zur Übersicht
@@ -80,12 +80,12 @@ function ActivityTwo() {
     }
 
     return (
-        <div className="container-A2" >
-            <div className="white-box-A2" >
+        <div className="container" >
+            <div className="white-box-regular" >
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <span className="text-wrapper-A2">Wähle {"<, >, ="} passend: </span>
+                <span className="title-text">Wähle {"<, >, ="} passend: </span>
                 <div className="cube-rows-A2">
                     <div className="cube-row-A2">
                         {Array.from({ length: numCubesFirstRow }, (_, index) => (
@@ -119,8 +119,8 @@ function ActivityTwo() {
                     <button className="operator-button-A2" onClick={() => handleButtonClick('=')}>{'='}</button>
                     <button className="operator-button-A2" onClick={() => handleButtonClick('>')}>{'>'}</button>
                 </div>
-                {isCorrect && displayCorrectness && <div className="correctness-label-A2">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-A2">Versuche es nochmals!</div>}
+                {isCorrect && displayCorrectness && <div className="correctness-label">Richtig!</div>}
+                {!!!isCorrect && displayCorrectness && <div className="correctness-label">Versuche es nochmals!</div>}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-A2" 
                     style={{ top: '88%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}

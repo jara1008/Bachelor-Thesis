@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './activitySix.css';
+import '../defaults.css';
 import { Link } from 'react-router-dom';
 import home_icon from '../images/home_icon.png';
 import congratulation_icon from '../images/congratulation_icon.png'; // Assuming this will be used later
@@ -41,7 +42,7 @@ function ActivitySix() {
 
     function CoinRowUpper({ coinsTen, coinsOne, type }) {
         return (
-            <div className="coin-stack-6">
+            <div className="coin-stack-A6">
                 {Array.from({ length: coinsTen }, (_, i) => {
                     const coinKey = `${type}-tens-${i}`;
                     const isActive = activeCoins.has(coinKey)
@@ -66,7 +67,7 @@ function ActivitySix() {
 
     function CoinRowLower({ coinsTen, coinsOne, type, visibility }) {
         return (
-            <div className="coin-stack-6">
+            <div className="coin-stack-A6">
                 {Array.from({ length: coinsTen }, (_, i) => visibility.tens[i] && (
                     <div key={`ten-${i}`} className={`coin ${type}-coin`}>10</div>
                 ))}
@@ -182,7 +183,7 @@ function ActivitySix() {
     if (roundCount >= 5) {
         return (
             <div className="container">
-                <div className="white-box">
+                <div className="white-box-regular">
                     <Link to={"/"}>
                         <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                     </Link>
@@ -190,7 +191,7 @@ function ActivitySix() {
                         Gratulation! Du hast Level xy geschafft!
                     </div>
                     <Link to={"/"}>
-                        <button className='button' 
+                        <button className='button-default' 
                             style={{ top: '85%', left: '50%', width: '30%' }}
                             onClick={incrementHighestUnlockedLevel(6)}>
                             zur Übersicht
@@ -203,43 +204,43 @@ function ActivitySix() {
 
     return (
         <div className="container">
-            <div className="white-box">
+            <div className="white-box-regular">
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <div className='text-wrapper'>Löse die Rechnung:</div>
+                <div className='title-text'>Löse die Rechnung:</div>
                 <span className='text-wrapper-abs' style={{ '--left': '12%', '--top': '20%' }}>{leftVal} - {rightVal}</span>
-                <div className="coin-row-6" style={{ '--top': '28%' }}>
+                <div className="coin-row-A6" style={{ '--top': '28%' }}>
                     <span className='text-wrapper-abs' style={{ '--left': '-2%' }}>=</span>
                     <CoinRowUpper coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='upper' visibility={leftVisibility} setVisibility={setLeftVisibility} />
                     <span className='text-wrapper-abs' style={{ '--left': '50%' }}>-</span>
                     <CoinRowUpper coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type='upper' visibility={rightVisibility} setVisibility={setRightVisibility} />
                 </div>
-                <div className="coin-row-6" style={{ '--top': '54%' }}>
+                <div className="coin-row-A6" style={{ '--top': '54%' }}>
                     <span className='text-wrapper-abs' style={{ '--left': '-2%' }}>=</span>
                     <CoinRowLower coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='lower' visibility={leftVisibility} setVisibility={setLeftVisibility} />
                     {displayMinus && <span className='text-wrapper-abs' style={{ '--left': '50%' }}>-</span>}
                     <CoinRowLower coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type='lower' visibility={rightVisibility} setVisibility={setRightVisibility} />
                 </div>
-                <div className="coin-row-6" style={{ '--top': '85%' }}>
+                <div className="coin-row-A6" style={{ '--top': '85%' }}>
                     <span className='text-wrapper-abs' style={{ '--left': '-2%' }}>=</span>
                     <input
                     type="text" 
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder=""
-                        className="info-input-6"
+                        className="info-input-A6"
                         readOnly={isCorrect}
                     />
                 </div>
-                {isCorrect && displayCorrectness && <div className="correctness-label-correct">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-false-6">Versuche es nochmals!</div>}
-                <button onClick={isCorrect ? handleNext : checkInput} className="button" 
+                {isCorrect && displayCorrectness && <div className="correctness-label-default">Richtig!</div>}
+                {!!!isCorrect && displayCorrectness && <div className="correctness-label-default">Versuche es nochmals!</div>}
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
                     style={{ top: '88%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
 
-                <button onClick={handleConversion} className="button" style={{ top: '88%', left: '60%' }}>
+                <button onClick={handleConversion} className="button-default" style={{ top: '88%', left: '60%' }}>
                     Tauschen
                 </button>
 

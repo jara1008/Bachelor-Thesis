@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './activityFive.css';
+import '../defaults.css';
 import { Link } from 'react-router-dom';
 import home_icon from '../images/home_icon.png';
 import congratulation_icon from '../images/congratulation_icon.png';
@@ -60,17 +61,17 @@ function ActivityFive() {
     if (roundCount >= 5) {
         // Message that the game is completed
         return (
-            <div className="container-A5">
-                <div className="white-box-A5">
+            <div className="container">
+                <div className="white-box-regular">
                     <Link to={"/"}>
                         <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                     </Link>
-                    <div className="congratulation-message-A5">
+                    <div className="congratulation-message">
                         Gratulation! Du hast Level xy geschafft!
                         { /* Add party icon */ }
                     </div>
                     <Link to={"/"}>
-                        <button className='button-A5'
+                        <button className='button-default'
                             style={{ top: '85%', left: '50%', width: '30%' }} 
                             onClick={incrementHighestUnlockedLevel(5)}>
                             zur Übersicht
@@ -82,12 +83,12 @@ function ActivityFive() {
     }
 
     return (
-        <div className="container-A5" >
-            <div className="white-box-A5" >
+        <div className="container" >
+            <div className="white-box-regular" >
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <span className="text-wrapper-A5">Fülle das Kästchen so, dass die Rechnung stimmt: </span>
+                <span className="title-text">Fülle das Kästchen so, dass die Rechnung stimmt: </span>
                 <div className="info-A5">
                     {numbers.smallNum} + 
                     <input
@@ -100,9 +101,9 @@ function ActivityFive() {
                     />
                     = {numbers.largeNum}
                 </div>
-                {isCorrect && displayCorrectness && <div className="correctness-label-A5">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-A5">Versuche es nochmals!</div>}
-                <button onClick={isCorrect ? handleNext : checkInput} className="button-A5" 
+                {isCorrect && displayCorrectness && <div className="correctness-label-default">Richtig!</div>}
+                {!!!isCorrect && displayCorrectness && <div className="correctness-label-default">Versuche es nochmals!</div>}
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
                     style={{ top: '88%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>

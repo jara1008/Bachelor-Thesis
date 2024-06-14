@@ -137,17 +137,17 @@ function ActivitySeven() {
     if (roundCount >= 5) {
         // Message that the game is completed
         return (
-            <div className="container-A7">
-                <div className="white-box-A7">
+            <div className="container">
+                <div className="white-box-regular">
                     <Link to={"/"}>
                         <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                     </Link>
-                    <div className="congratulation-message-A7">
+                    <div className="congratulation-message">
                         Gratulation! Du hast Level Tabellensubtraktion geschafft!
                         <img src={congratulation_icon} alt="congratulation_icon" style={{ display: "block", margin: "0 auto" }} />
                     </div>
                     <Link to={"/"}>
-                        <button className='button-A7'
+                        <button className='button-default'
                             style={{ top: '85%', left: '50%', width: '30%' }} 
                             onClick={incrementHighestUnlockedLevel(5)}>
                             zur Übersicht
@@ -159,14 +159,14 @@ function ActivitySeven() {
     }
 
     return (
-        <div className="container-A7" >
-            <div className="white-box-A7" >
+        <div className="container" >
+            <div className="white-box-regular" >
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <span className="text-wrapper-A7">TODO</span>
-                {isCorrect && displayCorrectness && <div className="correctness-label-A7">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-A7">Versuche es nochmals!</div>}
+                <span className="title-text">TODO</span>
+                {isCorrect && displayCorrectness && <div className="correctness-label-default">Richtig!</div>}
+                {!!!isCorrect && displayCorrectness && <div className="correctness-label-default">Versuche es nochmals!</div>}
                 
                 <table className="number-table-A7">
                     <thead>
@@ -228,7 +228,7 @@ function ActivitySeven() {
                     </tbody>
                 </table>
 
-                <button onClick={isCorrect ? handleNext : checkInput} className="button-A7" 
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
                     style={{ top: '88%', left: '89%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>

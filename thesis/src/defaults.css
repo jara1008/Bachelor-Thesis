@@ -1,0 +1,100 @@
+/* defaults.css */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+/* define variables */
+:root {
+    --primary-color: #BFC4F2;
+    --secondary-color: #eceefa;
+    --text-color: #000000;
+    --font-family: 'Patrick Hand', sans-serif;
+    --box-shadow-default: 8px 8px 4px #00000040;
+}
+
+/* define object styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.white-box-regular {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-default);
+    height: 80vh;
+    width: 60vw;
+    padding: 2vw;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.white-box-large {
+    background-color: #eceefa;
+    box-shadow: 8px 8px 4px #00000040;
+    border-radius: 10px;
+    height: 80%;
+    width: 70%;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title-text {
+    display: flex;
+    justify-content: center;
+    font-family: var(--font-family);
+    font-size: 3vw;
+    color: var(--text-color);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.button-default {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    border-radius: 50px;
+    border: none;
+    height: 10%;
+    width: 18%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    font-family: var(--font-family);
+    font-size: 2.5vw;
+    color: var(--text-color);
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.correctness-label-default {
+    display: flex;
+    justify-content: center;
+    font-family: var(--font-family);
+    font-size: 2.5vw;
+}
+
+.congratulation-message {
+    font-family: var(--font-family);
+    font-size: 2.5vw;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+}

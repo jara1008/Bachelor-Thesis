@@ -1,47 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-}
-
-.container-A2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-}
-
-.white-box-A2 {
-  background-color: #eceefa;
-  border-radius: 10px;
-  box-shadow: 8px 8px 4px #00000040;
-  height: 80%;
-  width: 62%;
-  padding: 20px;
-  box-sizing: border-box;
-  position: relative;
-}
-
-@media (max-width: 768px) {
-  .white-box-A2 {
-    width: 80%;
-  }
-}
-
-.text-wrapper-A2 {
-  font-family: 'Patrick Hand', sans-serif;
-  display: flex;
-  justify-content: center;
-  font-size: 35px;
-  color: #000;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
 .cube-rows-A2 {
   display: flex;
   flex-direction: column;
@@ -58,8 +16,8 @@ body, html {
 .cube-A2 {
   width: 5vw;
   aspect-ratio: 1 / 1;
-  background-color: #BFC4F2;
-  border: 2px solid #000;
+  background-color: var(--primary-color);
+  border: 2px solid var(--text-color);
   position: relative;
   display: flex;
   align-items: center;
@@ -67,16 +25,16 @@ body, html {
 }
 
 .cube-label-A2 {
-  font-family: 'Patrick Hand', sans-serif;
+  font-family: var(--font-family);
   font-size: 2vw;
   width: 100%;
   position: absolute;
   text-align: center;
-  color: #000;
+  color: var(--text-color);
 }
 
 .info-A2 {
-  font-family: 'Patrick Hand', sans-serif;
+  font-family: var(--font-family);
   font-size: 4vw;
   position: relative;
   margin-top: 4vh;
@@ -93,49 +51,11 @@ body, html {
   text-align: center;
   margin: 0 2vw;
   border-radius: 5%;
-  background-color: #eceefa;
-  border: 2px solid #000;
+  background-color: var(--secondary-color);
+  border: 2px solid var(--text-color);
   font-size: 100%;
-  font-family: 'Patrick Hand', sans-serif;
-  color: #000;
-}
-
-.button-A2 {
-  background-color: #BFC4F2;
-  border-radius: 50px;
-  height: 12%;
-  width: 22%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  border: none;
-  font-family: 'Patrick Hand', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5vw;
-  color: #000;
-  font-weight: bold;
-  letter-spacing: 1px;
-  cursor: pointer;
-}
-
-.correctness-label-A2 {
-  font-family: 'Patrick Hand', sans-serif;
-  font-size: 2.5vw;
-  position: absolute;
-  bottom: 22%;
-  left: 65%;
-}
-
-.congratulation-message-A2 {
-  font-family: 'Patrick Hand', sans-serif;
-  font-size: 2.5vw;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  text-align: center;
+  font-family: var(--font-family);
+  color: var(--text-color);
 }
 
 .button-container-A2 {
@@ -147,14 +67,14 @@ body, html {
 .operator-button-A2 {
   width: 4vw;
   height: 4vw;
-  background-color: #BFC4F2;
-  border: 1px solid #000;
+  background-color: var(--primary-color);
+  border: 1px solid var(--text-color);
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2.5vw;
-  font-family: 'Patrick Hand', sans-serif;
+  font-family: var(--font-family);
   cursor: pointer;
   outline: none;
   margin: 2%;

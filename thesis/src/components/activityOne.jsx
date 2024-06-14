@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./activityOne.css";
+import "../defaults.css";
 import cloud from "../images/cloud.png";
 import star from "../images/star.svg";
 import { Link } from 'react-router-dom';
@@ -210,8 +211,8 @@ function ActivityOne() {
     if (roundCount >= 2) {
         // Message that the game is completed
         return (
-            <div className="container-A1">
-                <div className="white-box-A1">
+            <div className="container">
+                <div className="white-box-regular">
                     <Link to={"/"}>
                         <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                     </Link>
@@ -232,12 +233,12 @@ function ActivityOne() {
     }
 
     return (
-        <div className="container-A1" >
-            <div className="white-box-A1" >
+        <div className="container" >
+            <div className="white-box-regular" >
                 <Link to={"/"}>
                     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
                 </Link>
-                <span className="text-wrapper-A1">Verbinde die Sterne miteinander. Wähle die Wolke mit MEHR Sternen aus:</span>
+                <span className="title-text">Verbinde die Sterne miteinander. Wähle die Wolke mit MEHR Sternen aus:</span>
                 <div style={{ position: "relative", height: "100%", width: "100%" }}>
                     <input
                         type="checkbox"
@@ -269,11 +270,11 @@ function ActivityOne() {
                                 stroke="black" strokeWidth="2" />
                         )}
                     </svg>
-                {isCorrect && displayCorrectness && <div className="correctness-label-A1">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <div className="correctness-label-A1">Versuche es nochmals!</div>}
-                {checkBoxCorrectness && <div className="correctness-label-A1">Wähle das richtige Kästchen!</div>}
+                {isCorrect && displayCorrectness && <div className="correctness-label">Richtig!</div>}
+                {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <div className="correctness-label">Versuche es nochmals!</div>}
+                {checkBoxCorrectness && <div className="correctness-label">Wähle das richtige Kästchen!</div>}
                 </div>
-                <button onClick={isCorrect ? handleNext : checkInput} className="button-A1" 
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
                     style={{ top: '91%', left: '85%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
