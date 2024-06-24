@@ -5,7 +5,7 @@ import home_icon from './images/home_icon.png';
 import './defaults.css';
 
 /* default variables */
-export const ROUNDCOUNT = 2;
+export const ROUNDCOUNT = 3;
 
 /* default components */
 export const HomeLink = () => (
@@ -41,3 +41,15 @@ export const EndOfGame = ({ levelName, levelNr }) => (
         </div>
     </div>
 );
+
+export const CorrectnessLabel = ({ message, isVisible }) => {
+    if (!isVisible) return null;
+
+    return (
+        <div className="overlay">
+            <div className="overlay-content">
+                {message}
+            </div>
+        </div>
+    );
+};

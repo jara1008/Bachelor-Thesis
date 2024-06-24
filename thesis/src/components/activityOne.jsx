@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./activityOne.css";
 import "../defaults.css";
-import { HomeLink, EndOfGame, ROUNDCOUNT } from "../defaults.jsx";
+import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel } from "../defaults.jsx";
 import cloud from "../images/cloud.png";
 import star from "../images/star.svg";
 
@@ -246,9 +246,9 @@ function ActivityOne() {
                                 stroke="black" strokeWidth="2" />
                         )}
                     </svg>
-                {isCorrect && displayCorrectness && <div className="correctness-label">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <div className="correctness-label">Versuche es nochmals!</div>}
-                {checkBoxCorrectness && <div className="correctness-label">Wähle das richtige Kästchen!</div>}
+                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig" isVisible={true}/>}
+                {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <div className="correctness-label-default">Versuche es nochmals!</div>}
+                {checkBoxCorrectness && <div className="correctness-label-efault">Wähle das richtige Kästchen!</div>}
                 </div>
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
                     style={{ top: '90%', left: '50%' }} >

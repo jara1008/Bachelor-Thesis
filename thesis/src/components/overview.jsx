@@ -55,7 +55,8 @@ function Overview() {
                 height: "110px",
                 width: "110px",
                 transform: 'translate(-50%, -50%)',
-                top: '10%'
+                top: '10%',
+                filter: 'drop-shadow(8px 8px 4px #00000040)'
             }} />
            <div className="progress-line">
                 {dots.map((dot) => (
