@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './activityTwo.css';
-import { HomeLink, EndOfGame, ROUNDCOUNT } from '../defaults';
+import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel } from '../defaults';
 
 function ActivityTwo() {
     const [numCubesFirstRow, setNumCubesFirstRow] = useState(0);
@@ -100,8 +100,8 @@ function ActivityTwo() {
                     <button className="operator-button-A2" onClick={() => handleButtonClick('=')}>{'='}</button>
                     <button className="operator-button-A2" onClick={() => handleButtonClick('>')}>{'>'}</button>
                 </div>
-                {isCorrect && displayCorrectness && <div className="correctness-label">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label">Versuche es nochmals!</div>}
+                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig" isVisible={true}/>}
+                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true}/>}
                 <button
                     onClick={isCorrect ? handleNext : checkInput}
                     className="button-default"

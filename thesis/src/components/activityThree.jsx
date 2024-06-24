@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './activityThree.css';
 import '../defaults.css';
-import { HomeLink, EndOfGame, ROUNDCOUNT } from '../defaults';
+import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel } from '../defaults';
 
 function ActivityThree() {
     const [roundCount, setRoundCount] = useState(1);
@@ -231,8 +231,8 @@ function ActivityThree() {
                     <button className="operator-button-A3" onClick={() => handleButtonClick('=')}>{'='}</button>
                     <button className="operator-button-A3" onClick={() => handleButtonClick('>')}>{'>'}</button>
                 </div>
-                {isCorrect && displayCorrectness && <div className="correctness-label">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label">Versuche es nochmals!</div>}
+                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true}/>}
+                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true}/>}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
                     style={{ top: '90%', left: '50%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}

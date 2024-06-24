@@ -247,8 +247,8 @@ function ActivityOne() {
                         )}
                     </svg>
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig" isVisible={true}/>}
-                {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <div className="correctness-label-default">Versuche es nochmals!</div>}
-                {checkBoxCorrectness && <div className="correctness-label-efault">Wähle das richtige Kästchen!</div>}
+                {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true}/>}
+                {checkBoxCorrectness && <CorrectnessLabel message="Wähle das richtige Kästchen an!" isVisible={true}/>}
                 </div>
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
                     style={{ top: '90%', left: '50%' }} >

@@ -9,7 +9,7 @@
     height: 3px; 
     left: 5%;  
     position: relative;
-    top: 10vh;  
+    top: 5vh;  
     width: 90%;  
     transform: translateY(-50%); 
 }
@@ -66,7 +66,7 @@
 .rectangle-container {
   display: flex;
   justify-content: space-around;
-  margin-top: 22vh;
+  margin-top: 17vh;
 }
 
 .rectangle2 {

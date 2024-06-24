@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './activityEight.css';
 import '../defaults.css';
-import { HomeLink, EndOfGame, ROUNDCOUNT } from '../defaults';
+import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel } from '../defaults';
 import tree from '../images/tree.png';
 import car from '../images/car_large.png';
 
@@ -62,7 +62,7 @@ function ActivityEight() {
         <div>
             <img src={tree} alt={tree} style={{
                 position: 'relative',
-                top: '10vh',
+                top: '5vh',
                 left: '50%',
                 width: '40px',
                 height: '40px',
@@ -212,8 +212,8 @@ function ActivityEight() {
                 <span className="title-text">Wo ist das Auto? Wähle die richtigen Kästchen aus: </span>
                 {renderNumberLine()}
                 {renderRectangles()}
-                {isCorrect && displayCorrectness && <div className="correctness-label-default">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-default">Versuche es nochmals!</div>}
+                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true}/>}
+                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true}/>}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
                     style={{ top: '90%', left: '50%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}

@@ -8,9 +8,9 @@ import './defaults.css';
 export const ROUNDCOUNT = 3;
 
 /* default components */
-export const HomeLink = () => (
+export const HomeLink = ({ top = '-8%' }) => (
   <Link to={"/"}>
-    <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: "-8%", left: "95%" }} />
+    <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: top, left: "95%" }} />
   </Link>
 );
 
@@ -42,12 +42,12 @@ export const EndOfGame = ({ levelName, levelNr }) => (
     </div>
 );
 
-export const CorrectnessLabel = ({ message, isVisible }) => {
+export const CorrectnessLabel = ({ message, isVisible, top = '88%' }) => {
     if (!isVisible) return null;
 
     return (
-        <div className="overlay">
-            <div className="overlay-content">
+        <div className="overlay" style={{ top: top }} >
+            <div className="overlay-content" >
                 {message}
             </div>
         </div>

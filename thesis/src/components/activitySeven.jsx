@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './activitySeven.css';
 import '../defaults.css';
-import { HomeLink, EndOfGame, ROUNDCOUNT } from '../defaults';
+import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel } from '../defaults';
 
 function ActivitySeven() {
     const [isCorrect, setIsCorrect] = useState(false);
@@ -29,6 +29,7 @@ function ActivitySeven() {
     const checkInput = () => {
         const sol = parseInt(numberLarge.join('')) - parseInt(numberSmall.join(''));
         const input = parseInt(rows[rows.length-1].valuesTop.join(''));
+        setCorrectnessLabel(true);
         if (sol === input) {
             setIsCorrect(true);
             setRoundCount(roundCount + 1);
@@ -49,6 +50,7 @@ function ActivitySeven() {
         setRows([newInputRow]);
 
         setIsCorrect(false);
+        setCorrectnessLabel(false);
     }
 
 
@@ -139,11 +141,11 @@ function ActivitySeven() {
 
     return (
         <div className="container" >
-            <div className="white-box-regular" >
-                <HomeLink />
+            <div className="white-box-tall" >
+                <HomeLink top="-6.5%"/>
                 <span className="title-text">TODO</span>
-                {isCorrect && displayCorrectness && <div className="correctness-label-default">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-default">Versuche es nochmals!</div>}
+                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} top='71%'/>}
+                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top='71%'/>}
                 
                 <table className="number-table-A7">
                     <thead>
@@ -206,7 +208,7 @@ function ActivitySeven() {
                 </table>
 
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
-                    style={{ top: '90%', left: '89%' }} >
+                    style={{ top: '92%', left: '89%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
             </div>

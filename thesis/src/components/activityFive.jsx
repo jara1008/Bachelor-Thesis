@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './activityFive.css';
 import '../defaults.css';
-import { HomeLink, EndOfGame, ROUNDCOUNT } from '../defaults';
+import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel } from '../defaults';
 
 function ActivityFive() {
     const [numbers, setNumbers] = useState({ largeNum: 0, smallNum: 0 });
@@ -75,8 +75,8 @@ function ActivityFive() {
                     />
                     = {numbers.largeNum}
                 </div>
-                {isCorrect && displayCorrectness && <div className="correctness-label-default">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-default">Versuche es nochmals!</div>}
+                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true}/>}
+                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true}/>}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
                     style={{ top: '90%', left: '50%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './activitySix.css';
 import '../defaults.css';
-import { HomeLink, EndOfGame, ROUNDCOUNT } from '../defaults';
+import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel } from '../defaults';
 
 function ActivitySix() {
     let initialLeftCoinsTen, initialLeftCoinsOne, initialRightCoinsTen, initialRightCoinsOne;
@@ -208,8 +208,8 @@ function ActivitySix() {
                         readOnly={isCorrect}
                     />
                 </div>
-                {isCorrect && displayCorrectness && <div className="correctness-label-default">Richtig!</div>}
-                {!!!isCorrect && displayCorrectness && <div className="correctness-label-default">Versuche es nochmals!</div>}
+                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true}/>}
+                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true}/>}
                 <button onClick={handleConversion} className="header-button" style={{ marginTop: "2vh" }} >
                     Tauschen
                 </button>
