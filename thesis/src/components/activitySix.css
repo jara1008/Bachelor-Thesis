@@ -32,7 +32,7 @@
     justify-content: center;
 }
 
-.coin {
+.coin-A6 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,7 +45,7 @@
     font-family: var(--font-family);
 }
 
-.active-coin {
+.active-coin-A6 {
     background-color: red;
 }
 

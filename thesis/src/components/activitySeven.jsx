@@ -142,10 +142,10 @@ function ActivitySeven() {
     return (
         <div className="container" >
             <div className="white-box-tall" >
-                <HomeLink top="-6.5%"/>
+                <HomeLink top="-6%"/>
                 <span className="title-text">TODO</span>
-                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} top='71%'/>}
-                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top='71%'/>}
+                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} />}
+                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} />}
                 
                 <table className="number-table-A7">
                     <thead>
@@ -208,7 +208,7 @@ function ActivitySeven() {
                 </table>
 
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
-                    style={{ top: '92%', left: '89%' }} >
+                    style={{ top: '94%', left: '50%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
             </div>

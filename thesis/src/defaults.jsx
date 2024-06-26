@@ -6,6 +6,7 @@ import './defaults.css';
 
 /* default variables */
 export const ROUNDCOUNT = 3;
+export const checkButtonTop = 92;
 
 /* default components */
 export const HomeLink = ({ top = '-8%' }) => (
@@ -42,11 +43,11 @@ export const EndOfGame = ({ levelName, levelNr }) => (
     </div>
 );
 
-export const CorrectnessLabel = ({ message, isVisible, top = '88%' }) => {
+export const CorrectnessLabel = ({ message, isVisible, top = '78%', left = '74%', height = '10vh', width = '14vw' }) => {
     if (!isVisible) return null;
 
     return (
-        <div className="overlay" style={{ top: top }} >
+        <div className="overlay" style={{ top: top, left: left, height: height, width: width }} >
             <div className="overlay-content" >
                 {message}
             </div>

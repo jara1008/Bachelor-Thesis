@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './activityThree.css';
 import '../defaults.css';
-import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel } from '../defaults';
+import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 
 function ActivityThree() {
     const [roundCount, setRoundCount] = useState(1);
@@ -86,9 +86,6 @@ function ActivityThree() {
             setRightCoinsVisibleOne(newRightCoinsVisibleOne);
             setRightCoinsVisibleTen(newRightCoinsVisibleTen);
         }
-        else {
-            return (<span>Streich zuerst so viele 10er wie möglich!</span>);
-        }
     } 
 
     function handleCoinClick(type, denomination, index) {
@@ -162,28 +159,26 @@ function ActivityThree() {
     }
 
     function handleNext() {
-        if (roundCount < 5) {
-            const newLeftCoinsTen = Math.floor(Math.random() * 2) + 1;
-            const newLeftCoinsOne = Math.floor(Math.random() * 9) + 1;
-            const newRightCoinsTen = Math.floor(Math.random() * 2) + 1;
-            const newRightCoinsOne = Math.floor(Math.random() * 9) + 1;
-    
-            setLeftCoinsTen(newLeftCoinsTen);
-            setLeftCoinsOne(newLeftCoinsOne);
-            setRightCoinsTen(newRightCoinsTen);
-            setRightCoinsOne(newRightCoinsOne);
-            
-            setLeftCoinsVisibleOne(newLeftCoinsOne);
-            setLeftCoinsVisibleTen(newLeftCoinsTen);
-            setRightCoinsVisibleOne(newRightCoinsOne);
-            setRightCoinsVisibleTen(newRightCoinsTen);
-            
+        const newLeftCoinsTen = Math.floor(Math.random() * 2) + 1;
+        const newLeftCoinsOne = Math.floor(Math.random() * 9) + 1;
+        const newRightCoinsTen = Math.floor(Math.random() * 2) + 1;
+        const newRightCoinsOne = Math.floor(Math.random() * 9) + 1;
 
-            setActiveCoins(new Set());
-            setIsCorrect(false);
-            setCorrectnessLabel(false);
-            setInputValue('');
-        }
+        setLeftCoinsTen(newLeftCoinsTen);
+        setLeftCoinsOne(newLeftCoinsOne);
+        setRightCoinsTen(newRightCoinsTen);
+        setRightCoinsOne(newRightCoinsOne);
+        
+        setLeftCoinsVisibleOne(newLeftCoinsOne);
+        setLeftCoinsVisibleTen(newLeftCoinsTen);
+        setRightCoinsVisibleOne(newRightCoinsOne);
+        setRightCoinsVisibleTen(newRightCoinsTen);
+        
+
+        setActiveCoins(new Set());
+        setIsCorrect(false);
+        setCorrectnessLabel(false);
+        setInputValue('');
     }
     
 
@@ -234,7 +229,7 @@ function ActivityThree() {
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true}/>}
                 {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true}/>}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
-                    style={{ top: '90%', left: '50%' }} >
+                    style={{ top: `${checkButtonTop}%`, left: '50%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
             </div>

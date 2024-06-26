@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './activityEight.css';
 import '../defaults.css';
-import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel } from '../defaults';
+import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 import tree from '../images/tree.png';
 import car from '../images/car_large.png';
 
@@ -215,7 +215,7 @@ function ActivityEight() {
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true}/>}
                 {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true}/>}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
-                    style={{ top: '90%', left: '50%' }} >
+                    style={{ top: `${checkButtonTop}%`, left: '50%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
             </div>

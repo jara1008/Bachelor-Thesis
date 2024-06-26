@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './activityTwo.css';
-import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel } from '../defaults';
+import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 
 function ActivityTwo() {
     const [numCubesFirstRow, setNumCubesFirstRow] = useState(0);
@@ -105,7 +105,7 @@ function ActivityTwo() {
                 <button
                     onClick={isCorrect ? handleNext : checkInput}
                     className="button-default"
-                    style={{ top: '90%', left: '50%' }}
+                    style={{ top: `${checkButtonTop}%`, left: '50%' }}
                 >
                     {isCorrect ? 'Weiter' : 'Prüfen'}
                 </button>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./activityOne.css";
 import "../defaults.css";
-import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel } from "../defaults.jsx";
+import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from "../defaults.jsx";
 import cloud from "../images/cloud.png";
 import star from "../images/star.svg";
 
@@ -220,17 +220,17 @@ function ActivityOne() {
                         type="checkbox"
                         checked={isCheckedLeft}
                         onChange={handleLeftCheckboxChange}
-                        style={{ position: "absolute", top: "6%", left: "25%", height: "5%", width: "5%", zIndex: 2 }}
+                        style={{ position: "absolute", marginTop: "2vh", left: "25%", height: "5%", width: "5%", zIndex: 2 }}
                     />
-                    <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "8%", left: "0%", height: "44vh", width: "28vw" }} />
+                    <img src={cloud} alt="Cloud" style={{ position: "absolute", marginTop: "2.5vh", left: "0%", height: "44vh", width: "28vw" }} />
                     {allStars.left}
                     <input
                         type="checkbox"
                         checked={isCheckedRight}
                         onChange={handleRightCheckboxChange}
-                        style={{ position: "absolute", top: "6%", left: "75%", height: "5%", width: "5%", zIndex: 2 }}
+                        style={{ position: "absolute", marginTop: "2vh", left: "75%", height: "5%", width: "5%", zIndex: 2 }}
                     />
-                    <img src={cloud} alt="Cloud" style={{ position: "absolute", top: "8%", right: "1%", height: "44vh", width: "28vw" }} />
+                    <img src={cloud} alt="Cloud" style={{ position: "absolute", marginTop: "2.5vh", right: "1%", height: "44vh", width: "28vw" }} />
                     {allStars.right}
                     <svg style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%", pointerEvents: "none" }}>
                         {lines.map((line, index) => (
@@ -248,10 +248,10 @@ function ActivityOne() {
                     </svg>
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig" isVisible={true}/>}
                 {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true}/>}
-                {checkBoxCorrectness && <CorrectnessLabel message="Wähle das richtige Kästchen an!" isVisible={true}/>}
+                {checkBoxCorrectness && <CorrectnessLabel message="Wähle das richtige Kästchen an!" isVisible={true} top="73%" left="71%" height="24%" width="30%"/>}
                 </div>
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
-                    style={{ top: '90%', left: '50%' }} >
+                    style={{ top: `${checkButtonTop}%`, left: '50%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
             </div>
