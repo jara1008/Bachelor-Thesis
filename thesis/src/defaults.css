@@ -44,7 +44,7 @@ body, html {
     border-radius: 10px;
     box-shadow: var(--box-shadow-default);
     height: 90vh;
-    width: 60vw;
+    width: 65vw;
     padding: 1.5vh 1.5vw;
     top: 2vh;
     box-sizing: border-box;
@@ -111,9 +111,9 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.2vh 0.8vw;
+    padding: 0.1vh 0.8vw;
     font-family: var(--font-family);
-    font-size: 1.7vw;
+    font-size: 2vw;
     background-color: var(--primary-color);
     border-radius: 50px;
     cursor: pointer;
@@ -126,13 +126,11 @@ body, html {
     justify-content: center;
     align-items: center;
     z-index: 10;
-    min-width: 15%; /* Add minimum width */
-    min-height: 17%; /* Add minimum height */
 }
 
 .overlay-content {
     background: var(--secondary-color);
-    padding: 0.4vw 0.1vw 0.4vw 0.1vw;
+    padding: 0.4vw 0vw 0.4vw 0vw;
     border-radius: 10px;
     box-shadow: var(--box-shadow-default);
     font-family: var(--font-family);

@@ -144,8 +144,8 @@ function ActivitySeven() {
             <div className="white-box-tall" >
                 <HomeLink top="-6%"/>
                 <span className="title-text">TODO</span>
-                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} />}
-                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} />}
+                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} top="82%" left="78%"/>}
+                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top="82%" left="78%"/>}
                 
                 <table className="number-table-A7">
                     <thead>

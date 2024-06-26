@@ -43,7 +43,7 @@ export const EndOfGame = ({ levelName, levelNr }) => (
     </div>
 );
 
-export const CorrectnessLabel = ({ message, isVisible, top = '78%', left = '74%', height = '10vh', width = '14vw' }) => {
+export const CorrectnessLabel = ({ message, isVisible, top = '80%', left = '76%', height = '12vh', width = '13vw' }) => {
     if (!isVisible) return null;
 
     return (
