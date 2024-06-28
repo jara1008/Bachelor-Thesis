@@ -8,11 +8,11 @@ import lock from "../images/lock.png";
 
 function Overview() {
     const [boxes] = useState([
-        { id: 1, top: '14%', left: '37%', path: "/instructionsOne", title: "Mengen Vergleich" },
+        { id: 1, top: '14%', left: '37%', path: "/difficultySelection/instructionsOne", title: "Mengen Vergleich" },
         { id: 2, top: '14%', left: '52%', path: "/activityTwo", title: "Längen Vergleich" },
         { id: 3, top: '14%', left: '67%', path: "/activityThree", title: "Münz Vergleich" },
         { id: 4, top: '41%', left: '37%', title: "TODO" },
-        { id: 5, top: '41%', left: '52%', path: "/activityFive", title: "Additions-rätsel" },
+        { id: 5, top: '41%', left: '52%', path: "/difficultySelection/activityFive", title: "Additions-rätsel" },
         { id: 6, top: '41%', left: '67%', path: "/activitySix", title: "Münzen subtrahieren" },
         { id: 7, top: '68%', left: '37%', path: "/activitySeven", title: "Tabellen-subtraktion" },
         { id: 8, top: '68%', left: '52%', path: "/activityEight", title: "Distanzen erkennen" },
@@ -52,13 +52,13 @@ function Overview() {
             <img src={planet} alt="Planet" style={{
                 position: 'absolute',
                 left: '28.25%',
-                height: "110px",
-                width: "110px",
+                height: "10vw",
+                width: "10vw",
                 transform: 'translate(-50%, -50%)',
                 top: '10%',
                 filter: 'drop-shadow(8px 8px 4px #00000040)'
             }} />
-           <div className="progress-line">
+            <div className="progress-line">
                 {dots.map((dot) => (
                     <div key={dot.id} style={{ 
                         position: 'absolute', 

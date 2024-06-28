@@ -3,19 +3,20 @@ import './activityFive.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 
-function ActivityFive() {
+function ActivityFive({ difficulty }) {
     const [numbers, setNumbers] = useState({ largeNum: 0, smallNum: 0 });
     const [inputValue, setInputValue] = useState('');
     const [isCorrect, setIsCorrect] = useState(false);
     const [roundCount, setRoundCount] = useState(1);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
 
-    const generateRandomNumbers = useCallback(() => {
+    const generateRandomNumbers = useCallback((difficulty) => {
         let firstNum;
         let secondNum;
+        const maxRange = difficulty === 'hard' ? 1000 : 100;
         do {
-            firstNum = Math.floor(Math.random() * 20) + 1;
-            secondNum = Math.floor(Math.random() * 20) + 1;
+            firstNum = Math.floor(Math.random() * maxRange) + 1;
+            secondNum = Math.floor(Math.random() * maxRange) + 1;
         } while(firstNum === secondNum);
         if (secondNum < firstNum) {
             let swap = firstNum;
