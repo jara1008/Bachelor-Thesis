@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ScreenSizeMessage } from './/defaults';
 import './App.css';
 import Background from './components/background';
 import Overview from './components/overview';
@@ -13,9 +14,30 @@ import ActivitySeven from './components/activitySeven';
 import ActivityEight from './components/activityEight';
 
 const App = () => {
+  const [isScreenSmall, setIsScreenSmall] = useState(false);
+
+  const checkScreenSize = () => {
+    if (window.innerWidth < 600 || window.innerHeight < 360) { /* adjust these sizes as needed */
+      setIsScreenSmall(true);
+    } else {
+      setIsScreenSmall(false);
+    }
+  };
+
+  useEffect(() => {
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+    };
+  }, []);
+
   return (
     <div>
       <Background />
+      {isScreenSmall ? (
+        <ScreenSizeMessage />
+      ) : (
       <div className="content">
         <Router>
           <Routes>
@@ -30,7 +52,7 @@ const App = () => {
             <Route path="/activityEight" element={<ActivityEight />} />
           </Routes>
         </Router>
-      </div>
+      </div>)}
     </div>
   );
 };

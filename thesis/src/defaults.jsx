@@ -54,3 +54,15 @@ export const CorrectnessLabel = ({ message, isVisible, top = '80%', left = '76%'
         </div>
     );
 };
+
+export const ScreenSizeMessage = () => {
+    return (
+    <div className='container'>
+        <div className='white-box-regular'>
+            <div className="screen-size-message">
+                Please use a larger screen to access this website.
+            </div>
+        </div>
+    </div>
+    );
+};

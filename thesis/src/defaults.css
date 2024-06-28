@@ -144,3 +144,13 @@ body, html {
     align-items: center;
     border: 2px solid var(--text-color); /* Add border with custom color */
 }
+
+.screen-size-message {
+    font-family: var(--font-family);
+    font-size: 6vw;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
