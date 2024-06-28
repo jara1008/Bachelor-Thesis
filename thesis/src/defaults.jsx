@@ -60,7 +60,7 @@ export const ScreenSizeMessage = () => {
     <div className='container'>
         <div className='white-box-regular'>
             <div className="screen-size-message">
-                "Bitte verwende einen grösseren Bildschirm, um auf diese Website zuzugreifen."
+                "Bitte verwende einen grösseren Bildschirm."
             </div>
         </div>
     </div>
