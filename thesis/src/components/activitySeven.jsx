@@ -1,30 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './activitySeven.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel } from '../defaults';
 
-function ActivitySeven() {
+function ActivitySeven({ difficulty }) {
     const [isCorrect, setIsCorrect] = useState(false);
     const [roundCount, setRoundCount] = useState(1);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
     const [numberLarge, setNumberLarge] = useState([]);
     const [numberSmall, setNumberSmall] = useState([]);
     const [rows, setRows] = useState([]);
+    var nrCols = -1;
+
+    if (difficulty === 'hard') {nrCols = 4}
+    else {nrCols = 3}
+
+    const generateRandomNumber = useCallback(() => {
+        return nrCols === 4
+            ? Math.floor(Math.random() * 8999 + 1000) + 1
+            : Math.floor(Math.random() * 899 + 100) + 1;
+    }, [nrCols]);
 
     useEffect(() => {
         const numberOne = generateRandomNumber();
         const numberTwo = generateRandomNumber();
-        setNumberLarge(String(Math.max(numberOne, numberTwo)).padStart(4, '0').split('').map(Number));
-        setNumberSmall(String(Math.min(numberOne, numberTwo)).padStart(4, '0').split('').map(Number));
+        setNumberLarge(String(Math.max(numberOne, numberTwo)).padStart(nrCols, '0').split('').map(Number));
+        setNumberSmall(String(Math.min(numberOne, numberTwo)).padStart(nrCols, '0').split('').map(Number));
         const newRows = [];
-        const newInputRow = { type: 'input', valuesTop: Array(4).fill(''), valuesBottom: Array(4).fill('') };
+        const newInputRow = { type: 'input', valuesTop: Array(nrCols).fill(''), valuesBottom: Array(nrCols).fill('') };
         newRows.push(newInputRow);
         setRows(newRows);
-    }, []); // Empty dependency array to run only once on mount
-
-    const generateRandomNumber = () => {
-        return Math.floor(Math.random() * 8999 + 1000) + 1;
-    }
+    }, [generateRandomNumber, nrCols]); // Empty dependency array to run only once on mount
 
     const checkInput = () => {
         const sol = parseInt(numberLarge.join('')) - parseInt(numberSmall.join(''));
@@ -35,7 +41,7 @@ function ActivitySeven() {
             setRoundCount(roundCount + 1);
         }
         else {
-            const newInputRow = { type: 'input', valuesTop: Array(4).fill(''), valuesBottom: Array(4).fill('') };
+            const newInputRow = { type: 'input', valuesTop: Array(nrCols).fill(''), valuesBottom: Array(nrCols).fill('') };
             setRows([newInputRow]);
         }
     }
@@ -43,10 +49,10 @@ function ActivitySeven() {
     const handleNext = () => {
         const numberOne = generateRandomNumber();
         const numberTwo = generateRandomNumber();
-        setNumberLarge(String(Math.max(numberOne, numberTwo)).padStart(4, '0').split('').map(Number));
-        setNumberSmall(String(Math.min(numberOne, numberTwo)).padStart(4, '0').split('').map(Number));
+        setNumberLarge(String(Math.max(numberOne, numberTwo)).padStart(nrCols, '0').split('').map(Number));
+        setNumberSmall(String(Math.min(numberOne, numberTwo)).padStart(nrCols, '0').split('').map(Number));
         
-        const newInputRow = { type: 'input', valuesTop: Array(4).fill(''), valuesBottom: Array(4).fill('') };
+        const newInputRow = { type: 'input', valuesTop: Array(nrCols).fill(''), valuesBottom: Array(nrCols).fill('') };
         setRows([newInputRow]);
 
         setIsCorrect(false);
@@ -100,7 +106,7 @@ function ActivitySeven() {
         newRows.push(newRow);
 
         // Add a new row with input fields
-        const newInputRow = { type: 'input', valuesTop: Array(4).fill(''), valuesBottom: Array(4).fill('') };
+        const newInputRow = { type: 'input', valuesTop: Array(nrCols).fill(''), valuesBottom: Array(nrCols).fill('') };
         newRows.push(newInputRow);
 
         setRows(newRows);
@@ -143,25 +149,39 @@ function ActivitySeven() {
         <div className="container" >
             <div className="white-box-tall" >
                 <HomeLink top="-6%"/>
-                <span className="title-text">TODO</span>
+                <span className="title-text">Löse die Rechnung:</span>
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} top="82%" left="78%"/>}
                 {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top="82%" left="78%"/>}
                 
                 <table className="number-table-A7">
-                    <thead>
+                    {nrCols === 4 &&
+                        <thead>
+                            <tr>
+                                <th style={{ border:'none' }}><button className="header-button" onClick={() => handleDecrease(0)}>Tauschen</button></th>
+                                <th style={{ border:'none' }}><button className="header-button" onClick={() => handleDecrease(1)}>Tauschen</button></th>
+                                <th style={{ border:'none' }}><button className="header-button" onClick={() => handleDecrease(2)}>Tauschen</button></th>
+                                <th style={{ border:'none' }}></th>
+                            </tr>
+                            <tr>
+                                <th>1000</th>
+                                <th>100</th>
+                                <th>10</th>
+                                <th>1</th>
+                            </tr>
+                        </thead>}
+                    {nrCols === 3 &&
+                        <thead>
                         <tr>
-                            <th style={{ border:'none' }}><button className="header-button" onClick={() => handleDecrease(0)}>Tauschen</button></th>
-                            <th style={{ border:'none' }}><button className="header-button" onClick={() => handleDecrease(1)}>Tauschen</button></th>
-                            <th style={{ border:'none' }}><button className="header-button" onClick={() => handleDecrease(2)}>Tauschen</button></th>
-                            <th style={{ border:'none' }}></th>
+                            <th style={{ border: 'none' }}><button className="header-button" onClick={() => handleDecrease(0)}>Tauschen</button></th>
+                            <th style={{ border: 'none' }}><button className="header-button" onClick={() => handleDecrease(1)}>Tauschen</button></th>
+                            <th style={{ border: 'none' }}></th>
                         </tr>
                         <tr>
-                            <th>1000</th>
                             <th>100</th>
                             <th>10</th>
                             <th>1</th>
                         </tr>
-                    </thead>
+                        </thead>}
                     <tbody>
                         <tr>
                             {numberLarge.map((digit, index) => (

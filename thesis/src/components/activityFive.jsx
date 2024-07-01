@@ -14,10 +14,19 @@ function ActivityFive({ difficulty }) {
         let firstNum;
         let secondNum;
         const maxRange = difficulty === 'hard' ? 1000 : 100;
-        do {
-            firstNum = Math.floor(Math.random() * maxRange) + 1;
-            secondNum = Math.floor(Math.random() * maxRange) + 1;
-        } while(firstNum === secondNum);
+        if (difficulty === 'hard') {
+            // Ensure at least one number is larger than 100
+            do {
+                firstNum = Math.floor(Math.random() * maxRange) + 1;
+                secondNum = Math.floor(Math.random() * maxRange) + 1;
+            } while ((firstNum === secondNum) || (firstNum <= 100 && secondNum <= 100));
+        }
+        else {
+            do {
+                firstNum = Math.floor(Math.random() * maxRange) + 1;
+                secondNum = Math.floor(Math.random() * maxRange) + 1;
+            } while(firstNum === secondNum);
+        }
         if (secondNum < firstNum) {
             let swap = firstNum;
             firstNum = secondNum;
@@ -33,8 +42,8 @@ function ActivityFive({ difficulty }) {
     }, []);
 
     useEffect(() => {
-        generateRandomNumbers();
-    }, [generateRandomNumbers]);
+        generateRandomNumbers(difficulty);
+    }, [generateRandomNumbers, difficulty]);
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);

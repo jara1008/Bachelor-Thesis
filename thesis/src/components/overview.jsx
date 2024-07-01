@@ -12,9 +12,9 @@ function Overview() {
         { id: 2, top: '14%', left: '52%', path: "/activityTwo", title: "Längen Vergleich" },
         { id: 3, top: '14%', left: '67%', path: "/activityThree", title: "Münz Vergleich" },
         { id: 4, top: '41%', left: '37%', title: "TODO" },
-        { id: 5, top: '41%', left: '52%', path: "/difficultySelection/activityFive/Additions-rätsel", title: "Additions-rätsel" },
+        { id: 5, top: '41%', left: '52%', path: "/difficultySelection/activityFive/Additionsrätsel", title: "Additions-rätsel" },
         { id: 6, top: '41%', left: '67%', path: "/activitySix", title: "Münzen subtrahieren" },
-        { id: 7, top: '68%', left: '37%', path: "/activitySeven", title: "Tabellen-subtraktion" },
+        { id: 7, top: '68%', left: '37%', path: "/difficultySelection/activitySeven/Tabellensubtraktion", title: "Tabellen-subtraktion" },
         { id: 8, top: '68%', left: '52%', path: "/activityEight", title: "Distanzen erkennen" },
         { id: 9, top: '68%', left: '67%', title: "TODO" }
     ]);
