@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './activityThree.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 
-function ActivityThree() {
+function ActivityThree({ difficulty }) {
     const [roundCount, setRoundCount] = useState(1);
-    const [leftCoinsTen, setLeftCoinsTen] = useState(Math.floor(Math.random() * 2) + 1); 
-    const [leftCoinsOne, setLeftCoinsOne] = useState(Math.floor(Math.random() * 9) + 1); 
-    const [rightCoinsTen, setRightCoinsTen] = useState(Math.floor(Math.random() * 2) + 1); 
+    const [leftCoinsTen, setLeftCoinsTen] = useState(Math.floor(Math.random() * 3)); 
+    const [leftCoinsOne, setLeftCoinsOne] = useState(Math.floor(Math.random() * 9) + 1);
+    const [rightCoinsTen, setRightCoinsTen] = useState(Math.floor(Math.random() * 3)); 
     const [rightCoinsOne, setRightCoinsOne] = useState(Math.floor(Math.random() * 9) + 1);
     const [activeCoins, setActiveCoins] = useState(new Set());
     
@@ -15,13 +15,21 @@ function ActivityThree() {
     const [leftCoinsVisibleTen, setLeftCoinsVisibleTen] = useState(leftCoinsTen);
     const [rightCoinsVisibleOne, setRightCoinsVisibleOne] = useState(rightCoinsOne);
     const [rightCoinsVisibleTen, setRightCoinsVisibleTen] = useState(rightCoinsTen);
+    console.log(leftCoinsTen, rightCoinsTen, rightCoinsVisibleTen)
+
+    useEffect(() => {
+        if (difficulty === 'easy') {
+            setRightCoinsTen(leftCoinsTen);
+            setRightCoinsVisibleTen(leftCoinsTen);
+        }
+    }, [difficulty, leftCoinsTen]);
+    console.log(leftCoinsTen, rightCoinsTen, rightCoinsVisibleTen)
 
     const [isCorrect, setIsCorrect] = useState(false);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
     const [inputValue, setInputValue] = useState('');
 
     function CoinRowUpper({ coinsTen, coinsOne, type }) {
-        console.log("UPPER: ", coinsTen, coinsOne, type);
         return (
             <div className="coin-stack-A3">
                 {Array.from({ length: coinsTen }, (_, i) => {
@@ -47,7 +55,6 @@ function ActivityThree() {
     }    
 
     function CoinRowLower({ coinsTen, coinsOne, type }) {
-        console.log("LOWER: ", coinsTen, coinsOne, type);
         return (
             <div className="coin-stack-A3">
                 {Array.from({ length: coinsTen }, (_, i) => (
@@ -147,7 +154,6 @@ function ActivityThree() {
         setCorrectnessLabel(true);
         const leftVal = leftCoinsOne + leftCoinsTen*10;
         const rightVal = rightCoinsOne + rightCoinsTen*10;
-        console.log(leftVal, rightVal)
         if ((inputValue === '<' && leftVal < rightVal) ||
             (inputValue === '>' && leftVal > rightVal) ||
             (inputValue === '=' && leftVal === rightVal)) {
@@ -159,9 +165,9 @@ function ActivityThree() {
     }
 
     function handleNext() {
-        const newLeftCoinsTen = Math.floor(Math.random() * 2) + 1;
+        const newLeftCoinsTen = Math.floor(Math.random() * 3);
         const newLeftCoinsOne = Math.floor(Math.random() * 9) + 1;
-        const newRightCoinsTen = Math.floor(Math.random() * 2) + 1;
+        const newRightCoinsTen = Math.floor(Math.random() * 3);
         const newRightCoinsOne = Math.floor(Math.random() * 9) + 1;
 
         setLeftCoinsTen(newLeftCoinsTen);
@@ -190,15 +196,18 @@ function ActivityThree() {
         <div className="container">
             <div className="white-box-large">
                 <HomeLink />
-                <div className='title-text'>Wähle {"<, >, ="} passend:</div>
-                <div style={{ display: "flex", justifyContent: "space-around", width: "100%" }}>
-                <button onClick={handleConversionLeft} className="header-button" style={{ left: "25%", marginTop: "2vh" }}>
-                    Tauschen
-                </button>
-                <button onClick={handleConversionRight} className="header-button" style={{ left: "75%", marginTop: "2vh" }}>
-                    Tauschen
-                </button>
-                </div>
+                {difficulty==='easy' && <div className='title-text' style={{ marginBottom: '5vh' }}>Wähle {"<, >, ="} passend:</div>}
+                {difficulty==='hard' && <div className='title-text'>Wähle {"<, >, ="} passend:</div>}
+                {difficulty==='hard' && (
+                    <div style={{ display: "flex", justifyContent: "space-around", width: "100%" }}>
+                        <button onClick={handleConversionLeft} className="header-button" style={{ left: "25%", marginTop: "2vh" }}>
+                            Tauschen
+                        </button>
+                        <button onClick={handleConversionRight} className="header-button" style={{ left: "75%", marginTop: "2vh" }}>
+                            Tauschen
+                        </button>
+                    </div>
+                )}
 
                 <div className="coin-row-A3">
                     <CoinRowUpper coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='left' />
