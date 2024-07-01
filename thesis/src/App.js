@@ -52,7 +52,7 @@ const App = () => {
               <Route path="/activitySix" element={<ActivitySix />} />
               <Route path="/activitySeven" element={<ActivitySeven />} />
               <Route path="/activityEight" element={<ActivityEight />} />
-              <Route path="/difficultySelection/:level" element={<DifficultySelection />} />
+              <Route path="/difficultySelection/:level/:title" element={<DifficultySelection />} />
               <Route path="/:level/:difficulty" element={<GameWrapper />} />
             </Routes>
           </Router>

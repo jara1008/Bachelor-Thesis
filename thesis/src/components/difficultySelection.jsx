@@ -1,26 +1,39 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import './activityFive.css';
+import './difficultySelection.css';
 import '../defaults.css';
 import { HomeLink } from '../defaults';
+import star from '../images/star.svg';
 
 function DifficultySelection() {
-    const { level } = useParams();
+    const { level, title } = useParams();
+    console.log(title)
     const navigate = useNavigate();
 
     const handleSelection = (selectedDifficulty) => {
-        console.log(level, selectedDifficulty);
         navigate(`/${level}/${selectedDifficulty}`);
     };
 
     return (
         <div className="container">
-            <div className="white-box-regular">
-                <HomeLink />
-                <span className="title-text">Wähle eine Schwierigkeitsstufe:</span>
+            <div className="white-box-small">
+                <HomeLink top="-15%"/>
+                <span className="title-text" >{title}</span>
+                <span className="medium-text">Wähle eine Schwierigkeitsstufe:</span>
                 <div className="difficulty-buttons">
-                    <button onClick={() => handleSelection('easy')}>Leicht</button>
-                    <button onClick={() => handleSelection('hard')}>Schwer</button>
+                    <button onClick={() => handleSelection('easy')} className='blue-square'>
+                        Einfach
+                        <div className="stars-upper">
+                                <img src={star} alt="Star" className="star" style={{ paddingRight: "2%" }} />
+                        </div>
+                    </button>
+                    <button onClick={() => handleSelection('hard')} className='blue-square'>
+                        Schwierig
+                        <div className="stars-upper">
+                            <img src={star} alt="Star" className="star" style={{ paddingRight: "5%" }} />
+                            <img src={star} alt="Star" className="star" style={{ paddingLeft: "5%" }} />
+                        </div>
+                    </button>
                 </div>
             </div>
         </div>

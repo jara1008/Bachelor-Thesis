@@ -8,11 +8,11 @@ import lock from "../images/lock.png";
 
 function Overview() {
     const [boxes] = useState([
-        { id: 1, top: '14%', left: '37%', path: "/difficultySelection/instructionsOne", title: "Mengen Vergleich" },
+        { id: 1, top: '14%', left: '37%', path: "/difficultySelection/instructionsOne/Mengen Vergleich", title: "Mengen Vergleich" },
         { id: 2, top: '14%', left: '52%', path: "/activityTwo", title: "Längen Vergleich" },
         { id: 3, top: '14%', left: '67%', path: "/activityThree", title: "Münz Vergleich" },
         { id: 4, top: '41%', left: '37%', title: "TODO" },
-        { id: 5, top: '41%', left: '52%', path: "/difficultySelection/activityFive", title: "Additions-rätsel" },
+        { id: 5, top: '41%', left: '52%', path: "/difficultySelection/activityFive/Additions-rätsel", title: "Additions-rätsel" },
         { id: 6, top: '41%', left: '67%', path: "/activitySix", title: "Münzen subtrahieren" },
         { id: 7, top: '68%', left: '37%', path: "/activitySeven", title: "Tabellen-subtraktion" },
         { id: 8, top: '68%', left: '52%', path: "/activityEight", title: "Distanzen erkennen" },
@@ -73,12 +73,9 @@ function Overview() {
                     <Link to={box.path} key={box.id} style={{ position: 'absolute', top: box.top, left: box.left }}>
                         <div className="rectangle" style={box.id === highestUnlockedLevel ? { boxShadow: "0px 0px 15px 8px #bec3f1d6" } : {}}>
                             {box.title}
-                            <div className="stars-upper" style={{ marginTop: "5%" }}>
+                            <div className="stars-upper" >
                                 <img src={star_empty} alt="Star" className="star" style={{ paddingRight: "2%" }} />
                                 <img src={star_empty} alt="Star" className="star" style={{ paddingLeft: "2%" }} />
-                            </div>
-                            <div className="stars-lower" style={{ marginTop: "-5%" }}>
-                                <img src={star_empty} alt="Star" className="star" />
                             </div>
                         </div>
                     </Link>
