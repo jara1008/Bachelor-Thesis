@@ -12,12 +12,12 @@ const leftCloudPositions = [
     { top: 42, left: 38 } 
 ];
 const rightCloudPositions = [
-    { top: 33, left: 67 }, { top: 19, left: 75 }, { top: 59, left: 68 }, 
-    { top: 39, left: 90 }, { top: 54, left: 80 }, { top: 48, left: 57 }, 
+    { top: 33, left: 67 }, { top: 19, left: 75 }, { top: 56, left: 68 }, 
+    { top: 39, left: 90 }, { top: 54, left: 80 }, { top: 48, left: 60 }, 
     { top: 27, left: 84 }  
 ];
 
-function ActivityOne() {
+function ActivityOne({ difficulty }) {
     const [allStars, setAllStars] = useState({ left: [], right: [] }); /* positions of stars in the left and right cloud*/
     const [firstPos, setFirstPos] = useState(null); /* start point of a line */
     const [secondPos, setSecondPos] = useState(null); /* end point of a line */
@@ -34,6 +34,7 @@ function ActivityOne() {
     const [checkBoxCorrectness, setCheckBoxCorrectness] = useState(false);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 }); /* mouse position */
     const [offsets, setOffsets] = useState({ offsetx: 0, offsety: 0 }); /* offsets */
+    const [inputValue, setInputValue] = useState('');
 
     const updateOffsets = () => {
         const vw = window.innerWidth / 10;
@@ -154,23 +155,45 @@ function ActivityOne() {
             seenPositions.add(endPos);
         }
 
-        if  (!!!isCheckedLeft && !!!isCheckedRight) {
-            setCheckBoxCorrectness(true);
-            return;
-        }
-        setCheckBoxCorrectness(false);
+        if (difficulty === 'easy') {
+            if ((!!!isCheckedLeft && !!!isCheckedRight)) {
+                setCheckBoxCorrectness(true);
+                return;
+            }
+            setCheckBoxCorrectness(false);
 
-        if (firstCloudCount > secondCloudCount && (!!!isCheckedLeft || isCheckedRight)) {
-            setIsLeftChecked(false);
-            setIsRightChecked(false);
-            setLines([]);
-            return;
+            if (firstCloudCount > secondCloudCount && (!!!isCheckedLeft || isCheckedRight)) {
+                setIsLeftChecked(false);
+                setIsRightChecked(false);
+                setLines([]);
+                return;
+            }
+            else if (secondCloudCount > firstCloudCount && (!!!isCheckedRight || isCheckedLeft)) {
+                setIsLeftChecked(false);
+                setIsRightChecked(false);
+                setLines([]);
+                return;
+            }
         }
-        else if (secondCloudCount > firstCloudCount && (!!!isCheckedRight || isCheckedLeft)) {
-            setIsLeftChecked(false);
-            setIsRightChecked(false);
-            setLines([]);
-            return;
+
+        else {
+            if (inputValue === '') {
+                setCheckBoxCorrectness(true);
+                return;
+            }
+            setCheckBoxCorrectness(false);
+
+            if (
+                (inputValue === '<' && firstCloudCount < secondCloudCount) ||
+                (inputValue === '>' && firstCloudCount > secondCloudCount) ||
+                (inputValue === '=' && firstCloudCount === secondCloudCount)
+            ) {
+                setIsCorrect(true);
+                setRoundCount((prevRoundCount) => prevRoundCount + 1);
+            } else {
+                setIsCorrect(false);
+                return;
+            }
         }
 
         setIsCorrect(true);
@@ -189,6 +212,7 @@ function ActivityOne() {
         }
         setIsLeftChecked(false);
         setIsRightChecked(false);
+        setInputValue('');
         setCheckBoxCorrectness(false);
         setIsCorrect(false);
         setCorrectnessLabel(false);
@@ -203,6 +227,9 @@ function ActivityOne() {
         setIsRightChecked(event.target.checked);
     };
 
+    const handleButtonClick = (value) => {
+        setInputValue(value);
+    };
 
     /* the game is finished */
     if (roundCount >= ROUNDCOUNT) {
@@ -214,23 +241,32 @@ function ActivityOne() {
         <div className="container" >
             <div className="white-box-regular" >
                 <HomeLink />
-                <span className="title-text">Verbinde die Sterne miteinander. Wähle die Wolke mit MEHR Sternen aus:</span>
-                <div style={{ position: "relative", height: "100%", width: "100%" }}>
-                    <input
+                {difficulty==='easy' && <span className="title-text">Verbinde die Sterne miteinander. Wähle die Wolke mit MEHR Sternen aus:</span>}
+                {difficulty==='hard' && <span className="title-text">Verbinde die Sterne miteinander. Wähle {"<, >, ="} passend:</span>}
+                <div className="div-A1">
+                    {difficulty === 'easy' && <input
                         type="checkbox"
                         checked={isCheckedLeft}
                         onChange={handleLeftCheckboxChange}
                         style={{ position: "absolute", marginTop: "2vh", left: "25%", height: "5%", width: "5%", zIndex: 2 }}
-                    />
-                    <img src={cloud} alt="Cloud" style={{ position: "absolute", marginTop: "2.5vh", left: "0%", height: "44vh", width: "28vw" }} />
+                    />}
+                    {difficulty === 'hard' && <input
+                        type="text"
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        placeholder=""
+                        className="info-input-A1"
+                        readOnly={isCorrect}
+                    />}
+                    <img src={cloud} alt="Cloud" style={{ position: "absolute", marginTop: "2vh", left: "0%", height: "44vh", width: "27vw" }} />
                     {allStars.left}
-                    <input
+                    {difficulty === 'easy' && <input
                         type="checkbox"
                         checked={isCheckedRight}
                         onChange={handleRightCheckboxChange}
                         style={{ position: "absolute", marginTop: "2vh", left: "75%", height: "5%", width: "5%", zIndex: 2 }}
-                    />
-                    <img src={cloud} alt="Cloud" style={{ position: "absolute", marginTop: "2.5vh", right: "1%", height: "44vh", width: "28vw" }} />
+                    />}
+                    <img src={cloud} alt="Cloud" style={{ position: "absolute", marginTop: "2vh", right: "1%", height: "44vh", width: "27vw" }} />
                     {allStars.right}
                     <svg style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%", pointerEvents: "none" }}>
                         {lines.map((line, index) => (
@@ -246,9 +282,15 @@ function ActivityOne() {
                                 stroke="black" strokeWidth="2" />
                         )}
                     </svg>
+                    {difficulty==='hard' && <div className="button-container-A1">
+                        <button className="operator-button-A1" onClick={() => handleButtonClick('<')}>{'<'}</button>
+                        <button className="operator-button-A1" onClick={() => handleButtonClick('=')}>{'='}</button>
+                        <button className="operator-button-A1" onClick={() => handleButtonClick('>')}>{'>'}</button>
+                    </div>}
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig" isVisible={true} top="76%" left="77%"/>}
                 {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top="76%" left="77%"/>}
-                {checkBoxCorrectness && <CorrectnessLabel message="Wähle das richtige Kästchen an!" isVisible={true} top="73%" left="71%" height="24%" width="30%"/>}
+                {checkBoxCorrectness && difficulty==='easy' && <CorrectnessLabel message="Wähle das richtige Kästchen an!" isVisible={true} top="73%" left="71%" height="24%" width="30%"/>}
+                {checkBoxCorrectness && difficulty==='hard' && <CorrectnessLabel message="Wähle <, =, > passend!" isVisible={true} top="73%" left="71%" height="24%" width="30%"/>}
                 </div>
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
                     style={{ top: `${checkButtonTop}%`, left: '50%' }} >

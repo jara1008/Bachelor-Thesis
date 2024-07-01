@@ -7,7 +7,6 @@ import star from '../images/star.svg';
 
 function DifficultySelection() {
     const { level, title } = useParams();
-    console.log(title)
     const navigate = useNavigate();
 
     const handleSelection = (selectedDifficulty) => {
