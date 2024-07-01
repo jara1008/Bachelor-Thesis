@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import './activityTwo.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 
-function ActivityTwo() {
+function ActivityTwo({ difficulty }) {
     const [numCubesFirstRow, setNumCubesFirstRow] = useState(0);
     const [numCubesSecondRow, setNumCubesSecondRow] = useState(0);
     const [inputValue, setInputValue] = useState('');
@@ -10,6 +10,7 @@ function ActivityTwo() {
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
     const [roundCount, setRoundCount] = useState(1);
     const [, setLastDigits] = useState({ leftValue: -1, rightValue: -1 });
+    const [differenceValue, setDifferenceValue] = useState('');
 
     const shuffleCubes = useCallback(() => {
         setLastDigits((prevLastDigits) => {
@@ -27,6 +28,7 @@ function ActivityTwo() {
             setIsCorrect(false);
             setInputValue('');
             setCorrectnessLabel(false);
+            setDifferenceValue('');
             return { leftValue: randomNumCubesFirstRow, rightValue: randomNumCubesSecondRow };
         });
     }, []);
@@ -37,13 +39,18 @@ function ActivityTwo() {
 
     const checkInput = () => {
         setCorrectnessLabel(true);
+        const lengthDifference = Math.abs(numCubesFirstRow - numCubesSecondRow);
         if (
             (inputValue === '<' && numCubesFirstRow < numCubesSecondRow) ||
             (inputValue === '>' && numCubesFirstRow > numCubesSecondRow) ||
             (inputValue === '=' && numCubesFirstRow === numCubesSecondRow)
         ) {
-            setIsCorrect(true);
-            setRoundCount((prevRoundCount) => prevRoundCount + 1);
+            if (difficulty === 'hard' && parseInt(differenceValue) !== lengthDifference) {
+                setIsCorrect(false);
+            } else {
+                setIsCorrect(true);
+                setRoundCount((prevRoundCount) => prevRoundCount + 1);
+            }
         } else {
             setIsCorrect(false);
         }
@@ -100,8 +107,21 @@ function ActivityTwo() {
                     <button className="operator-button-A2" onClick={() => handleButtonClick('=')}>{'='}</button>
                     <button className="operator-button-A2" onClick={() => handleButtonClick('>')}>{'>'}</button>
                 </div>
-                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig" isVisible={true}/>}
-                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true}/>}
+                {difficulty === 'hard' && (
+                    <div className="difference-container">
+                        <span className='title-text-small'>Der Längenunterschied beträgt:</span>
+                        <input
+                            type="text"
+                            value={differenceValue}
+                            onChange={(e) => setDifferenceValue(e.target.value)}
+                            placeholder=""
+                            className="info-input-A2"
+                            readOnly={isCorrect}
+                        />
+                    </div>
+                )}
+                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig" isVisible={true} />}
+                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} />}
                 <button
                     onClick={isCorrect ? handleNext : checkInput}
                     className="button-default"

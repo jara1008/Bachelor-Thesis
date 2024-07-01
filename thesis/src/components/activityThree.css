@@ -91,5 +91,5 @@
   font-family: var(--font-family);
   cursor: pointer;
   outline: none;
-  margin: 1.5%;
+  margin: 1vh;
 }

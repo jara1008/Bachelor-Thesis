@@ -9,7 +9,7 @@ import lock from "../images/lock.png";
 function Overview() {
     const [boxes] = useState([
         { id: 1, top: '14%', left: '37%', path: "/difficultySelection/activityOne/Mengen Vergleich", title: "Mengen Vergleich" },
-        { id: 2, top: '14%', left: '52%', path: "/activityTwo", title: "Längen Vergleich" },
+        { id: 2, top: '14%', left: '52%', path: "/difficultySelection/activityTwo/Längen Vergleich", title: "Längen Vergleich" },
         { id: 3, top: '14%', left: '67%', path: "/activityThree", title: "Münz Vergleich" },
         { id: 4, top: '41%', left: '37%', title: "TODO" },
         { id: 5, top: '41%', left: '52%', path: "/difficultySelection/activityFive/Additionsrätsel", title: "Additions-rätsel" },
