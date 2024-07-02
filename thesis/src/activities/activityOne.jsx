@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import "./activityOne.css";
+import "../styles/activityOne.css";
 import "../defaults.css";
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from "../defaults.jsx";
 import cloud from "../images/cloud.png";
@@ -248,7 +248,7 @@ function ActivityOne({ difficulty }) {
                         type="checkbox"
                         checked={isCheckedLeft}
                         onChange={handleLeftCheckboxChange}
-                        style={{ position: "absolute", marginTop: "2vh", left: "25%", height: "5%", width: "5%", zIndex: 2 }}
+                        style={{ position: "absolute", marginTop: "2vh", left: "25%", height: "5%", width: "5%", zIndex: 2, cursor: "pointer" }}
                     />}
                     {difficulty === 'hard' && <input
                         type="text"
@@ -264,7 +264,7 @@ function ActivityOne({ difficulty }) {
                         type="checkbox"
                         checked={isCheckedRight}
                         onChange={handleRightCheckboxChange}
-                        style={{ position: "absolute", marginTop: "2vh", left: "75%", height: "5%", width: "5%", zIndex: 2 }}
+                        style={{ position: "absolute", marginTop: "2vh", left: "75%", height: "5%", width: "5%", zIndex: 2, cursor: "pointer" }}
                     />}
                     <img src={cloud} alt="Cloud" style={{ position: "absolute", marginTop: "2vh", right: "1%", height: "44vh", width: "27vw" }} />
                     {allStars.right}

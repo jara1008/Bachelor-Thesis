@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './activityEight.css';
+import '../styles/activityEight.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 import tree from '../images/tree.png';
@@ -112,15 +112,35 @@ function ActivityEight() {
     const handleSquareClick = (index, side) => {
         setRectangleValues(prev => prev.map((rect, idx) => {
             if (idx === index) {
-                if (side === 'left' && rect.rightColor !== '#BFC4F2') {
-                    return { ...rect, leftColor: rect.leftColor === '#eceefa' ? '#BFC4F2' : '#eceefa' };
-                } else if (side === 'right' && rect.leftColor !== '#BFC4F2') {
-                    return { ...rect, rightColor: rect.rightColor === '#eceefa' ? '#BFC4F2' : '#eceefa' };
+                if (side === 'left') {
+                    if (rect.rightColor === '#BFC4F2') {
+                        return { 
+                            ...rect, 
+                            leftColor: rect.leftColor === '#eceefa' ? '#BFC4F2' : '#eceefa', 
+                            rightColor: '#eceefa' 
+                        };
+                    }
+                    return { 
+                        ...rect, 
+                        leftColor: rect.leftColor === '#eceefa' ? '#BFC4F2' : '#eceefa' 
+                    };
+                } else if (side === 'right') {
+                    if (rect.leftColor === '#BFC4F2') {
+                        return { 
+                            ...rect, 
+                            rightColor: rect.rightColor === '#eceefa' ? '#BFC4F2' : '#eceefa', 
+                            leftColor: '#eceefa' 
+                        };
+                    }
+                    return { 
+                        ...rect, 
+                        rightColor: rect.rightColor === '#eceefa' ? '#BFC4F2' : '#eceefa' 
+                    };
                 }
             }
             return rect;
         }));
-    };
+    };    
 
     const checkInput = () => {
         setCorrectnessLabel(true);

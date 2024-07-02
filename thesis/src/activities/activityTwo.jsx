@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import './activityTwo.css';
+import '../styles/activityTwo.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 
 function ActivityTwo({ difficulty }) {

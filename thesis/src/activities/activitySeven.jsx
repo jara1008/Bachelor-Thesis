@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import './activitySeven.css';
+import '../styles/activitySeven.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel } from '../defaults';
 

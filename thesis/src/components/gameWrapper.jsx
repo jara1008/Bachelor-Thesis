@@ -1,12 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import ActivityOne from './activityOne';
-import ActivityTwo from './activityTwo';
-import ActivityThree from './activityThree';
-import ActivityFive from './activityFive';
-import ActivitySix from './activitySix';
-import ActivitySeven from './activitySeven';
-import ActivityEight from './activityEight';
+import ActivityOne from '../activities/activityOne';
+import ActivityTwo from '../activities/activityTwo';
+import ActivityThree from '../activities/activityThree';
+import ActivityFive from '../activities/activityFive';
+import ActivitySix from '../activities/activitySix';
+import ActivitySeven from '../activities/activitySeven';
+import ActivityEight from '../activities/activityEight';
 
 const GameWrapper = () => {
     const { level, difficulty } = useParams();

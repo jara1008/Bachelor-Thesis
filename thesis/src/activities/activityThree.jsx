@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './activityThree.css';
+import '../styles/activityThree.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 
