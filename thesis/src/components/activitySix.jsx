@@ -3,19 +3,31 @@ import './activitySix.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 
-function ActivitySix() {
-    let initialLeftCoinsTen, initialLeftCoinsOne, initialRightCoinsTen, initialRightCoinsOne;
-    let initialLeftVal, initialRightVal;
-    do {
-        initialLeftCoinsTen = Math.floor(Math.random() * 3) + 1;
-        initialLeftCoinsOne = Math.floor(Math.random() * 9) + 1;
-        initialRightCoinsTen = Math.floor(Math.random() * 3) + 1;
-        initialRightCoinsOne = Math.floor(Math.random() * 9) + 1;
-        initialLeftVal = initialLeftCoinsOne + initialLeftCoinsTen * 10;
-        initialRightVal = initialRightCoinsOne + initialRightCoinsTen * 10;
-    } while (initialLeftVal <= initialRightVal);
-    const [activeCoins, setActiveCoins] = useState(new Set());
+function ActivitySix({ difficulty }) {
+    const generateInitialValues = () => {
+        let initialLeftCoinsTen, initialLeftCoinsOne, initialRightCoinsTen, initialRightCoinsOne;
+        let initialLeftVal, initialRightVal;
 
+        do {
+            initialLeftCoinsTen = Math.floor(Math.random() * 3) + 1;
+            initialLeftCoinsOne = Math.floor(Math.random() * 9) + 1;
+            initialRightCoinsTen = Math.floor(Math.random() * 3) + 1;
+            initialRightCoinsOne = Math.floor(Math.random() * 9) + 1;
+            initialLeftVal = initialLeftCoinsOne + initialLeftCoinsTen * 10;
+            initialRightVal = initialRightCoinsOne + initialRightCoinsTen * 10;
+        } while (initialLeftVal <= initialRightVal || (difficulty !== 'hard' && initialLeftCoinsOne <= initialRightCoinsOne));
+
+        return { initialLeftCoinsTen, initialLeftCoinsOne, initialRightCoinsTen, initialRightCoinsOne };
+    };
+
+    const {
+        initialLeftCoinsTen,
+        initialLeftCoinsOne,
+        initialRightCoinsTen,
+        initialRightCoinsOne
+    } = generateInitialValues();
+
+    const [activeCoins, setActiveCoins] = useState(new Set());
     const [roundCount, setRoundCount] = useState(1);
     const [leftCoinsTen, setLeftCoinsTen] = useState(initialLeftCoinsTen);
     const [leftCoinsOne, setLeftCoinsOne] = useState(initialLeftCoinsOne);
@@ -36,43 +48,39 @@ function ActivitySix() {
     const [inputValue, setInputValue] = useState('');
     const [displayMinus, setDisplayMinus] = useState(true);
 
-    function CoinRowUpper({ coinsTen, coinsOne, type }) {
-        return (
-            <div className="coin-stack-A6">
-                {Array.from({ length: coinsTen }, (_, i) => {
-                    const coinKey = `${type}-tens-${i}`;
-                    const isActive = activeCoins.has(coinKey)
-                    const className = `coin-A6 ${type}-coin ${isActive ? 'active-coin-A6' : ''}`;
-                    return (
-                        <div key={`ten-${i}`} className={className}
-                            onClick={() => handleCoinClick(type, 'tens', i)}>10</div>
-                    );
-                })}
-                {Array.from({ length: coinsOne }, (_, i) => {
-                    const coinKey = `${type}-ones-${i}`;
-                    const isActive = activeCoins.has(coinKey)
-                    const className = `coin-A6 ${type}-coin ${isActive ? 'active-coin-A6' : ''}`;
-                    return (
-                        <div key={`one-${i}`} className={className}
-                            onClick={() => handleCoinClick(type, 'ones', i)}>1</div>
-                    );
-                })}
-            </div>
-        );
-    } 
+    const CoinRowUpper = ({ coinsTen, coinsOne, type }) => (
+        <div className="coin-stack-A6">
+            {Array.from({ length: coinsTen }, (_, i) => {
+                const coinKey = `${type}-tens-${i}`;
+                const isActive = activeCoins.has(coinKey);
+                const className = `coin-A6 ${type}-coin ${isActive ? 'active-coin-A6' : ''}`;
+                return (
+                    <div key={`ten-${i}`} className={className}
+                        onClick={() => handleCoinClick(type, 'tens', i)}>10</div>
+                );
+            })}
+            {Array.from({ length: coinsOne }, (_, i) => {
+                const coinKey = `${type}-ones-${i}`;
+                const isActive = activeCoins.has(coinKey);
+                const className = `coin-A6 ${type}-coin ${isActive ? 'active-coin-A6' : ''}`;
+                return (
+                    <div key={`one-${i}`} className={className}
+                        onClick={() => handleCoinClick(type, 'ones', i)}>1</div>
+                );
+            })}
+        </div>
+    );
 
-    function CoinRowLower({ coinsTen, coinsOne, type }) {
-        return (
-            <div className="coin-stack-A6">
-                {Array.from({ length: coinsTen }, (_, i) => (
-                    <div key={`ten-${i}`} className={`coin-A6 ${type}-coin`}>10</div>
-                ))}
-                {Array.from({ length: coinsOne }, (_, i) => (
-                    <div key={`one-${i}`} className={`coin-A6 ${type}-coin`}>1</div>
-                ))}
-            </div>
-        );
-    }
+    const CoinRowLower = ({ coinsTen, coinsOne, type }) => (
+        <div className="coin-stack-A6">
+            {Array.from({ length: coinsTen }, (_, i) => (
+                <div key={`ten-${i}`} className={`coin-A6 ${type}-coin`}>10</div>
+            ))}
+            {Array.from({ length: coinsOne }, (_, i) => (
+                <div key={`one-${i}`} className={`coin-A6 ${type}-coin`}>1</div>
+            ))}
+        </div>
+    );
 
     useEffect(() => {
         if (hint) {
@@ -83,9 +91,9 @@ function ActivitySix() {
         }
     }, [hint]);
 
-    function handleCoinClick(type, denomination, index) {
-        var nrRightTens = rightCoinsVisibleTen;
-        var nrRightOnes = rightCoinsVisibleOne;
+    const handleCoinClick = (type, denomination, index) => {
+        let nrRightTens = rightCoinsVisibleTen;
+        let nrRightOnes = rightCoinsVisibleOne;
         const coinKey = `${type}-${denomination}-${index}`;
         const oppositeType = type === 'left' ? 'right' : 'left';
 
@@ -93,7 +101,7 @@ function ActivitySix() {
             const newActiveCoins = new Set(prevActiveCoins);
             if (newActiveCoins.has(coinKey)) {
                 newActiveCoins.delete(coinKey);
-    
+
                 const maxCoins = denomination === "tens" ? leftCoinsTen : leftCoinsOne;
                 for (let i = 0; i < maxCoins; i++) {
                     const oppositeCoinKey = `${oppositeType}-${denomination}-${i}`;
@@ -102,7 +110,7 @@ function ActivitySix() {
                         break;
                     }
                 }
-    
+
                 if (denomination === "tens") {
                     setLeftCoinsVisibleTen(prevCount => prevCount + 1);
                     setRightCoinsVisibleTen(prevCount => prevCount + 1);
@@ -114,7 +122,7 @@ function ActivitySix() {
                 }
             } else if ((denomination === "tens" && leftCoinsVisibleTen > 0 && rightCoinsVisibleTen > 0) || (denomination === "ones" && leftCoinsVisibleOne > 0 && rightCoinsVisibleOne > 0)) {
                 newActiveCoins.add(coinKey);
-    
+
                 const maxCoins = denomination === "tens" ? leftCoinsTen : leftCoinsOne;
                 for (let i = 0; i < maxCoins; i++) {
                     const oppositeCoinKey = `${oppositeType}-${denomination}-${i}`;
@@ -123,7 +131,7 @@ function ActivitySix() {
                         break;
                     }
                 }
-    
+
                 if (denomination === "tens") {
                     setLeftCoinsVisibleTen(prevCount => prevCount - 1);
                     setRightCoinsVisibleTen(prevCount => prevCount - 1);
@@ -135,17 +143,17 @@ function ActivitySix() {
                 }
             }
 
-            if (nrRightTens===0 && nrRightOnes===0) {
+            if (nrRightTens === 0 && nrRightOnes === 0) {
                 setDisplayMinus(false);
             } else {
                 setDisplayMinus(true);
             }
-    
+
             return newActiveCoins;
         });
-    }
+    };
 
-    function checkInput() {
+    const checkInput = () => {
         setCorrectnessLabel(true);
         if (parseInt(inputValue) === leftVal - rightVal) {
             setIsCorrect(true);
@@ -153,52 +161,43 @@ function ActivitySix() {
         } else {
             setIsCorrect(false);
         }
-    }
+    };
 
-    function handleNext() {
-        let newLeftCoinsTen, newLeftCoinsOne, newRightCoinsTen, newRightCoinsOne, newLeftVal, newRightVal;
-        do {
-            newLeftCoinsTen = Math.floor(Math.random() * 3) + 1;
-            newLeftCoinsOne = Math.floor(Math.random() * 9) + 1;
-            newRightCoinsTen = Math.floor(Math.random() * 3) + 1;
-            newRightCoinsOne = Math.floor(Math.random() * 9) + 1;
-            newLeftVal = newLeftCoinsOne + newLeftCoinsTen * 10;
-            newRightVal = newRightCoinsOne + newRightCoinsTen * 10;
-        } while (newLeftVal <= newRightVal);
+    const handleNext = () => {
+        const { initialLeftCoinsTen, initialLeftCoinsOne, initialRightCoinsTen, initialRightCoinsOne } = generateInitialValues();
 
-        setLeftCoinsTen(newLeftCoinsTen);
-        setLeftCoinsOne(newLeftCoinsOne);
-        setRightCoinsTen(newRightCoinsTen);
-        setRightCoinsOne(newRightCoinsOne);
+        setLeftCoinsTen(initialLeftCoinsTen);
+        setLeftCoinsOne(initialLeftCoinsOne);
+        setRightCoinsTen(initialRightCoinsTen);
+        setRightCoinsOne(initialRightCoinsOne);
 
-        setLeftCoinsVisibleOne(newLeftCoinsOne);
-        setLeftCoinsVisibleTen(newLeftCoinsTen);
-        setRightCoinsVisibleOne(newRightCoinsOne);
-        setRightCoinsVisibleTen(newRightCoinsTen);
-        
+        setLeftCoinsVisibleOne(initialLeftCoinsOne);
+        setLeftCoinsVisibleTen(initialLeftCoinsTen);
+        setRightCoinsVisibleOne(initialRightCoinsOne);
+        setRightCoinsVisibleTen(initialRightCoinsTen);
+
         setDisplayMinus(true);
         setActiveCoins(new Set());
         setIsCorrect(false);
         setCorrectnessLabel(false);
         setInputValue('');
-    }
+    };
 
-    function handleConversion() {
+    const handleConversion = () => {
         if (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen === 0) {
             const newLeftCoinsTen = leftCoinsTen - 1;
             const newLeftCoinsVisibleTen = leftCoinsVisibleTen - 1;
             const newLeftCoinsOne = leftCoinsOne + 10;
             const newLeftCoinsVisibleOne = leftCoinsVisibleOne + 10;
-    
+
             setLeftCoinsTen(newLeftCoinsTen);
             setLeftCoinsOne(newLeftCoinsOne);
             setLeftCoinsVisibleOne(newLeftCoinsVisibleOne);
             setLeftCoinsVisibleTen(newLeftCoinsVisibleTen);
-        }
-        else {
+        } else {
             setHint(true);
         }
-    }
+    };
 
     if (roundCount >= ROUNDCOUNT) {
         return <EndOfGame levelName="Münzen subtrahieren" levelNr={6} />;
@@ -236,9 +235,9 @@ function ActivitySix() {
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} left="79.5%"/>}
                 {!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} left="79.5%"/>}
                 {hint && <CorrectnessLabel message="Streiche erst alle möglichen Münzen!" isVisible={true} style={{top: '0%', left: '0%', height: '15vh', width: '20vw'}}/>}
-                <button onClick={handleConversion} className="header-button" style={{ marginTop: "2vh" }}>
+                {difficulty === 'hard' && (<button onClick={handleConversion} className="header-button" style={{ marginTop: "2vh" }}>
                     Tauschen
-                </button>
+                </button>)}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default"
                     style={{ top: `${checkButtonTop}%`, left: '50%' }}>
                     {isCorrect ? "Weiter" : "Prüfen"}
