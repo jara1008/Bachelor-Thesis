@@ -15,7 +15,7 @@ function Overview() {
         { id: 5, top: '41%', left: '52%', path: "/difficultySelection/activityFive/Additionsrätsel", title: "Additions-rätsel" },
         { id: 6, top: '41%', left: '67%', path: "/difficultySelection/activitySix/Münzen subtrahieren", title: "Münzen subtrahieren" },
         { id: 7, top: '68%', left: '37%', path: "/difficultySelection/activitySeven/Tabellensubtraktion", title: "Tabellen-subtraktion" },
-        { id: 8, top: '68%', left: '52%', path: "/activityEight", title: "Distanzen erkennen" },
+        { id: 8, top: '68%', left: '52%', path: "/difficultySelection/activityEight/Distanzen erkennen", title: "Distanzen erkennen" },
         { id: 9, top: '68%', left: '67%', title: "TODO" }
     ]);
 
@@ -27,7 +27,7 @@ function Overview() {
 
     // Get the highest unlocked level from local storage or set it to 1 if not available
     //const highestUnlockedLevel = parseInt(localStorage.getItem('highestUnlockedLevel')) || 1;
-    const highestUnlockedLevel = 8;
+    const highestUnlockedLevel = 10;
 
     useEffect(() => {
         const topOffset = 8; 

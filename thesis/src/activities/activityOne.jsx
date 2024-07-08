@@ -278,7 +278,7 @@ function ActivityOne({ difficulty }) {
                         {firstPos && (
                             <line
                                 x1={`calc(${firstPos.left}% + 1.4vw)`} y1={`calc(${firstPos.top}% + 1.4vw)`}
-                                x2={mousePos.x} y2={mousePos.y}
+                                x2={`calc(${mousePos.x}px + 0.7vw)`} y2={`calc(${mousePos.y}px + 0.7vw)`}
                                 stroke="black" strokeWidth="2" />
                         )}
                     </svg>
