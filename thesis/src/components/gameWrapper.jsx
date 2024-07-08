@@ -7,6 +7,7 @@ import ActivityFive from '../activities/activityFive';
 import ActivitySix from '../activities/activitySix';
 import ActivitySeven from '../activities/activitySeven';
 import ActivityEight from '../activities/activityEight';
+import ActivityNine from '../activities/activityNine';
 
 const GameWrapper = () => {
     const { level, difficulty } = useParams();
@@ -27,6 +28,8 @@ const GameWrapper = () => {
                 return <ActivitySeven difficulty={difficulty} />;
             case 'activityEight':
                 return <ActivityEight difficulty={difficulty} />;
+            case 'activityNine':
+                return <ActivityNine difficulty={difficulty} />;
             default:
                 return <div>Invalid Activity</div>;
         }
