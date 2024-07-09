@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import '../styles/activityTen.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
@@ -12,7 +12,7 @@ function ActivityTen({ difficulty }) {
     const [columnValues, setColumnValues] = useState({ col1: '', col2: '', col3: '', col4: '' });
     const [blueSquareValues, setBlueSquareValues] = useState({ blue1: '', blue2: '', blue3: '' });
 
-    const generateRandomNumbers = () => {
+    const generateRandomNumbers = useCallback(() => {
         const maxNumber = difficulty === 'easy' ? 999 : 9999;
         const randomNumber1 = Math.floor(Math.random() * maxNumber) + 1;
         const randomNumber2 = Math.floor(Math.random() * maxNumber) + 1;
@@ -23,11 +23,11 @@ function ActivityTen({ difficulty }) {
             setNumberLarge(randomNumber1);
             setNumberSmall(randomNumber2);
         }
-    };
+    }, [difficulty]);
 
     useEffect(() => {
         generateRandomNumbers();
-    }, []); // Empty dependency array to run only once on mount
+    }, [generateRandomNumbers]);
 
     const handleInputChange = (column, value) => {
         setColumnValues(prevState => ({
