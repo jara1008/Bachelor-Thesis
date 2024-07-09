@@ -1,38 +1,38 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import ActivityOne from '../activities/activityOne';
-import ActivityTwo from '../activities/activityTwo';
-import ActivityThree from '../activities/activityThree';
-import ActivityFive from '../activities/activityFive';
-import ActivitySix from '../activities/activitySix';
-import ActivitySeven from '../activities/activitySeven';
-import ActivityEight from '../activities/activityEight';
-import ActivityNine from '../activities/activityNine';
-import ActivityTen from '../activities/activityTen';
+import Activity1 from '../activities/activity1';
+import Activity2 from '../activities/activity2';
+import Activity3 from '../activities/activity3';
+import Activity5 from '../activities/activity5';
+import Activity6 from '../activities/activity6';
+import Activity7 from '../activities/activity7';
+import Activity8 from '../activities/activity8';
+import Activity9 from '../activities/activity9';
+import Activity10 from '../activities/activity10';
 
 const GameWrapper = () => {
     const { level, difficulty } = useParams();
 
     const getGameComponent = () => {
         switch (level) {
-            case 'activityOne':
-                return <ActivityOne difficulty={difficulty} />;
-            case 'activityTwo':
-                return <ActivityTwo difficulty={difficulty} />;
-            case 'activityThree':
-                return <ActivityThree difficulty={difficulty} />;
-            case 'activityFive':
-                return <ActivityFive difficulty={difficulty} />;
-            case 'activitySix':
-                return <ActivitySix difficulty={difficulty} />;
-            case 'activitySeven':
-                return <ActivitySeven difficulty={difficulty} />;
-            case 'activityEight':
-                return <ActivityEight difficulty={difficulty} />;
-            case 'activityNine':
-                return <ActivityNine difficulty={difficulty} />;
-            case 'activityTen':
-                return <ActivityTen difficulty={difficulty} />;
+            case 'activity1':
+                return <Activity1 difficulty={difficulty} />;
+            case 'activity2':
+                return <Activity2 difficulty={difficulty} />;
+            case 'activity3':
+                return <Activity3 difficulty={difficulty} />;
+            case 'activity5':
+                return <Activity5 difficulty={difficulty} />;
+            case 'activity6':
+                return <Activity6 difficulty={difficulty} />;
+            case 'activity7':
+                return <Activity7 difficulty={difficulty} />;
+            case 'activity8':
+                return <Activity8 difficulty={difficulty} />;
+            case 'activity9':
+                return <Activity9 difficulty={difficulty} />;
+            case 'activity10':
+                return <Activity10 difficulty={difficulty} />;
             default:
                 return <div>Invalid Activity</div>;
         }

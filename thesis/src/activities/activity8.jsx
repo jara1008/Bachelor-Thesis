@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/activityEight.css';
+import '../styles/activity8.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 import tree from '../images/tree.png';

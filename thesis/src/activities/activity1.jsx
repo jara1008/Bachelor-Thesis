@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import "../styles/activityOne.css";
+import "../styles/activity1.css";
 import "../defaults.css";
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from "../defaults.jsx";
 import cloud from "../images/cloud.png";
@@ -17,7 +17,7 @@ const rightCloudPositions = [
     { top: 27, left: 84 }  
 ];
 
-function ActivityOne({ difficulty }) {
+function Activity1({ difficulty }) {
     const [allStars, setAllStars] = useState({ left: [], right: [] }); /* positions of stars in the left and right cloud*/
     const [firstPos, setFirstPos] = useState(null); /* start point of a line */
     const [secondPos, setSecondPos] = useState(null); /* end point of a line */
@@ -301,4 +301,4 @@ function ActivityOne({ difficulty }) {
     );
 };
 
-export default ActivityOne;
+export default Activity1;

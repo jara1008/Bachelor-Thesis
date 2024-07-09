@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../defaults.css';
 import { HomeLink, checkButtonTop } from '../defaults';
 
-function InstrOne() {
+function Instructions() {
     return (
         <div className="container">
             <div className="white-box-regular" >
@@ -17,4 +17,4 @@ function InstrOne() {
     );
 }
 
-export default InstrOne;
+export default Instructions;

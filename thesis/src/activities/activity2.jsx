@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import '../styles/activityTwo.css';
+import '../styles/activity2.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 
-function ActivityTwo({ difficulty }) {
+function Activity2({ difficulty }) {
     const [numCubesFirstRow, setNumCubesFirstRow] = useState(0);
     const [numCubesSecondRow, setNumCubesSecondRow] = useState(0);
     const [inputValue, setInputValue] = useState('');
@@ -134,4 +134,4 @@ function ActivityTwo({ difficulty }) {
     );
 }
 
-export default ActivityTwo;
+export default Activity2;

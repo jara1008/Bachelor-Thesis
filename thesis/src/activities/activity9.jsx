@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/activityNine.css';
+import '../styles/activity9.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 
