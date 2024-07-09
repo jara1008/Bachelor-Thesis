@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+.number-container-A10 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2vh;
+}
+
+.number-box-A10 {
+    border: 2px solid black;
+    text-align: right;
+    padding: 0vw 0vw 0vw 2vw;
+    display: inline-block;
+}
+
+.number-A10 {
+    font-size: 3vw;
+    font-family: var(--font-family);
+    letter-spacing: 3vw;
+    display: block;
+}
+
+.input-fields-A10 {
+    position: relative;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh; 
+    padding: 2vw;
+}
+
+.input-row-A10 {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.7vw; 
+}
+
+.input-A10 {
+    width: 3vw;
+    height: 3vw;
+    font-size: 2.5vw;
+    text-align: center;
+    background-color: var(--secondary-color);
+    border-radius: 10%;
+    border: 1px solid var(--text-color);
+    font-family: var(--font-family);
+  color: var(--text-color);
+}
+
+.coin-row-divider-A10 {
+    border: 1px solid black;
+    width: 100%;
+}

@@ -11,7 +11,7 @@ function Overview() {
         { id: 1, top: '14%', left: '37%', path: "/difficultySelection/activityOne/Mengen Vergleich", title: "Mengen Vergleich" },
         { id: 2, top: '14%', left: '52%', path: "/difficultySelection/activityTwo/Längen Vergleich", title: "Längen Vergleich" },
         { id: 3, top: '14%', left: '67%', path: "/difficultySelection/activityThree/Münz Vergleich", title: "Münz Vergleich" },
-        { id: 4, top: '41%', left: '37%', title: "TODO" },
+        { id: 4, top: '41%', left: '37%', path: "/difficultySelection/activityTen/Schriftliche Subtraktion",  title: "TODO" },
         { id: 5, top: '41%', left: '52%', path: "/difficultySelection/activityFive/Additionsrätsel", title: "Additions-rätsel" },
         { id: 6, top: '41%', left: '67%', path: "/difficultySelection/activitySix/Münzen subtrahieren 1", title: "Münzen subtrahieren 1" },
         { id: 7, top: '68%', left: '37%', path: "/difficultySelection/activitySeven/Tabellensubtraktion", title: "Tabellen-subtraktion" },
