@@ -8,15 +8,15 @@ import lock from "../images/lock.png";
 
 function Overview() {
     const [boxes] = useState([
-        { id: 1, top: '14%', left: '37%', path: "/difficultySelection/activityOne/Mengen Vergleich", title: "Mengen Vergleich" },
-        { id: 2, top: '14%', left: '52%', path: "/difficultySelection/activityTwo/Längen Vergleich", title: "Längen Vergleich" },
-        { id: 3, top: '14%', left: '67%', path: "/difficultySelection/activityThree/Münz Vergleich", title: "Münz Vergleich" },
-        { id: 4, top: '41%', left: '37%', path: "/difficultySelection/activityFive/Additionsrätsel", title: "Additions-rätsel" },
-        { id: 5, top: '41%', left: '52%', path: "/difficultySelection/activitySix/Münzen subtrahieren 1", title: "Münzen subtrahieren 1" },
-        { id: 6, top: '41%', left: '67%', path: "/difficultySelection/activitySeven/Tabellensubtraktion", title: "Tabellen-subtraktion" },
-        { id: 7, top: '68%', left: '37%', path: "/difficultySelection/activityEight/Distanzen erkennen", title: "Distanzen erkennen" },
-        { id: 8, top: '68%', left: '52%', path: "/difficultySelection/activityNine/Münzen subtrahieren 2", title: "Münzen subtrahieren 2" },
-        { id: 9, top: '68%', left: '67%', path: "/difficultySelection/activityTen/Schriftliche Subtraktion",  title: "Schriftliche Subtraktion" },
+        { id: 1, top: '14%', left: '37%', path: "/difficultySelection/activity1/Mengen Vergleich", title: "Mengen Vergleich" },
+        { id: 2, top: '14%', left: '52%', path: "/difficultySelection/activity2/Längen Vergleich", title: "Längen Vergleich" },
+        { id: 3, top: '14%', left: '67%', path: "/difficultySelection/activity3/Münz Vergleich", title: "Münz Vergleich" },
+        { id: 4, top: '41%', left: '37%', path: "/difficultySelection/activity5/Additionsrätsel", title: "Additions-rätsel" },
+        { id: 5, top: '41%', left: '52%', path: "/difficultySelection/activity6/Münzen subtrahieren 1", title: "Münzen subtrahieren 1" },
+        { id: 6, top: '41%', left: '67%', path: "/difficultySelection/activity7/Tabellensubtraktion", title: "Tabellen-subtraktion" },
+        { id: 7, top: '68%', left: '37%', path: "/difficultySelection/activity8/Distanzen erkennen", title: "Distanzen erkennen" },
+        { id: 8, top: '68%', left: '52%', path: "/difficultySelection/activity9/Münzen subtrahieren 2", title: "Münzen subtrahieren 2" },
+        { id: 9, top: '68%', left: '67%', path: "/difficultySelection/activity10/Schriftliche Subtraktion",  title: "Schriftliche Subtraktion" },
     ]);
 
     const [dots, setDots] = useState([]);

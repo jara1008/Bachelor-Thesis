@@ -54,3 +54,13 @@
     border: 1px solid black;
     width: 110%;
 }
+
+.button-invert-A10 {
+    cursor: pointer;
+}
+
+.minus-A10{
+    position: relative;
+    font-size: 3vw;
+    font-family: var(--font-family);
+}

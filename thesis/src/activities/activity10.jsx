@@ -11,12 +11,12 @@ function ActivityTen({ difficulty }) {
     const [numberSmall, setNumberSmall] = useState([]);
     const [columnValues, setColumnValues] = useState({ col1: '', col2: '', col3: '', col4: '' });
     const [blueSquareValues, setBlueSquareValues] = useState({ blue1: '', blue2: '', blue3: '' });
+    const [minus, setMinus] = useState(false);
 
     const generateRandomNumbers = useCallback(() => {
-        const maxNumber = difficulty === 'easy' ? 999 : 9999;
-        const randomNumber1 = Math.floor(Math.random() * maxNumber) + 1;
-        const randomNumber2 = Math.floor(Math.random() * maxNumber) + 1;
-        if (randomNumber1 < randomNumber2) {
+        const randomNumber1 = Math.floor(Math.random() * 9999) + 1;
+        const randomNumber2 = Math.floor(Math.random() * 9999) + 1;
+        if (randomNumber1 < randomNumber2 && difficulty==='easy') {
             setNumberSmall(randomNumber1);
             setNumberLarge(randomNumber2);
         } else {
@@ -43,6 +43,13 @@ function ActivityTen({ difficulty }) {
         }));
     };
 
+    const invertNumbers = () => {
+        let swap = numberSmall;
+        setNumberSmall(numberLarge);
+        setNumberLarge(swap);
+        setMinus(true);
+    };
+
     const checkInput = () => {
         setCorrectnessLabel(true);
         const { col1, col2, col3, col4 } = columnValues;
@@ -61,6 +68,7 @@ function ActivityTen({ difficulty }) {
         setBlueSquareValues({ blue1: '', blue2: '', blue3: '' });
         setCorrectnessLabel(false);
         setIsCorrect(false);
+        setMinus(false);
     };
 
     if (roundCount >= ROUNDCOUNT) {
@@ -76,10 +84,14 @@ function ActivityTen({ difficulty }) {
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} />}
                 {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} />}
 
+                {difficulty === 'hard' && (
+                    <button onClick={invertNumbers} className="button-invert-A10"></button>
+                )}
+
                 <div className="number-container-A10">
                     <div>
                         <div className="number-box-A10">
-                            <div className="number-A10">{numberLarge}</div>
+                            {minus && <div className="number-A10">{numberLarge}</div>}
                             <div className="number-A10">-{numberSmall}</div>
                         </div>
                         <div className="input-fields-A10">
@@ -121,7 +133,6 @@ function ActivityTen({ difficulty }) {
                                 />
                             </div>
                             <div className="coin-row-divider-A10" />
-                            {difficulty==='hard' && <>
                             <div className="input-row-A10">
                                 <input
                                     type="text"
@@ -151,6 +162,7 @@ function ActivityTen({ difficulty }) {
                             </div>
                             <div className="coin-row-divider-A10" />
                             <div className="input-row-A10">
+                                {minus && <div className='number-A10'>-</div>}
                                 <input
                                     type="text"
                                     className="input-A10"
@@ -176,29 +188,6 @@ function ActivityTen({ difficulty }) {
                                     onChange={e => handleInputChange('col4', e.target.value)}
                                 />
                             </div>
-                            </>}
-                            {difficulty==='easy' && <>
-                            <div className="input-row-A10">
-                                <input
-                                    type="text"
-                                    className="input-A10"
-                                    value={columnValues.col2}
-                                    onChange={e => handleInputChange('col2', e.target.value)}
-                                />
-                                <input
-                                    type="text"
-                                    className="input-A10"
-                                    value={columnValues.col3}
-                                    onChange={e => handleInputChange('col3', e.target.value)}
-                                />
-                                <input
-                                    type="text"
-                                    className="input-A10"
-                                    value={columnValues.col4}
-                                    onChange={e => handleInputChange('col4', e.target.value)}
-                                />
-                            </div>
-                            </>}
                         </div>
                     </div>
                 </div>
