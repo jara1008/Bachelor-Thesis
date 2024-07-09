@@ -3,7 +3,7 @@ import '../styles/activity3.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 
-function ActivityThree({ difficulty }) {
+function Activity3({ difficulty }) {
     const [roundCount, setRoundCount] = useState(1);
     const [leftCoinsTen, setLeftCoinsTen] = useState(Math.floor(Math.random() * 3)); 
     const [leftCoinsOne, setLeftCoinsOne] = useState(Math.floor(Math.random() * 9) + 1);
@@ -246,4 +246,4 @@ function ActivityThree({ difficulty }) {
     );    
 }
 
-export default ActivityThree;
+export default Activity3;

@@ -3,7 +3,7 @@ import '../styles/activity10.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 
-function ActivityTen({ difficulty }) {
+function Activity10({ difficulty }) {
     const [isCorrect, setIsCorrect] = useState(false);
     const [roundCount, setRoundCount] = useState(1);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
@@ -91,7 +91,7 @@ function ActivityTen({ difficulty }) {
                 <div className="number-container-A10">
                     <div>
                         <div className="number-box-A10">
-                            {minus && <div className="number-A10">{numberLarge}</div>}
+                            <div className="number-A10">{numberLarge}</div>
                             <div className="number-A10">-{numberSmall}</div>
                         </div>
                         <div className="input-fields-A10">
@@ -201,4 +201,4 @@ function ActivityTen({ difficulty }) {
     );
 }
 
-export default ActivityTen;
+export default Activity10;

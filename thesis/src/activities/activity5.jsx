@@ -3,7 +3,7 @@ import '../styles/activity5.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 
-function ActivityFive({ difficulty }) {
+function Activity5({ difficulty }) {
     const [numbers, setNumbers] = useState({ largeNum: 0, smallNum: 0 });
     const [inputValue, setInputValue] = useState('');
     const [isCorrect, setIsCorrect] = useState(false);
@@ -96,4 +96,4 @@ function ActivityFive({ difficulty }) {
     );
 }
 
-export default ActivityFive;
+export default Activity5;

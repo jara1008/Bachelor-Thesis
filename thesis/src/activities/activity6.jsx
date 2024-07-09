@@ -3,7 +3,7 @@ import '../styles/activity6.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
 
-function ActivitySix({ difficulty }) {
+function Activity6({ difficulty }) {
     const generateInitialValues = () => {
         let initialLeftCoinsTen, initialLeftCoinsOne, initialRightCoinsTen, initialRightCoinsOne;
         let initialLeftVal, initialRightVal;
@@ -247,4 +247,4 @@ function ActivitySix({ difficulty }) {
     );
 }
 
-export default ActivitySix;
+export default Activity6;

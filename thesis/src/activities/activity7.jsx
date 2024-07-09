@@ -3,7 +3,7 @@ import '../styles/activity7.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel } from '../defaults';
 
-function ActivitySeven({ difficulty }) {
+function Activity7({ difficulty }) {
     const [isCorrect, setIsCorrect] = useState(false);
     const [roundCount, setRoundCount] = useState(1);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
@@ -236,4 +236,4 @@ function ActivitySeven({ difficulty }) {
     );
 }
 
-export default ActivitySeven;
+export default Activity7;

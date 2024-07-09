@@ -5,7 +5,7 @@ import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } fro
 import tree from '../images/tree.png';
 import car from '../images/car_large.png';
 
-function ActivityEight({difficulty}) {
+function Activity8({difficulty}) {
     const [isCorrect, setIsCorrect] = useState(false);
     const [roundCount, setRoundCount] = useState(0);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
@@ -499,4 +499,4 @@ function ActivityEight({difficulty}) {
     );
 }
 
-export default ActivityEight;
+export default Activity8;
