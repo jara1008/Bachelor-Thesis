@@ -13,6 +13,7 @@ import ActivitySix from './activities/activitySix';
 import ActivitySeven from './activities/activitySeven';
 import ActivityEight from './activities/activityEight';
 import ActivityNine from './activities/activityNine';
+import ActivityTen from './activities/activityTen';
 import DifficultySelection from './components/difficultySelection';
 import GameWrapper from './components/gameWrapper';
 
@@ -54,6 +55,7 @@ const App = () => {
               <Route path="/activitySeven" element={<ActivitySeven />} />
               <Route path="/activityEight" element={<ActivityEight />} />
               <Route path="/activityNine" element={<ActivityNine />} />
+              <Route path="/activityTen" element={<ActivityNine />} />
               <Route path="/difficultySelection/:level/:title" element={<DifficultySelection />} />
               <Route path="/:level/:difficulty" element={<GameWrapper />} />
             </Routes>
