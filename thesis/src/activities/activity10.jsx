@@ -47,7 +47,8 @@ function Activity10({ difficulty }) {
         let swap = numberSmall;
         setNumberSmall(numberLarge);
         setNumberLarge(swap);
-        setMinus(true);
+        if (!!!minus) {setMinus(true)}
+        else {setMinus(false)}
     };
 
     const checkInput = () => {
@@ -84,15 +85,17 @@ function Activity10({ difficulty }) {
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} />}
                 {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} />}
 
-                {difficulty === 'hard' && (
-                    <button onClick={invertNumbers} className="button-invert-A10"></button>
-                )}
-
                 <div className="number-container-A10">
                     <div>
+                        <div style={{ display: 'flex', width: '100%' }}>
+                        {minus && <div className='minus-top-A10'>-</div>}
+                        {difficulty === 'hard' && (
+                            <button onClick={invertNumbers} className="invert-button-A10">↓↑</button>
+                        )}
                         <div className="number-box-A10">
                             <div className="number-A10">{numberLarge}</div>
                             <div className="number-A10">-{numberSmall}</div>
+                        </div>
                         </div>
                         <div className="input-fields-A10">
                             <div className="input-row-A10">
@@ -162,7 +165,7 @@ function Activity10({ difficulty }) {
                             </div>
                             <div className="coin-row-divider-A10" />
                             <div className="input-row-A10">
-                                {minus && <div className='number-A10'>-</div>}
+                                {minus && <div className='minus-bot-A10'>-</div>}
                                 <input
                                     type="text"
                                     className="input-A10"

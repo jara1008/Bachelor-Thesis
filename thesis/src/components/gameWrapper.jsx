@@ -14,7 +14,6 @@ const GameWrapper = () => {
     const { level, difficulty } = useParams();
 
     const getGameComponent = () => {
-        console.log(level)
         switch (level) {
             case 'activity1':
                 return <Activity1 difficulty={difficulty} />;

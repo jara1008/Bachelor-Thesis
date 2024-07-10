@@ -27,6 +27,7 @@
     right: 0;
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     gap: 1.5vh;
     padding-top: 2vh;
     padding-right: 2vw;
@@ -52,15 +53,46 @@
 
 .coin-row-divider-A10 {
     border: 1px solid black;
-    width: 110%;
+    width: 80%;
 }
 
-.button-invert-A10 {
-    cursor: pointer;
-}
-
-.minus-A10{
+.minus-top-A10{
     position: relative;
     font-size: 3vw;
     font-family: var(--font-family);
+    left: -1vw;
+    color: blue;
 }
+
+.minus-bot-A10{
+    position: relative;
+    font-size: 3vw;
+    font-family: var(--font-family);
+    top: -1vh;
+    color: blue;
+}
+
+.invert-button-A10 {
+    position: absolute;
+    top: 15vh;
+    left: 43vw;
+    padding: 0vh 0vw 0.4vh 0vw;
+    font-size: 2vw;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    border-radius: 20%;
+    height: 4.5vw;
+    width: 4.5vw;
+}
+
+
+
+
+
+
+
+
+
+
