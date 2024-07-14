@@ -3,10 +3,7 @@
 .info-A5 {
   font-family: var(--font-family);
   font-size: 4vw;
-  position: absolute;
-  left: 50%;
-  top: 40%;
-  transform: translateX(-50%);
+  margin-top: 15vh;
   display: flex;
   align-items: center;
   justify-content: center;
