@@ -23,14 +23,6 @@
     padding: 0.5vw;
 }
 
-@media only screen and (max-width: 1124px) {
-    .rectangle {
-        font-size: 2vw; 
-        width: 12vw;    
-        height: 12vw; 
-    }
-}
-
 .rectangle.inactive {
     cursor: not-allowed; /* Cursor to indicate it's not clickable */
 }
