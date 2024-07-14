@@ -14,7 +14,7 @@
     align-items: center;
 }
 
-@media (max-width: 824px) {
+@media (max-width: 1124px) {
     .white-box-small {
         height: 35vh;
     }
