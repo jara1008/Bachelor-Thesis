@@ -23,7 +23,7 @@
     padding: 0.5vw;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1124px) {
     .rectangle {
         font-size: 2vw; 
         width: 12vw;    

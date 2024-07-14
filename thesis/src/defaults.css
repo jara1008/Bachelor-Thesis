@@ -39,7 +39,7 @@ body, html {
     flex-direction: column;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1124px) {
     .white-box-regular {
         height: 60vh;
     }
@@ -59,7 +59,7 @@ body, html {
     flex-direction: column;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1124px) {
     .white-box-tall {
         height: 70vh;
     }
