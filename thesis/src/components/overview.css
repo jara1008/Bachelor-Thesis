@@ -9,7 +9,7 @@
     left: 0;
     position: absolute;
     width: 10.2vw;
-    aspect-ratio: 1/1;
+    height: 10.2vw;
     /* px 0px 15px 8px #bec3f1d6; USE LATER FOR LEVEL INDICATION */
 
     font-family: var(--font-family);
@@ -21,6 +21,14 @@
     font-weight: bold;
     letter-spacing: 2px;
     padding: 0.5vw;
+}
+
+@media only screen and (max-width: 1024px) {
+    .rectangle {
+        font-size: 2vw; 
+        width: 12vw;    
+        height: 12vw; 
+    }
 }
 
 .rectangle.inactive {
