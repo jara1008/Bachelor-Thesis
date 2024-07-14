@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Bachelor_Thesis/static/css/main.9c77e9fd.css",
+    "main.css": "/Bachelor_Thesis/static/css/main.6575e008.css",
     "main.js": "/Bachelor_Thesis/static/js/main.57e0399c.js",
     "static/media/cloud.png": "/Bachelor_Thesis/static/media/cloud.b05774211b0084bfbf03.png",
     "static/media/sparkle.svg": "/Bachelor_Thesis/static/media/sparkle.3c7b022ac75c69117237086d6aa1ded7.svg",
     "index.html": "/Bachelor_Thesis/index.html",
     "static/media/star_empty.svg": "/Bachelor_Thesis/static/media/star_empty.4f1416b99ef0d8cb8b82e78c4dbc5fed.svg",
     "static/media/star.svg": "/Bachelor_Thesis/static/media/star.b0ec811bcfd5a6acb93aed76fa8df327.svg",
-    "main.9c77e9fd.css.map": "/Bachelor_Thesis/static/css/main.9c77e9fd.css.map",
+    "main.6575e008.css.map": "/Bachelor_Thesis/static/css/main.6575e008.css.map",
     "main.57e0399c.js.map": "/Bachelor_Thesis/static/js/main.57e0399c.js.map"
   },
   "entrypoints": [
-    "static/css/main.9c77e9fd.css",
+    "static/css/main.6575e008.css",
     "static/js/main.57e0399c.js"
   ]
 }
