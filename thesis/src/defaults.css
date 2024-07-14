@@ -39,6 +39,12 @@ body, html {
     flex-direction: column;
 }
 
+@media (max-width: 1024px) {
+    .white-box-regular {
+        height: 60vh;
+    }
+}
+
 .white-box-tall {
     background-color: var(--secondary-color);
     border-radius: 10px;
@@ -51,6 +57,12 @@ body, html {
     position: relative;
     display: flex;
     flex-direction: column;
+}
+
+@media (max-width: 1024px) {
+    .white-box-tall {
+        height: 70vh;
+    }
 }
 
 .white-box-large {
