@@ -43,7 +43,7 @@ const App = () => {
         <ScreenSizeMessage />
       ) : (
         <div className="content">
-          <Router basename={process.env.PUBLIC_URL || "/Bachelor_Thesis"}>
+          <Router>
             <Routes>
               <Route path="/Bachelor_Thesis" element={<Overview />} />
               <Route path="/instructions" element={<Instructions />} />
