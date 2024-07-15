@@ -125,6 +125,13 @@
   font-weight: bold;
 }
 
+@media (max-width: 1124px) {
+  .squareHard {
+    width: 7vw;
+    height: 7vw;
+  }
+}
+
 .rectangle-container-hard {
   display: flex;
   justify-content: flex-start;
