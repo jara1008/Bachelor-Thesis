@@ -101,6 +101,7 @@
 
 @media (max-width: 1124px) {
     .invert-button-A10 {
-        top: 10vh;
+        top: 12vh;
+        left: 46vw;
     }
   }
