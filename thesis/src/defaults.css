@@ -22,8 +22,8 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100dvh;
-    width: 100dvw;
+    height: 100%;
+    width: 100%;
 }
 
 .white-box-regular {
