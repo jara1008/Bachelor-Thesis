@@ -42,6 +42,7 @@ body, html {
 @media (max-width: 1124px) {
     .white-box-regular {
         height: 75vh;
+        width: 70vw;
     }
 }
 
@@ -62,6 +63,7 @@ body, html {
 @media (max-width: 1124px) {
     .white-box-tall {
         height: 85vh;
+        width: 70vw;
     }
 }
 
