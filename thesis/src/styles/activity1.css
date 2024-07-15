@@ -6,6 +6,19 @@
     cursor: pointer;
 }
 
+.cloud-A1 {
+    position: absolute;
+    margin-top: 2vh;
+    height: 44vh;
+    width: 27vw;
+}
+
+@media (max-width: 1124px) {
+    .cloud-A1 {
+        width: 30vw;
+    }
+}
+
 .div-A1 {
     position: relative;
     height: 100%;

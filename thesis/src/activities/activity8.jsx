@@ -237,7 +237,7 @@ function Activity8({difficulty}) {
     });    
 
     const renderGrid = () => (
-        <div style={{width: '60%', height: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center'}}>
+        <div className='grid'>
             <div style={{display: 'flex', flexDirection: 'column', height: '60vh', width: '60vh'}}>{
                 Array.from({ length: 12 }).map((_, id) => (
                     <div key={id} style={{display: 'flex', height: '2.5vw', width:'40vw'}}>{

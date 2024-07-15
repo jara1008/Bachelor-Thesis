@@ -258,7 +258,7 @@ function Activity1({ difficulty }) {
                         className="info-input-A1"
                         readOnly={isCorrect}
                     />}
-                    <img src={cloud} alt="Cloud" style={{ position: "absolute", marginTop: "2vh", left: "0%", height: "44vh", width: "27vw" }} />
+                    <img src={cloud} alt="Cloud" className='cloud-A1' style={{ left: "0%" }} />
                     {allStars.left}
                     {difficulty === 'easy' && <input
                         type="checkbox"
@@ -266,7 +266,7 @@ function Activity1({ difficulty }) {
                         onChange={handleRightCheckboxChange}
                         style={{ position: "absolute", marginTop: "2vh", left: "75%", height: "5%", width: "5%", zIndex: 2, cursor: "pointer" }}
                     />}
-                    <img src={cloud} alt="Cloud" style={{ position: "absolute", marginTop: "2vh", right: "1%", height: "44vh", width: "27vw" }} />
+                    <img src={cloud} alt="Cloud" className='cloud-A1' style={{ right: "1%" }} />
                     {allStars.right}
                     <svg style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%", pointerEvents: "none" }}>
                         {lines.map((line, index) => (
