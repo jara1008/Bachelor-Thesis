@@ -45,11 +45,11 @@ const App = () => {
         <div className="content">
           <Router>
             <Routes>
-              <Route path="/Bachelor_Thesis" element={<Overview />} />
+              <Route path="/" element={<Overview />} />
               <Route path="/instructions" element={<Instructions />} />
-              <Route path="/difficultySelection/activity1" element={<Activity1 />} />
-              <Route path="/difficultySelection/activity2" element={<Activity2 />} />
-              <Route path="/difficultySelection/activity3" element={<Activity3 />} />
+              <Route path="/activity1" element={<Activity1 />} />
+              <Route path="/activity2" element={<Activity2 />} />
+              <Route path="/activity3" element={<Activity3 />} />
               <Route path="/activity5" element={<Activity5 />} />
               <Route path="/activity6" element={<Activity6 />} />
               <Route path="/activity7" element={<Activity7 />} />
