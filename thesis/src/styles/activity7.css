@@ -34,3 +34,9 @@
     border: 1px solid var(--text-color);
     border-radius: 5%;
 }
+
+@media (max-width: 1124px) {
+    .input-field-A7 {
+        font-size: 2vh;
+    }
+}

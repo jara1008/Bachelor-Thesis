@@ -51,6 +51,12 @@
     color: var(--text-color);
 }
 
+@media (max-width: 1124px) {
+    .input-A10 {
+        width: 1vw;
+    }
+}
+
 .coin-row-divider-A10 {
     border: 1px solid black;
     width: 80%;
