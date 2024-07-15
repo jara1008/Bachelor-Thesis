@@ -21,7 +21,7 @@ const App = () => {
   const [isScreenSmall, setIsScreenSmall] = useState(false);
 
   const checkScreenSize = () => {
-    if (window.innerWidth < 600 || window.innerHeight < 360) { /* adjust these sizes as needed */
+    if (window.innerWidth < 600 || window.innerHeight < 360) {
       setIsScreenSmall(true);
     } else {
       setIsScreenSmall(false);
@@ -43,13 +43,13 @@ const App = () => {
         <ScreenSizeMessage />
       ) : (
         <div className="content">
-          <Router>
+          <Router basename={process.env.PUBLIC_URL || ''}>
             <Routes>
               <Route path="/Bachelor_Thesis" element={<Overview />} />
               <Route path="/instructions" element={<Instructions />} />
-              <Route path="/difficultySelection/activity1" element={<Activity1 />} />
-              <Route path="/difficultySelection/activity2" element={<Activity2 />} />
-              <Route path="/difficultySelection/activity3" element={<Activity3 />} />
+              <Route path="/activity1" element={<Activity1 />} />
+              <Route path="/activity2" element={<Activity2 />} />
+              <Route path="/activity3" element={<Activity3 />} />
               <Route path="/activity5" element={<Activity5 />} />
               <Route path="/activity6" element={<Activity6 />} />
               <Route path="/activity7" element={<Activity7 />} />
