@@ -60,7 +60,13 @@
     font-family: var(--font-family);
     color: var(--text-color);
     position: absolute;
-    left: 6%;
+    margin-left: 4vw;
     top: 75%;
     transform: translate(-50%, -50%);
 }
+
+@media (max-width: 1124px) {
+    .info-input-A3 {
+        width: 1vw;
+    }
+  }
