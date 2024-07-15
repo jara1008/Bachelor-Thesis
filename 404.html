@@ -2,27 +2,14 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>404 Redirect</title>
+    <meta http-equiv="refresh" content="0; url=%PUBLIC_URL%/index.html">
     <script>
       console.log("404.html loaded. Redirecting to index.html...");
-
-      // Redirect logic
       (function() {
-        // Extract the base URL and the full path
-        var path = window.location.pathname;
-        var baseUrl = path.match(/^(\/[^\/]+\/[^\/]+)\/?.*$/)[1];
-        var newUrl = baseUrl + '/index.html';
-
-        console.log("Redirecting to:", newUrl);
-        window.location.href = newUrl + '?p=' + encodeURIComponent(path);
+        var redirect = window.location.pathname.replace(/^(\/[^\/]+)\/.*$/, "$1");
+        window.location.href = redirect + '/';
       })();
     </script>
   </head>
-  <body>
-    <h1>Redirecting...</h1>
-    <p>If you are not redirected, <a id="redirect-link" href="./index.html">click here</a>.</p>
-    <script>
-      document.getElementById('redirect-link').href = window.location.origin + newUrl + '?p=' + encodeURIComponent(path);
-    </script>
-  </body>
+  <body></body>
 </html>
