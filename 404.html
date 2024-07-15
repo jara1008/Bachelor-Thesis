@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="refresh" content="0; url=%PUBLIC_URL%/index.html">
     <script>
-      // This script will redirect to the correct route
+      console.log("404.html loaded. Redirecting to index.html...");
       (function() {
         var redirect = window.location.pathname.replace(/^(\/[^\/]+)\/.*$/, "$1");
         window.location.href = redirect + '/';
