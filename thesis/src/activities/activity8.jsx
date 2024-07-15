@@ -238,9 +238,9 @@ function Activity8({difficulty}) {
 
     const renderGrid = () => (
         <div className='grid'>
-            <div style={{display: 'flex', flexDirection: 'column', height: '60vh', width: '60vh'}}>{
+            <div style={{display: 'flex', flexDirection: 'column', height: '30vw', width: '30vw'}}>{
                 Array.from({ length: 12 }).map((_, id) => (
-                    <div key={id} style={{display: 'flex', height: '2.5vw', width:'40vw'}}>{
+                    <div key={id} style={{display: 'flex', height: '2.5vw', width:'30vw'}}>{
                         Array.from({ length: 12 }).map((_, id2) => (
                             <div className='rectangle2' key={[id, id2]} style={{
                                 ...borderstyle(id, id2),

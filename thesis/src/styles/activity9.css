@@ -66,12 +66,6 @@
     margin-top: 0.5vw;
 }
 
-@media (max-width: 1124px) {
-    .coin-row-divider {
-      width: 80%;
-    }
-  }
-
 .symbol-A9 {
     position: absolute;
     font-weight: bold;
