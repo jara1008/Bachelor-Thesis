@@ -67,6 +67,7 @@
 
 @media (max-width: 1124px) {
     .info-input-A3 {
-        width: 1vw;
+        margin-left: 10vw;
+        width: 0.1vw;
     }
   }
