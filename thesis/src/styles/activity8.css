@@ -112,7 +112,7 @@
 }
 
 @media (max-width: 1124px) {
-  .rectangle-container-hard {
+  .grid {
     width: 50%;
   }
 }
