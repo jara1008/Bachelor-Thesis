@@ -43,9 +43,9 @@ const App = () => {
         <ScreenSizeMessage />
       ) : (
         <div className="content">
-          <Router>
+          <Router basename="Bachelor_Thesis">
             <Routes>
-              <Route path="/Bachelor_Thesis" element={<Overview />} />
+              <Route path="/" element={<Overview />} />
               <Route path="/instructions" element={<Instructions />} />
               <Route path="/activity1" element={<Activity1 />} />
               <Route path="/activity2" element={<Activity2 />} />

@@ -10,7 +10,7 @@ export const checkButtonTop = 92;
 
 /* default components */
 export const HomeLink = ({ top = '-8%' }) => (
-  <Link to={"/Bachelor_Thesis/"}>
+  <Link to={"/"}>
     <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: top, left: "95%" }} />
   </Link>
 );
