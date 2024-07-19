@@ -7,30 +7,30 @@ import star from "../images/star.svg";
 
 /* define fix positions for stars */
 const leftCloudPositions = [
-    { top: 52, left: 20 }, { top: 27, left: 35 }, { top: 45, left: 6 }, 
-    { top: 56, left: 28 }, { top: 20, left: 25 }, { top: 32, left: 17 }, 
-    { top: 42, left: 38 } 
+    { top: 52, left: 20 }, { top: 27, left: 35 }, { top: 45, left: 6 },
+    { top: 56, left: 28 }, { top: 20, left: 25 }, { top: 32, left: 17 },
+    { top: 42, left: 38 }
 ];
 const rightCloudPositions = [
-    { top: 33, left: 67 }, { top: 19, left: 75 }, { top: 56, left: 68 }, 
-    { top: 39, left: 90 }, { top: 54, left: 80 }, { top: 48, left: 60 }, 
-    { top: 27, left: 84 }  
+    { top: 33, left: 67 }, { top: 19, left: 75 }, { top: 56, left: 68 },
+    { top: 39, left: 90 }, { top: 54, left: 80 }, { top: 48, left: 60 },
+    { top: 27, left: 84 }
 ];
 
 const starSize = 4; // Size of the star in percentage
 const yOffset = 1; // Additional y-axis offset in percentage to shift the lines downwards
 
 function Activity1({ difficulty }) {
-    const [allStars, setAllStars] = useState({ left: [], right: [] }); /* positions of stars in the left and right cloud*/
+    const [allStars, setAllStars] = useState({ left: [], right: [] }); /* positions of stars in the left and right cloud */
     const [firstPos, setFirstPos] = useState(null); /* start point of a line */
     const [secondPos, setSecondPos] = useState(null); /* end point of a line */
     const [lines, setLines] = useState([]); /* stored lines */
-    const firstPosRef = useRef(firstPos); 
+    const firstPosRef = useRef(firstPos);
     const secondPosRef = useRef(secondPos);
     const svgRef = useRef(null);
     const [isCorrect, setIsCorrect] = useState(false); /* tracks if the stars are correctly connected */
-    const [displayCorrectness, setCorrectnessLabel] = useState(false); /* enables a message that confirmes correctness */
-    const [roundCount, setRoundCount] = useState(1); /* counts the amount of repetitions played */
+    const [displayCorrectness, setCorrectnessLabel] = useState(false); /* enables a message that confirms correctness */
+    const [roundCount, setRoundCount] = useState(1); /* counts the number of repetitions played */
     const [firstCloudCount, setFirstCloudCount] = useState(0); /* track #stars in left cloud */
     const [secondCloudCount, setSecondCloudCount] = useState(0); /* track #stars in right cloud */
     const [isCheckedLeft, setIsLeftChecked] = useState(false);
@@ -38,6 +38,21 @@ function Activity1({ difficulty }) {
     const [checkBoxCorrectness, setCheckBoxCorrectness] = useState(false);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 }); /* mouse position */
     const [inputValue, setInputValue] = useState('');
+    const touchEventRef = useRef(false);
+
+    const handleStarClick = useCallback((e, position) => {
+        if (touchEventRef.current) {
+            touchEventRef.current = false;
+            return;
+        }
+        handleStarPosition(position);
+    }, []);
+
+    const handleTouchStart = useCallback((e, position) => {
+        e.preventDefault();
+        touchEventRef.current = true;
+        handleStarPosition(position);
+    }, []);
 
     const generateStars = useCallback((count, positions, cloudSide) => {
         return positions.slice(0, count).map((pos, index) => (
@@ -52,10 +67,26 @@ function Activity1({ difficulty }) {
                     left: `${pos.left}%`,
                     width: `${starSize}%`
                 }}
-                onClick={() => handleStarClick({ ...pos, cloudSide })}
+                onClick={(e) => handleStarClick(e, { ...pos, cloudSide })}
+                onTouchStart={(e) => handleTouchStart(e, { ...pos, cloudSide })}
             />
         ));
-    }, []);
+    }, [handleStarClick, handleTouchStart]);
+
+    const handleStarPosition = (position) => {
+        if (!firstPosRef.current) {
+            setFirstPos(position);
+        } else {
+            setSecondPos(position);
+
+            setLines(prevLines => [
+                ...prevLines,
+                { start: firstPosRef.current, end: position }
+            ]);
+            setFirstPos(null);
+            setSecondPos(null);
+        }
+    };
 
     useEffect(() => {
         const handleMouseMove = (event) => {
@@ -84,13 +115,13 @@ function Activity1({ difficulty }) {
     useEffect(() => {
         setFirstCloudCount(Math.floor(Math.random() * leftCloudPositions.length) + 1);
         setSecondCloudCount(Math.floor(Math.random() * rightCloudPositions.length) + 1);
-    }, []); 
-    
+    }, []);
+
     useEffect(() => {
         if (leftCloudPositions.length > 0 && rightCloudPositions.length > 0) {
             const starsInFirstCloud = generateStars(firstCloudCount, leftCloudPositions, 'left');
             const starsInSecondCloud = generateStars(secondCloudCount, rightCloudPositions, 'right');
-    
+
             setAllStars({ left: starsInFirstCloud, right: starsInSecondCloud });
         }
     }, [firstCloudCount, secondCloudCount, generateStars]);
@@ -98,32 +129,15 @@ function Activity1({ difficulty }) {
     useEffect(() => {
         firstPosRef.current = firstPos;
     }, [firstPos]);
-    
+
     useEffect(() => {
         secondPosRef.current = secondPos;
     }, [secondPos]);
 
-    /* tracks clicked stars */ 
-    const handleStarClick = (position) => {
-        if (!firstPosRef.current) {
-            setFirstPos(position);
-        } 
-        else if (!secondPosRef.current) {
-            setSecondPos(position);
-    
-            setLines(prevLines => [
-                ...prevLines,
-            { start: firstPosRef.current, end: position }
-            ]);
-            setFirstPos(null);
-            setSecondPos(null);
-        }
-    };
-
     const checkInput = () => {
         setCorrectnessLabel(true);
         const seenPositions = new Set();
-        
+
         if (lines.length !== Math.min(firstCloudCount, secondCloudCount)) {
             setIsLeftChecked(false);
             setIsRightChecked(false);
@@ -133,17 +147,17 @@ function Activity1({ difficulty }) {
 
         for (const line of lines) {
             const { start, end } = line;
-            if (!((start.cloudSide === 'left' && end.cloudSide === 'right') || 
-                  (start.cloudSide === 'right' && end.cloudSide === 'left'))) {
+            if (!((start.cloudSide === 'left' && end.cloudSide === 'right') ||
+                (start.cloudSide === 'right' && end.cloudSide === 'left'))) {
                 setIsLeftChecked(false);
                 setIsRightChecked(false);
                 setLines([]);
                 return;
             }
-    
+
             const startPos = `${start.top}-${start.left}`;
             const endPos = `${end.top}-${end.left}`;
-    
+
             if (seenPositions.has(startPos) || seenPositions.has(endPos)) {
                 setIsLeftChecked(false);
                 setIsRightChecked(false);
@@ -206,7 +220,7 @@ function Activity1({ difficulty }) {
         if (leftCloudPositions.length > 0 && rightCloudPositions.length > 0) {
             const starsInFirstCloud = generateStars(firstCloudCount, leftCloudPositions, 'left');
             const starsInSecondCloud = generateStars(secondCloudCount, rightCloudPositions, 'right');
-    
+
             setAllStars({ left: starsInFirstCloud, right: starsInSecondCloud });
         }
         setIsLeftChecked(false);
@@ -216,6 +230,8 @@ function Activity1({ difficulty }) {
         setIsCorrect(false);
         setCorrectnessLabel(false);
         setLines([]);
+        setFirstPos(null);
+        setSecondPos(null);
     };
 
     const handleLeftCheckboxChange = (event) => {
@@ -240,8 +256,8 @@ function Activity1({ difficulty }) {
         <div className="container" >
             <div className="white-box-regular" >
                 <HomeLink />
-                {difficulty==='easy' && <span className="title-text">Verbinde die Sterne miteinander. Wähle die Wolke mit MEHR Sternen aus:</span>}
-                {difficulty==='hard' && <span className="title-text">Verbinde die Sterne miteinander. Wähle {"<, >, ="} passend:</span>}
+                {difficulty === 'easy' && <span className="title-text">Verbinde die Sterne miteinander. Wähle die Wolke mit MEHR Sternen aus:</span>}
+                {difficulty === 'hard' && <span className="title-text">Verbinde die Sterne miteinander. Wähle {"<, >, ="} passend:</span>}
                 <div className="div-A1">
                     {difficulty === 'easy' && <input
                         type="checkbox"
@@ -270,28 +286,28 @@ function Activity1({ difficulty }) {
                     <svg ref={svgRef} style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%", pointerEvents: "none" }}>
                         {lines.map((line, index) => (
                             <line key={index}
-                                  x1={`calc(${line.start.left}% + ${starSize / 2}%)`} y1={`calc(${line.start.top}% + ${starSize / 2 + yOffset}%)`}
-                                  x2={`calc(${line.end.left}% + ${starSize / 2}%)`} y2={`calc(${line.end.top}% + ${starSize / 2 + yOffset}%)`}
-                                  stroke="black" strokeWidth="2" />
+                                x1={`calc(${line.start.left}% + ${starSize / 2}%)`} y1={`calc(${line.start.top}% + ${starSize / 2 + yOffset}%)`}
+                                x2={`calc(${line.end.left}% + ${starSize / 2}%)`} y2={`calc(${line.end.top}% + ${starSize / 2 + yOffset}%)`}
+                                stroke="black" strokeWidth="2" />
                         ))}
-                        {firstPos && (
+                        {firstPos && !secondPos && (
                             <line
                                 x1={`calc(${firstPos.left}% + ${starSize / 2}%)`} y1={`calc(${firstPos.top}% + ${starSize / 2 + yOffset}%)`}
                                 x2={`${mousePos.x}px`} y2={`${mousePos.y}px`}
                                 stroke="black" strokeWidth="2" />
                         )}
                     </svg>
-                    {difficulty==='hard' && <div className="button-container-A1">
+                    {difficulty === 'hard' && <div className="button-container-A1">
                         <button className="operator-button-A1" onClick={() => handleButtonClick('<')}>{'<'}</button>
                         <button className="operator-button-A1" onClick={() => handleButtonClick('=')}>{'='}</button>
                         <button className="operator-button-A1" onClick={() => handleButtonClick('>')}>{'>'}</button>
                     </div>}
-                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig" isVisible={true} top="76%" left="77%"/>}
-                {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top="76%" left="77%"/>}
-                {checkBoxCorrectness && difficulty==='easy' && <CorrectnessLabel message="Wähle das richtige Kästchen an!" isVisible={true} top="73%" left="71%" height="24%" width="30%"/>}
-                {checkBoxCorrectness && difficulty==='hard' && <CorrectnessLabel message="Wähle <, =, > passend!" isVisible={true} top="73%" left="71%" height="24%" width="30%"/>}
+                    {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig" isVisible={true} top="76%" left="77%" />}
+                    {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top="76%" left="77%" />}
+                    {checkBoxCorrectness && difficulty === 'easy' && <CorrectnessLabel message="Wähle das richtige Kästchen an!" isVisible={true} top="73%" left="71%" height="24%" width="30%" />}
+                    {checkBoxCorrectness && difficulty === 'hard' && <CorrectnessLabel message="Wähle <, =, > passend!" isVisible={true} top="73%" left="71%" height="24%" width="30%" />}
                 </div>
-                <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-default"
                     style={{ top: `${checkButtonTop}%`, left: '50%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
