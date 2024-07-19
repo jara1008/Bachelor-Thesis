@@ -17,6 +17,9 @@ const rightCloudPositions = [
     { top: 27, left: 84 }  
 ];
 
+const starSize = 4; // Size of the star in percentage
+const yOffset = 1; // Additional y-axis offset in percentage to shift the lines downwards
+
 function Activity1({ difficulty }) {
     const [allStars, setAllStars] = useState({ left: [], right: [] }); /* positions of stars in the left and right cloud*/
     const [firstPos, setFirstPos] = useState(null); /* start point of a line */
@@ -24,6 +27,7 @@ function Activity1({ difficulty }) {
     const [lines, setLines] = useState([]); /* stored lines */
     const firstPosRef = useRef(firstPos); 
     const secondPosRef = useRef(secondPos);
+    const svgRef = useRef(null);
     const [isCorrect, setIsCorrect] = useState(false); /* tracks if the stars are correctly connected */
     const [displayCorrectness, setCorrectnessLabel] = useState(false); /* enables a message that confirmes correctness */
     const [roundCount, setRoundCount] = useState(1); /* counts the amount of repetitions played */
@@ -33,16 +37,7 @@ function Activity1({ difficulty }) {
     const [isCheckedRight, setIsRightChecked] = useState(false);
     const [checkBoxCorrectness, setCheckBoxCorrectness] = useState(false);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 }); /* mouse position */
-    const [offsets, setOffsets] = useState({ offsetx: 0, offsety: 0 }); /* offsets */
     const [inputValue, setInputValue] = useState('');
-
-    const updateOffsets = () => {
-        const vw = window.innerWidth / 10;
-        const vh = window.innerHeight / 10;
-        const offsetx = 4.35 * vh;
-        const offsety = 1.45 * vw;
-        setOffsets({ offsetx, offsety });
-    };
 
     const generateStars = useCallback((count, positions, cloudSide) => {
         return positions.slice(0, count).map((pos, index) => (
@@ -55,6 +50,7 @@ function Activity1({ difficulty }) {
                     position: "absolute",
                     top: `${pos.top}%`,
                     left: `${pos.left}%`,
+                    width: `${starSize}%`
                 }}
                 onClick={() => handleStarClick({ ...pos, cloudSide })}
             />
@@ -62,17 +58,11 @@ function Activity1({ difficulty }) {
     }, []);
 
     useEffect(() => {
-        updateOffsets(); 
-        window.addEventListener('resize', updateOffsets);
-
-        return () => {
-            window.removeEventListener('resize', updateOffsets);
-        };
-    }, []);
-
-    useEffect(() => {
         const handleMouseMove = (event) => {
-            setMousePos({ x: event.clientX - offsets.offsetx, y: event.clientY - offsets.offsety });
+            if (svgRef.current) {
+                const rect = svgRef.current.getBoundingClientRect();
+                setMousePos({ x: event.clientX - rect.left, y: event.clientY - rect.top });
+            }
         };
 
         window.addEventListener('mousemove', handleMouseMove);
@@ -80,7 +70,7 @@ function Activity1({ difficulty }) {
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
         };
-    }, [offsets]);
+    }, []);
 
     useEffect(() => {
         setFirstCloudCount(Math.floor(Math.random() * leftCloudPositions.length) + 1);
@@ -268,17 +258,17 @@ function Activity1({ difficulty }) {
                     />}
                     <img src={cloud} alt="Cloud" className='cloud-A1' style={{ right: "1%" }} />
                     {allStars.right}
-                    <svg style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%", pointerEvents: "none" }}>
+                    <svg ref={svgRef} style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%", pointerEvents: "none" }}>
                         {lines.map((line, index) => (
                             <line key={index}
-                                  x1={`calc(${line.start.left}% + 1.4vw)`} y1={`calc(${line.start.top}% + 1.4vw)`}
-                                  x2={`calc(${line.end.left}% + 1.4vw)`} y2={`calc(${line.end.top}% + 1.4vw)`}
+                                  x1={`calc(${line.start.left}% + ${starSize / 2}%)`} y1={`calc(${line.start.top}% + ${starSize / 2 + yOffset}%)`}
+                                  x2={`calc(${line.end.left}% + ${starSize / 2}%)`} y2={`calc(${line.end.top}% + ${starSize / 2 + yOffset}%)`}
                                   stroke="black" strokeWidth="2" />
                         ))}
                         {firstPos && (
                             <line
-                                x1={`calc(${firstPos.left}% + 1.4vw)`} y1={`calc(${firstPos.top}% + 1.4vw)`}
-                                x2={`calc(${mousePos.x}px + 0.7vw)`} y2={`calc(${mousePos.y}px + 0.7vw)`}
+                                x1={`calc(${firstPos.left}% + ${starSize / 2}%)`} y1={`calc(${firstPos.top}% + ${starSize / 2 + yOffset}%)`}
+                                x2={`${mousePos.x}px`} y2={`${mousePos.y}px`}
                                 stroke="black" strokeWidth="2" />
                         )}
                     </svg>
