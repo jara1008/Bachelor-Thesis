@@ -32,7 +32,7 @@ export const EndOfGame = ({ levelName, levelNr }) => (
                 Gratulation! Du hast das Level { levelName } geschafft!
                 { /* Add party icon */ }
             </div>
-            <Link to={"/Bachelor_Thesis/"}>
+            <Link to={"/"}>
                 <button className='button-default'
                     style={{ top: '90%', left: '50%' }} 
                     onClick={incrementHighestUnlockedLevel(levelNr)}>

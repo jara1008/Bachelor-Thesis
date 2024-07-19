@@ -5,15 +5,15 @@ import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } fro
 import cloud from "../images/cloud.png";
 import star from "../images/star.svg";
 
-/* define fix positions for stars */
+/* define fixed positions for stars */
 const leftCloudPositions = [
-    { top: 52, left: 20 }, { top: 27, left: 35 }, { top: 45, left: 6 },
-    { top: 56, left: 28 }, { top: 20, left: 25 }, { top: 32, left: 17 },
-    { top: 42, left: 38 }
+    { top: 52, left: 20 }, { top: 27, left: 32 }, { top: 45, left: 6 },
+    { top: 58, left: 28 }, { top: 16, left: 25 }, { top: 32, left: 14 },
+    { top: 42, left: 36 }
 ];
 const rightCloudPositions = [
-    { top: 33, left: 67 }, { top: 19, left: 75 }, { top: 56, left: 68 },
-    { top: 39, left: 90 }, { top: 54, left: 80 }, { top: 48, left: 60 },
+    { top: 33, left: 67 }, { top: 15, left: 77 }, { top: 56, left: 71 },
+    { top: 39, left: 90 }, { top: 51, left: 80 }, { top: 45, left: 61 },
     { top: 27, left: 84 }
 ];
 
@@ -23,10 +23,10 @@ const yOffset = 1; // Additional y-axis offset in percentage to shift the lines 
 function Activity1({ difficulty }) {
     const [allStars, setAllStars] = useState({ left: [], right: [] }); /* positions of stars in the left and right cloud */
     const [firstPos, setFirstPos] = useState(null); /* start point of a line */
-    const [secondPos, setSecondPos] = useState(null); /* end point of a line */
+    const [secondPos] = useState(null); /* end point of a line */
     const [lines, setLines] = useState([]); /* stored lines */
+    const [connectedStars, setConnectedStars] = useState(new Set()); /* tracks connected stars */
     const firstPosRef = useRef(firstPos);
-    const secondPosRef = useRef(secondPos);
     const svgRef = useRef(null);
     const [isCorrect, setIsCorrect] = useState(false); /* tracks if the stars are correctly connected */
     const [displayCorrectness, setCorrectnessLabel] = useState(false); /* enables a message that confirms correctness */
@@ -40,19 +40,44 @@ function Activity1({ difficulty }) {
     const [inputValue, setInputValue] = useState('');
     const touchEventRef = useRef(false);
 
+    const handleStarPosition = useCallback((position) => {
+        if (!firstPosRef.current) {
+            setFirstPos(position);
+        } else {
+            /* Check if stars are on different sides */
+            if (firstPosRef.current.cloudSide !== position.cloudSide &&
+                !connectedStars.has(`${firstPosRef.current.top}-${firstPosRef.current.left}`) &&
+                !connectedStars.has(`${position.top}-${position.left}`)) {
+                
+                setLines(prevLines => [
+                    ...prevLines,
+                    { start: firstPosRef.current, end: position }
+                ]);
+
+                setConnectedStars(prevConnectedStars => {
+                    const newConnectedStars = new Set(prevConnectedStars);
+                    newConnectedStars.add(`${firstPosRef.current.top}-${firstPosRef.current.left}`);
+                    newConnectedStars.add(`${position.top}-${position.left}`);
+                    return newConnectedStars;
+                });
+            }
+            setFirstPos(null);
+        }
+    }, [connectedStars]);
+
     const handleStarClick = useCallback((e, position) => {
         if (touchEventRef.current) {
             touchEventRef.current = false;
             return;
         }
         handleStarPosition(position);
-    }, []);
+    }, [handleStarPosition]);
 
     const handleTouchStart = useCallback((e, position) => {
         e.preventDefault();
         touchEventRef.current = true;
         handleStarPosition(position);
-    }, []);
+    }, [handleStarPosition]);
 
     const generateStars = useCallback((count, positions, cloudSide) => {
         return positions.slice(0, count).map((pos, index) => (
@@ -72,21 +97,6 @@ function Activity1({ difficulty }) {
             />
         ));
     }, [handleStarClick, handleTouchStart]);
-
-    const handleStarPosition = (position) => {
-        if (!firstPosRef.current) {
-            setFirstPos(position);
-        } else {
-            setSecondPos(position);
-
-            setLines(prevLines => [
-                ...prevLines,
-                { start: firstPosRef.current, end: position }
-            ]);
-            setFirstPos(null);
-            setSecondPos(null);
-        }
-    };
 
     useEffect(() => {
         const handleMouseMove = (event) => {
@@ -112,10 +122,22 @@ function Activity1({ difficulty }) {
         };
     }, []);
 
+    const generateNewCounts = useCallback(() => {
+        let leftCount = Math.floor(Math.random() * leftCloudPositions.length) + 1;
+        let rightCount = Math.floor(Math.random() * rightCloudPositions.length) + 1;
+        
+        if (difficulty === 'easy') {
+            while (leftCount === rightCount) {
+                rightCount = Math.floor(Math.random() * rightCloudPositions.length) + 1;
+            }
+        }
+        setFirstCloudCount(leftCount);
+        setSecondCloudCount(rightCount);
+    }, [difficulty]);
+
     useEffect(() => {
-        setFirstCloudCount(Math.floor(Math.random() * leftCloudPositions.length) + 1);
-        setSecondCloudCount(Math.floor(Math.random() * rightCloudPositions.length) + 1);
-    }, []);
+        generateNewCounts();
+    }, [generateNewCounts]);
 
     useEffect(() => {
         if (leftCloudPositions.length > 0 && rightCloudPositions.length > 0) {
@@ -129,10 +151,6 @@ function Activity1({ difficulty }) {
     useEffect(() => {
         firstPosRef.current = firstPos;
     }, [firstPos]);
-
-    useEffect(() => {
-        secondPosRef.current = secondPos;
-    }, [secondPos]);
 
     const checkInput = () => {
         setCorrectnessLabel(true);
@@ -214,8 +232,7 @@ function Activity1({ difficulty }) {
     };
 
     const handleNext = () => {
-        setFirstCloudCount(Math.floor(Math.random() * leftCloudPositions.length) + 1);
-        setSecondCloudCount(Math.floor(Math.random() * rightCloudPositions.length) + 1);
+        generateNewCounts();
 
         if (leftCloudPositions.length > 0 && rightCloudPositions.length > 0) {
             const starsInFirstCloud = generateStars(firstCloudCount, leftCloudPositions, 'left');
@@ -231,7 +248,7 @@ function Activity1({ difficulty }) {
         setCorrectnessLabel(false);
         setLines([]);
         setFirstPos(null);
-        setSecondPos(null);
+        setConnectedStars(new Set());
     };
 
     const handleLeftCheckboxChange = (event) => {
