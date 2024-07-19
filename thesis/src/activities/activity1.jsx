@@ -65,10 +65,19 @@ function Activity1({ difficulty }) {
             }
         };
 
+        const handleTouchMove = (event) => {
+            if (svgRef.current && event.touches.length === 1) {
+                const rect = svgRef.current.getBoundingClientRect();
+                setMousePos({ x: event.touches[0].clientX - rect.left, y: event.touches[0].clientY - rect.top });
+            }
+        };
+
         window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('touchmove', handleTouchMove);
 
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('touchmove', handleTouchMove);
         };
     }, []);
 
