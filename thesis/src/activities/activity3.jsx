@@ -189,7 +189,7 @@ function Activity3({ difficulty }) {
     
 
     if (roundCount >= ROUNDCOUNT) {
-        return <EndOfGame levelName="Münz Vergleich" levelNr={3} />;
+        return <EndOfGame levelName="Münz Vergleich" levelNr={3} difficulty={difficulty} />;
     }
 
     return (
