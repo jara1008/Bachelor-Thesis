@@ -462,7 +462,7 @@ function Activity8({difficulty}) {
     
     if (roundCount >= ROUNDCOUNT) {
         /* Message that the game is completed */
-        return <EndOfGame levelName="Distanzen erkennen" levelNr={8} />;
+        return <EndOfGame levelName="Distanzen erkennen" levelNr={7} difficulty={difficulty} />;
     }
 
     return (

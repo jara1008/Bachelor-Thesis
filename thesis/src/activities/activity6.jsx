@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../styles/activity6.css';
 import '../defaults.css';
-import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
+import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop, HintLabel } from '../defaults';
 
 function Activity6({ difficulty }) {
     const generateInitialValues = () => {
@@ -41,7 +41,6 @@ function Activity6({ difficulty }) {
 
     const leftVal = leftCoinsOne + leftCoinsTen * 10;
     const rightVal = rightCoinsOne + rightCoinsTen * 10;
-    const [hint, setHint] = useState(false);
 
     const [isCorrect, setIsCorrect] = useState(false);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
@@ -81,15 +80,6 @@ function Activity6({ difficulty }) {
             ))}
         </div>
     );
-
-    useEffect(() => {
-        if (hint) {
-            const timer = setTimeout(() => {
-                setHint(false);
-            }, 10000); // 10000 milliseconds = 10 seconds
-            return () => clearTimeout(timer);
-        }
-    }, [hint]);
 
     const handleCoinClick = (type, denomination, index) => {
         let nrRightTens = rightCoinsVisibleTen;
@@ -140,6 +130,9 @@ function Activity6({ difficulty }) {
                     setLeftCoinsVisibleOne(prevCount => prevCount - 1);
                     setRightCoinsVisibleOne(prevCount => prevCount - 1);
                     nrRightOnes -= 1;
+                }
+                else {
+                    return <HintLabel message="Streiche erst alle möglichen Münzen!" />;
                 }
             }
 
@@ -194,13 +187,11 @@ function Activity6({ difficulty }) {
             setLeftCoinsOne(newLeftCoinsOne);
             setLeftCoinsVisibleOne(newLeftCoinsVisibleOne);
             setLeftCoinsVisibleTen(newLeftCoinsVisibleTen);
-        } else {
-            setHint(true);
         }
     };
 
     if (roundCount >= ROUNDCOUNT) {
-        return <EndOfGame levelName="Münzen subtrahieren" levelNr={6} />;
+        return <EndOfGame levelName="Münzen subtrahieren" levelNr={5} difficulty={difficulty} />;
     }
 
     return (
@@ -234,7 +225,7 @@ function Activity6({ difficulty }) {
                 </div>
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} left="79.5%"/>}
                 {!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} left="79.5%"/>}
-                {hint && <CorrectnessLabel message="Streiche erst alle möglichen Münzen!" isVisible={true} style={{top: '0%', left: '0%', height: '15vh', width: '20vw'}}/>}
+                <HintLabel message="Streiche erst alle möglichen Münzen!" />
                 {difficulty === 'hard' && (<button onClick={handleConversion} className="header-button" style={{ marginTop: "2vh" }}>
                     Tauschen
                 </button>)}

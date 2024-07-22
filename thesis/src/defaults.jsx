@@ -1,5 +1,5 @@
 /* defauls.jsx */
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import home_icon from './images/home_icon.png';
 import './defaults.css';
@@ -15,16 +15,16 @@ export const HomeLink = ({ top = '-8%' }) => (
   </Link>
 );
 
-const incrementHighestUnlockedLevel = (currentLevelNr) => {
+const incrementHighestUnlockedLevel = (currentLevelNr, difficulty) => {
     let currentLevel = parseInt(localStorage.getItem('highestUnlockedLevel')) || 1;
-    console.log("current Level: " ,currentLevel)
     if (currentLevelNr >= currentLevel) {
         currentLevel += 1;
         localStorage.setItem('highestUnlockedLevel', currentLevel);
     }
+    localStorage.setItem(`difficulty_${currentLevelNr}`, difficulty);
 };
 
-export const EndOfGame = ({ levelName, levelNr }) => (
+export const EndOfGame = ({ levelName, levelNr, difficulty }) => (
     <div className="container">
         <div className="white-box-regular">
             <HomeLink />
@@ -35,7 +35,7 @@ export const EndOfGame = ({ levelName, levelNr }) => (
             <Link to={"/"}>
                 <button className='button-default'
                     style={{ top: '90%', left: '50%' }} 
-                    onClick={incrementHighestUnlockedLevel(levelNr)}>
+                    onClick={incrementHighestUnlockedLevel(levelNr, difficulty==='easy' ? 0 : 1)}>
                     zur Übersicht
                 </button>
             </Link>
@@ -64,5 +64,24 @@ export const ScreenSizeMessage = () => {
             </div>
         </div>
     </div>
+    );
+};
+
+export const HintLabel = ({ message, isVisible, onTimeout }) => {
+    useEffect(() => {
+        if (isVisible) {
+            const timer = setTimeout(() => {
+                onTimeout();
+            }, 10000); // 10000 milliseconds = 10 seconds
+            return () => clearTimeout(timer);
+        }
+    }, [isVisible, onTimeout]);
+
+    return (
+        isVisible && (
+            <div className="hint-label">
+                {message}
+            </div>
+        )
     );
 };

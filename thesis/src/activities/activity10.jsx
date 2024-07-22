@@ -74,7 +74,7 @@ function Activity10({ difficulty }) {
 
     if (roundCount >= ROUNDCOUNT) {
         /* Message that the game is completed */
-        return <EndOfGame levelName="Schriftliche Subtraktion" levelNr={4} />;
+        return <EndOfGame levelName="Schriftliche Subtraktion" levelNr={9} difficulty={difficulty} />;
     }
 
     return (

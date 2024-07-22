@@ -66,7 +66,7 @@ function Activity2({ difficulty }) {
 
     if (roundCount >= ROUNDCOUNT) {
         /* Message that the game is completed */
-        return <EndOfGame levelName="Längen Vergleich" levelNr={2} />;
+        return <EndOfGame levelName="Längen Vergleich" levelNr={2} difficulty={difficulty} />;
     }
 
     return (

@@ -142,7 +142,7 @@ function Activity7({ difficulty }) {
 
     if (roundCount >= ROUNDCOUNT) {
         /* Message that the game is completed */
-        return <EndOfGame levelName="Tabellensubtraktion" levelNr={7} />;
+        return <EndOfGame levelName="Tabellensubtraktion" levelNr={6} difficulty={difficulty} />;
     }
 
     return (

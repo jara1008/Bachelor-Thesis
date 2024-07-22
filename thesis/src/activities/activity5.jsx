@@ -65,7 +65,7 @@ function Activity5({ difficulty }) {
 
     if (roundCount >= ROUNDCOUNT) {
         /* Message that the game is completed */
-        return <EndOfGame levelName="Additionsrätsel" levelNr={5} />;
+        return <EndOfGame levelName="Additionsrätsel" levelNr={4} difficulty={difficulty} />;
     }
 
     return (

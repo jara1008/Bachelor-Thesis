@@ -4,6 +4,7 @@ import "./overview.css";
 import rocket from "../images/rocket.png";
 import planet from "../images/planet.png";
 import star_empty from "../images/star_empty.svg";
+import star from "../images/star.svg";
 import lock from "../images/lock.png";
 
 function Overview() {
@@ -26,8 +27,13 @@ function Overview() {
     const [rocketPositionTop] = useState('92%');
 
     // Get the highest unlocked level from local storage or set it to 1 if not available
-    //const highestUnlockedLevel = parseInt(localStorage.getItem('highestUnlockedLevel')) || 1;
-    const highestUnlockedLevel = 10;
+    const highestUnlockedLevel = parseInt(localStorage.getItem('highestUnlockedLevel')) || 1;
+
+    // Initialize the difficulty array with values from local storage or default to -1
+    const difficulty = Array.from({ length: 9 }, (_, i) => {
+        const storedValue = localStorage.getItem(`difficulty_${i + 1}`);
+        return storedValue !== null ? parseInt(storedValue) : -1;
+    });
 
     useEffect(() => {
         const topOffset = 8; 
@@ -73,9 +79,10 @@ function Overview() {
                     <Link to={box.path} key={box.id} style={{ position: 'absolute', top: box.top, left: box.left }}>
                         <div className="rectangle" style={box.id === highestUnlockedLevel ? { boxShadow: "0px 0px 15px 8px #bec3f1d6" } : {}}>
                             {box.title}
-                            <div className="stars-upper" >
-                                <img src={star_empty} alt="Star" className="star" style={{ paddingRight: "2%" }} />
-                                <img src={star_empty} alt="Star" className="star" style={{ paddingLeft: "2%" }} />
+                            <div className="stars-upper">
+                                {console.log(difficulty)}
+                                <img src={difficulty[box.id - 1] >= 0 ? star : star_empty} alt="Star" className="star" style={{ paddingRight: "2%" }} />
+                                <img src={difficulty[box.id - 1] >= 1 ? star : star_empty} alt="Star" className="star" style={{ paddingLeft: "2%" }} />
                             </div>
                         </div>
                     </Link>
