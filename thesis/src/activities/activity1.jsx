@@ -263,7 +263,7 @@ function Activity1({ difficulty }) {
         setInputValue(value);
     };
 
-    /* the game is finished */
+    /* The game is finished */
     if (roundCount >= ROUNDCOUNT) {
         /* Message that the game is completed */
         return <EndOfGame levelName="Mengen Vergleich" levelNr={1} difficulty={difficulty}/>;
