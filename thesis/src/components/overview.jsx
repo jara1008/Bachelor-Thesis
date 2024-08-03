@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import "./overview.css";
@@ -21,10 +22,9 @@ function Overview() {
     ]);
 
     const [dots, setDots] = useState([]);
-    const numberOfDots = 9; 
+    const [rocketPositionTop, setRocketPositionTop] = useState('90%');
 
-    const [rocketPosition] = useState('28.25%');
-    const [rocketPositionTop] = useState('92%');
+    const numberOfDots = 9;
 
     // Get the highest unlocked level from local storage or set it to 1 if not available
     const highestUnlockedLevel = parseInt(localStorage.getItem('highestUnlockedLevel')) || 1;
@@ -45,16 +45,15 @@ function Overview() {
         setDots(newDots);
     }, [numberOfDots]);
 
+    useEffect(() => {
+        if (highestUnlockedLevel > 1 && dots.length > 0 && highestUnlockedLevel <= numberOfDots) {
+            setRocketPositionTop(dots[dots.length - highestUnlockedLevel].top);
+            console.log(dots[dots.length - highestUnlockedLevel].top)
+        }
+    }, [dots, highestUnlockedLevel, numberOfDots]);
+
     return (
         <div className="overview">
-            <img src={rocket} alt="Rocket" style={{
-                position: 'absolute',
-                left: rocketPosition,
-                height: "4.5vw",
-                width: "4.5vw",
-                transform: 'translate(-50%, -50%)', // Center the rocket image on the dot
-                top: rocketPositionTop,
-            }} />
             <img src={planet} alt="Planet" style={{
                 position: 'absolute',
                 left: '28.25%',
@@ -73,6 +72,13 @@ function Overview() {
                         transform: 'translateX(-50%)'
                     }} className="dot"></div>
                 ))}
+                <img src={rocket} alt="Rocket" style={{
+                    position: 'relative',
+                    height: "4.5vw",
+                    width: "4.5vw",
+                    transform: "translate(-100%, -35%)", // Center the rocket image on the dot
+                    top: rocketPositionTop,
+                }} />
             </div>
             {boxes.map((box) => (
                 box.id <= highestUnlockedLevel ? (
@@ -80,7 +86,6 @@ function Overview() {
                         <div className="rectangle" style={box.id === highestUnlockedLevel ? { boxShadow: "0px 0px 15px 8px #bec3f1d6" } : {}}>
                             {box.title}
                             <div className="stars-upper">
-                                {console.log(difficulty)}
                                 <img src={difficulty[box.id - 1] >= 0 ? star : star_empty} alt="Star" className="star" style={{ paddingRight: "2%" }} />
                                 <img src={difficulty[box.id - 1] >= 1 ? star : star_empty} alt="Star" className="star" style={{ paddingLeft: "2%" }} />
                             </div>
