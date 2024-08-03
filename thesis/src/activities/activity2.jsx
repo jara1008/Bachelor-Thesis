@@ -9,7 +9,7 @@ function Activity2({ difficulty }) {
     const [inputValue, setInputValue] = useState('');
     const [isCorrect, setIsCorrect] = useState(false);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
-    const [roundCount, setRoundCount] = useState(1);
+    const [roundCount, setRoundCount] = useState(0);
     const [differenceValue, setDifferenceValue] = useState('');
     const [selectedSet, setSelectedSet] = useState([]);
     
@@ -22,7 +22,7 @@ function Activity2({ difficulty }) {
 
     const shuffleCubes = useCallback(() => {
         if (selectedSet.length > 0) {
-            const caseIndex = (roundCount - 1) % selectedSet.length;
+            const caseIndex = (roundCount);
             const { first, second } = selectedSet[caseIndex];
             setNumCubesFirstRow(first);
             setNumCubesSecondRow(second);
@@ -64,7 +64,7 @@ function Activity2({ difficulty }) {
         shuffleCubes();
     };
 
-    if (roundCount > selectedSet.length) {
+    if (roundCount >= selectedSet.length - 1) {
         /* Message that the game is completed */
         return <EndOfGame levelName="Längen Vergleich" levelNr={2} difficulty={difficulty} />;
     }

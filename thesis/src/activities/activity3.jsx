@@ -1,33 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/activity3.css';
 import '../defaults.css';
-import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
+import { HomeLink, EndOfGame, CorrectnessLabel, checkButtonTop } from '../defaults';
+import { predefinedSetsA3 } from './predefinedSets.jsx';
 
 function Activity3({ difficulty }) {
-    const [roundCount, setRoundCount] = useState(1);
-    const [leftCoinsTen, setLeftCoinsTen] = useState(Math.floor(Math.random() * 3)); 
-    const [leftCoinsOne, setLeftCoinsOne] = useState(Math.floor(Math.random() * 9) + 1);
-    const [rightCoinsTen, setRightCoinsTen] = useState(Math.floor(Math.random() * 3)); 
-    const [rightCoinsOne, setRightCoinsOne] = useState(Math.floor(Math.random() * 9) + 1);
+    const [roundCount, setRoundCount] = useState(0);
+    const [selectedSet, setSelectedSet] = useState([]);
+    const [leftCoinsTen, setLeftCoinsTen] = useState(0);
+    const [leftCoinsOne, setLeftCoinsOne] = useState(0);
+    const [rightCoinsTen, setRightCoinsTen] = useState(0);
+    const [rightCoinsOne, setRightCoinsOne] = useState(0);
     const [activeCoins, setActiveCoins] = useState(new Set());
-    
-    const [leftCoinsVisibleOne, setLeftCoinsVisibleOne] = useState(leftCoinsOne);
-    const [leftCoinsVisibleTen, setLeftCoinsVisibleTen] = useState(leftCoinsTen);
-    const [rightCoinsVisibleOne, setRightCoinsVisibleOne] = useState(rightCoinsOne);
-    const [rightCoinsVisibleTen, setRightCoinsVisibleTen] = useState(rightCoinsTen);
-    console.log(leftCoinsTen, rightCoinsTen, rightCoinsVisibleTen)
-
-    useEffect(() => {
-        if (difficulty === 'easy') {
-            setRightCoinsTen(leftCoinsTen);
-            setRightCoinsVisibleTen(leftCoinsTen);
-        }
-    }, [difficulty, leftCoinsTen]);
-    console.log(leftCoinsTen, rightCoinsTen, rightCoinsVisibleTen)
-
+    const [leftCoinsVisibleOne, setLeftCoinsVisibleOne] = useState(0);
+    const [leftCoinsVisibleTen, setLeftCoinsVisibleTen] = useState(0);
+    const [rightCoinsVisibleOne, setRightCoinsVisibleOne] = useState(0);
+    const [rightCoinsVisibleTen, setRightCoinsVisibleTen] = useState(0);
     const [isCorrect, setIsCorrect] = useState(false);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
     const [inputValue, setInputValue] = useState('');
+
+    useEffect(() => {
+        const sets = difficulty === 'easy' ? predefinedSetsA3.easy : predefinedSetsA3.hard;
+        const randomSet = sets[Math.floor(Math.random() * sets.length)];
+        setSelectedSet(randomSet);
+    }, [difficulty]);
+
+    useEffect(() => {
+        if (selectedSet.length > 0) {
+            const { left, right } = selectedSet[roundCount];
+            setLeftCoinsTen(Math.floor(left / 10));
+            setLeftCoinsOne(left % 10);
+            setRightCoinsTen(Math.floor(right / 10));
+            setRightCoinsOne(right % 10);
+            setLeftCoinsVisibleTen(Math.floor(left / 10));
+            setLeftCoinsVisibleOne(left % 10);
+            setRightCoinsVisibleTen(Math.floor(right / 10));
+            setRightCoinsVisibleOne(right % 10);
+        }
+    }, [selectedSet, roundCount]);
 
     function CoinRowUpper({ coinsTen, coinsOne, type }) {
         return (
@@ -52,7 +63,7 @@ function Activity3({ difficulty }) {
                 })}
             </div>
         );
-    }    
+    }
 
     function CoinRowLower({ coinsTen, coinsOne, type }) {
         return (
@@ -68,32 +79,22 @@ function Activity3({ difficulty }) {
     }
 
     function handleConversionLeft() {
-        if (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen === 0) {
-            const newLeftCoinsTen = leftCoinsTen - 1;
-            const newLeftCoinsVisibleTen = leftCoinsVisibleTen - 1;
-            const newLeftCoinsOne = leftCoinsOne + 10;
-            const newLeftCoinsVisibleOne = leftCoinsVisibleOne + 10;
-    
-            setLeftCoinsTen(newLeftCoinsTen);
-            setLeftCoinsOne(newLeftCoinsOne);
-            setLeftCoinsVisibleOne(newLeftCoinsVisibleOne);
-            setLeftCoinsVisibleTen(newLeftCoinsVisibleTen);
+        if (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen === 0 && leftCoinsVisibleOne === 0) {
+            setLeftCoinsTen(prev => prev - 1);
+            setLeftCoinsOne(prev => prev + 10);
+            setLeftCoinsVisibleTen(prev => prev - 1);
+            setLeftCoinsVisibleOne(prev => prev + 10);
         }
-    } 
+    }
 
     function handleConversionRight() {
-        if (rightCoinsVisibleTen > 0 && leftCoinsVisibleTen === 0) {
-            const newRightCoinsTen = rightCoinsTen - 1;
-            const newRightCoinsVisibleTen = rightCoinsVisibleTen - 1;
-            const newRightCoinsOne = rightCoinsOne + 10;
-            const newRightCoinsVisibleOne = rightCoinsVisibleOne + 10;
-
-            setRightCoinsTen(newRightCoinsTen);
-            setRightCoinsOne(newRightCoinsOne);
-            setRightCoinsVisibleOne(newRightCoinsVisibleOne);
-            setRightCoinsVisibleTen(newRightCoinsVisibleTen);
+        if (rightCoinsVisibleTen > 0 && leftCoinsVisibleTen === 0 && rightCoinsVisibleOne === 0) {
+            setRightCoinsTen(prev => prev - 1);
+            setRightCoinsOne(prev => prev + 10);
+            setRightCoinsVisibleTen(prev => prev - 1);
+            setRightCoinsVisibleOne(prev => prev + 10);
         }
-    } 
+    }
 
     function handleCoinClick(type, denomination, index) {
         const coinKey = `${type}-${denomination}-${index}`;
@@ -101,10 +102,10 @@ function Activity3({ difficulty }) {
 
         setActiveCoins(prevActiveCoins => {
             const newActiveCoins = new Set(prevActiveCoins);
-    
+
             if (newActiveCoins.has(coinKey)) {
                 newActiveCoins.delete(coinKey);
-    
+
                 const maxCoins = denomination === "tens" ? leftCoinsTen : leftCoinsOne;
                 for (let i = 0; i < maxCoins; i++) {
                     const oppositeCoinKey = `${oppositeType}-${denomination}-${i}`;
@@ -113,7 +114,7 @@ function Activity3({ difficulty }) {
                         break;
                     }
                 }
-    
+
                 if (denomination === "tens") {
                     setLeftCoinsVisibleTen(prevCount => prevCount + 1);
                     setRightCoinsVisibleTen(prevCount => prevCount + 1);
@@ -123,7 +124,7 @@ function Activity3({ difficulty }) {
                 }
             } else if ((denomination === "tens" && leftCoinsVisibleTen > 0 && rightCoinsVisibleTen > 0) || (denomination === "ones" && leftCoinsVisibleOne > 0 && rightCoinsVisibleOne > 0)) {
                 newActiveCoins.add(coinKey);
-    
+
                 const maxCoins = denomination === "tens" ? leftCoinsTen : leftCoinsOne;
                 for (let i = 0; i < maxCoins; i++) {
                     const oppositeCoinKey = `${oppositeType}-${denomination}-${i}`;
@@ -132,7 +133,7 @@ function Activity3({ difficulty }) {
                         break;
                     }
                 }
-    
+
                 if (denomination === "tens") {
                     setLeftCoinsVisibleTen(prevCount => prevCount - 1);
                     setRightCoinsVisibleTen(prevCount => prevCount - 1);
@@ -141,54 +142,37 @@ function Activity3({ difficulty }) {
                     setRightCoinsVisibleOne(prevCount => prevCount - 1);
                 }
             }
-    
+
             return newActiveCoins;
         });
     }
 
     const handleButtonClick = (value) => {
         setInputValue(value);
-    }; 
+    };
 
     function checkInput() {
         setCorrectnessLabel(true);
-        const leftVal = leftCoinsOne + leftCoinsTen*10;
-        const rightVal = rightCoinsOne + rightCoinsTen*10;
+        const leftVal = leftCoinsOne + leftCoinsTen * 10;
+        const rightVal = rightCoinsOne + rightCoinsTen * 10;
         if ((inputValue === '<' && leftVal < rightVal) ||
             (inputValue === '>' && leftVal > rightVal) ||
             (inputValue === '=' && leftVal === rightVal)) {
             setIsCorrect(true);
-            setRoundCount(roundCount + 1);
         } else {
             setIsCorrect(false);
         }
     }
 
     function handleNext() {
-        const newLeftCoinsTen = Math.floor(Math.random() * 3);
-        const newLeftCoinsOne = Math.floor(Math.random() * 9) + 1;
-        const newRightCoinsTen = Math.floor(Math.random() * 3);
-        const newRightCoinsOne = Math.floor(Math.random() * 9) + 1;
-
-        setLeftCoinsTen(newLeftCoinsTen);
-        setLeftCoinsOne(newLeftCoinsOne);
-        setRightCoinsTen(newRightCoinsTen);
-        setRightCoinsOne(newRightCoinsOne);
-        
-        setLeftCoinsVisibleOne(newLeftCoinsOne);
-        setLeftCoinsVisibleTen(newLeftCoinsTen);
-        setRightCoinsVisibleOne(newRightCoinsOne);
-        setRightCoinsVisibleTen(newRightCoinsTen);
-        
-
+        setRoundCount(prev => prev + 1);
         setActiveCoins(new Set());
         setIsCorrect(false);
         setCorrectnessLabel(false);
         setInputValue('');
     }
-    
 
-    if (roundCount >= ROUNDCOUNT) {
+    if (roundCount >= selectedSet.length - 1) {
         return <EndOfGame levelName="Münz Vergleich" levelNr={3} difficulty={difficulty} />;
     }
 
@@ -196,9 +180,9 @@ function Activity3({ difficulty }) {
         <div className="container">
             <div className="white-box-large">
                 <HomeLink />
-                {difficulty==='easy' && <div className='title-text' style={{ marginBottom: '5vh' }}>Wähle {"<, >, ="} passend:</div>}
-                {difficulty==='hard' && <div className='title-text'>Wähle {"<, >, ="} passend:</div>}
-                {difficulty==='hard' && (
+                {difficulty === 'easy' && <div className='title-text' style={{ marginBottom: '5vh' }}>Wähle {"<, >, ="} passend:</div>}
+                {difficulty === 'hard' && <div className='title-text'>Wähle {"<, >, ="} passend:</div>}
+                {difficulty === 'hard' && (
                     <div style={{ display: "flex", justifyContent: "space-around", width: "100%" }}>
                         <button onClick={handleConversionLeft} className="header-button" style={{ left: "25%", marginTop: "2vh" }}>
                             Tauschen
@@ -221,7 +205,7 @@ function Activity3({ difficulty }) {
                 <div className="coin-row-A3">
                     <CoinRowLower coinsTen={leftCoinsVisibleTen} coinsOne={leftCoinsVisibleOne} type='left' />
                     <input
-                    type="text" 
+                        type="text"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder=""
@@ -235,15 +219,15 @@ function Activity3({ difficulty }) {
                     <button className="operator-button-A3" onClick={() => handleButtonClick('=')}>{'='}</button>
                     <button className="operator-button-A3" onClick={() => handleButtonClick('>')}>{'>'}</button>
                 </div>
-                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} left="79.5%"/>}
-                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} left="79.5%"/>}
-                <button onClick={isCorrect ? handleNext : checkInput} className="button-default" 
+                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} left="79.5%" />}
+                {!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} left="79.5%" />}
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-default"
                     style={{ top: `${checkButtonTop}%`, left: '50%' }} >
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
             </div>
         </div>
-    );    
+    );
 }
 
 export default Activity3;
