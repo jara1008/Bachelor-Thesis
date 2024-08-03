@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import "../styles/activity1.css";
 import "../defaults.css";
-import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from "../defaults.jsx";
+import { HomeLink, EndOfGame, CorrectnessLabel, checkButtonTop } from "../defaults.jsx";
+import { predefinedSetsA1 } from "./predefinedSets.jsx";
 import cloud from "../images/cloud.png";
 import star from "../images/star.svg";
 
@@ -23,7 +24,7 @@ const yOffset = 1; // Additional y-axis offset in percentage to shift the lines 
 function Activity1({ difficulty }) {
     const [allStars, setAllStars] = useState({ left: [], right: [] }); /* positions of stars in the left and right cloud */
     const [firstPos, setFirstPos] = useState(null); /* start point of a line */
-    const [secondPos] = useState(null); /* end point of a line */
+    const [secondPos, setSecondPos] = useState(null); /* end point of a line */
     const [lines, setLines] = useState([]); /* stored lines */
     const [connectedStars, setConnectedStars] = useState(new Set()); /* tracks connected stars */
     const firstPosRef = useRef(firstPos);
@@ -39,6 +40,14 @@ function Activity1({ difficulty }) {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 }); /* mouse position */
     const [inputValue, setInputValue] = useState('');
     const touchEventRef = useRef(false);
+
+    const [selectedSet, setSelectedSet] = useState([]);
+
+    useEffect(() => {
+        const sets = difficulty === 'easy' ? predefinedSetsA1.easy : predefinedSetsA1.hard;
+        const randomSet = sets[Math.floor(Math.random() * sets.length)];
+        setSelectedSet(randomSet);
+    }, [difficulty]);
 
     const handleStarPosition = useCallback((position) => {
         if (!firstPosRef.current) {
@@ -123,21 +132,22 @@ function Activity1({ difficulty }) {
     }, []);
 
     const generateNewCounts = useCallback(() => {
-        let leftCount = Math.floor(Math.random() * leftCloudPositions.length) + 1;
-        let rightCount = Math.floor(Math.random() * rightCloudPositions.length) + 1;
-        
-        if (difficulty === 'easy') {
-            while (leftCount === rightCount) {
-                rightCount = Math.floor(Math.random() * rightCloudPositions.length) + 1;
-            }
+        let leftCount, rightCount;
+
+        if (selectedSet.length > 0) {
+            const caseIndex = (roundCount - 1) % selectedSet.length;
+            leftCount = selectedSet[caseIndex].left;
+            rightCount = selectedSet[caseIndex].right;
         }
+
         setFirstCloudCount(leftCount);
         setSecondCloudCount(rightCount);
-    }, [difficulty]);
+    }, [roundCount, selectedSet]);
 
     useEffect(() => {
+        if (selectedSet.length === 0) return;
         generateNewCounts();
-    }, [generateNewCounts]);
+    }, [generateNewCounts, selectedSet]);
 
     useEffect(() => {
         if (leftCloudPositions.length > 0 && rightCloudPositions.length > 0) {
@@ -187,27 +197,24 @@ function Activity1({ difficulty }) {
         }
 
         if (difficulty === 'easy') {
-            if ((!!!isCheckedLeft && !!!isCheckedRight)) {
+            if (!isCheckedLeft && !isCheckedRight) {
                 setCheckBoxCorrectness(true);
                 return;
             }
             setCheckBoxCorrectness(false);
 
-            if (firstCloudCount > secondCloudCount && (!!!isCheckedLeft || isCheckedRight)) {
+            if (firstCloudCount > secondCloudCount && (!isCheckedLeft || isCheckedRight)) {
+                setIsLeftChecked(false);
+                setIsRightChecked(false);
+                setLines([]);
+                return;
+            } else if (secondCloudCount > firstCloudCount && (!isCheckedRight || isCheckedLeft)) {
                 setIsLeftChecked(false);
                 setIsRightChecked(false);
                 setLines([]);
                 return;
             }
-            else if (secondCloudCount > firstCloudCount && (!!!isCheckedRight || isCheckedLeft)) {
-                setIsLeftChecked(false);
-                setIsRightChecked(false);
-                setLines([]);
-                return;
-            }
-        }
-
-        else {
+        } else {
             if (inputValue === '') {
                 setCheckBoxCorrectness(true);
                 return;
@@ -220,7 +227,6 @@ function Activity1({ difficulty }) {
                 (inputValue === '=' && firstCloudCount === secondCloudCount)
             ) {
                 setIsCorrect(true);
-                setRoundCount((prevRoundCount) => prevRoundCount + 1);
             } else {
                 setIsCorrect(false);
                 return;
@@ -228,7 +234,6 @@ function Activity1({ difficulty }) {
         }
 
         setIsCorrect(true);
-        setRoundCount(roundCount + 1);
     };
 
     const handleNext = () => {
@@ -248,7 +253,9 @@ function Activity1({ difficulty }) {
         setCorrectnessLabel(false);
         setLines([]);
         setFirstPos(null);
+        setSecondPos(null); // Reset secondPos state
         setConnectedStars(new Set());
+        setRoundCount((prevRoundCount) => prevRoundCount + 1);
     };
 
     const handleLeftCheckboxChange = (event) => {
@@ -264,7 +271,7 @@ function Activity1({ difficulty }) {
     };
 
     /* The game is finished */
-    if (roundCount >= ROUNDCOUNT) {
+    if (roundCount > selectedSet.length) {
         /* Message that the game is completed */
         return <EndOfGame levelName="Mengen Vergleich" levelNr={1} difficulty={difficulty}/>;
     }
@@ -319,8 +326,8 @@ function Activity1({ difficulty }) {
                         <button className="operator-button-A1" onClick={() => handleButtonClick('=')}>{'='}</button>
                         <button className="operator-button-A1" onClick={() => handleButtonClick('>')}>{'>'}</button>
                     </div>}
-                    {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig" isVisible={true} top="76%" left="77%" />}
-                    {!!!isCorrect && displayCorrectness && !!!checkBoxCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top="76%" left="77%" />}
+                    {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} top="76%" left="77%" />}
+                    {!isCorrect && displayCorrectness && !checkBoxCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top="76%" left="77%" />}
                     {checkBoxCorrectness && difficulty === 'easy' && <CorrectnessLabel message="Wähle das richtige Kästchen an!" isVisible={true} top="73%" left="71%" height="24%" width="30%" />}
                     {checkBoxCorrectness && difficulty === 'hard' && <CorrectnessLabel message="Wähle <, =, > passend!" isVisible={true} top="73%" left="71%" height="24%" width="30%" />}
                 </div>

@@ -1,11 +1,11 @@
 /* defauls.jsx */
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import home_icon from './images/home_icon.png';
 import './defaults.css';
 
 /* default variables */
-export const ROUNDCOUNT = 3;
+export const ROUNDCOUNT = 7;
 export const checkButtonTop = 92;
 
 /* default components */
@@ -21,7 +21,10 @@ const incrementHighestUnlockedLevel = (currentLevelNr, difficulty) => {
         currentLevel += 1;
         localStorage.setItem('highestUnlockedLevel', currentLevel);
     }
-    localStorage.setItem(`difficulty_${currentLevelNr}`, difficulty);
+    const storedDifficulty = localStorage.getItem(`difficulty_${currentLevelNr}`);
+    if (storedDifficulty !== '1') {
+        localStorage.setItem(`difficulty_${currentLevelNr}`, difficulty);
+    }
 };
 
 export const EndOfGame = ({ levelName, levelNr, difficulty }) => (
@@ -67,21 +70,26 @@ export const ScreenSizeMessage = () => {
     );
 };
 
-export const HintLabel = ({ message, isVisible, onTimeout }) => {
+export const HintLabel = ({ message }) => {
+    const [isVisible, setIsVisible] = useState(true);
+
     useEffect(() => {
         if (isVisible) {
+            setIsVisible(true);
             const timer = setTimeout(() => {
-                onTimeout();
+                setIsVisible(false);
             }, 10000); // 10000 milliseconds = 10 seconds
             return () => clearTimeout(timer);
         }
-    }, [isVisible, onTimeout]);
+    }, [isVisible]);
 
     return (
         isVisible && (
-            <div className="hint-label">
-                {message}
-            </div>
+            <div className="hint-label" >
+                <div className="hint-label-content" >
+                    {message}
+                </div>
+        </div>
         )
     );
 };
