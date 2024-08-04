@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import '../styles/activity6.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, CorrectnessLabel, checkButtonTop, HintLabel } from '../defaults';
@@ -27,7 +27,8 @@ function Activity6({ difficulty }) {
         setSelectedSet(randomSet);
     }, [difficulty]);
 
-    useEffect(() => {
+    const generateNewNumbers = useCallback(() => {
+        console.log(selectedSet);
         if (selectedSet.length > 0) {
             const { left, right } = selectedSet[roundCount];
             setLeftCoinsTen(Math.floor(left / 10));
@@ -38,8 +39,18 @@ function Activity6({ difficulty }) {
             setLeftCoinsVisibleOne(left % 10);
             setRightCoinsVisibleTen(Math.floor(right / 10));
             setRightCoinsVisibleOne(right % 10);
+
+            setDisplayMinus(true);
+            setActiveCoins(new Set());
+            setIsCorrect(false);
+            setCorrectnessLabel(false);
+            setInputValue('');
         }
-    }, [selectedSet, roundCount]);
+    }, [roundCount, selectedSet]);
+
+    useEffect(() => {
+        generateNewNumbers();
+    }, [generateNewNumbers]);
 
     const CoinRowUpper = ({ coinsTen, coinsOne, type }) => (
         <div className="coin-stack-A6">
@@ -124,8 +135,7 @@ function Activity6({ difficulty }) {
                     setLeftCoinsVisibleOne(prevCount => prevCount - 1);
                     setRightCoinsVisibleOne(prevCount => prevCount - 1);
                     nrRightOnes -= 1;
-                }
-                else {
+                } else {
                     return <HintLabel message="Streiche erst alle möglichen Münzen!" />;
                 }
             }
@@ -152,26 +162,16 @@ function Activity6({ difficulty }) {
     };
 
     const handleNext = () => {
-        setRoundCount(roundCount + 1);
-        const { left, right } = selectedSet[roundCount + 1];
-        setLeftCoinsTen(Math.floor(left / 10));
-        setLeftCoinsOne(left % 10);
-        setRightCoinsTen(Math.floor(right / 10));
-        setRightCoinsOne(right % 10);
-        setLeftCoinsVisibleTen(Math.floor(left / 10));
-        setLeftCoinsVisibleOne(left % 10);
-        setRightCoinsVisibleTen(Math.floor(right / 10));
-        setRightCoinsVisibleOne(right % 10);
-
-        setDisplayMinus(true);
-        setActiveCoins(new Set());
-        setIsCorrect(false);
-        setCorrectnessLabel(false);
-        setInputValue('');
+        if (roundCount < selectedSet.length - 1) {
+            setRoundCount(prevCount => prevCount + 1);
+        } else {
+            setRoundCount(selectedSet.length); // End game condition
+        }
+        generateNewNumbers();
     };
 
     const handleConversion = () => {
-        if (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen === 0) {
+        if (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen === 0 && leftCoinsVisibleOne === 0) {
             const newLeftCoinsTen = leftCoinsTen - 1;
             const newLeftCoinsVisibleTen = leftCoinsVisibleTen - 1;
             const newLeftCoinsOne = leftCoinsOne + 10;

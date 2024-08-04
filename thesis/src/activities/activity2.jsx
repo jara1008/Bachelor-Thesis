@@ -22,8 +22,7 @@ function Activity2({ difficulty }) {
 
     const shuffleCubes = useCallback(() => {
         if (selectedSet.length > 0) {
-            const caseIndex = (roundCount);
-            const { first, second } = selectedSet[caseIndex];
+            const { first, second } = selectedSet[roundCount];
             setNumCubesFirstRow(first);
             setNumCubesSecondRow(second);
             setIsCorrect(false);
@@ -49,7 +48,6 @@ function Activity2({ difficulty }) {
                 setIsCorrect(false);
             } else {
                 setIsCorrect(true);
-                setRoundCount((prevRoundCount) => prevRoundCount + 1);
             }
         } else {
             setIsCorrect(false);
@@ -61,6 +59,7 @@ function Activity2({ difficulty }) {
     };
 
     const handleNext = () => {
+        setRoundCount((prevRoundCount) => prevRoundCount + 1);
         shuffleCubes();
     };
 

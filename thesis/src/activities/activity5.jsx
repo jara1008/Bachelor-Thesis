@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import '../styles/activity5.css';
 import '../defaults.css';
 import { HomeLink, EndOfGame, CorrectnessLabel, checkButtonTop } from '../defaults';
@@ -10,14 +10,26 @@ function Activity5({ difficulty }) {
     const [isCorrect, setIsCorrect] = useState(false);
     const [roundCount, setRoundCount] = useState(0);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
-    const [randomSet, setRandomSet] = useState([]);
+    const [selectedSet, setSelectedSet] = useState([]);
 
     useEffect(() => {
-        const sets = predefinedSetsA5[difficulty];
+        const sets = difficulty === 'easy' ? predefinedSetsA5.easy : predefinedSetsA5.hard;
         const randomSet = sets[Math.floor(Math.random() * sets.length)];
-        setRandomSet(randomSet);
-        setNumbers(randomSet[roundCount]);
-    }, [difficulty, roundCount]);
+        setSelectedSet(randomSet);
+    }, [difficulty]);
+
+    const generateNewNumbers = useCallback(() => {
+        if (selectedSet.length > 0) {
+            setNumbers(selectedSet[roundCount]);
+            setIsCorrect(false);
+            setInputValue('');
+            setCorrectnessLabel(false);
+        }
+    }, [roundCount, selectedSet]);
+
+    useEffect(() => {
+        generateNewNumbers();
+    }, [generateNewNumbers, roundCount, selectedSet]);
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
@@ -33,16 +45,14 @@ function Activity5({ difficulty }) {
     };
 
     const handleNext = () => {
-        setRoundCount(prevCount => prevCount + 1);
-        if (roundCount + 1 < randomSet.length) {
-            setNumbers(randomSet[roundCount + 1]);
-            setIsCorrect(false);
-            setInputValue('');
-            setCorrectnessLabel(false);
+        if (roundCount < selectedSet.length - 1) {
+            setRoundCount(prevCount => prevCount + 1);
+        } else {
+            setRoundCount(selectedSet.length); // End game condition
         }
     };
 
-    if (roundCount >= randomSet.length) {
+    if (roundCount >= selectedSet.length) {
         /* Message that the game is completed */
         return <EndOfGame levelName="Additionsrätsel" levelNr={4} difficulty={difficulty} />;
     }

@@ -1,33 +1,33 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/activity10.css';
 import '../defaults.css';
-import { HomeLink, EndOfGame, ROUNDCOUNT, CorrectnessLabel, checkButtonTop } from '../defaults';
+import { HomeLink, EndOfGame, CorrectnessLabel, checkButtonTop } from '../defaults';
+import { predefinedSetsA10 } from './predefinedSets.jsx';
 
 function Activity10({ difficulty }) {
     const [isCorrect, setIsCorrect] = useState(false);
-    const [roundCount, setRoundCount] = useState(1);
+    const [roundCount, setRoundCount] = useState(0);
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
-    const [numberLarge, setNumberLarge] = useState([]);
-    const [numberSmall, setNumberSmall] = useState([]);
+    const [numberLarge, setNumberLarge] = useState(0);
+    const [numberSmall, setNumberSmall] = useState(0);
     const [columnValues, setColumnValues] = useState({ col1: '', col2: '', col3: '', col4: '' });
     const [blueSquareValues, setBlueSquareValues] = useState({ blue1: '', blue2: '', blue3: '' });
     const [minus, setMinus] = useState(false);
+    const [selectedSet, setSelectedSet] = useState([]);
 
-    const generateRandomNumbers = useCallback(() => {
-        const randomNumber1 = Math.floor(Math.random() * 9999) + 1;
-        const randomNumber2 = Math.floor(Math.random() * 9999) + 1;
-        if (randomNumber1 < randomNumber2 && difficulty==='easy') {
-            setNumberSmall(randomNumber1);
-            setNumberLarge(randomNumber2);
-        } else {
-            setNumberLarge(randomNumber1);
-            setNumberSmall(randomNumber2);
-        }
+    useEffect(() => {
+        const sets = difficulty === 'easy' ? predefinedSetsA10.easy : predefinedSetsA10.hard;
+        const randomSet = sets[Math.floor(Math.random() * sets.length)];
+        setSelectedSet(randomSet);
     }, [difficulty]);
 
     useEffect(() => {
-        generateRandomNumbers();
-    }, [generateRandomNumbers]);
+        if (selectedSet.length > 0) {
+            const { numberLarge, numberSmall } = selectedSet[roundCount];
+            setNumberLarge(numberLarge);
+            setNumberSmall(numberSmall);
+        }
+    }, [selectedSet, roundCount]);
 
     const handleInputChange = (column, value) => {
         setColumnValues(prevState => ({
@@ -47,14 +47,13 @@ function Activity10({ difficulty }) {
         let swap = numberSmall;
         setNumberSmall(numberLarge);
         setNumberLarge(swap);
-        if (!!!minus) {setMinus(true)}
-        else {setMinus(false)}
+        setMinus(!minus);
     };
 
     const checkInput = () => {
         setCorrectnessLabel(true);
         const { col1, col2, col3, col4 } = columnValues;
-        const number =  parseInt(`${col1}${col2}${col3}${col4}`, 10);
+        const number = parseInt(`${col1}${col2}${col3}${col4}`, 10);
         if ((numberLarge - numberSmall) === number) {
             setIsCorrect(true);
             setRoundCount(roundCount + 1);
@@ -64,15 +63,19 @@ function Activity10({ difficulty }) {
     };
 
     const handleNext = () => {
-        generateRandomNumbers();
         setColumnValues({ col1: '', col2: '', col3: '', col4: '' });
         setBlueSquareValues({ blue1: '', blue2: '', blue3: '' });
         setCorrectnessLabel(false);
         setIsCorrect(false);
         setMinus(false);
+        if (roundCount < selectedSet.length - 1) {
+            setRoundCount(roundCount + 1);
+        } else {
+            // End game condition
+        }
     };
 
-    if (roundCount >= ROUNDCOUNT) {
+    if (roundCount >= selectedSet.length) {
         /* Message that the game is completed */
         return <EndOfGame levelName="Schriftliche Subtraktion" levelNr={9} difficulty={difficulty} />;
     }
@@ -83,19 +86,19 @@ function Activity10({ difficulty }) {
                 <HomeLink />
                 <span className="title-text">Löse die Rechnung:</span>
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} />}
-                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} />}
+                {!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} />}
 
                 <div className="number-container-A10">
                     <div>
                         <div style={{ display: 'flex', width: '100%' }}>
-                        {minus && <div className='minus-top-A10'>-</div>}
-                        {difficulty === 'hard' && (
-                            <button onClick={invertNumbers} className="invert-button-A10">↓↑</button>
-                        )}
-                        <div className="number-box-A10">
-                            <div className="number-A10">{numberLarge}</div>
-                            <div className="number-A10">-{numberSmall}</div>
-                        </div>
+                            {minus && <div className='minus-top-A10'>-</div>}
+                            {difficulty === 'hard' && (
+                                <button onClick={invertNumbers} className="invert-button-A10">↓↑</button>
+                            )}
+                            <div className="number-box-A10">
+                                <div className="number-A10">{numberLarge}</div>
+                                <div className="number-A10">-{numberSmall}</div>
+                            </div>
                         </div>
                         <div className="input-fields-A10">
                             <div className="input-row-A10">

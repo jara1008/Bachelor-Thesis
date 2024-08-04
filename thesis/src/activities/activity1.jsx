@@ -237,6 +237,7 @@ function Activity1({ difficulty }) {
     };
 
     const handleNext = () => {
+        console.log(selectedSet);
         generateNewCounts();
 
         if (leftCloudPositions.length > 0 && rightCloudPositions.length > 0) {

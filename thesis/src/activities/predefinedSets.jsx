@@ -406,112 +406,594 @@ const predefinedSetsA5 = {
     ]
 };
 
-//TODO:
 const predefinedSetsA6 = {
     easy: [
         [
-            { left: 2, right: 1 }, { left: 28, right: 25 }, { left: 9, right: 3 },
-            { left: 17, right: 14 }, { left: 23, right: 12 }, { left: 4, right: 3 },
-            { left: 16, right: 2 }
+            { left: 3, right: 1 }, { left: 28, right: 25 }, { left: 9, right: 3 },
+            { left: 17, right: 14 }, { left: 23, right: 12 }, { left: 6, right: 2 },
+            { left: 16, right: 4 }
         ],
         [
-            { left: 9, right: 1 }, { left: 19, right: 10 }, { left: 23, right: 12 },
-            { left: 19, right: 16 }, { left: 18, right: 11 }, { left: 24, right: 11 },
+            { left: 9, right: 1 }, { left: 16, right: 10 }, { left: 22, right: 12 },
+            { left: 19, right: 16 }, { left: 18, right: 11 }, { left: 24, right: 12 },
             { left: 27, right: 21 }
         ],
         [
-            { left: 4, right: 6 }, { left: 10, right: 16 }, { left: 19, right: 20 },
-            { left: 12, right: 14 }, { left: 25, right: 23 }, { left: 29, right: 29 },
+            { left: 6, right: 4 }, { left: 14, right: 10 }, { left: 24, right: 14 },
+            { left: 19, right: 12 }, { left: 25, right: 23 }, { left: 9, right: 5 },
             { left: 21, right: 10 }
         ],
         [
-            { left: 9, right: 7 }, { left: 16, right: 10 }, { left: 13, right: 11 },
-            { left: 14, right: 15 }, { left: 26, right: 24 }, { left: 1, right: 3 },
-            { left: 27, right: 27 }
+            { left: 9, right: 2 }, { left: 11, right: 10 }, { left: 17, right: 11 },
+            { left: 25, right: 24 }, { left: 26, right: 14 }, { left: 3, right: 1 },
+            { left: 27, right: 15 }
         ],
         [
-            { left: 5, right: 9 }, { left: 14, right: 10 }, { left: 29, right: 22 },
-            { left: 18, right: 18 }, { left: 22, right: 24 }, { left: 20, right: 25 },
-            { left: 27, right: 28 }
+            { left: 9, right: 5 }, { left: 14, right: 10 }, { left: 29, right: 22 },
+            { left: 28, right: 8 }, { left: 14, right: 12 }, { left: 25, right: 14 },
+            { left: 18, right: 7 }
         ],
         [
-            { left: 2, right: 4 }, { left: 11, right: 10 }, { left: 13, right: 18 },
-            { left: 15, right: 12 }, { left: 20, right: 21 }, { left: 26, right: 26 },
-            { left: 21, right: 28 }
+            { left: 4, right: 2 }, { left: 12, right: 10 }, { left: 18, right: 13 },
+            { left: 25, right: 22 }, { left: 25, right: 13 }, { left: 8, right: 5 },
+            { left: 25, right: 13 }
         ],
         [
-            { left: 3, right: 6 }, { left: 20, right: 21 }, { left: 13, right: 13 },
-            { left: 17, right: 19 }, { left: 22, right: 27 }, { left: 27, right: 28 },
-            { left: 14, right: 13 }
+            { left: 6, right: 3 }, { left: 21, right: 20 }, { left: 19, right: 13 },
+            { left: 26, right: 25 }, { left: 28, right: 15 }, { left: 17, right: 14 },
+            { left: 27, right: 2 }
         ],
         [
-            { left: 4, right: 7 }, { left: 24, right: 20 }, { left: 24, right: 23 },
-            { left: 12, right: 12 }, { left: 5, right: 8 }, { left: 15, right: 19 },
-            { left: 13, right: 11 }
+            { left: 7, right: 4 }, { left: 24, right: 20 }, { left: 23, right: 22 },
+            { left: 17, right: 11 }, { left: 8, right: 5 }, { left: 19, right: 3 },
+            { left: 27, right: 11 }
         ],
         [
-            { left: 6, right: 8 }, { left: 11, right: 11 }, { left: 20, right: 24 },
-            { left: 27, right: 23 }, { left: 26, right: 29 }, { left: 16, right: 17 },
-            { left: 17, right: 16 }
+            { left: 8, right: 6 }, { left: 22, right: 20 }, { left: 24, right: 21 },
+            { left: 17, right: 13 }, { left: 29, right: 18 }, { left: 27, right: 20 },
+            { left: 18, right: 4 }
         ],
         [
-            { left: 7, right: 9 }, { left: 15, right: 10 }, { left: 4, right: 4 },
-            { left: 20, right: 22 }, { left: 28, right: 26 }, { left: 13, right: 13 },
-            { left: 12, right: 17 }
+            { left: 9, right: 7 }, { left: 15, right: 10 }, { left: 16, right: 14 },
+            { left: 28, right: 24 }, { left: 28, right: 15 }, { left: 17, right: 13 },
+            { left: 20, right: 3 }
         ]
     ],
     hard: [
         [
-            { left: 1, right: 3 }, { left: 10, right: 2 }, { left: 20, right: 17 },
-            { left: 16, right: 19 }, { left: 9, right: 12 }, { left: 18, right: 26 },
-            { left: 18, right: 18 }
+            { left: 9, right: 3 }, { left: 10, right: 2 }, { left: 21, right: 7 },
+            { left: 19, right: 6 }, { left: 12, right: 9 }, { left: 26, right: 8 },
+            { left: 28, right: 9 }
         ],
         [
-            { left: 9, right: 6 }, { left: 7, right: 20 }, { left: 29, right: 27 },
-            { left: 14, right: 22 }, { left: 21, right: 19 }, { left: 23, right: 23 },
-            { left: 1, right: 19 }
+            { left: 9, right: 6 }, { left: 20, right: 17 }, { left: 23, right: 17 },
+            { left: 22, right: 1 }, { left: 21, right: 19 }, { left: 23, right: 7 },
+            { left: 18, right: 9 }
         ],
         [
             { left: 8, right: 5 }, { left: 10, right: 8 }, { left: 21, right: 12 },
-            { left: 23, right: 25 }, { left: 12, right: 12 }, { left: 19, right: 21 },
+            { left: 25, right: 3 }, { left: 14, right: 7 }, { left: 21, right: 9 },
             { left: 25, right: 17 }
         ],
         [
-            { left: 7, right: 9 }, { left: 18, right: 29 }, { left: 6, right: 6 },
-            { left: 14, right: 23 }, { left: 25, right: 18 }, { left: 11, right: 2 },
-            { left: 19, right: 20 }
+            { left: 9, right: 7 }, { left: 20, right: 18 }, { left: 16, right: 8 },
+            { left: 25, right: 4 }, { left: 25, right: 18 }, { left: 11, right: 2 },
+            { left: 20, right: 19 }
         ],
         [
-            { left: 5, right: 8 }, { left: 12, right: 4 }, { left: 12, right: 17 },
-            { left: 21, right: 19 }, { left: 27, right: 19 }, { left: 24, right: 18 },
-            { left: 17, right: 17 }
+            { left: 7, right: 5 }, { left: 10, right: 4 }, { left: 17, right: 8 },
+            { left: 29, right: 14 }, { left: 27, right: 19 }, { left: 24, right: 18 },
+            { left: 20, right: 15 }
         ],
         [
-            { left: 4, right: 3 }, { left: 4, right: 20 }, { left: 14, right: 22 },
-            { left: 16, right: 16 }, { left: 16, right: 21 }, { left: 8, right: 18 },
-            { left: 9, right: 28 }
+            { left: 4, right: 3 }, { left: 20, right: 14 }, { left: 22, right: 14 },
+            { left: 29, right: 1 }, { left: 21, right: 16 }, { left: 22, right: 8 },
+            { left: 28, right: 9 }
         ],
         [
-            { left: 6, right: 7 }, { left: 20, right: 11 }, { left: 24, right: 26 },
-            { left: 27, right: 27 }, { left: 8, right: 15 }, { left: 2, right: 24 },
-            { left: 4, right: 13 }
+            { left: 7, right: 1 }, { left: 20, right: 11 }, { left: 26, right: 14 },
+            { left: 27, right: 3 }, { left: 15, right: 8 }, { left: 21, right: 2 },
+            { left: 13, right: 4 }
         ],
         [
-            { left: 5, right: 4 }, { left: 8, right: 10 }, { left: 15, right: 23 },
-            { left: 22, right: 24 }, { left: 26, right: 26 }, { left: 9, right: 17 },
-            { left: 1, right: 20 }
+            { left: 5, right: 2 }, { left: 10, right: 1 }, { left: 23, right: 15 },
+            { left: 24, right: 3 }, { left: 26, right: 19 }, { left: 17, right: 9 },
+            { left: 20, right: 1 }
         ],
         [
-            { left: 2, right: 1 }, { left: 20, right: 2 }, { left: 3, right: 21 },
-            { left: 22, right: 24 }, { left: 9, right: 27 }, { left: 15, right: 6 },
-            { left: 19, right: 19 }
+            { left: 2, right: 1 }, { left: 20, right: 17 }, { left: 21, right: 3 },
+            { left: 28, right: 1 }, { left: 17, right: 9 }, { left: 15, right: 6 },
+            { left: 20, right: 19 }
         ],
         [
-            { left: 9, right: 8 }, { left: 10, right: 9 }, { left: 7, right: 25 },
-            { left: 11, right: 8 }, { left: 21, right: 21 }, { left: 4, right: 12 },
-            { left: 20, right: 7 }
+            { left: 9, right: 1 }, { left: 10, right: 9 }, { left: 25, right: 7 },
+            { left: 27, right: 5 }, { left: 21, right: 13 }, { left: 22, right: 15 },
+            { left: 10, right: 3 }
         ]
     ]
 };
 
-export { predefinedSetsA1, predefinedSetsA2, predefinedSetsA3, predefinedSetsA5, predefinedSetsA6 };
+const predefinedSetsA7 = {
+    easy: [
+        [
+            { large: 428, small: 123 },
+            { large: 673, small: 289 },
+            { large: 564, small: 375 },
+            { large: 842, small: 831 },
+            { large: 922, small: 729 }
+        ],
+        [
+            { large: 356, small: 145 },
+            { large: 682, small: 274 },
+            { large: 511, small: 382 },
+            { large: 714, small: 707 },
+            { large: 835, small: 536 }
+        ],
+        [
+            { large: 459, small: 238 },
+            { large: 682, small: 345 },
+            { large: 574, small: 487 },
+            { large: 802, small: 791 },
+            { large: 813, small: 616 }
+        ],
+        [
+            { large: 479, small: 259 },
+            { large: 639, small: 348 },
+            { large: 857, small: 376 },
+            { large: 894, small: 815 },
+            { large: 791, small: 593 }
+        ],
+        [
+            { large: 989, small: 264 },
+            { large: 653, small: 344 },
+            { large: 131, small: 89 },
+            { large: 274, small: 239 },
+            { large: 213, small: 117 }
+        ],
+        [
+            { large: 737, small: 117 },
+            { large: 691, small: 354 },
+            { large: 523, small: 99 },
+            { large: 818, small: 799 },
+            { large: 780, small: 281 }
+        ],
+        [
+            { large: 465, small: 223 },
+            { large: 783, small: 379 },
+            { large: 943, small: 857 },
+            { large: 432, small: 389 },
+            { large: 610, small: 517 }
+        ],
+        [
+            { large: 856, small: 754 },
+            { large: 514, small: 362 },
+            { large: 533, small: 56 },
+            { large: 807, small: 719 },
+            { large: 991, small: 393 }
+        ],
+        [
+            { large: 419, small: 402 },
+            { large: 642, small: 318 },
+            { large: 567, small: 289 },
+            { large: 913, small: 756 },
+            { large: 720, small: 125 }
+        ],
+        [
+            { large: 448, small: 231 },
+            { large: 991, small: 349 },
+            { large: 633, small: 174 },
+            { large: 804, small: 617 },
+            { large: 844, small: 645 }
+        ]
+    ],
+    hard: [
+        [
+            { large: 8824, small: 1234 },
+            { large: 6731, small: 2890 },
+            { large: 5600, small: 3499 },
+            { large: 8425, small: 7524 },
+            { large: 7085, small: 5094 }
+        ],
+        [
+            { large: 5296, small: 2147 },
+            { large: 6487, small: 3749 },
+            { large: 9812, small: 4578 },
+            { large: 8901, small: 7910 },
+            { large: 9642, small: 9463 }
+        ],
+        [
+            { large: 4931, small: 3341 },
+            { large: 9784, small: 4827 },
+            { large: 5400, small: 4218 },
+            { large: 3564, small: 2582 },
+            { large: 7300, small: 6199 }
+        ],
+        [
+            { large: 7570, small: 1432 },
+            { large: 4359, small: 2881 },
+            { large: 9900, small: 4789 },
+            { large: 4430, small: 1701 },
+            { large: 7524, small: 5591 }
+        ],
+        [
+            { large: 9128, small: 8163 },
+            { large: 6982, small: 5499 },
+            { large: 4713, small: 4528 },
+            { large: 9734, small: 7929 },
+            { large: 1218, small: 223 }
+        ],
+        [
+            { large: 5281, small: 2105 },
+            { large: 7547, small: 3992 },
+            { large: 5913, small: 4876 },
+            { large: 8329, small: 1394 },
+            { large: 7640, small: 7378 }
+        ],
+        [
+            { large: 7382, small: 4190 },
+            { large: 6712, small: 3487 },
+            { large: 7710, small: 6693 },
+            { large: 3237, small: 2956 },
+            { large: 9400, small: 6457 }
+        ],
+        [
+            { large: 5345, small: 3306 },
+            { large: 6529, small: 4734 },
+            { large: 5706, small: 4619 },
+            { large: 1051, small: 394 },
+            { large: 7225, small: 6282 }
+        ],
+        [
+            { large: 4976, small: 2195 },
+            { large: 8913, small: 3587 },
+            { large: 7817, small: 6099 },
+            { large: 9507, small: 1552 },
+            { large: 7214, small: 6809 }
+        ],
+        [
+            { large: 3223, small: 1106 },
+            { large: 5640, small: 2721 },
+            { large: 5503, small: 4495 },
+            { large: 9301, small: 8310 },
+            { large: 2009, small: 747 }
+        ]
+    ]
+};
+
+//
+
+const predefinedSetsA9 = {
+    easy: [
+        [
+            { leftValue: 2, rightValue: 5 },
+            { leftValue: 15, rightValue: 22 },
+            { leftValue: 17, rightValue: 29 },
+            { leftValue: 21, rightValue: 22 },
+            { leftValue: 11, rightValue: 26 },
+            { leftValue: 8, rightValue: 29 },
+            { leftValue: 13, rightValue: 28 }
+        ],
+        [
+            { leftValue: 2, rightValue: 8 },
+            { leftValue: 14, rightValue: 28 },
+            { leftValue: 10, rightValue: 20 },
+            { leftValue: 6, rightValue: 28 },
+            { leftValue: 10, rightValue: 21 },
+            { leftValue: 2, rightValue: 24 },
+            { leftValue: 8, rightValue: 19 }
+        ],
+        [
+            { leftValue: 4, rightValue: 5 },
+            { leftValue: 13, rightValue: 25 },
+            { leftValue: 4, rightValue: 28 },
+            { leftValue: 5, rightValue: 17 },
+            { leftValue: 21, rightValue: 26 },
+            { leftValue: 10, rightValue: 20 },
+            { leftValue: 1, rightValue: 21 }
+        ],
+        [
+            { leftValue: 6, rightValue: 9 },
+            { leftValue: 3, rightValue: 19 },
+            { leftValue: 4, rightValue: 24 },
+            { leftValue: 14, rightValue: 25 },
+            { leftValue: 12, rightValue: 27 },
+            { leftValue: 10, rightValue: 22 },
+            { leftValue: 5, rightValue: 18 }
+        ],
+        [
+            { leftValue: 1, rightValue: 3 },
+            { leftValue: 11, rightValue: 25 },
+            { leftValue: 8, rightValue: 28 },
+            { leftValue: 6, rightValue: 21 },
+            { leftValue: 13, rightValue: 28 },
+            { leftValue: 10, rightValue: 17 },
+            { leftValue: 2, rightValue: 24 }
+        ],
+        [
+            { leftValue: 1, rightValue: 9 },
+            { leftValue: 5, rightValue: 15 },
+            { leftValue: 10, rightValue: 21 },
+            { leftValue: 7, rightValue: 29 },
+            { leftValue: 11, rightValue: 27 },
+            { leftValue: 8, rightValue: 19 },
+            { leftValue: 2, rightValue: 26 }
+        ],
+        [
+            { leftValue: 1, rightValue: 2 },
+            { leftValue: 6, rightValue: 17 },
+            { leftValue: 13, rightValue: 23 },
+            { leftValue: 4, rightValue: 19 },
+            { leftValue: 11, rightValue: 23 },
+            { leftValue: 17, rightValue: 24 },
+            { leftValue: 4, rightValue: 19 }
+        ],
+        [
+            { leftValue: 2, rightValue: 5 },
+            { leftValue: 5, rightValue: 15 },
+            { leftValue: 10, rightValue: 22 },
+            { leftValue: 6, rightValue: 27 },
+            { leftValue: 11, rightValue: 24 },
+            { leftValue: 1, rightValue: 22 },
+            { leftValue: 3, rightValue: 28 }
+        ],
+        [
+            { leftValue: 4, rightValue: 6 },
+            { leftValue: 9, rightValue: 23 },
+            { leftValue: 12, rightValue: 26 },
+            { leftValue: 2, rightValue: 22 },
+            { leftValue: 5, rightValue: 17 },
+            { leftValue: 11, rightValue: 25 },
+            { leftValue: 7, rightValue: 19 }
+        ],
+        [
+            { leftValue: 1, rightValue: 7 },
+            { leftValue: 6, rightValue: 26 },
+            { leftValue: 13, rightValue: 25 },
+            { leftValue: 8, rightValue: 29 },
+            { leftValue: 13, rightValue: 24 },
+            { leftValue: 8, rightValue: 29 },
+            { leftValue: 12, rightValue: 27 }
+        ]
+    ],
+    hard: [
+        [
+            { leftValue: 15, rightValue: 34 },
+            { leftValue: 12, rightValue: 20 },
+            { leftValue: 21, rightValue: 36 },
+            { leftValue: 11, rightValue: 30 },
+            { leftValue: 4, rightValue: 33 },
+            { leftValue: 17, rightValue: 35 },
+            { leftValue: 10, rightValue: 32 }
+        ],
+        [
+            { leftValue: 16, rightValue: 34 },
+            { leftValue: 1, rightValue: 30 },
+            { leftValue: 29, rightValue: 37 },
+            { leftValue: 3, rightValue: 31 },
+            { leftValue: 12, rightValue: 20 },
+            { leftValue: 17, rightValue: 35 },
+            { leftValue: 5, rightValue: 32 }
+        ],
+        [
+            { leftValue: 8, rightValue: 36 },
+            { leftValue: 28, rightValue: 31 },
+            { leftValue: 7, rightValue: 20 },
+            { leftValue: 12, rightValue: 30 },
+            { leftValue: 19, rightValue: 35 },
+            { leftValue: 14, rightValue: 32 },
+            { leftValue: 6, rightValue: 34 }
+        ],
+        [
+            { leftValue: 14, rightValue: 33 },
+            { leftValue: 11, rightValue: 29 },
+            { leftValue: 18, rightValue: 30 },
+            { leftValue: 15, rightValue: 32 },
+            { leftValue: 25, rightValue: 31 },
+            { leftValue: 11, rightValue: 20 },
+            { leftValue: 12, rightValue: 31 }
+        ],
+        [
+            { leftValue: 12, rightValue: 37 },
+            { leftValue: 16, rightValue: 30 },
+            { leftValue: 24, rightValue: 31 },
+            { leftValue: 17, rightValue: 25 },
+            { leftValue: 13, rightValue: 30 },
+            { leftValue: 8, rightValue: 36 },
+            { leftValue: 16, rightValue: 23 }
+        ],
+        [
+            { leftValue: 13, rightValue: 32 },
+            { leftValue: 12, rightValue: 20 },
+            { leftValue: 27, rightValue: 35 },
+            { leftValue: 4, rightValue: 30 },
+            { leftValue: 18, rightValue: 33 },
+            { leftValue: 5, rightValue: 21 },
+            { leftValue: 9, rightValue: 20 }
+        ],
+        [
+            { leftValue: 16, rightValue: 31 },
+            { leftValue: 13, rightValue: 30 },
+            { leftValue: 19, rightValue: 26 },
+            { leftValue: 3, rightValue: 20 },
+            { leftValue: 15, rightValue: 33 },
+            { leftValue: 17, rightValue: 37 },
+            { leftValue: 29, rightValue: 32 }
+        ],
+        [
+            { leftValue: 7, rightValue: 35 },
+            { leftValue: 12, rightValue: 30 },
+            { leftValue: 29, rightValue: 36 },
+            { leftValue: 5, rightValue: 32 },
+            { leftValue: 14, rightValue: 23 },
+            { leftValue: 19, rightValue: 37 },
+            { leftValue: 13, rightValue: 20 }
+        ],
+        [
+            { leftValue: 14, rightValue: 33 },
+            { leftValue: 11, rightValue: 28 },
+            { leftValue: 16, rightValue: 30 },
+            { leftValue: 19, rightValue: 22 },
+            { leftValue: 7, rightValue: 36 },
+            { leftValue: 23, rightValue: 30 },
+            { leftValue: 5, rightValue: 32 }
+        ],
+        [
+            { leftValue: 18, rightValue: 31 },
+            { leftValue: 13, rightValue: 30 },
+            { leftValue: 9, rightValue: 37 },
+            { leftValue: 15, rightValue: 32 },
+            { leftValue: 13, rightValue: 20 },
+            { leftValue: 24, rightValue: 33 },
+            { leftValue: 7, rightValue: 23 }
+        ]
+    ]
+};
+
+const predefinedSetsA10 = {
+    easy: [
+        [
+            { numberLarge: 2453, numberSmall: 1232 },
+            { numberLarge: 3467, numberSmall: 2456 },
+            { numberLarge: 4678, numberSmall: 3459 },
+            { numberLarge: 5234, numberSmall: 4123 },
+            { numberLarge: 6789, numberSmall: 5678 }
+        ],
+        [
+            { numberLarge: 2345, numberSmall: 1231 },
+            { numberLarge: 3456, numberSmall: 2345 },
+            { numberLarge: 4567, numberSmall: 3456 },
+            { numberLarge: 5678, numberSmall: 4567 },
+            { numberLarge: 6789, numberSmall: 5678 }
+        ],
+        [
+            { numberLarge: 9832, numberSmall: 1720 },
+            { numberLarge: 2365, numberSmall: 1243 },
+            { numberLarge: 3476, numberSmall: 2354 },
+            { numberLarge: 4587, numberSmall: 3465 },
+            { numberLarge: 5698, numberSmall: 4576 }
+        ],
+        [
+            { numberLarge: 7943, numberSmall: 6830 },
+            { numberLarge: 2654, numberSmall: 2345 },
+            { numberLarge: 3765, numberSmall: 3456 },
+            { numberLarge: 4876, numberSmall: 4567 },
+            { numberLarge: 5987, numberSmall: 5678 }
+        ],
+        [
+            { numberLarge: 5649, numberSmall: 1431 },
+            { numberLarge: 2753, numberSmall: 2542 },
+            { numberLarge: 3864, numberSmall: 3653 },
+            { numberLarge: 4975, numberSmall: 4764 },
+            { numberLarge: 5086, numberSmall: 5875 }
+        ],
+        [
+            { numberLarge: 7754, numberSmall: 4511 },
+            { numberLarge: 2865, numberSmall: 2654 },
+            { numberLarge: 3976, numberSmall: 3765 },
+            { numberLarge: 4587, numberSmall: 4465 },
+            { numberLarge: 5698, numberSmall: 5586 }
+        ],
+        [
+            { numberLarge: 3564, numberSmall: 1152 },
+            { numberLarge: 2574, numberSmall: 2363 },
+            { numberLarge: 3685, numberSmall: 3474 },
+            { numberLarge: 4796, numberSmall: 4585 },
+            { numberLarge: 5807, numberSmall: 5696 }
+        ],
+        [
+            { numberLarge: 6575, numberSmall: 4351 },
+            { numberLarge: 2683, numberSmall: 2472 },
+            { numberLarge: 3794, numberSmall: 3583 },
+            { numberLarge: 4905, numberSmall: 4694 },
+            { numberLarge: 6016, numberSmall: 5905 }
+        ],
+        [
+            { numberLarge: 2681, numberSmall: 1470 },
+            { numberLarge: 2792, numberSmall: 2581 },
+            { numberLarge: 3803, numberSmall: 3692 },
+            { numberLarge: 4914, numberSmall: 4703 },
+            { numberLarge: 5025, numberSmall: 4914 }
+        ],
+        [
+            { numberLarge: 8790, numberSmall: 2570 },
+            { numberLarge: 2801, numberSmall: 2590 },
+            { numberLarge: 3912, numberSmall: 3701 },
+            { numberLarge: 4023, numberSmall: 3912 },
+            { numberLarge: 5134, numberSmall: 5023 }
+        ]
+    ],
+    hard: [
+        [
+            { numberLarge: 2245, numberSmall: 3256 },
+            { numberLarge: 4367, numberSmall: 2456 },
+            { numberLarge: 5478, numberSmall: 3459 },
+            { numberLarge: 6234, numberSmall: 4123 },
+            { numberLarge: 7789, numberSmall: 5678 }
+        ],
+        [
+            { numberLarge: 5012, numberSmall: 7234 },
+            { numberLarge: 4456, numberSmall: 2345 },
+            { numberLarge: 5567, numberSmall: 3456 },
+            { numberLarge: 6678, numberSmall: 4567 },
+            { numberLarge: 7789, numberSmall: 5678 }
+        ],
+        [
+            { numberLarge: 2454, numberSmall: 8867 },
+            { numberLarge: 3365, numberSmall: 1243 },
+            { numberLarge: 4476, numberSmall: 2354 },
+            { numberLarge: 5587, numberSmall: 3465 },
+            { numberLarge: 6698, numberSmall: 4576 }
+        ],
+        [
+            { numberLarge: 2543, numberSmall: 1223 },
+            { numberLarge: 3654, numberSmall: 2345 },
+            { numberLarge: 4765, numberSmall: 3456 },
+            { numberLarge: 5876, numberSmall: 4567 },
+            { numberLarge: 6987, numberSmall: 5678 }
+        ],
+        [
+            { numberLarge: 6642, numberSmall: 9782 },
+            { numberLarge: 3753, numberSmall: 2542 },
+            { numberLarge: 4864, numberSmall: 3653 },
+            { numberLarge: 5975, numberSmall: 4764 },
+            { numberLarge: 6086, numberSmall: 5875 }
+        ],
+        [
+            { numberLarge: 2444, numberSmall: 4549 },
+            { numberLarge: 3865, numberSmall: 2654 },
+            { numberLarge: 4976, numberSmall: 3765 },
+            { numberLarge: 5587, numberSmall: 4465 },
+            { numberLarge: 6698, numberSmall: 5586 }
+        ],
+        [
+            { numberLarge: 2411, numberSmall: 8952 },
+            { numberLarge: 3574, numberSmall: 2363 },
+            { numberLarge: 4685, numberSmall: 3474 },
+            { numberLarge: 5796, numberSmall: 4585 },
+            { numberLarge: 6807, numberSmall: 5696 }
+        ],
+        [
+            { numberLarge: 1122, numberSmall: 2368 },
+            { numberLarge: 3683, numberSmall: 2472 },
+            { numberLarge: 4794, numberSmall: 3583 },
+            { numberLarge: 5905, numberSmall: 4694 },
+            { numberLarge: 7016, numberSmall: 5905 }
+        ],
+        [
+            { numberLarge: 3683, numberSmall: 4699 },
+            { numberLarge: 3792, numberSmall: 2581 },
+            { numberLarge: 4803, numberSmall: 3692 },
+            { numberLarge: 5914, numberSmall: 4703 },
+            { numberLarge: 6025, numberSmall: 4914 }
+        ],
+        [
+            { numberLarge: 2050, numberSmall: 7579 },
+            { numberLarge: 3801, numberSmall: 2590 },
+            { numberLarge: 4912, numberSmall: 3701 },
+            { numberLarge: 5023, numberSmall: 3912 },
+            { numberLarge: 6134, numberSmall: 5023 }
+        ]
+    ]
+};
+
+export { predefinedSetsA1, predefinedSetsA2, predefinedSetsA3, predefinedSetsA5, predefinedSetsA6, predefinedSetsA7, predefinedSetsA9, predefinedSetsA10 };
