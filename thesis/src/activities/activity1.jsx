@@ -31,7 +31,7 @@ function Activity1({ difficulty }) {
     const svgRef = useRef(null);
     const [isCorrect, setIsCorrect] = useState(false); /* tracks if the stars are correctly connected */
     const [displayCorrectness, setCorrectnessLabel] = useState(false); /* enables a message that confirms correctness */
-    const [roundCount, setRoundCount] = useState(1); /* counts the number of repetitions played */
+    const [roundCount, setRoundCount] = useState(0); /* counts the number of repetitions played */
     const [firstCloudCount, setFirstCloudCount] = useState(0); /* track #stars in left cloud */
     const [secondCloudCount, setSecondCloudCount] = useState(0); /* track #stars in right cloud */
     const [isCheckedLeft, setIsLeftChecked] = useState(false);
@@ -135,9 +135,8 @@ function Activity1({ difficulty }) {
         let leftCount, rightCount;
 
         if (selectedSet.length > 0) {
-            const caseIndex = (roundCount - 1) % selectedSet.length;
-            leftCount = selectedSet[caseIndex].left;
-            rightCount = selectedSet[caseIndex].right;
+            leftCount = selectedSet[roundCount].left;
+            rightCount = selectedSet[roundCount].right;
         }
 
         setFirstCloudCount(leftCount);
@@ -237,7 +236,6 @@ function Activity1({ difficulty }) {
     };
 
     const handleNext = () => {
-        console.log(selectedSet);
         generateNewCounts();
 
         if (leftCloudPositions.length > 0 && rightCloudPositions.length > 0) {

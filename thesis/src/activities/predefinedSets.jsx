@@ -660,7 +660,32 @@ const predefinedSetsA7 = {
     ]
 };
 
-//
+const predefinedSetsA8 = {
+    easy: [
+        [{ number: -3 }, { number: 2 }, { number: -1 }, { number: 5 }, { number: -2 }, { number: 3 }, { number: -4 }],
+        [{ number: -2 }, { number: 3 }, { number: -5 }, { number: 4 }, { number: -1 }, { number: 2 }, { number: -6 }],
+        [{ number: 1 }, { number: -4 }, { number: 3 }, { number: -2 }, { number: 4 }, { number: -3 }, { number: 2 }],
+        [{ number: -1 }, { number: 4 }, { number: -3 }, { number: 3 }, { number: -2 }, { number: 1 }, { number: -5 }],
+        [{ number: -6 }, { number: 1 }, { number: -4 }, { number: 3 }, { number: -5 }, { number: 2 }, { number: -2 }],
+        [{ number: 2 }, { number: -1 }, { number: 4 }, { number: -5 }, { number: 3 }, { number: -4 }, { number: 1 }],
+        [{ number: -2 }, { number: 5 }, { number: -3 }, { number: 4 }, { number: -1 }, { number: 2 }, { number: -6 }],
+        [{ number: 3 }, { number: -4 }, { number: 2 }, { number: -1 }, { number: 4 }, { number: -3 }, { number: 1 }],
+        [{ number: -1 }, { number: 3 }, { number: -4 }, { number: 2 }, { number: -2 }, { number: 4 }, { number: -3 }],
+        [{ number: -5 }, { number: 2 }, { number: -1 }, { number: 3 }, { number: -4 }, { number: 1 }, { number: -6 }]
+    ],
+    hard: [
+        [{ x: -3, y: 4 }, { x: 2, y: -3 }, { x: -1, y: 5 }, { x: 4, y: -2 }, { x: -5, y: 3 }, { x: 1, y: -4 }, { x: 3, y: -1 }],
+        [{ x: 2, y: -4 }, { x: -3, y: 5 }, { x: 4, y: -2 }, { x: -1, y: 3 }, { x: 5, y: -4 }, { x: -2, y: 4 }, { x: 3, y: -5 }],
+        [{ x: -4, y: 3 }, { x: 1, y: -5 }, { x: -2, y: 4 }, { x: 3, y: -1 }, { x: -3, y: 5 }, { x: 2, y: -4 }, { x: -1, y: 4 }],
+        [{ x: 5, y: -2 }, { x: -3, y: 4 }, { x: 1, y: -4 }, { x: -5, y: 2 }, { x: 4, y: -1 }, { x: -2, y: 3 }, { x: 3, y: -5 }],
+        [{ x: -1, y: 3 }, { x: 4, y: -2 }, { x: -3, y: 5 }, { x: 2, y: -4 }, { x: -5, y: 1 }, { x: 3, y: -2 }, { x: -2, y: 4 }],
+        [{ x: 3, y: -4 }, { x: -1, y: 5 }, { x: 4, y: -2 }, { x: -2, y: 3 }, { x: 5, y: -1 }, { x: -4, y: 2 }, { x: 1, y: -5 }],
+        [{ x: -3, y: 5 }, { x: 2, y: -4 }, { x: -1, y: 4 }, { x: 3, y: -5 }, { x: -2, y: 3 }, { x: 4, y: -1 }, { x: -4, y: 1 }],
+        [{ x: 1, y: -4 }, { x: -5, y: 2 }, { x: 4, y: -3 }, { x: -2, y: 5 }, { x: 3, y: -1 }, { x: -4, y: 2 }, { x: 5, y: -3 }],
+        [{ x: -1, y: 4 }, { x: 3, y: -5 }, { x: -2, y: 4 }, { x: 5, y: -3 }, { x: -4, y: 1 }, { x: 2, y: -3 }, { x: -3, y: 5 }],
+        [{ x: 2, y: -5 }, { x: -1, y: 3 }, { x: 4, y: -2 }, { x: -3, y: 5 }, { x: 1, y: -4 }, { x: -5, y: 2 }, { x: 3, y: -1 }]
+    ]
+};
 
 const predefinedSetsA9 = {
     easy: [
@@ -996,4 +1021,4 @@ const predefinedSetsA10 = {
     ]
 };
 
-export { predefinedSetsA1, predefinedSetsA2, predefinedSetsA3, predefinedSetsA5, predefinedSetsA6, predefinedSetsA7, predefinedSetsA9, predefinedSetsA10 };
+export { predefinedSetsA1, predefinedSetsA2, predefinedSetsA3, predefinedSetsA5, predefinedSetsA6, predefinedSetsA7, predefinedSetsA8, predefinedSetsA9, predefinedSetsA10 };

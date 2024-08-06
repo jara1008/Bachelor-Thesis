@@ -63,7 +63,7 @@ function Activity2({ difficulty }) {
         shuffleCubes();
     };
 
-    if (roundCount >= selectedSet.length - 1) {
+    if (roundCount >= selectedSet.length) {
         /* Message that the game is completed */
         return <EndOfGame levelName="Längen Vergleich" levelNr={2} difficulty={difficulty} />;
     }
