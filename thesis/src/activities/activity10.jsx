@@ -75,7 +75,7 @@ function Activity10({ difficulty }) {
         }
     };
 
-    if (roundCount >= selectedSet.length) {
+    if (roundCount >= Math.max(1, selectedSet.length-1)) {
         /* Message that the game is completed */
         return <EndOfGame levelName="Schriftliche Subtraktion" levelNr={9} difficulty={difficulty} />;
     }

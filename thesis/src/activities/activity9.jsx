@@ -187,7 +187,7 @@ function Activity9({ difficulty }) {
         }
     };
 
-    if (roundCount >= selectedSet.length) {
+    if (roundCount >= Math.max(1, selectedSet.length-1)) {
         return <EndOfGame levelName="Münzen subtrahieren 2" levelNr={8} difficulty={difficulty} />;
     }
 

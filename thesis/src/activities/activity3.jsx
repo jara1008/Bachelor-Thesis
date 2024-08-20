@@ -172,7 +172,7 @@ function Activity3({ difficulty }) {
         setInputValue('');
     }
 
-    if (roundCount >= selectedSet.length - 1) {
+    if (roundCount >= Math.max(1, selectedSet.length-1)) {
         return <EndOfGame levelName="Münz Vergleich" levelNr={3} difficulty={difficulty} />;
     }
 

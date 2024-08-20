@@ -662,28 +662,28 @@ const predefinedSetsA7 = {
 
 const predefinedSetsA8 = {
     easy: [
-        [{ number: -3 }, { number: 2 }, { number: -1 }, { number: 5 }, { number: -2 }, { number: 3 }, { number: -4 }],
-        [{ number: -2 }, { number: 3 }, { number: -5 }, { number: 4 }, { number: -1 }, { number: 2 }, { number: -6 }],
-        [{ number: 1 }, { number: -4 }, { number: 3 }, { number: -2 }, { number: 4 }, { number: -3 }, { number: 2 }],
-        [{ number: -1 }, { number: 4 }, { number: -3 }, { number: 3 }, { number: -2 }, { number: 1 }, { number: -5 }],
-        [{ number: -6 }, { number: 1 }, { number: -4 }, { number: 3 }, { number: -5 }, { number: 2 }, { number: -2 }],
-        [{ number: 2 }, { number: -1 }, { number: 4 }, { number: -5 }, { number: 3 }, { number: -4 }, { number: 1 }],
-        [{ number: -2 }, { number: 5 }, { number: -3 }, { number: 4 }, { number: -1 }, { number: 2 }, { number: -6 }],
-        [{ number: 3 }, { number: -4 }, { number: 2 }, { number: -1 }, { number: 4 }, { number: -3 }, { number: 1 }],
-        [{ number: -1 }, { number: 3 }, { number: -4 }, { number: 2 }, { number: -2 }, { number: 4 }, { number: -3 }],
-        [{ number: -5 }, { number: 2 }, { number: -1 }, { number: 3 }, { number: -4 }, { number: 1 }, { number: -6 }]
+        [{ number: -3 }, { number: 2 }, { number: 7 }, { number: 5 }, { number: -2 }, { number: 3 }, { number: -4 }],
+        [{ number: -2 }, { number: 3 }, { number: -5 }, { number: -7 }, { number: -1 }, { number: 2 }, { number: -6 }],
+        [{ number: 1 }, { number: -4 }, { number: 3 }, { number: -2 }, { number: -7 }, { number: -3 }, { number: 2 }],
+        [{ number: -1 }, { number: 4 }, { number: -3 }, { number: 3 }, { number: -2 }, { number: -7 }, { number: -5 }],
+        [{ number: -6 }, { number: 1 }, { number: -4 }, { number: 3 }, { number: 7 }, { number: 2 }, { number: -2 }],
+        [{ number: 2 }, { number: -1 }, { number: 4 }, { number: -5 }, { number: 3 }, { number: -4 }, { number: -7 }],
+        [{ number: -2 }, { number: 5 }, { number: 7 }, { number: 4 }, { number: -1 }, { number: 2 }, { number: -6 }],
+        [{ number: 3 }, { number: -4 }, { number: -7 }, { number: -1 }, { number: 4 }, { number: -3 }, { number: 1 }],
+        [{ number: -1 }, { number: 3 }, { number: 7 }, { number: 2 }, { number: -2 }, { number: 4 }, { number: -3 }],
+        [{ number: -5 }, { number: 2 }, { number: -1 }, { number: -7 }, { number: -4 }, { number: 1 }, { number: -6 }]
     ],
     hard: [
-        [{ x: -3, y: 4 }, { x: 2, y: -3 }, { x: -1, y: 5 }, { x: 4, y: -2 }, { x: -5, y: 3 }, { x: 1, y: -4 }, { x: 3, y: -1 }],
-        [{ x: 2, y: -4 }, { x: -3, y: 5 }, { x: 4, y: -2 }, { x: -1, y: 3 }, { x: 5, y: -4 }, { x: -2, y: 4 }, { x: 3, y: -5 }],
-        [{ x: -4, y: 3 }, { x: 1, y: -5 }, { x: -2, y: 4 }, { x: 3, y: -1 }, { x: -3, y: 5 }, { x: 2, y: -4 }, { x: -1, y: 4 }],
-        [{ x: 5, y: -2 }, { x: -3, y: 4 }, { x: 1, y: -4 }, { x: -5, y: 2 }, { x: 4, y: -1 }, { x: -2, y: 3 }, { x: 3, y: -5 }],
-        [{ x: -1, y: 3 }, { x: 4, y: -2 }, { x: -3, y: 5 }, { x: 2, y: -4 }, { x: -5, y: 1 }, { x: 3, y: -2 }, { x: -2, y: 4 }],
-        [{ x: 3, y: -4 }, { x: -1, y: 5 }, { x: 4, y: -2 }, { x: -2, y: 3 }, { x: 5, y: -1 }, { x: -4, y: 2 }, { x: 1, y: -5 }],
-        [{ x: -3, y: 5 }, { x: 2, y: -4 }, { x: -1, y: 4 }, { x: 3, y: -5 }, { x: -2, y: 3 }, { x: 4, y: -1 }, { x: -4, y: 1 }],
-        [{ x: 1, y: -4 }, { x: -5, y: 2 }, { x: 4, y: -3 }, { x: -2, y: 5 }, { x: 3, y: -1 }, { x: -4, y: 2 }, { x: 5, y: -3 }],
-        [{ x: -1, y: 4 }, { x: 3, y: -5 }, { x: -2, y: 4 }, { x: 5, y: -3 }, { x: -4, y: 1 }, { x: 2, y: -3 }, { x: -3, y: 5 }],
-        [{ x: 2, y: -5 }, { x: -1, y: 3 }, { x: 4, y: -2 }, { x: -3, y: 5 }, { x: 1, y: -4 }, { x: -5, y: 2 }, { x: 3, y: -1 }]
+        [{ x: 3, y: 4 }, { x: -2, y: -3 }, { x: -1, y: 5 }, { x: 4, y: -2 }, { x: -5, y: 3 }, { x: -1, y: -4 }, { x: 3, y: -1 }],
+        [{ x: 2, y: 4 }, { x: -3, y: -5 }, { x: 4, y: -2 }, { x: -1, y: 3 }, { x: 5, y: 4 }, { x: -2, y: 4 }, { x: 3, y: -5 }],
+        [{ x: 4, y: 3 }, { x: -1, y: -5 }, { x: -2, y: 4 }, { x: 3, y: -1 }, { x: -3, y: 5 }, { x: -2, y: -4 }, { x: -1, y: 4 }],
+        [{ x: 5, y: 2 }, { x: -3, y: -4 }, { x: 1, y: -4 }, { x: -5, y: 2 }, { x: 4, y: 1 }, { x: -2, y: -3 }, { x: 3, y: -5 }],
+        [{ x: 1, y: 3 }, { x: -4, y: -2 }, { x: -3, y: 5 }, { x: 2, y: 4 }, { x: -5, y: 1 }, { x: 3, y: -2 }, { x: -2, y: 4 }],
+        [{ x: 3, y: 4 }, { x: -1, y: -5 }, { x: -4, y: -2 }, { x: -2, y: 3 }, { x: 5, y: 1 }, { x: -4, y: -2 }, { x: 1, y: -5 }],
+        [{ x: 3, y: 5 }, { x: -2, y: -4 }, { x: -1, y: 4 }, { x: 3, y: -5 }, { x: -2, y: 3 }, { x: 4, y: -1 }, { x: -4, y: 1 }],
+        [{ x: 1, y: 4 }, { x: -5, y: -2 }, { x: 4, y: -3 }, { x: 2, y: 5 }, { x: 3, y: 1 }, { x: -4, y: -2 }, { x: 5, y: -3 }],
+        [{ x: 1, y: 4 }, { x: -3, y: -5 }, { x: -2, y: 4 }, { x: 5, y: -3 }, { x: -4, y: 1 }, { x: -2, y: -3 }, { x: -3, y: 5 }],
+        [{ x: 2, y: 5 }, { x: -1, y: -3 }, { x: 4, y: -2 }, { x: -3, y: 5 }, { x: 1, y: 4 }, { x: -5, y: -2 }, { x: 3, y: -1 }]
     ]
 };
 
@@ -878,145 +878,145 @@ const predefinedSetsA10 = {
     easy: [
         [
             { numberLarge: 2453, numberSmall: 1232 },
-            { numberLarge: 3467, numberSmall: 2456 },
-            { numberLarge: 4678, numberSmall: 3459 },
-            { numberLarge: 5234, numberSmall: 4123 },
-            { numberLarge: 6789, numberSmall: 5678 }
+            { numberLarge: 3411, numberSmall: 2476 },
+            { numberLarge: 4678, numberSmall: 3699 },
+            { numberLarge: 5231, numberSmall: 3383 },
+            { numberLarge: 6781, numberSmall: 5898 }
         ],
         [
             { numberLarge: 2345, numberSmall: 1231 },
-            { numberLarge: 3456, numberSmall: 2345 },
-            { numberLarge: 4567, numberSmall: 3456 },
-            { numberLarge: 5678, numberSmall: 4567 },
-            { numberLarge: 6789, numberSmall: 5678 }
+            { numberLarge: 5321, numberSmall: 2398 },
+            { numberLarge: 7523, numberSmall: 3456 },
+            { numberLarge: 5678, numberSmall: 4769 },
+            { numberLarge: 9780, numberSmall: 7898 }
         ],
         [
             { numberLarge: 9832, numberSmall: 1720 },
-            { numberLarge: 2365, numberSmall: 1243 },
-            { numberLarge: 3476, numberSmall: 2354 },
-            { numberLarge: 4587, numberSmall: 3465 },
-            { numberLarge: 5698, numberSmall: 4576 }
+            { numberLarge: 8855, numberSmall: 1889 },
+            { numberLarge: 8376, numberSmall: 2457 },
+            { numberLarge: 9380, numberSmall: 7801 },
+            { numberLarge: 5231, numberSmall: 4576 }
         ],
         [
             { numberLarge: 7943, numberSmall: 6830 },
-            { numberLarge: 2654, numberSmall: 2345 },
-            { numberLarge: 3765, numberSmall: 3456 },
-            { numberLarge: 4876, numberSmall: 4567 },
-            { numberLarge: 5987, numberSmall: 5678 }
+            { numberLarge: 2621, numberSmall: 1645 },
+            { numberLarge: 3765, numberSmall: 3499 },
+            { numberLarge: 1876, numberSmall: 1599 },
+            { numberLarge: 8533, numberSmall: 6657 }
         ],
         [
             { numberLarge: 5649, numberSmall: 1431 },
-            { numberLarge: 2753, numberSmall: 2542 },
-            { numberLarge: 3864, numberSmall: 3653 },
-            { numberLarge: 4975, numberSmall: 4764 },
-            { numberLarge: 5086, numberSmall: 5875 }
+            { numberLarge: 2797, numberSmall: 1989 },
+            { numberLarge: 4864, numberSmall: 3963 },
+            { numberLarge: 5125, numberSmall: 4764 },
+            { numberLarge: 3769, numberSmall: 7876 }
         ],
         [
             { numberLarge: 7754, numberSmall: 4511 },
-            { numberLarge: 2865, numberSmall: 2654 },
-            { numberLarge: 3976, numberSmall: 3765 },
-            { numberLarge: 4587, numberSmall: 4465 },
-            { numberLarge: 5698, numberSmall: 5586 }
+            { numberLarge: 2865, numberSmall: 2689 },
+            { numberLarge: 3920, numberSmall: 3765 },
+            { numberLarge: 2523, numberSmall: 1665 },
+            { numberLarge: 7341, numberSmall: 1586 }
         ],
         [
             { numberLarge: 3564, numberSmall: 1152 },
-            { numberLarge: 2574, numberSmall: 2363 },
-            { numberLarge: 3685, numberSmall: 3474 },
-            { numberLarge: 4796, numberSmall: 4585 },
-            { numberLarge: 5807, numberSmall: 5696 }
+            { numberLarge: 7574, numberSmall: 4868 },
+            { numberLarge: 7810, numberSmall: 3474 },
+            { numberLarge: 4245, numberSmall: 2586 },
+            { numberLarge: 5023, numberSmall: 2696 }
         ],
         [
             { numberLarge: 6575, numberSmall: 4351 },
-            { numberLarge: 2683, numberSmall: 2472 },
-            { numberLarge: 3794, numberSmall: 3583 },
-            { numberLarge: 4905, numberSmall: 4694 },
-            { numberLarge: 6016, numberSmall: 5905 }
+            { numberLarge: 9381, numberSmall: 6472 },
+            { numberLarge: 8312, numberSmall: 3583 },
+            { numberLarge: 9105, numberSmall: 4696 },
+            { numberLarge: 6016, numberSmall: 5927 }
         ],
         [
             { numberLarge: 2681, numberSmall: 1470 },
-            { numberLarge: 2792, numberSmall: 2581 },
-            { numberLarge: 3803, numberSmall: 3692 },
-            { numberLarge: 4914, numberSmall: 4703 },
-            { numberLarge: 5025, numberSmall: 4914 }
+            { numberLarge: 3492, numberSmall: 2285 },
+            { numberLarge: 1803, numberSmall: 3992 },
+            { numberLarge: 8814, numberSmall: 4933 },
+            { numberLarge: 5025, numberSmall: 4937 }
         ],
         [
             { numberLarge: 8790, numberSmall: 2570 },
-            { numberLarge: 2801, numberSmall: 2590 },
-            { numberLarge: 3912, numberSmall: 3701 },
-            { numberLarge: 4023, numberSmall: 3912 },
-            { numberLarge: 5134, numberSmall: 5023 }
+            { numberLarge: 4627, numberSmall: 2593 },
+            { numberLarge: 6901, numberSmall: 5767 },
+            { numberLarge: 4001, numberSmall: 3912 },
+            { numberLarge: 8134, numberSmall: 5295 }
         ]
     ],
     hard: [
         [
             { numberLarge: 2245, numberSmall: 3256 },
-            { numberLarge: 4367, numberSmall: 2456 },
-            { numberLarge: 5478, numberSmall: 3459 },
-            { numberLarge: 6234, numberSmall: 4123 },
-            { numberLarge: 7789, numberSmall: 5678 }
+            { numberLarge: 4367, numberSmall: 2458 },
+            { numberLarge: 3478, numberSmall: 5459 },
+            { numberLarge: 4173, numberSmall: 6234 },
+            { numberLarge: 5789, numberSmall: 9678 }
         ],
         [
             { numberLarge: 5012, numberSmall: 7234 },
-            { numberLarge: 4456, numberSmall: 2345 },
-            { numberLarge: 5567, numberSmall: 3456 },
-            { numberLarge: 6678, numberSmall: 4567 },
-            { numberLarge: 7789, numberSmall: 5678 }
+            { numberLarge: 7456, numberSmall: 2557 },
+            { numberLarge: 7567, numberSmall: 9457 },
+            { numberLarge: 4967, numberSmall: 6678 },
+            { numberLarge: 1278, numberSmall: 5698 }
         ],
         [
             { numberLarge: 2454, numberSmall: 8867 },
-            { numberLarge: 3365, numberSmall: 1243 },
-            { numberLarge: 4476, numberSmall: 2354 },
-            { numberLarge: 5587, numberSmall: 3465 },
-            { numberLarge: 6698, numberSmall: 4576 }
+            { numberLarge: 8365, numberSmall: 1975 },
+            { numberLarge: 4216, numberSmall: 2396 },
+            { numberLarge: 3795, numberSmall: 5587 },
+            { numberLarge: 4698, numberSmall: 6576 }
         ],
         [
             { numberLarge: 2543, numberSmall: 1223 },
-            { numberLarge: 3654, numberSmall: 2345 },
-            { numberLarge: 4765, numberSmall: 3456 },
-            { numberLarge: 5876, numberSmall: 4567 },
-            { numberLarge: 6987, numberSmall: 5678 }
+            { numberLarge: 3613, numberSmall: 2845 },
+            { numberLarge: 2765, numberSmall: 9466 },
+            { numberLarge: 5871, numberSmall: 9180 },
+            { numberLarge: 9487, numberSmall: 6678 }
         ],
         [
             { numberLarge: 6642, numberSmall: 9782 },
-            { numberLarge: 3753, numberSmall: 2542 },
-            { numberLarge: 4864, numberSmall: 3653 },
-            { numberLarge: 5975, numberSmall: 4764 },
-            { numberLarge: 6086, numberSmall: 5875 }
+            { numberLarge: 6751, numberSmall: 2802 },
+            { numberLarge: 8864, numberSmall: 3898 },
+            { numberLarge: 1975, numberSmall: 4768 },
+            { numberLarge: 6086, numberSmall: 3875 }
         ],
         [
             { numberLarge: 2444, numberSmall: 4549 },
-            { numberLarge: 3865, numberSmall: 2654 },
-            { numberLarge: 4976, numberSmall: 3765 },
-            { numberLarge: 5587, numberSmall: 4465 },
-            { numberLarge: 6698, numberSmall: 5586 }
+            { numberLarge: 8225, numberSmall: 7654 },
+            { numberLarge: 2976, numberSmall: 6795 },
+            { numberLarge: 5387, numberSmall: 7310 },
+            { numberLarge: 1698, numberSmall: 2586 }
         ],
         [
             { numberLarge: 2411, numberSmall: 8952 },
-            { numberLarge: 3574, numberSmall: 2363 },
-            { numberLarge: 4685, numberSmall: 3474 },
-            { numberLarge: 5796, numberSmall: 4585 },
-            { numberLarge: 6807, numberSmall: 5696 }
+            { numberLarge: 3574, numberSmall: 1874 },
+            { numberLarge: 2685, numberSmall: 8476 },
+            { numberLarge: 1796, numberSmall: 6587 },
+            { numberLarge: 3267, numberSmall: 5656 }
         ],
         [
             { numberLarge: 1122, numberSmall: 2368 },
-            { numberLarge: 3683, numberSmall: 2472 },
-            { numberLarge: 4794, numberSmall: 3583 },
-            { numberLarge: 5905, numberSmall: 4694 },
-            { numberLarge: 7016, numberSmall: 5905 }
+            { numberLarge: 9643, numberSmall: 2778 },
+            { numberLarge: 8794, numberSmall: 3986 },
+            { numberLarge: 1905, numberSmall: 4694 },
+            { numberLarge: 2016, numberSmall: 5905 }
         ],
         [
             { numberLarge: 3683, numberSmall: 4699 },
-            { numberLarge: 3792, numberSmall: 2581 },
-            { numberLarge: 4803, numberSmall: 3692 },
-            { numberLarge: 5914, numberSmall: 4703 },
-            { numberLarge: 6025, numberSmall: 4914 }
+            { numberLarge: 5591, numberSmall: 2782 },
+            { numberLarge: 1803, numberSmall: 7692 },
+            { numberLarge: 5914, numberSmall: 9713 },
+            { numberLarge: 6025, numberSmall: 7914 }
         ],
         [
             { numberLarge: 2050, numberSmall: 7579 },
-            { numberLarge: 3801, numberSmall: 2590 },
-            { numberLarge: 4912, numberSmall: 3701 },
-            { numberLarge: 5023, numberSmall: 3912 },
-            { numberLarge: 6134, numberSmall: 5023 }
+            { numberLarge: 6800, numberSmall: 1591 },
+            { numberLarge: 4912, numberSmall: 3763 },
+            { numberLarge: 5023, numberSmall: 6912 },
+            { numberLarge: 8134, numberSmall: 9023 }
         ]
     ]
 };

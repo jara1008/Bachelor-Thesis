@@ -139,7 +139,7 @@ function Activity7({ difficulty }) {
         return true;
     };
 
-    if (roundCount >= selectedSet.length) {
+    if (roundCount >= Math.max(1, selectedSet.length-1)) {
         return <EndOfGame levelName="Tabellensubtraktion" levelNr={6} difficulty={difficulty} />;
     }
 

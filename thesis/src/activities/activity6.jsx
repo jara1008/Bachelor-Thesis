@@ -28,7 +28,6 @@ function Activity6({ difficulty }) {
     }, [difficulty]);
 
     const generateNewNumbers = useCallback(() => {
-        console.log(selectedSet);
         if (selectedSet.length > 0) {
             const { left, right } = selectedSet[roundCount];
             setLeftCoinsTen(Math.floor(left / 10));
@@ -162,7 +161,7 @@ function Activity6({ difficulty }) {
     };
 
     const handleNext = () => {
-        if (roundCount < selectedSet.length - 1) {
+        if (roundCount < selectedSet.length-1) {
             setRoundCount(prevCount => prevCount + 1);
         } else {
             setRoundCount(selectedSet.length); // End game condition
@@ -184,7 +183,7 @@ function Activity6({ difficulty }) {
         }
     };
 
-    if (roundCount >= selectedSet.length) {
+    if (roundCount >= Math.max(1, selectedSet.length-1)) {
         return <EndOfGame levelName="Münzen subtrahieren" levelNr={5} difficulty={difficulty} />;
     }
 

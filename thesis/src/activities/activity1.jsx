@@ -168,6 +168,7 @@ function Activity1({ difficulty }) {
         if (lines.length !== Math.min(firstCloudCount, secondCloudCount)) {
             setIsLeftChecked(false);
             setIsRightChecked(false);
+            setConnectedStars(new Set());
             setLines([]);
             return;
         }
@@ -178,6 +179,7 @@ function Activity1({ difficulty }) {
                 (start.cloudSide === 'right' && end.cloudSide === 'left'))) {
                 setIsLeftChecked(false);
                 setIsRightChecked(false);
+                setConnectedStars(new Set());
                 setLines([]);
                 return;
             }
@@ -188,6 +190,7 @@ function Activity1({ difficulty }) {
             if (seenPositions.has(startPos) || seenPositions.has(endPos)) {
                 setIsLeftChecked(false);
                 setIsRightChecked(false);
+                setConnectedStars(new Set());
                 setLines([]);
                 return;
             }
@@ -205,11 +208,13 @@ function Activity1({ difficulty }) {
             if (firstCloudCount > secondCloudCount && (!isCheckedLeft || isCheckedRight)) {
                 setIsLeftChecked(false);
                 setIsRightChecked(false);
+                setConnectedStars(new Set());
                 setLines([]);
                 return;
             } else if (secondCloudCount > firstCloudCount && (!isCheckedRight || isCheckedLeft)) {
                 setIsLeftChecked(false);
                 setIsRightChecked(false);
+                setConnectedStars(new Set());
                 setLines([]);
                 return;
             }
@@ -270,7 +275,8 @@ function Activity1({ difficulty }) {
     };
 
     /* The game is finished */
-    if (roundCount > selectedSet.length) {
+    if (roundCount >= Math.max(1, selectedSet.length-1)) {
+        console.log("YAY LEVEL UNLOCKED!")
         /* Message that the game is completed */
         return <EndOfGame levelName="Mengen Vergleich" levelNr={1} difficulty={difficulty}/>;
     }

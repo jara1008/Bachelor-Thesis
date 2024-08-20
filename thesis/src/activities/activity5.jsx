@@ -52,7 +52,7 @@ function Activity5({ difficulty }) {
         }
     };
 
-    if (roundCount >= selectedSet.length) {
+    if (roundCount >= Math.max(1, selectedSet.length)) {
         /* Message that the game is completed */
         return <EndOfGame levelName="Additionsrätsel" levelNr={4} difficulty={difficulty} />;
     }

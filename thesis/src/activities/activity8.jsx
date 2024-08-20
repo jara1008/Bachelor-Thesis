@@ -436,7 +436,7 @@ function Activity8({ difficulty }) {
     }
 
 
-    if (roundCount >= selectedSet.length) {
+    if (roundCount >= Math.max(1, selectedSet.length-1)) {
         /* Message that the game is completed */
         return <EndOfGame levelName="Distanzen erkennen" levelNr={7} difficulty={difficulty} />;
     }

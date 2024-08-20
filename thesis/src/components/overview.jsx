@@ -27,7 +27,7 @@ function Overview() {
     const numberOfDots = 9;
 
     // Get the highest unlocked level from local storage or set it to 1 if not available
-    const highestUnlockedLevel = parseInt(localStorage.getItem('highestUnlockedLevel')) || 10;
+    const highestUnlockedLevel = parseInt(localStorage.getItem('highestUnlockedLevel')) || 1;
 
     // Initialize the difficulty array with values from local storage or default to -1
     const difficulty = Array.from({ length: 9 }, (_, i) => {
