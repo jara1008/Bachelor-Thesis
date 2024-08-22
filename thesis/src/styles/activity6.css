@@ -18,9 +18,8 @@
     position: absolute;
     display: flex;
     justify-content: space-between;
-    width: 90%;
-    margin-left: 2%;
-    margin-top: 0.2vw; 
+    width: 75%;
+    margin-left: 20%;
     top: var(--top, 15%);
 }
 

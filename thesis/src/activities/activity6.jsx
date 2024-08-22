@@ -210,21 +210,23 @@ function Activity6({ difficulty }) {
         <div className="container">
             <div className="white-box-large">
                 <HomeLink />
-                <div className='title-text'>Löse die Rechnung:</div>
-                <span className='text-wrapper-abs' style={{ '--top': '20%', '--left': '14%' }}>{leftVal} - {rightVal}</span>
-                <div className="coin-row-A6" style={{ '--top': '28%' }}>
+                {difficulty==='easy' && <div className='title-text'>Klicke auf die Münzen, um sie zu streichen. Löse die Rechnung:</div>}
+                {difficulty==='hard' && <div className='title-text'>Klicke auf die Münzen, um sie zu streichen. Tausche zu grosse Münzen um. Löse die Rechnung:</div>}
+                <span className='text-wrapper-abs' style={{ '--top': '34%', '--left': '10%' }}>{leftVal} - {rightVal}</span>
+                <div className="coin-row-A6" style={{ '--top': '32%' }}>
                     <span className='text-wrapper-abs' style={{ '--left': '-2%' }}>=</span>
                     <CoinRowUpper coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='left' />
                     <span className='text-wrapper-abs' style={{ '--left': '50%' }}>-</span>
                     <CoinRowUpper coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type='right' />
                 </div>
-                <div className="coin-row-A6" style={{ '--top': '54%' }}>
+                <div className="coin-row-A6" style={{ '--top': '55%' }}>
                     <span className='text-wrapper-abs' style={{ '--left': '-2%' }}>=</span>
                     <CoinRowLower coinsTen={leftCoinsVisibleTen} coinsOne={leftCoinsVisibleOne} type='left' />
                     {displayMinus && <span className='text-wrapper-abs' style={{ '--left': '50%' }}>-</span>}
                     <CoinRowLower coinsTen={rightCoinsVisibleTen} coinsOne={rightCoinsVisibleOne} type='right' />
                 </div>
-                <div className="coin-row-A6" style={{ '--top': '85%' }}>
+                <span className='text-wrapper-abs' style={{ '--top': '80%', '--left': '10%' }}>{leftVal} - {rightVal}</span>
+                <div className="coin-row-A6" style={{ '--top': '80%' }}>
                     <span className='text-wrapper-abs' style={{ '--left': '-2%' }}>=</span>
                     <input
                         type="text"

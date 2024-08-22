@@ -85,7 +85,7 @@ function Activity10({ difficulty }) {
         <div className="container">
             <div className="white-box-regular">
                 <HomeLink />
-                <span className="title-text">Löse die Rechnung:</span>
+                <span className="title-text">Führe eine schriftliche Subtraktion durch:</span>
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} />}
                 {!isCorrect && displayCorrectness && <HintLabel message="Überprüfe dein Resultat nochmal!" isVisible={true} left="70%" top="76.5%" />}
 

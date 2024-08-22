@@ -81,7 +81,8 @@ function Activity2({ difficulty }) {
         <div className="container">
             <div className="white-box-regular">
                 <HomeLink />
-                <span className="title-text">Wähle {"<, >, ="} passend: </span>
+                {difficulty==="easy" && <span className="title-text">Wähle {"<, >, ="} passend: </span>}
+                {difficulty==="hard" && <span className="title-text">Wähle {"<, >, ="} passend. Gib den Längenunterschied an:</span>}
                 <div className="cube-rows-A2">
                     <div className="cube-row-A2">
                         {Array.from({ length: numCubesFirstRow }, (_, index) => (

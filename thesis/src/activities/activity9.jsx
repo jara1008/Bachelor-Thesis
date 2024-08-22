@@ -213,7 +213,8 @@ function Activity9({ difficulty }) {
         <div className="container">
             <div className="white-box-large">
                 <HomeLink />
-                <div className='title-text'>Löse die Rechnung:</div>
+                {difficulty==='easy' && <div className='title-text'>Klicke auf die Münzen, um sie zu streichen. Löse die Rechnung:</div>}
+                {difficulty==='hard' && <div className='title-text'>Klicke auf die Münzen, um sie zu streichen. Tausche zu grosse Münzen um. Löse die Rechnung:</div>}
                 <span className='text-wrapper-abs' style={{ '--top': '20%', '--left': '14%' }}>{leftVal} - {rightVal}</span>
                 <div className="coin-row-A9" style={{ '--top': '28%' }}>
                     <span className='symbol-A9' style={{ '--left': '-5%', '--top': '15%' }}>=</span>

@@ -16,7 +16,7 @@ function Overview() {
         { id: 4, top: '41%', left: '37%', path: "/difficultySelection/activity5/Additionsrätsel", title: "Additions-rätsel" },
         { id: 5, top: '41%', left: '52%', path: "/difficultySelection/activity6/Münzen subtrahieren 1", title: "Münzen subtrahieren 1" },
         { id: 6, top: '41%', left: '67%', path: "/difficultySelection/activity7/Tabellensubtraktion", title: "Tabellen-subtraktion" },
-        { id: 7, top: '68%', left: '37%', path: "/difficultySelection/activity8/Distanzen erkennen", title: "Distanzen erkennen" },
+        { id: 7, top: '68%', left: '37%', path: "/difficultySelection/activity8/Positionen erkennen", title: "Positionen erkennen" },
         { id: 8, top: '68%', left: '52%', path: "/difficultySelection/activity9/Münzen subtrahieren 2", title: "Münzen subtrahieren 2" },
         { id: 9, top: '68%', left: '67%', path: "/difficultySelection/activity10/Schriftliche Subtraktion",  title: "Schriftliche Subtraktion" },
     ]);

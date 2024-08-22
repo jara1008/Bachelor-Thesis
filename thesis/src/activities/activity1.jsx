@@ -30,7 +30,7 @@ function Activity1({ difficulty }) {
     const firstPosRef = useRef(firstPos);
     const svgRef = useRef(null);
     const [isCorrect, setIsCorrect] = useState(false); /* tracks if the stars are correctly connected */
-    const [displayCorrectness, setCorrectnessLabel] = useState(false); /* enables a message that confirms correctness */
+    const [displayCorrectness, setDisplayCorrectness] = useState(false); /* enables a message that confirms correctness */
     const [roundCount, setRoundCount] = useState(0); /* counts the number of repetitions played */
     const [firstCloudCount, setFirstCloudCount] = useState(0); /* track #stars in left cloud */
     const [secondCloudCount, setSecondCloudCount] = useState(0); /* track #stars in right cloud */
@@ -166,9 +166,6 @@ function Activity1({ difficulty }) {
     }, [firstPos]);
 
     const checkInput = () => {
-        setCorrectnessLabel(true);
-        const seenPositions = new Set();
-
         if (lines.length === 0) {
             setHintConnectStars(true);
             return;
@@ -176,37 +173,12 @@ function Activity1({ difficulty }) {
         setHintConnectStars(false);
 
         if (lines.length !== Math.min(firstCloudCount, secondCloudCount)) {
+            setHintConnectStars(true);
             setIsLeftChecked(false);
             setIsRightChecked(false);
-            setConnectedStars(new Set());
-            setLines([]);
             return;
         }
-
-        for (const line of lines) {
-            const { start, end } = line;
-            if (!((start.cloudSide === 'left' && end.cloudSide === 'right') ||
-                (start.cloudSide === 'right' && end.cloudSide === 'left'))) {
-                setIsLeftChecked(false);
-                setIsRightChecked(false);
-                setConnectedStars(new Set());
-                setLines([]);
-                return;
-            }
-
-            const startPos = `${start.top}-${start.left}`;
-            const endPos = `${end.top}-${end.left}`;
-
-            if (seenPositions.has(startPos) || seenPositions.has(endPos)) {
-                setIsLeftChecked(false);
-                setIsRightChecked(false);
-                setConnectedStars(new Set());
-                setLines([]);
-                return;
-            }
-            seenPositions.add(startPos);
-            seenPositions.add(endPos);
-        }
+        setHintConnectStars(false);
 
         if (difficulty === 'easy') {
             if (!isCheckedLeft && !isCheckedRight) {
@@ -218,14 +190,10 @@ function Activity1({ difficulty }) {
             if (firstCloudCount > secondCloudCount && (!isCheckedLeft || isCheckedRight)) {
                 setIsLeftChecked(false);
                 setIsRightChecked(false);
-                setConnectedStars(new Set());
-                setLines([]);
                 return;
             } else if (secondCloudCount > firstCloudCount && (!isCheckedRight || isCheckedLeft)) {
                 setIsLeftChecked(false);
                 setIsRightChecked(false);
-                setConnectedStars(new Set());
-                setLines([]);
                 return;
             }
         } else {
@@ -246,7 +214,7 @@ function Activity1({ difficulty }) {
                 return;
             }
         }
-
+        setDisplayCorrectness(true);
         setIsCorrect(true);
     };
 
@@ -264,7 +232,7 @@ function Activity1({ difficulty }) {
         setInputValue('');
         setHintClickBox(false);
         setIsCorrect(false);
-        setCorrectnessLabel(false);
+        setDisplayCorrectness(false);
         setLines([]);
         setFirstPos(null);
         setSecondPos(null); // Reset secondPos state
@@ -273,11 +241,21 @@ function Activity1({ difficulty }) {
     };
 
     const handleLeftCheckboxChange = (event) => {
-        setIsLeftChecked(event.target.checked);
+        if (event.target.checked) {
+            setIsLeftChecked(true);
+            setIsRightChecked(false);  // Uncheck the right checkbox when left is checked
+        } else {
+            setIsLeftChecked(false);
+        }
     };
 
     const handleRightCheckboxChange = (event) => {
-        setIsRightChecked(event.target.checked);
+        if (event.target.checked) {
+            setIsRightChecked(true);
+            setIsLeftChecked(false);  // Uncheck the left checkbox when right is checked
+        } else {
+            setIsRightChecked(false);
+        }
     };
 
     const handleButtonClick = (value) => {
