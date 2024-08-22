@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import "../styles/activity1.css";
 import "../defaults.css";
-import { HomeLink, EndOfGame, CorrectnessLabel, checkButtonTop } from "../defaults.jsx";
+import { HomeLink, EndOfGame, CorrectnessLabel, checkButtonTop, HintLabel } from "../defaults.jsx";
 import { predefinedSetsA1 } from "./predefinedSets.jsx";
 import cloud from "../images/cloud.png";
 import star from "../images/star.svg";
@@ -36,12 +36,16 @@ function Activity1({ difficulty }) {
     const [secondCloudCount, setSecondCloudCount] = useState(0); /* track #stars in right cloud */
     const [isCheckedLeft, setIsLeftChecked] = useState(false);
     const [isCheckedRight, setIsRightChecked] = useState(false);
-    const [checkBoxCorrectness, setCheckBoxCorrectness] = useState(false);
+
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 }); /* mouse position */
     const [inputValue, setInputValue] = useState('');
     const touchEventRef = useRef(false);
 
     const [selectedSet, setSelectedSet] = useState([]);
+
+    /* Hint that can be enabled */
+    const [hintClickBox, setHintClickBox] = useState(false);
+    const [hintConnectStars, setHintConnectStars] = useState(false);
 
     useEffect(() => {
         const sets = difficulty === 'easy' ? predefinedSetsA1.easy : predefinedSetsA1.hard;
@@ -165,6 +169,12 @@ function Activity1({ difficulty }) {
         setCorrectnessLabel(true);
         const seenPositions = new Set();
 
+        if (lines.length === 0) {
+            setHintConnectStars(true);
+            return;
+        }
+        setHintConnectStars(false);
+
         if (lines.length !== Math.min(firstCloudCount, secondCloudCount)) {
             setIsLeftChecked(false);
             setIsRightChecked(false);
@@ -200,10 +210,10 @@ function Activity1({ difficulty }) {
 
         if (difficulty === 'easy') {
             if (!isCheckedLeft && !isCheckedRight) {
-                setCheckBoxCorrectness(true);
+                setHintClickBox(true);
                 return;
             }
-            setCheckBoxCorrectness(false);
+            setHintClickBox(false);
 
             if (firstCloudCount > secondCloudCount && (!isCheckedLeft || isCheckedRight)) {
                 setIsLeftChecked(false);
@@ -220,10 +230,10 @@ function Activity1({ difficulty }) {
             }
         } else {
             if (inputValue === '') {
-                setCheckBoxCorrectness(true);
+                setHintClickBox(true);
                 return;
             }
-            setCheckBoxCorrectness(false);
+            setHintClickBox(false);
 
             if (
                 (inputValue === '<' && firstCloudCount < secondCloudCount) ||
@@ -252,7 +262,7 @@ function Activity1({ difficulty }) {
         setIsLeftChecked(false);
         setIsRightChecked(false);
         setInputValue('');
-        setCheckBoxCorrectness(false);
+        setHintClickBox(false);
         setIsCorrect(false);
         setCorrectnessLabel(false);
         setLines([]);
@@ -276,7 +286,6 @@ function Activity1({ difficulty }) {
 
     /* The game is finished */
     if (roundCount >= Math.max(1, selectedSet.length-1)) {
-        console.log("YAY LEVEL UNLOCKED!")
         /* Message that the game is completed */
         return <EndOfGame levelName="Mengen Vergleich" levelNr={1} difficulty={difficulty}/>;
     }
@@ -332,9 +341,10 @@ function Activity1({ difficulty }) {
                         <button className="operator-button-A1" onClick={() => handleButtonClick('>')}>{'>'}</button>
                     </div>}
                     {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} top="76%" left="77%" />}
-                    {!isCorrect && displayCorrectness && !checkBoxCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top="76%" left="77%" />}
-                    {checkBoxCorrectness && difficulty === 'easy' && <CorrectnessLabel message="Wähle das richtige Kästchen an!" isVisible={true} top="73%" left="71%" height="24%" width="30%" />}
-                    {checkBoxCorrectness && difficulty === 'hard' && <CorrectnessLabel message="Wähle <, =, > passend!" isVisible={true} top="73%" left="71%" height="24%" width="30%" />}
+                    {!isCorrect && displayCorrectness && !hintClickBox && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top="76%" left="77%" />}
+                    {hintClickBox && difficulty === 'easy' && <HintLabel message="Wähle das richtige Kästchen an!" isVisible={true} />}
+                    {hintClickBox && difficulty === 'hard' && <HintLabel message="Wähle <, =, > passend!" isVisible={true} />}
+                    {hintConnectStars && <HintLabel message="Verbinde die Sterne miteinander!" isVisible={true} />}
                 </div>
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default"
                     style={{ top: `${checkButtonTop}%`, left: '50%' }} >

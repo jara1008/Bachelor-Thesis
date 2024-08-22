@@ -21,6 +21,10 @@ function Activity6({ difficulty }) {
     const [displayMinus, setDisplayMinus] = useState(true);
     const [selectedSet, setSelectedSet] = useState([]);
 
+    /* Hints */
+    const [hintCrossAllCoins, setHintCrossAllCoins] = useState(false);
+    const [hintNothingToSwap, setHintNothingToSwap] = useState(false); 
+
     useEffect(() => {
         const sets = difficulty === 'easy' ? predefinedSetsA6.easy : predefinedSetsA6.hard;
         const randomSet = sets[Math.floor(Math.random() * sets.length)];
@@ -134,8 +138,6 @@ function Activity6({ difficulty }) {
                     setLeftCoinsVisibleOne(prevCount => prevCount - 1);
                     setRightCoinsVisibleOne(prevCount => prevCount - 1);
                     nrRightOnes -= 1;
-                } else {
-                    return <HintLabel message="Streiche erst alle möglichen Münzen!" />;
                 }
             }
 
@@ -170,6 +172,20 @@ function Activity6({ difficulty }) {
     };
 
     const handleConversion = () => {
+        if ((leftCoinsVisibleOne > 0 && rightCoinsVisibleOne > 0) || (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen > 0)) {
+            setHintCrossAllCoins(true);
+            setTimeout(() => {
+                setHintCrossAllCoins(false);
+            }, 5000);
+            return;
+        }
+        if (leftCoinsVisibleTen === 0 || leftCoinsVisibleOne > 0 || rightCoinsVisibleOne === 0) {
+            setHintNothingToSwap(true);
+            setTimeout(() => {
+                setHintNothingToSwap(false);
+            }, 5000);
+        }
+
         if (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen === 0 && leftCoinsVisibleOne === 0) {
             const newLeftCoinsTen = leftCoinsTen - 1;
             const newLeftCoinsVisibleTen = leftCoinsVisibleTen - 1;
@@ -221,7 +237,8 @@ function Activity6({ difficulty }) {
                 </div>
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} left="79.5%" />}
                 {!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} left="79.5%" />}
-                <HintLabel message="Streiche erst alle möglichen Münzen!" />
+                {hintNothingToSwap && <HintLabel message="Hier kannst du nichts tauschen!" isVisible={true} left="73.5%" top="76%" />}
+                {hintCrossAllCoins && <HintLabel message="Streiche zuerst so viele Münzen, wie du kannst!" isVisible={true} left="73.5%" top="76%" />}
                 {difficulty === 'hard' && (<button onClick={handleConversion} className="header-button" style={{ marginTop: "2vh" }}>
                     Tauschen
                 </button>)}

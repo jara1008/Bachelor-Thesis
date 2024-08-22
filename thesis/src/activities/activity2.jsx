@@ -12,8 +12,11 @@ function Activity2({ difficulty }) {
     const [roundCount, setRoundCount] = useState(0);
     const [differenceValue, setDifferenceValue] = useState('');
     const [selectedSet, setSelectedSet] = useState([]);
+
+    /* Hints */
+    const [hintAllBoxes, setHintAllBoxes] = useState(false);
     
-    // Select a random set of cases based on difficulty
+    /* Select a random set of cases based on difficulty */
     useEffect(() => {
         const sets = difficulty === 'easy' ? predefinedSetsA2.easy : predefinedSetsA2.hard;
         const randomSet = sets[Math.floor(Math.random() * sets.length)];
@@ -37,6 +40,12 @@ function Activity2({ difficulty }) {
     }, [shuffleCubes]);
 
     const checkInput = () => {
+        if (difficulty === 'hard' && (inputValue === '' || differenceValue === '')) {
+            setHintAllBoxes(true);
+            return;
+        }
+        setHintAllBoxes(false);
+
         setCorrectnessLabel(true);
         const lengthDifference = Math.abs(numCubesFirstRow - numCubesSecondRow);
         if (
@@ -119,8 +128,9 @@ function Activity2({ difficulty }) {
                         />
                     </div>
                 )}
-                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig" isVisible={true} />}
+                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} />}
                 {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} />}
+                {hintAllBoxes && <CorrectnessLabel message="Fülle alle Kästchen!" isVisible={true} />}
                 <button
                     onClick={isCorrect ? handleNext : checkInput}
                     className="button-default"

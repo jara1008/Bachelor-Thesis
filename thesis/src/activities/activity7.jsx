@@ -13,6 +13,13 @@ function Activity7({ difficulty }) {
     const [rows, setRows] = useState([]);
     const [selectedSet, setSelectedSet] = useState([]);
     const nrCols = difficulty === 'hard' ? 4 : 3;
+    const [lastAcceptedTopValues, setLastAcceptedTopValues] = useState(Array(nrCols).fill(0));
+    const [lastAcceptedBotValues, setLastAcceptedBotValues] = useState(Array(nrCols).fill(0));
+
+    /* Hints */
+    const [hintSwap, setHintSwap] = useState(false);
+    const [hintNoSwap, setHintNoSwap] = useState(false);
+    const [hintCheckLastRow, setHintCheckLastRow] = useState(false);
 
     useEffect(() => {
         const sets = difficulty === 'easy' ? predefinedSetsA7.easy : predefinedSetsA7.hard;
@@ -21,16 +28,21 @@ function Activity7({ difficulty }) {
     }, [difficulty]);
 
     const generateNewNumbers = useCallback(() => {
-        console.log(selectedSet)
         if (selectedSet.length > 0) {
             const { large, small } = selectedSet[roundCount];
-            setNumberLarge(String(large).padStart(nrCols, '0').split('').map(Number));
-            setNumberSmall(String(small).padStart(nrCols, '0').split('').map(Number));
+            const newLargeValues = String(large).padStart(nrCols, '0').split('').map(Number);
+            const newSmallValues = String(small).padStart(nrCols, '0').split('').map(Number);
+
+            setNumberLarge(newLargeValues);
+            setNumberSmall(newSmallValues);
 
             const newRows = [];
             const newInputRow = { type: 'input', valuesTop: Array(nrCols).fill(''), valuesBottom: Array(nrCols).fill('') };
             newRows.push(newInputRow);
             setRows(newRows);
+
+            setLastAcceptedTopValues(newLargeValues.map((value, index) => value));
+            setLastAcceptedBotValues(newSmallValues.map((value, index) => value)); 
 
             setIsCorrect(false);
             setCorrectnessLabel(false);
@@ -44,12 +56,28 @@ function Activity7({ difficulty }) {
     const checkInput = () => {
         const sol = parseInt(numberLarge.join('')) - parseInt(numberSmall.join(''));
         const input = parseInt(rows[rows.length - 1].valuesTop.join(''));
-        setCorrectnessLabel(true);
         if (sol === input) {
+            setCorrectnessLabel(true);
             setIsCorrect(true);
         } else {
-            const newInputRow = { type: 'input', valuesTop: Array(nrCols).fill(''), valuesBottom: Array(nrCols).fill('') };
-            setRows([newInputRow]);
+            const currentTopValues = rows[rows.length - 1].valuesTop.map(value => parseInt(value, 10) || 0);
+            const currentBotValues = rows[rows.length - 1].valuesBottom.map(value => parseInt(value, 10) || 0);
+            if (checkIntermediate(currentTopValues, currentBotValues)) {
+                setHintSwap(true);
+                setTimeout(() => {
+                    setHintSwap(false);
+                }, 5000);
+                return;
+            }
+            else {
+                setHintCheckLastRow(true);
+                setTimeout(() => {
+                    setHintCheckLastRow(false);
+                }, 5000);
+            }
+        
+            /*const newInputRow = { type: 'input', valuesTop: Array(nrCols).fill(''), valuesBottom: Array(nrCols).fill('') };
+            setRows([newInputRow]);*/
         }
     };
 
@@ -87,16 +115,24 @@ function Activity7({ difficulty }) {
             const parsedValue = parseInt(value, 10);
             return isNaN(parsedValue) ? 0 : parsedValue;
         });
-
-        if (rows.length < 2) {
-            if (!checkIntermediate(currentTopValues, currentBotValues)) {
-                return;
-            }
+        
+        if (!checkIntermediate(currentTopValues, currentBotValues)) {
+            setHintCheckLastRow(true);
+            setTimeout(() => {
+                setHintCheckLastRow(false);
+            }, 5000)
+            return;
         }
 
         // Increase the next value by 10
-        if (currentTopValues[index] < 1) return;
-        currentTopValues[index] = currentTopValues[index] - 1;
+        if (currentTopValues[index] < 1 || currentTopValues[index+1]+10 > 10) {
+            setHintNoSwap(true);
+                setTimeout(() => {
+                    setHintNoSwap(false);
+                }, 5000);
+            return;
+        }
+        currentTopValues[index] = currentTopValues[index]-1;
         currentTopValues[index + 1] += 10;
 
         // Add new rows
@@ -112,12 +148,16 @@ function Activity7({ difficulty }) {
         newRowsCopy.push(newInputRow);
 
         setRows(newRowsCopy);
+
+        setLastAcceptedTopValues(currentTopValues);
+        setLastAcceptedBotValues(currentBotValues);
+        console.log(lastAcceptedBotValues, lastAcceptedTopValues, currentTopValues, currentBotValues)
     };
 
     const checkIntermediate = (currentTopValues, currentBotValues) => {
         for (let i = 0; i < currentTopValues.length; i++) {
-            const topNr = parseInt(numberLarge[i]);
-            const botNr = parseInt(numberSmall[i]);
+            const topNr = lastAcceptedTopValues[i];
+            const botNr = lastAcceptedBotValues[i];
             if (botNr < topNr) {
                 if (topNr - botNr !== currentTopValues[i] || currentBotValues[i] !== 0) {
                     setCorrectnessLabel(true);
@@ -149,7 +189,9 @@ function Activity7({ difficulty }) {
                 <HomeLink top="-6%" />
                 <span className="title-text">Löse die Rechnung:</span>
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} top="82%" left="78%" />}
-                {!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top="82%" left="78%" />}
+                {hintSwap && <CorrectnessLabel message="Hier kannst du etwas tauschen!" isVisible={true} top="82%" left="78%" />}
+                {hintNoSwap && <CorrectnessLabel message="Hier kannst du nichts tauschen!" isVisible={true} top="82%" left="78%" />}
+                {hintCheckLastRow && <CorrectnessLabel message="Überprüfe die letzte Reihe!" isVisible={true} top="82%" left="78%" />}
 
                 <table className="number-table-A7">
                     {nrCols === 4 &&

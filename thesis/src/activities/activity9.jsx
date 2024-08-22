@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import '../styles/activity9.css';
 import '../defaults.css';
-import { HomeLink, EndOfGame, CorrectnessLabel, checkButtonTop } from '../defaults';
+import { HomeLink, EndOfGame, CorrectnessLabel, HintLabel, checkButtonTop } from '../defaults';
 import { predefinedSetsA9 } from './predefinedSets.jsx';
 
 function Activity9({ difficulty }) {
@@ -20,6 +20,10 @@ function Activity9({ difficulty }) {
     const [displayCorrectness, setCorrectnessLabel] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [allCoinsCrossed, setAllCoinsCrossed] = useState(false);
+
+    /* Hints */
+    const [hintCrossAllCoins, setHintCrossAllCoins] = useState(false);
+    const [hintNothingToSwap, setHintNothingToSwap] = useState(false); 
 
     useEffect(() => {
         const sets = difficulty === 'easy' ? predefinedSetsA9.easy : predefinedSetsA9.hard;
@@ -157,6 +161,20 @@ function Activity9({ difficulty }) {
     };
 
     const handleConversion = () => {
+        if ((leftCoinsVisibleOne > 0 && rightCoinsVisibleOne > 0) || (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen > 0)) {
+            setHintCrossAllCoins(true);
+            setTimeout(() => {
+                setHintCrossAllCoins(false);
+            }, 5000);
+            return;
+        }
+        if (rightCoinsVisibleTen === 0 || rightCoinsVisibleOne > 0 || leftCoinsVisibleOne === 0) {
+            setHintNothingToSwap(true);
+            setTimeout(() => {
+                setHintNothingToSwap(false);
+            }, 5000);
+        }
+
         if (leftCoinsVisibleTen === 0 && rightCoinsVisibleTen > 0 && rightCoinsVisibleOne === 0) {
             const newRightCoinsTen = rightCoinsTen - 1;
             const newRightCoinsVisibleTen = rightCoinsVisibleTen - 1;
@@ -225,6 +243,8 @@ function Activity9({ difficulty }) {
                 </div>
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} left="79.5%" />}
                 {!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} left="79.5%" />}
+                {hintNothingToSwap && <HintLabel message="Hier kannst du nichts tauschen!" isVisible={true} left="73.5%" top="76%" />}
+                {hintCrossAllCoins && <HintLabel message="Streiche zuerst so viele Münzen, wie du kannst!" isVisible={true} left="73.5%" top="76%" />}
                 {difficulty === 'hard' && (<button onClick={handleConversion} className="header-button" style={{ marginTop: "2vh" }}>
                     Tauschen
                 </button>)}

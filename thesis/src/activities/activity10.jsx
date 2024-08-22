@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/activity10.css';
 import '../defaults.css';
-import { HomeLink, EndOfGame, CorrectnessLabel, checkButtonTop } from '../defaults';
+import { HomeLink, EndOfGame, CorrectnessLabel, HintLabel, checkButtonTop } from '../defaults';
 import { predefinedSetsA10 } from './predefinedSets.jsx';
 
 function Activity10({ difficulty }) {
@@ -56,7 +56,6 @@ function Activity10({ difficulty }) {
         const number = parseInt(`${col1}${col2}${col3}${col4}`, 10);
         if ((numberLarge - numberSmall) === number) {
             setIsCorrect(true);
-            setRoundCount(roundCount + 1);
         } else {
             setIsCorrect(false);
         }
@@ -68,14 +67,16 @@ function Activity10({ difficulty }) {
         setCorrectnessLabel(false);
         setIsCorrect(false);
         setMinus(false);
+
         if (roundCount < selectedSet.length - 1) {
             setRoundCount(roundCount + 1);
         } else {
-            // End game condition
+            // End of game logic
+            setRoundCount(selectedSet.length);
         }
     };
 
-    if (roundCount >= Math.max(1, selectedSet.length-1)) {
+    if (roundCount >= Math.max(1, selectedSet.length - 1)) {
         /* Message that the game is completed */
         return <EndOfGame levelName="Schriftliche Subtraktion" levelNr={9} difficulty={difficulty} />;
     }
@@ -86,7 +87,7 @@ function Activity10({ difficulty }) {
                 <HomeLink />
                 <span className="title-text">Löse die Rechnung:</span>
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} />}
-                {!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} />}
+                {!isCorrect && displayCorrectness && <HintLabel message="Überprüfe dein Resultat nochmal!" isVisible={true} left="70%" top="76.5%" />}
 
                 <div className="number-container-A10">
                     <div>

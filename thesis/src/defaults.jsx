@@ -1,5 +1,5 @@
 /* defauls.jsx */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import home_icon from './images/home_icon.png';
 import './defaults.css';
@@ -58,6 +58,18 @@ export const CorrectnessLabel = ({ message, isVisible, top = '80%', left = '76%'
     );
 };
 
+export const HintLabel = ({ message, isVisible, top = '73%', left = '71%', height = '15vh', width = '17vw' }) => {
+    if (!isVisible) return null;
+
+    return (
+        <div className="overlay" style={{ top: top, left: left, height: height, width: width }} >
+            <div className="overlay-content" >
+                {message}
+            </div>
+        </div>
+    );
+};
+
 export const ScreenSizeMessage = () => {
     return (
     <div className='container'>
@@ -67,29 +79,5 @@ export const ScreenSizeMessage = () => {
             </div>
         </div>
     </div>
-    );
-};
-
-export const HintLabel = ({ message }) => {
-    const [isVisible, setIsVisible] = useState(true);
-
-    useEffect(() => {
-        if (isVisible) {
-            setIsVisible(true);
-            const timer = setTimeout(() => {
-                setIsVisible(false);
-            }, 10000); // 10000 milliseconds = 10 seconds
-            return () => clearTimeout(timer);
-        }
-    }, [isVisible]);
-
-    return (
-        isVisible && (
-            <div className="hint-label" >
-                <div className="hint-label-content" >
-                    {message}
-                </div>
-        </div>
-        )
     );
 };
