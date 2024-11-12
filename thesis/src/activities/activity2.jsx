@@ -111,10 +111,17 @@ function Activity2({ difficulty }) {
                     />
                     <span>{numCubesSecondRow} </span>
                 </div>
-                <div className="button-container-A2">
-                    <button className="operator-button-A2" onClick={() => handleButtonClick('<')}>{'<'}</button>
-                    <button className="operator-button-A2" onClick={() => handleButtonClick('=')}>{'='}</button>
-                    <button className="operator-button-A2" onClick={() => handleButtonClick('>')}>{'>'}</button>
+                <div>
+                    <div className="button-container-A2">
+                        <button className="operator-button-A2" onClick={() => handleButtonClick('<')}>{'<'}</button>
+                        <button className="operator-button-A2" onClick={() => handleButtonClick('=')}>{'='}</button>
+                        <button className="operator-button-A2" onClick={() => handleButtonClick('>')}>{'>'}</button>
+                    </div>
+                    <div className="label-container-A2">
+                        <span className="operator-label-A2">kleiner als</span>
+                        <span className="operator-label-A2">gleich</span>
+                        <span className="operator-label-A2">grösser als</span>
+                    </div>
                 </div>
                 {difficulty === 'hard' && (
                     <div className="difference-container">

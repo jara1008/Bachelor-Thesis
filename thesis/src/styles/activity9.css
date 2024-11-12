@@ -52,14 +52,6 @@
     transform: translate(-50%, -50%);
 }
 
-@media (max-width: 1124px) {
-    .info-input-A9 {
-        margin-left: 10svw;
-        width: 3vw;
-        font-size: 3vw;
-    }
-}
-
 .coin-row-divider {
     border: 1px solid black;
     width: 100%;
@@ -71,7 +63,7 @@
     font-weight: bold;
     transform: translate(-50%, -50%);
     font-family: var(--font-family);
-    font-size: 3.5vw;
+    font-size: 3vw;
     color: var(--text-color);
     letter-spacing: 2px;
     left: var(--left, 50%);

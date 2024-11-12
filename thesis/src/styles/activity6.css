@@ -1,33 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
-.text-wrapper-abs {
-    font-family: var(--font-family);
+.equation-row {
     display: flex;
-    justify-content: center;
-    font-size: 35px;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 2.5vw;
+    width: 100%;
+    margin-top: 1vh;
+}
+
+.equation-part {
+    margin: 0.5vw;
+    font-family: var(--font-family);
     color: var(--text-color);
     font-weight: bold;
-    letter-spacing: 2px;
-    position: absolute;
-    left: var(--left, 50%);
-    top: var(--top, 50%);
-    transform: translate(-50%, -50%);
 }
 
 .coin-row-A6 {
-    position: absolute;
     display: flex;
-    justify-content: space-between;
-    width: 75%;
-    margin-left: 20%;
-    top: var(--top, 15%);
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 85%;
+    margin-top: 2vh;
+    margin-left: 8vw;
+}
+
+.coin-container-A6 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 45%;
+    height: 6vw;
+}
+
+.equal-sign{
+    position: fixed;
+    left: 24%;
+    font-size: 2.5vw;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.minus-sign {
+    position: fixed;
+    left: 54%;
+    font-size: 2.5vw;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    font-weight: bold;
 }
 
 .coin-stack-A6 {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.1vw;
-    width: 48%;
     justify-content: center;
 }
 
@@ -37,7 +64,7 @@
     justify-content: center;
     width: 2.7vw;
     height: 2.7vw;
-    background-color: var(--primary-color);
+    background-color: var(--primary-color);;
     border: 2px solid var(--text-color);
     border-radius: 50%;
     font-size: 2vw;
@@ -49,24 +76,14 @@
 }
 
 .info-input-A6 {
-    width: 6vw; 
+    width: 8vw; 
     height: 4vw;
-    text-align: center; 
+    text-align: center;
     border-radius: 5%;
     background-color: var(--secondary-color);
     border: 2px solid var(--text-color);
-    font-size: 4vw; 
+    font-size: 3vw;
     font-family: var(--font-family);
     color: var(--text-color);
-    position: absolute;
-    margin-left: 4vw;
-    top: 75%;
-    transform: translate(-50%, -50%);
-}
-
-@media (max-width: 1124px) {
-    .info-input-A6 {
-        margin-left: 6vw;
-        font-size: 3vw;
-    }
+    margin-left: 5vw;
 }

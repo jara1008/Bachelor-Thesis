@@ -8,14 +8,14 @@ import star from "../images/star.svg";
 
 /* define fixed positions for stars */
 const leftCloudPositions = [
-    { top: 52, left: 20 }, { top: 27, left: 32 }, { top: 45, left: 6 },
-    { top: 58, left: 28 }, { top: 16, left: 25 }, { top: 32, left: 14 },
-    { top: 42, left: 36 }
+    { top: 52, left: 18 }, { top: 27, left: 32 }, { top: 40, left: 6 },
+    { top: 48, left: 28 }, { top: 16, left: 25 }, { top: 32, left: 14 },
+    { top: 35, left: 36 }
 ];
 const rightCloudPositions = [
-    { top: 33, left: 67 }, { top: 15, left: 77 }, { top: 56, left: 71 },
-    { top: 39, left: 90 }, { top: 51, left: 80 }, { top: 45, left: 61 },
-    { top: 27, left: 84 }
+    { top: 25, left: 67 }, { top: 12, left: 77 }, { top: 50, left: 71 },
+    { top: 29, left: 90 }, { top: 43, left: 82 }, { top: 43, left: 61 },
+    { top: 21, left: 84 }
 ];
 
 const starSize = 4; // Size of the star in percentage
@@ -279,7 +279,7 @@ function Activity1({ difficulty }) {
                         type="checkbox"
                         checked={isCheckedLeft}
                         onChange={handleLeftCheckboxChange}
-                        style={{ position: "absolute", marginTop: "2vh", left: "25%", height: "5%", width: "5%", zIndex: 2, cursor: "pointer" }}
+                        style={{ position: "absolute", marginTop: "1vh", left: "25%", height: "5%", width: "5%", zIndex: 2, cursor: "pointer" }}
                     />}
                     {difficulty === 'hard' && <input
                         type="text"
@@ -295,7 +295,7 @@ function Activity1({ difficulty }) {
                         type="checkbox"
                         checked={isCheckedRight}
                         onChange={handleRightCheckboxChange}
-                        style={{ position: "absolute", marginTop: "2vh", left: "75%", height: "5%", width: "5%", zIndex: 2, cursor: "pointer" }}
+                        style={{ position: "absolute", marginTop: "1vh", left: "75%", height: "5%", width: "5%", zIndex: 2, cursor: "pointer" }}
                     />}
                     <img src={cloud} alt="Cloud" className='cloud-A1' style={{ right: "1%" }} />
                     {allStars.right}
@@ -313,11 +313,20 @@ function Activity1({ difficulty }) {
                                 stroke="black" strokeWidth="2" />
                         )}
                     </svg>
-                    {difficulty === 'hard' && <div className="button-container-A1">
-                        <button className="operator-button-A1" onClick={() => handleButtonClick('<')}>{'<'}</button>
-                        <button className="operator-button-A1" onClick={() => handleButtonClick('=')}>{'='}</button>
-                        <button className="operator-button-A1" onClick={() => handleButtonClick('>')}>{'>'}</button>
-                    </div>}
+                    {difficulty === 'hard' && (
+                        <div>
+                            <div className="button-container-A1">
+                                <button className="operator-button-A1" onClick={() => handleButtonClick('<')}>{'<'}</button>
+                                <button className="operator-button-A1" onClick={() => handleButtonClick('=')}>{'='}</button>
+                                <button className="operator-button-A1" onClick={() => handleButtonClick('>')}>{'>'}</button>
+                            </div>
+                            <div className="label-container-A1">
+                                <span className="operator-label-A1">kleiner als</span>
+                                <span className="operator-label-A1">gleich</span>
+                                <span className="operator-label-A1">grösser als</span>
+                            </div>
+                        </div>
+                    )}
                     {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} top="76%" left="77%" />}
                     {!isCorrect && displayCorrectness && !hintClickBox && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top="76%" left="77%" />}
                     {hintClickBox && difficulty === 'easy' && <HintLabel message="Wähle das richtige Kästchen an!" isVisible={true} />}

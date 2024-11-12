@@ -165,8 +165,6 @@ function Activity6({ difficulty }) {
     const handleNext = () => {
         if (roundCount < selectedSet.length-1) {
             setRoundCount(prevCount => prevCount + 1);
-        } else {
-            setRoundCount(selectedSet.length); // End game condition
         }
         generateNewNumbers();
     };
@@ -210,24 +208,57 @@ function Activity6({ difficulty }) {
         <div className="container">
             <div className="white-box-large">
                 <HomeLink />
-                {difficulty==='easy' && <div className='title-text'>Klicke auf die Münzen, um sie zu streichen. Löse die Rechnung:</div>}
-                {difficulty==='hard' && <div className='title-text'>Klicke auf die Münzen, um sie zu streichen. Tausche zu grosse Münzen um. Löse die Rechnung:</div>}
-                <span className='text-wrapper-abs' style={{ '--top': '34%', '--left': '10%' }}>{leftVal} - {rightVal}</span>
-                <div className="coin-row-A6" style={{ '--top': '32%' }}>
-                    <span className='text-wrapper-abs' style={{ '--left': '-2%' }}>=</span>
-                    <CoinRowUpper coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='left' />
-                    <span className='text-wrapper-abs' style={{ '--left': '50%' }}>-</span>
-                    <CoinRowUpper coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type='right' />
+                {difficulty === 'easy' && (
+                    <div className="title-text">
+                        Klicke auf die Münzen, um sie zu streichen. Löse die Rechnung:
+                    </div>
+                )}
+                {difficulty === 'hard' && (
+                    <div className="title-text">
+                        Klicke auf die Münzen, um sie zu streichen. Tausche zu grosse Münzen um. Löse die Rechnung:
+                    </div>
+                )}
+
+                {difficulty === 'hard' && (
+                    <button onClick={handleConversion} className="header-button" style={{ marginTop: "1vh" }}>
+                        Tauschen
+                    </button>
+                )}
+    
+                <div className="equation-row">
+                    <span className='equation-part'>{leftVal}</span>
+                    <span className='equation-part'>-</span>
+                    <span className='equation-part'>{rightVal}</span>
                 </div>
-                <div className="coin-row-A6" style={{ '--top': '55%' }}>
-                    <span className='text-wrapper-abs' style={{ '--left': '-2%' }}>=</span>
-                    <CoinRowLower coinsTen={leftCoinsVisibleTen} coinsOne={leftCoinsVisibleOne} type='left' />
-                    {displayMinus && <span className='text-wrapper-abs' style={{ '--left': '50%' }}>-</span>}
-                    <CoinRowLower coinsTen={rightCoinsVisibleTen} coinsOne={rightCoinsVisibleOne} type='right' />
+    
+                <div className="coin-row-A6">
+                    <div className="coin-container-A6">
+                        <span className="equal-sign">=</span>
+                        <CoinRowUpper coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type="left" />
+                    </div>
+                    <span className="minus-sign">-</span>
+                    <div className="coin-container-A6">
+                        <CoinRowUpper coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type="right" />
+                    </div>
                 </div>
-                <span className='text-wrapper-abs' style={{ '--top': '80%', '--left': '10%' }}>{leftVal} - {rightVal}</span>
-                <div className="coin-row-A6" style={{ '--top': '80%' }}>
-                    <span className='text-wrapper-abs' style={{ '--left': '-2%' }}>=</span>
+
+                <div className="coin-row-A6">
+                    <div className="coin-container-A6">
+                        <span className="equal-sign">=</span>
+                        <CoinRowLower coinsTen={leftCoinsVisibleTen} coinsOne={leftCoinsVisibleOne} type="left" />
+                    </div>
+                    {displayMinus && <span className="minus-sign">-</span>}
+                    <div className="coin-container-A6">
+                        <CoinRowLower coinsTen={rightCoinsVisibleTen} coinsOne={rightCoinsVisibleOne} type="right" />
+                    </div>
+                </div>
+    
+                <div className="equation-row">
+                    <span className='equation-part'>{leftVal}</span>
+                    <span className='equation-part'>-</span>
+                    <span className='equation-part'>{rightVal}</span>
+    
+                    <span className='equal-sign'>=</span>
                     <input
                         type="text"
                         value={inputValue}
@@ -237,20 +268,25 @@ function Activity6({ difficulty }) {
                         readOnly={isCorrect}
                     />
                 </div>
-                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} left="79.5%" />}
-                {!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} left="79.5%" />}
-                {hintNothingToSwap && <HintLabel message="Hier kannst du nichts tauschen!" isVisible={true} left="73.5%" top="76%" />}
-                {hintCrossAllCoins && <HintLabel message="Streiche zuerst so viele Münzen, wie du kannst!" isVisible={true} left="73.5%" top="76%" />}
-                {difficulty === 'hard' && (<button onClick={handleConversion} className="header-button" style={{ marginTop: "2vh" }}>
-                    Tauschen
-                </button>)}
-                <button onClick={isCorrect ? handleNext : checkInput} className="button-default"
-                    style={{ top: `${checkButtonTop}%`, left: '50%' }}>
+    
+                {isCorrect && displayCorrectness && (
+                    <CorrectnessLabel message="Richtig!" isVisible={true} left="79.5%" />
+                )}
+                {!isCorrect && displayCorrectness && (
+                    <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} left="79.5%" />
+                )}
+                {hintNothingToSwap && (
+                    <HintLabel message="Hier kannst du nichts tauschen!" isVisible={true} left="73.5%" top="76%" />
+                )}
+                {hintCrossAllCoins && (
+                    <HintLabel message="Streiche zuerst so viele Münzen, wie du kannst!" isVisible={true} left="73.5%" top="76%" />
+                )}
+                <button onClick={isCorrect ? handleNext : checkInput} className="button-default" style={{ top: `${checkButtonTop}%`, left: '50%' }}>
                     {isCorrect ? "Weiter" : "Prüfen"}
                 </button>
             </div>
         </div>
-    );
+    );    
 }
 
 export default Activity6;

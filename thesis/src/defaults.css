@@ -30,7 +30,7 @@ body, html {
     background-color: var(--secondary-color);
     border-radius: 10px;
     box-shadow: var(--box-shadow-default);
-    height: 80vh;
+    height: 84vh;
     width: 60vw;
     padding: 1.5vh 1.3vw;
     box-sizing: border-box;

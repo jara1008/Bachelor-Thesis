@@ -8,9 +8,9 @@
 
 .cloud-A1 {
     position: absolute;
-    margin-top: 2vh;
     height: 44vh;
     width: 27vw;
+    margin-top: 1vh;
 }
 
 @media (max-width: 1124px) {
@@ -48,7 +48,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 40vh;
+    margin-top: 34vh;
 }
   
 .operator-button-A1 {
@@ -67,4 +67,17 @@
     outline: none;
     margin: 1vh;
     z-index: 2;
+}
+
+.label-container-A1 {
+    display: flex;
+    justify-content: center;
+    margin-top: -3%;
+}
+
+.operator-label-A1 {
+    margin: 0 0.7vw;
+    font-size: 1.5vw;
+    font-family: var(--font-family);
+    color: var(--text-color);
 }

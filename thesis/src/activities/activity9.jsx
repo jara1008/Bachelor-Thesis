@@ -215,15 +215,15 @@ function Activity9({ difficulty }) {
                 <HomeLink />
                 {difficulty==='easy' && <div className='title-text'>Klicke auf die Münzen, um sie zu streichen. Löse die Rechnung:</div>}
                 {difficulty==='hard' && <div className='title-text'>Klicke auf die Münzen, um sie zu streichen. Tausche zu grosse Münzen um. Löse die Rechnung:</div>}
-                <span className='text-wrapper-abs' style={{ '--top': '20%', '--left': '14%' }}>{leftVal} - {rightVal}</span>
-                <div className="coin-row-A9" style={{ '--top': '28%' }}>
+                <span className='text-wrapper-abs' style={{ '--top': '23%', '--left': '8%' }}>{leftVal} - {rightVal}</span>
+                <div className="coin-row-A9" style={{ '--top': '35%' }}>
                     <span className='symbol-A9' style={{ '--left': '-5%', '--top': '15%' }}>=</span>
                     <CoinRowUpper coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='left' />
                     <span className='symbol-A9' style={{ '--left': '-2%', '--top': '55%' }}>-</span>
                     <CoinRowUpper coinsTen={rightCoinsTen} coinsOne={rightCoinsOne} type='right' />
                     <hr className="coin-row-divider" />
                 </div>
-                <div className="coin-row-A9" style={{ '--top': '56%' }}>
+                <div className="coin-row-A9" style={{ '--top': '60%' }}>
                     {!!!allCoinsCrossed && <span className='symbol-A9' style={{ '--left': '-5%', '--top': '17%' }}>=</span>}
                     {allCoinsCrossed && <span className='symbol-A9' style={{ '--left': '-5%', '--top': '45%' }}>=</span>}
                     <CoinRowLower coinsTen={leftCoinsVisibleTen} coinsOne={leftCoinsVisibleOne} type='left' />
@@ -231,7 +231,7 @@ function Activity9({ difficulty }) {
                     {allCoinsCrossed && <span className='symbol-A9' style={{ '--left': '-2%', '--top': '40%' }}>-</span>}
                     <CoinRowLower coinsTen={rightCoinsVisibleTen} coinsOne={rightCoinsVisibleOne} type='right' />
                 </div>
-                <div className="coin-row-A9" style={{ '--top': '85%' }}>
+                <div className="coin-row-A9" style={{ '--top': '86%' }}>
                     <span className='symbol-A9' style={{ '--left': '-5%' }}>=</span>
                     <input
                         type="text"

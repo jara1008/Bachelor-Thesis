@@ -245,6 +245,30 @@ function Activity8({ difficulty }) {
                                         height: '3.5vw'
                                     }} />
                                 )}
+                                {id === 6 && id2 === 11 && (
+                                    <>
+                                        <div className="triangle right"></div>
+                                        <div className="plus-sign right">+</div>
+                                    </>
+                                )}
+                                {id === 6 && id2 === 1 && (
+                                    <>
+                                        <div className="triangle left"></div>
+                                        <div className="plus-sign left">-</div>
+                                    </>
+                                )}
+                                {id2 === 6 && id === 11 && (
+                                    <>
+                                        <div className="triangle down"></div>
+                                        <div className="plus-sign down">-</div>
+                                    </>
+                                )}
+                                {id2 === 6 && id === 1 && (
+                                    <>
+                                        <div className="triangle up"></div>
+                                        <div className="plus-sign up">+</div>
+                                    </>
+                                )}
                                 {id === 6 && id2 !== 0 && id2 !== 6 && (
                                     <div style={{
                                         position: 'absolute',
@@ -273,7 +297,7 @@ function Activity8({ difficulty }) {
                 ))
             }</div>
         </div>
-    );
+    );    
 
     const [clickedTop, setClickedTop] = useState(-1)
     const [clickedMid, setClickedMid] = useState(-1)
