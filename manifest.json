@@ -1,6 +1,6 @@
 {
-  "short_name": "Minus lernen",
-  "name": "Minus lernen",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "./favicon/favicon.ico",
@@ -18,7 +18,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "./Bachelor_Thesis/#/",
+  "start_url": "./Bachelor_Thesis",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
