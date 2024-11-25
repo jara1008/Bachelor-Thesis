@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import Activity1 from '../activities/activity1';
 import Activity2 from '../activities/activity2';
 import Activity3 from '../activities/activity3';
@@ -9,10 +9,45 @@ import Activity7 from '../activities/activity7';
 import Activity8 from '../activities/activity8';
 import Activity9 from '../activities/activity9';
 import Activity10 from '../activities/activity10';
+import TutorialActivity1 from '../tutorials/tutorial_activity1';
+import TutorialActivity2 from '../tutorials/tutorial_activity2';
+import TutorialActivity3 from '../tutorials/tutorial_activity3';
+import TutorialActivity5 from '../tutorials/tutorial_activity5';
+import TutorialActivity8 from '../tutorials/tutorial_activity8';
+
+// Basic localstorage function to store arrays
+const useLocalStorage = (key, initialValue) => {
+    const [value, setValue] = useState(() => {
+      const storedValue = localStorage.getItem(key);
+      if (
+        storedValue !== null &&
+        JSON.parse(storedValue).map(Number).length < 18
+      ) {
+        return initialValue;
+      }
+      return storedValue !== null
+        ? JSON.parse(storedValue).map(Number)
+        : initialValue;
+    });
+  
+    useEffect(() => {
+      localStorage.setItem(key, JSON.stringify(value));
+    }, [key, value]);
+  
+    return [value, setValue];
+};
 
 const GameWrapper = () => {
     const { level, difficulty } = useParams();
-
+    const navigate = useNavigate();
+    const [tutorialProgress, setTutorialProgress] = useLocalStorage("tutorialProgress",Array(18).fill(0))
+    function increaseProgress(){
+        const number = parseInt(difficulty.substring(0,1));
+        const newProgress = [...tutorialProgress];
+        newProgress[number] = 1;
+        setTutorialProgress(newProgress);
+        navigate(`/activity${difficulty.substring(0,1)}/${difficulty.slice(1)}`);
+    }
     const getGameComponent = () => {
         switch (level) {
             case 'activity1':
@@ -33,6 +68,20 @@ const GameWrapper = () => {
                 return <Activity9 difficulty={difficulty} />;
             case 'activity10':
                 return <Activity10 difficulty={difficulty} />;
+            case 'tutorial':
+                switch (difficulty.substring(0,1)){
+                    case '1': return <TutorialActivity1 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    case '2': return <TutorialActivity2 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    case '3': return <TutorialActivity3 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    case '4': return <TutorialActivity5 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    //case '5': return <TutorialActivity6 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    //case '6': return <TutorialActivity7 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    case '7': return <TutorialActivity8 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    //case '8': return <TutorialActivity9 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    //case '9': return <TutorialActivity10 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    default:
+                        return <div>Invalid Activity</div>;
+                }
             default:
                 return <div>Invalid Activity</div>;
         }

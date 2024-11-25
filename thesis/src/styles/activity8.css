@@ -136,15 +136,16 @@
   background-color: var(--secondary-color);
   border: 1.5px solid var(--text-color);
   cursor: pointer;
-  font-size: 2.3vw; 
+  font-size: 2vw; 
   font-family: var(--font-family);
   font-weight: bold;
+  color: black;
 }
 
 @media (max-width: 1124px) {
   .squareHard {
-    width: 7vw;
-    height: 7vw;
+    width: 8vw;
+    height: 8vw;
   }
 }
 

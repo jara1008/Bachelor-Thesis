@@ -1,16 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './difficultySelection.css';
 import '../defaults.css';
 import { HomeLink } from '../defaults';
 import star from '../images/star.svg';
 
+// Basic localstorage function to store arrays
+const useLocalStorage = (key, initialValue) => {
+    const [value, setValue] = useState(() => {
+      const storedValue = localStorage.getItem(key);
+      if (
+        storedValue !== null &&
+        JSON.parse(storedValue).map(Number).length < 18
+      ) {
+        return initialValue;
+      }
+      return storedValue !== null
+        ? JSON.parse(storedValue).map(Number)
+        : initialValue;
+    });
+  
+    useEffect(() => {
+      localStorage.setItem(key, JSON.stringify(value));
+    }, [key, value]);
+  
+    return [value, setValue];
+};
+
 function DifficultySelection() {
+    const [tutorialProgress, ] = useLocalStorage("tutorialProgress",Array(18).fill(0))
     const { level, title } = useParams();
     const navigate = useNavigate();
 
     const handleSelection = (selectedDifficulty) => {
-        navigate(`/${level}/${selectedDifficulty}`);
+        if(tutorialProgress[(parseInt(level.slice(-1))-1)*2 + (selectedDifficulty === 'hard' ? 1 : 0)]){
+            navigate(`/${level}/${selectedDifficulty}`);
+        }
+        else{
+            navigate(`/tutorial/${(parseInt(level.slice(-1)))}${selectedDifficulty}`);
+        }
     };
 
     return (

@@ -183,3 +183,8 @@ body, html {
     justify-content: center; 
     margin-top: 1.5vh; 
 }
+
+.highlighted {
+    box-shadow: 0 0 10px 5px #ffbf00;
+    transition: box-shadow 0.3s ease-in-out;
+}
