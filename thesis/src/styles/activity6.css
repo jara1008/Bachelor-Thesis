@@ -87,3 +87,11 @@
     color: var(--text-color);
     margin-left: 5vw;
 }
+
+.info-A6 {
+    font-family: var(--font-family);
+    font-size: 4vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

@@ -32,7 +32,7 @@ function TutorialActivity5({ difficulty, onComplete }) {
             setButtonText("Prüfen");
         }
         if (tutorialProgress === 3) {
-            // END
+            onComplete();
         }
         if (tutorialProgress < 3) {
             setTutorialProgress(tutorialProgress + 1);

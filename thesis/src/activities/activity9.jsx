@@ -215,7 +215,17 @@ function Activity9({ difficulty }) {
                 <HomeLink />
                 {difficulty==='easy' && <div className='title-text'>Klicke auf die Münzen, um sie zu streichen. Löse die Rechnung:</div>}
                 {difficulty==='hard' && <div className='title-text'>Klicke auf die Münzen, um sie zu streichen. Tausche zu grosse Münzen um. Löse die Rechnung:</div>}
-                <span className='text-wrapper-abs' style={{ '--top': '23%', '--left': '8%' }}>{leftVal} - {rightVal}</span>
+                <div className="row-wrapper" style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', width: '100%' }}>
+                    <span className="text-wrapper-A9">
+                        {leftVal} - {rightVal}
+                    </span>
+                    {difficulty === 'hard' && (
+                        <button onClick={handleConversion} className="header-button center-button">
+                            Tauschen
+                        </button>
+                    )}
+                </div>
+
                 <div className="coin-row-A9" style={{ '--top': '35%' }}>
                     <span className='symbol-A9' style={{ '--left': '-5%', '--top': '15%' }}>=</span>
                     <CoinRowUpper coinsTen={leftCoinsTen} coinsOne={leftCoinsOne} type='left' />
@@ -246,9 +256,6 @@ function Activity9({ difficulty }) {
                 {!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} left="79.5%" />}
                 {hintNothingToSwap && <HintLabel message="Hier kannst du nichts tauschen!" isVisible={true} left="73.5%" top="76%" />}
                 {hintCrossAllCoins && <HintLabel message="Streiche zuerst so viele Münzen, wie du kannst!" isVisible={true} left="73.5%" top="76%" />}
-                {difficulty === 'hard' && (<button onClick={handleConversion} className="header-button" style={{ marginTop: "2vh" }}>
-                    Tauschen
-                </button>)}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default"
                     style={{ top: `${checkButtonTop}%`, left: '50%' }}>
                     {isCorrect ? "Weiter" : "Prüfen"}

@@ -69,3 +69,15 @@
     left: var(--left, 50%);
     top: var(--top, 50%);
 }
+
+.text-wrapper-A9 {
+    display: flex;
+    width: 37%;
+    position: relative;
+    font-size: 2vw;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    font-weight: bold;
+    margin-top: 1vw;
+    margin-left: 4vw;
+}

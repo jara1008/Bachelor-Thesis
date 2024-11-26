@@ -13,7 +13,9 @@ import TutorialActivity1 from '../tutorials/tutorial_activity1';
 import TutorialActivity2 from '../tutorials/tutorial_activity2';
 import TutorialActivity3 from '../tutorials/tutorial_activity3';
 import TutorialActivity5 from '../tutorials/tutorial_activity5';
+import TutorialActivity6 from '../tutorials/tutorial_activity6';
 import TutorialActivity8 from '../tutorials/tutorial_activity8';
+import TutorialActivity9 from '../tutorials/tutorial_activity9';
 
 // Basic localstorage function to store arrays
 const useLocalStorage = (key, initialValue) => {
@@ -73,11 +75,11 @@ const GameWrapper = () => {
                     case '1': return <TutorialActivity1 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
                     case '2': return <TutorialActivity2 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
                     case '3': return <TutorialActivity3 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
-                    case '4': return <TutorialActivity5 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
-                    //case '5': return <TutorialActivity6 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
-                    //case '6': return <TutorialActivity7 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
-                    case '7': return <TutorialActivity8 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
-                    //case '8': return <TutorialActivity9 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    case '5': return <TutorialActivity5 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    case '6': return <TutorialActivity6 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    //case '7': return <TutorialActivity7 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    case '8': return <TutorialActivity8 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    case '9': return <TutorialActivity9 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
                     //case '9': return <TutorialActivity10 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
                     default:
                         return <div>Invalid Activity</div>;
