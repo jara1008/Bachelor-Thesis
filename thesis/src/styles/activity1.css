@@ -38,17 +38,14 @@
     font-size: 4vw;
     font-family: var(--font-family);
     color: var(--text-color);
-    position: absolute; 
-    top: 40%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
+    margin-top: 32vh;
 }
 
 .button-container-A1 {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 40vh;
+    margin-top: 1vh;
 }
   
 .operator-button-A1 {
@@ -65,14 +62,14 @@
     color: var(--text-color);
     cursor: pointer;
     outline: none;
-    margin: 1vh;
+    margin-left: 1vh;
+    margin-right: 1vh;
     z-index: 2;
 }
 
 .label-container-A1 {
     display: flex;
     justify-content: center;
-    margin-top: -3%;
 }
 
 .operator-label-A1 {

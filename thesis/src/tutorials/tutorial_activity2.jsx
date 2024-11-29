@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/activity2.css';
-import { HomeLink, CorrectnessLabel } from '../defaults';
+import { HomeLink } from '../defaults';
 import '../defaults.css';
 import { checkButtonTop } from '../defaults';
 
@@ -25,8 +25,6 @@ const TutorialActivity2 = ({ difficulty, onComplete }) => {
     const numCubesFirstRow = 3;
     const numCubesSecondRow = 2;
     const [inputValue, setInputValue] = useState('');
-    const [isCorrect] = useState(false);
-    const [displayCorrectness] = useState(false);
     const [differenceValue, setDifferenceValue] = useState('');
     const [tutorialProgress, setTutorialProgress] = useState(0);
     const [buttonText, setButtonText] = useState('Weiter');
@@ -84,7 +82,7 @@ const TutorialActivity2 = ({ difficulty, onComplete }) => {
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder=""
                         className="info-input-A2"
-                        readOnly={isCorrect}
+                        readOnly={tutorialProgress!==3}
                     />
                 <span className={`number-label ${tutorialProgress === 2 ? 'highlighted' : ''}`}>{numCubesSecondRow} </span>
                 </div>
@@ -109,12 +107,10 @@ const TutorialActivity2 = ({ difficulty, onComplete }) => {
                             onChange={(e) => setDifferenceValue(e.target.value)}
                             placeholder=""
                             className={`info-input-A2 ${tutorialProgress === 4 ? 'highlighted' : ''}`}
-                            readOnly={isCorrect}
+                            readOnly={tutorialProgress!==4}
                         />
                     </div>
                 )}
-                {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} />}
-                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} />}
                 <button
                     onClick={continueTutorial}
                     className={`button-default ${((difficulty==='easy' && tutorialProgress===4) 
