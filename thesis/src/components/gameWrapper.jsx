@@ -14,8 +14,10 @@ import TutorialActivity2 from '../tutorials/tutorial_activity2';
 import TutorialActivity3 from '../tutorials/tutorial_activity3';
 import TutorialActivity5 from '../tutorials/tutorial_activity5';
 import TutorialActivity6 from '../tutorials/tutorial_activity6';
+import TutorialActivity7 from '../tutorials/tutorial_activity7';
 import TutorialActivity8 from '../tutorials/tutorial_activity8';
 import TutorialActivity9 from '../tutorials/tutorial_activity9';
+import TutorialActivity10 from '../tutorials/tutorial_activity10';
 
 // Basic localstorage function to store arrays
 const useLocalStorage = (key, initialValue) => {
@@ -23,7 +25,7 @@ const useLocalStorage = (key, initialValue) => {
       const storedValue = localStorage.getItem(key);
       if (
         storedValue !== null &&
-        JSON.parse(storedValue).map(Number).length < 18
+        JSON.parse(storedValue).map(Number).length < 20
       ) {
         return initialValue;
       }
@@ -42,13 +44,16 @@ const useLocalStorage = (key, initialValue) => {
 const GameWrapper = () => {
     const { level, difficulty } = useParams();
     const navigate = useNavigate();
-    const [tutorialProgress, setTutorialProgress] = useLocalStorage("tutorialProgress",Array(18).fill(0))
+    const [tutorialProgress, setTutorialProgress] = useLocalStorage("tutorialProgress",Array(20).fill(0))
     function increaseProgress(){
-        const number = parseInt(difficulty.substring(0,1));
+        var number = parseInt(difficulty.substring(0,1));
+        if(number === 0){
+            number = 10;
+        }
         const newProgress = [...tutorialProgress];
         newProgress[number] = 1;
         setTutorialProgress(newProgress);
-        navigate(`/activity${difficulty.substring(0,1)}/${difficulty.slice(1)}`);
+        navigate(`/activity${number}/${difficulty.slice(1)}`);
     }
     const getGameComponent = () => {
         switch (level) {
@@ -77,10 +82,10 @@ const GameWrapper = () => {
                     case '3': return <TutorialActivity3 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
                     case '5': return <TutorialActivity5 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
                     case '6': return <TutorialActivity6 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
-                    //case '7': return <TutorialActivity7 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    case '7': return <TutorialActivity7 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
                     case '8': return <TutorialActivity8 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
-                    case '9': return <TutorialActivity9 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
-                    //case '9': return <TutorialActivity10 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    //case '9': return <TutorialActivity9 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    case '0': return <TutorialActivity10 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
                     default:
                         return <div>Invalid Activity</div>;
                 }

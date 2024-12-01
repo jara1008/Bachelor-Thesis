@@ -24,8 +24,8 @@ function Activity10({ difficulty }) {
     useEffect(() => {
         if (selectedSet.length > 0) {
             const { numberLarge, numberSmall } = selectedSet[roundCount];
-            setNumberLarge(numberLarge);
-            setNumberSmall(numberSmall);
+            setNumberLarge(Array.from(String(numberLarge), Number));
+            setNumberSmall(Array.from(String(numberSmall), Number));
         }
     }, [selectedSet, roundCount]);
 
@@ -97,8 +97,20 @@ function Activity10({ difficulty }) {
                                 <button onClick={invertNumbers} className="invert-button-A10">↓↑</button>
                             )}
                             <div className="number-box-A10">
-                                <div className="number-A10">{numberLarge}</div>
-                                <div className="number-A10">-{numberSmall}</div>
+                                <div className="number-row-A10">
+                                    <span className="number-A10-tutorial" style={{ width: '1vw', display: 'inline-block' }}>{''}</span>
+                                    <div className="number-A10">{numberLarge[0]}</div>
+                                    <div className="number-A10">{numberLarge[1]}</div>
+                                    <div className="number-A10">{numberLarge[2]}</div>
+                                    <div className="number-A10">{numberLarge[3]}</div>
+                                </div>
+                                    <div className="number-row-A10">
+                                        <span className="number-A10-tutorial">-</span>
+                                        <div className="number-A10">{numberSmall[0]}</div>
+                                        <div className="number-A10">{numberSmall[1]}</div>
+                                        <div className="number-A10">{numberSmall[2]}</div>
+                                        <div className="number-A10">{numberSmall[3]}</div>
+                                    </div>
                             </div>
                         </div>
                         <div className="input-fields-A10">

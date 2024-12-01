@@ -11,22 +11,15 @@
 .number-box-A10 {
     border: 2px solid black;
     text-align: right;
-    padding: 0vw 0vw 0vw 2vw;
     display: inline-block;
+    width: 100%;
 }
 
 .number-A10 {
     font-size: 3vw;
     font-family: var(--font-family);
-    letter-spacing: 3vw;
     display: block;
 }
-
-@media (max-width: 1124px) {
-    .number-A10 {
-        letter-spacing: 4vw;
-    }
-  }
 
 .input-fields-A10 {
     position: relative;
@@ -36,7 +29,7 @@
     align-items: flex-end;
     gap: 1.5vh;
     padding-top: 2vh;
-    padding-right: 2vw;
+    padding-left: 2vw;
 }
 
 .input-row-A10 {
@@ -59,13 +52,13 @@
 
 @media (max-width: 1124px) {
     .input-A10 {
-        width: 2vw;
+        width: 3vw;
     }
 }
 
 .coin-row-divider-A10 {
     border: 1px solid black;
-    width: 80%;
+    width: 100%;
 }
 
 .minus-top-A10{
@@ -105,3 +98,14 @@
         left: 50vw;
     }
   }
+
+.number-row-A10 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.number-A10-tutorial {
+    font-size: 3vw;
+    font-family: var(--font-family);
+    display: block;
+}
