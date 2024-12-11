@@ -48,7 +48,6 @@ function Overview() {
     useEffect(() => {
         if (highestUnlockedLevel > 1 && dots.length > 0 && highestUnlockedLevel <= numberOfDots) {
             setRocketPositionTop(dots[dots.length - highestUnlockedLevel].top);
-            console.log(dots[dots.length - highestUnlockedLevel].top)
         }
     }, [dots, highestUnlockedLevel, numberOfDots]);
 

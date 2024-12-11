@@ -33,7 +33,12 @@ function DifficultySelection() {
     const navigate = useNavigate();
 
     const handleSelection = (selectedDifficulty) => {
-        if(tutorialProgress[(parseInt(level.slice(-1))-1)*2 + (selectedDifficulty === 'hard' ? 1 : 0)]){
+        const number = parseInt(level.slice(-1));
+        let arrPos = number;
+        if (number === 0) {
+            arrPos = 10;
+        }
+        if(tutorialProgress[(selectedDifficulty === 'easy' ? arrPos : arrPos+10)]){
             navigate(`/${level}/${selectedDifficulty}`);
         }
         else{

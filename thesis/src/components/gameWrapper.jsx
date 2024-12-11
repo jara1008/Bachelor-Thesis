@@ -47,11 +47,14 @@ const GameWrapper = () => {
     const [tutorialProgress, setTutorialProgress] = useLocalStorage("tutorialProgress",Array(20).fill(0))
     function increaseProgress(){
         var number = parseInt(difficulty.substring(0,1));
+        const isEasy = (difficulty.substring(1,5) === 'easy');
         if(number === 0){
             number = 10;
         }
         const newProgress = [...tutorialProgress];
-        newProgress[number] = 1;
+        const arrPos = (isEasy ? number : number+10);
+        console.log("POS:" + arrPos, " " + difficulty);
+        newProgress[arrPos] = 1;
         setTutorialProgress(newProgress);
         navigate(`/activity${number}/${difficulty.slice(1)}`);
     }

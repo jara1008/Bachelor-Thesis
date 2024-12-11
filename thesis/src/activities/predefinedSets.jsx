@@ -148,7 +148,7 @@ const predefinedSetsA2 = {
             { first: 9, second: 8 }
         ],
         [
-            { first: 3, second: 6 }, { first: 4, second: 4 }, { first: 1, second: 2 },
+            { first: 3, second: 6 }, { first: 4, second: 4 }, { first: 1, second: 6 },
             { first: 6, second: 5 }, { first: 7, second: 7 }, { first: 2, second: 3 },
             { first: 10, second: 9 }
         ],
@@ -160,33 +160,33 @@ const predefinedSetsA2 = {
     ],
     hard: [
         [
-            { first: 5, second: 4 }, { first: 3, second: 3 }, { first: 4, second: 6 },
+            { first: 5, second: 4 }, { first: 8, second: 3 }, { first: 4, second: 6 },
             { first: 2, second: 2 }, { first: 6, second: 6 }, { first: 7, second: 6 },
             { first: 1, second: 3 }
         ],
         [
-            { first: 4, second: 5 }, { first: 4, second: 4 }, { first: 3, second: 2 },
-            { first: 7, second: 7 }, { first: 2, second: 2 }, { first: 5, second: 6 },
+            { first: 4, second: 8 }, { first: 4, second: 4 }, { first: 3, second: 2 },
+            { first: 7, second: 7 }, { first: 2, second: 9 }, { first: 3, second: 6 },
             { first: 4, second: 3 }
         ],
         [
             { first: 5, second: 3 }, { first: 2, second: 2 }, { first: 3, second: 6 },
-            { first: 7, second: 5 }, { first: 6, second: 6 }, { first: 4, second: 4 },
+            { first: 7, second: 5 }, { first: 6, second: 9 }, { first: 4, second: 4 },
             { first: 3, second: 4 }
         ],
         [
-            { first: 2, second: 1 }, { first: 6, second: 6 }, { first: 5, second: 7 },
+            { first: 2, second: 1 }, { first: 9, second: 6 }, { first: 5, second: 7 },
             { first: 3, second: 3 }, { first: 4, second: 4 }, { first: 7, second: 6 },
             { first: 2, second: 5 }
         ],
         [
-            { first: 5, second: 5 }, { first: 6, second: 7 }, { first: 2, second: 2 },
-            { first: 3, second: 2 }, { first: 4, second: 4 }, { first: 7, second: 5 },
-            { first: 1, second: 3 }
+            { first: 5, second: 1 }, { first: 6, second: 7 }, { first: 2, second: 2 },
+            { first: 3, second: 8 }, { first: 4, second: 4 }, { first: 7, second: 5 },
+            { first: 1, second: 8 }
         ],
         [
-            { first: 5, second: 3 }, { first: 7, second: 7 }, { first: 4, second: 6 },
-            { first: 6, second: 6 }, { first: 2, second: 2 }, { first: 3, second: 7 },
+            { first: 5, second: 3 }, { first: 7, second: 7 }, { first: 1, second: 6 },
+            { first: 6, second: 6 }, { first: 2, second: 6 }, { first: 3, second: 7 },
             { first: 1, second: 4 }
         ],
         [
@@ -201,12 +201,12 @@ const predefinedSetsA2 = {
         ],
         [
             { first: 4, second: 4 }, { first: 6, second: 7 }, { first: 5, second: 3 },
-            { first: 3, second: 3 }, { first: 2, second: 2 }, { first: 7, second: 6 },
+            { first: 6, second: 3 }, { first: 2, second: 2 }, { first: 7, second: 6 },
             { first: 1, second: 4 }
         ],
         [
             { first: 2, second: 1 }, { first: 6, second: 7 }, { first: 5, second: 5 },
-            { first: 3, second: 3 }, { first: 4, second: 4 }, { first: 7, second: 6 },
+            { first: 3, second: 3 }, { first: 8, second: 2 }, { first: 7, second: 6 },
             { first: 2, second: 5 }
         ]
     ]
