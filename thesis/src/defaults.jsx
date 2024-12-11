@@ -1,7 +1,8 @@
 /* defauls.jsx */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import home_icon from './images/home_icon.png';
+import questionmark_icon from './images/questionmark_icon.png'
 import './defaults.css';
 
 /* default variables */
@@ -9,11 +10,40 @@ export const ROUNDCOUNT = 7;
 export const checkButtonTop = 92;
 
 /* default components */
-export const HomeLink = ({ top = '-6.5%' }) => (
-  <Link to={"/"}>
-    <img src={home_icon} alt="home_icon" style={{ position: "absolute", top: top, left: "95%" }} />
-  </Link>
-);
+export const HomeLink = ({ top = '-6.5%' }) => {
+    const { level, difficulty } = useParams();
+    const levelNr = level.match(/\d+$/)?.[0];
+    const tutorialPath = `/tutorial/${levelNr}${difficulty}`;
+    const isActivity = level.startsWith('activity') && difficulty!==undefined;
+    console.log(difficulty)
+    return (
+        <>
+            <div
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    position: 'absolute',
+                    gap: '1vw',
+                    top: top,
+                    left: '87%',
+                }}
+            >
+                {isActivity && <Link to={tutorialPath}>
+                    <img
+                        src={questionmark_icon}
+                        alt="questionmark_icon"
+                    />
+                </Link>}
+                <Link to="/">
+                    <img
+                        src={home_icon}
+                        alt="home_icon"
+                    />
+                </Link>
+            </div>
+        </>
+    );
+};
 
 const incrementHighestUnlockedLevel = (currentLevelNr, difficulty) => {
     let currentLevel = parseInt(localStorage.getItem('highestUnlockedLevel')) || 1;
