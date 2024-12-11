@@ -37,9 +37,6 @@ function TutorialActivity10({ difficulty, onComplete }) {
         if ((difficulty === 'easy' && tutorialProgress === 6) || (difficulty === 'hard' && tutorialProgress === 7)) {
             onComplete();
         }
-        if ((difficulty==='easy' && tutorialProgress===5) || (difficulty==='hard' && tutorialProgress===6)) {
-            setButtonText("Prüfen");
-        }
         if (tutorialProgress<7) {
             if (difficulty==='easy') {
                 if (tutorialProgress===1 && value!=='0') {
@@ -74,6 +71,9 @@ function TutorialActivity10({ difficulty, onComplete }) {
                 if (tutorialProgress===6 && value!=='4') {
                     return;
                 }
+            }
+            if ((difficulty==='easy' && tutorialProgress===5) || (difficulty==='hard' && tutorialProgress===6)) {
+                setButtonText("Prüfen");
             }
             setTutorialProgress(tutorialProgress + 1);
         }

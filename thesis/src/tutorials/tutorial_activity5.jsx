@@ -31,7 +31,7 @@ function TutorialActivity5({ difficulty, onComplete }) {
                 {setInputValue(13)};
             setButtonText("Prüfen");
         }
-        if (tutorialProgress === 3) {
+        if (tutorialProgress === 2) {
             onComplete();
         }
         if (tutorialProgress < 3) {

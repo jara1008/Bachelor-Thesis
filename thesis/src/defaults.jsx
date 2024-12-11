@@ -25,7 +25,7 @@ export const HomeLink = ({ top = '-6.5%' }) => {
                     position: 'absolute',
                     gap: '1vw',
                     top: top,
-                    left: '87%',
+                    left: '95%',
                 }}
             >
                 {isActivity && <Link to={tutorialPath}>
