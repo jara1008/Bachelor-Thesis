@@ -113,8 +113,11 @@ const TutorialActivity2 = ({ difficulty, onComplete }) => {
                 )}
                 <button
                     onClick={continueTutorial}
-                    className={`button-default ${((difficulty==='easy' && tutorialProgress===4) 
-                        || (difficulty==='hard' && tutorialProgress===5) || tutorialProgress === 0) ? 'highlighted' : ''}`}
+                    className={`button-default ${
+                        ((difficulty==='easy' && tutorialProgress===4) ||
+                        (difficulty==='hard' && tutorialProgress===5) || 
+                        tutorialProgress===0 || tutorialProgress===1 || tutorialProgress===2) 
+                        ? 'highlighted' : ''}`}
                     disabled={tutorialProgress===3}
                     style={{ top: `${checkButtonTop}%`, left: '50%', cursor: tutorialProgress===3 ? 'default' : 'pointer' }}
                 >

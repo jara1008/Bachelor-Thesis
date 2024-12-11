@@ -84,7 +84,7 @@ const GameWrapper = () => {
                     case '6': return <TutorialActivity6 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
                     case '7': return <TutorialActivity7 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
                     case '8': return <TutorialActivity8 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
-                    //case '9': return <TutorialActivity9 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
+                    case '9': return <TutorialActivity9 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
                     case '0': return <TutorialActivity10 difficulty={difficulty.slice(1)} onComplete={increaseProgress}/>;
                     default:
                         return <div>Invalid Activity</div>;
