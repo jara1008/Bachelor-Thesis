@@ -4,7 +4,7 @@ import '../defaults.css';
 import { HomeLink, checkButtonTop } from '../defaults';
 
 const tutorialStepsEasy = [
-    { message: "Löse die Rechnung:" },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Finde heraus welche Zahl kleiner ist. Hier ist es 1." },
     { message: "Rechne 2-1. Schreibe die Lösung ins Kästchen." },
     { message: "Rechne 1-1. Schreibe die Lösung ins Kästchen." },
@@ -23,7 +23,7 @@ const tutorialStepsEasy = [
 ];
 
 const tutorialStepsHard = [
-    { message: "Löse die Rechnung:" },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Finde heraus welche Zahl kleiner ist. Hier ist es 0." },
     { message: "Rechne 0-0. Schreibe die Lösung ins Kästchen." },
     { message: "Rechne 5-0. Schreibe die Lösung ins Kästchen." },
@@ -213,10 +213,10 @@ function TutorialActivity7({ difficulty, onComplete }) {
                                         (tutorialProgress === 4 && index ===2) ||
                                         (tutorialProgress === 7 && index ===1) ||
                                         (tutorialProgress === 10 && index === 0)))
-                                         ? 'highlighted' : ''}`}>
+                                        ? 'highlighted' : ''}`}>
                                     <div className="number-font">{digit}</div>
                                     <div className="number-font">
-                                        {index===0 && <span className="minus-sign-A7">-</span>}
+                                        {<span className="minus-sign-A7" style={{ display: 'inline-block' }}>-</span>}
                                         {numberSmall[index]}
                                     </div>
                                 </td>
@@ -312,6 +312,7 @@ function TutorialActivity7({ difficulty, onComplete }) {
                                                     )
                                                 }
                                             />
+                                            <div className="minus-sign-A7" style={{ display: 'inline-block' }}>-</div>
                                         </td>
                                     ))
                                 ) : (
@@ -321,6 +322,7 @@ function TutorialActivity7({ difficulty, onComplete }) {
                                             (difficulty==='hard' && tutorialProgress === 14 && index===3)
                                             ? 'highlighted' : ''}`}>
                                             <div className="number-font">{value.top}</div>
+                                            <span className="minus-sign-A7" style={{ display: 'inline-block' }}>-</span>
                                             <div className="number-font">{value.bottom}</div>
                                         </td>
                                     ))
@@ -328,6 +330,7 @@ function TutorialActivity7({ difficulty, onComplete }) {
                             </tr>
                         ))}
                     </tbody>
+
                 </table>
                 <button
                     onClick={continueTutorial}

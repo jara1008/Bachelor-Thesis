@@ -5,7 +5,7 @@ import { HomeLink } from '../defaults';
 import { checkButtonTop } from '../defaults';
 
 const tutorialStepsEasy = [
-    { message: "Auf welcher Seite hat es mehr?" },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Entferne Münzen mit demselben Wert." },
     { message: "Streiche Münzen, bis es auf einer Seite keine mehr hat." },
     { message: "Wähle <, =, > passend." },
@@ -13,7 +13,7 @@ const tutorialStepsEasy = [
 ];
 
 const tutorialStepsHard = [
-    { message: "Auf welcher Seite hat es mehr?" },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Entferne Münzen mit demselben Wert." },
     { message: "Streiche Münzen, bis es auf einer Seite keine mehr hat." },
     { message: "Tausche 10er Münzen in 1er Münzen um." },

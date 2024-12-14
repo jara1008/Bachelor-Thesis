@@ -6,7 +6,7 @@ import tree from '../images/tree.png';
 import car from '../images/car_large.png';
 
 const tutorialStepsEasy = [
-    { message: "Hier lernen wir das Erkennen von Positionen." },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Wähle das richtige Kästchen." },
     { message: "Wähle das richtige Kästchen." },
     { message: "Wähle das richtige Kästchen." },
@@ -14,7 +14,7 @@ const tutorialStepsEasy = [
 ];
 
 const tutorialStepsHard = [
-    { message: "Hier lernen wir das Erkennen von Positionen." },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Wähle das richtige Kästchen." },
     { message: "Wähle das richtige Kästchen." },
     { message: "Wähle das richtige Kästchen." },

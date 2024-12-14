@@ -21,14 +21,14 @@ const starSize = 4; // Size of the star in percentage
 const yOffset = 1; // Additional y-axis offset in percentage to shift the lines downwards
 
 const tutorialStepsEasy = [
-    { message: "Hier lernen wir das Vergleichen von Mengen." },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Verknüpfe Sterne, indem du sie anklickst." },
     { message: "Schaue in welcher Wolke Sterne übrig sind." },
     { message: "Klicke auf Prüfen, um die Aufgabe abzuschliessen."}
 ];
 
 const tutorialStepsHard = [
-    { message: "Hier lernen wir das Vergleichen von Mengen." },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Verknüpfe Sterne, indem du sie anklickst." },
     { message: "Schaue in welcher Wolke Sterne übrig sind." },
     { message: "Wähle <, =, > passend." },

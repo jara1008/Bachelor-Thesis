@@ -4,13 +4,13 @@ import '../defaults.css';
 import { HomeLink, checkButtonTop } from '../defaults';
 
 const tutorialStepsEasy = [
-    { message: "Hier spielen wir ein Additionsrätsel." },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Um wie viel muss 11 ergänzt werden, damit wir 17 erhalten?" },
     { message: "Klicke auf Prüfen, um die Aufgabe abzuschliessen." },
 ];
 
 const tutorialStepsHard = [
-    { message: "Hier spielen wir ein Additionsrätsel." },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Um wie viel muss 105 ergänzt werden, damit wir 118 erhalten?" },
     { message: "Klicke auf Prüfen, um die Aufgabe abzuschliessen." },
 ];

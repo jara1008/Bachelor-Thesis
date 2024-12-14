@@ -5,7 +5,7 @@ import '../defaults.css';
 import { checkButtonTop } from '../defaults';
 
 const tutorialStepsEasy = [
-    { message: "Hier lernen wir das Vergleichen von Längen" },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Die Länge der oberen Reihe entspricht 3." },
     { message: "Die Länge der unteren Reihe entspricht 2." },
     { message: "Wähle <, =, > passend." },
@@ -13,7 +13,7 @@ const tutorialStepsEasy = [
 ];
 
 const tutorialStepsHard = [
-    { message: "Hier lernen wir das Vergleichen von Längen" },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Die Länge der oberen Reihe entspricht 3." },
     { message: "Die Länge der unteren Reihe entspricht 2." },
     { message: "Wähle <, =, > passend." },

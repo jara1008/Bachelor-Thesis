@@ -125,7 +125,7 @@ function Activity7({ difficulty }) {
         }
 
         // Increase the next value by 10
-        if (currentTopValues[index] < 1 || currentTopValues[index+1]+10 > 10) {
+        if (currentTopValues[index] < 1 || currentTopValues[index+1]+10 > 10 || currentBotValues[index+1]===0) {
             setHintNoSwap(true);
                 setTimeout(() => {
                     setHintNoSwap(false);
@@ -228,7 +228,7 @@ function Activity7({ difficulty }) {
                                 <td key={index} className="number-cell">
                                     <div className="number-font">{digit}</div>
                                     <div className="number-font">
-                                        {index === 0 && <span className="minus-sign-A7">-</span>}
+                                        {index === 0 && <span className="minus-sign-A7" style={{ display: 'inline-block' }}>-</span>}
                                         {numberSmall[index]}
                                     </div>
                                 </td>
@@ -252,12 +252,14 @@ function Activity7({ difficulty }) {
                                                 className="input-field-A7"
                                                 style={{ marginTop: '5px' }}
                                             />
+                                            <span className="minus-sign-A7" style={{ display: 'inline-block' }}>-</span>
                                         </td>
                                     ))
                                 ) : (
                                     row.map((value, index) => (
                                         <td key={index} className="number-cell">
                                             <div className="number-font">{value.top}</div>
+                                            <span className="minus-sign-A7" style={{ display: 'inline-block' }}>-</span>
                                             <div className="number-font">{value.bottom}</div>
                                         </td>
                                     ))

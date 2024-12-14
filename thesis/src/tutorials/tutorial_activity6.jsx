@@ -4,7 +4,7 @@ import '../defaults.css';
 import { HomeLink, checkButtonTop } from '../defaults';
 
 const tutorialStepsEasy = [
-    { message: "Löse die Rechnung:" },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Entferne Münzen mit demselben Wert." },
     { message: "Streiche Münzen, bis es auf einer Seite keine mehr hat." },
     { message: "Zähle die restlichen Münzen." },
@@ -12,7 +12,7 @@ const tutorialStepsEasy = [
 ];
 
 const tutorialStepsHard = [
-    { message: "Löse die Rechnung:" },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Entferne Münzen mit demselben Wert." },
     { message: "Tausche 10er Münzen in 1er Münzen um." },
     { message: "Streiche Münzen, bis es auf einer Seite keine mehr hat." },
@@ -188,7 +188,7 @@ function TutorialActivity6({ difficulty, onComplete }) {
                         1
                     </div>
                 )}
-                { difficulty === 'easy' && tutorialProgress < 2 && (
+                { difficulty === 'easy' && tutorialProgress < 3 && (
                     <div
                         className={`coin-A6`}
                         style={{ cursor: 'default' }}>

@@ -4,7 +4,7 @@ import '../defaults.css';
 import { HomeLink, checkButtonTop } from '../defaults';
 
 const tutorialStepsEasy = [
-    { message: "Hier führen wir eine schriftliche Subtraktion durch:" },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Subtrahiere die untere Zahl von der oberen Zahl." },
     { message: "Nutze die blauen Felder um einen 10er hinzuzufügen." },
     { message: "Nun kannst du 11-5 berechnen." },
@@ -14,7 +14,7 @@ const tutorialStepsEasy = [
 ];
 
 const tutorialStepsHard = [
-    { message: "Hier führen wir eine schriftliche Subtraktion durch:" },
+    { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
     { message: "Tausche die grössere Zahl nach oben." },
     { message: "Subtrahiere die untere Zahl von der oberen Zahl." },
     { message: "Subtrahiere die untere Zahl von der oberen Zahl." },
