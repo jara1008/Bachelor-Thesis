@@ -8,6 +8,7 @@
     --text-color: #000000;
     --font-family: 'Patrick Hand', sans-serif;
     --box-shadow-default: 8px 8px 4px #00000040;
+    --default-highlight: 0 0 10px 5px #ffbf00;
 }
 
 /* define object styles */
@@ -22,6 +23,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
     width: 100vw;
 }
@@ -39,7 +41,7 @@ body, html {
     flex-direction: column;
 }
 
-@media (max-width: 1124px) {
+@media (max-width: 1180px) {
     .white-box-regular {
         height: 75vh;
         width: 70vw;
@@ -187,4 +189,88 @@ body, html {
 .highlighted {
     box-shadow: 0 0 10px 5px #ffbf00;
     transition: box-shadow 0.3s ease-in-out;
+}
+
+.tutorial-header-regular {
+    position: absolute; 
+    left: 50%;
+    top: 1.5%;
+    transform: translateX(-50%);
+    font-size: 2.2vw;
+    font-weight: bold;
+    font-family: var(--font-family);
+    color: var(--secondary-color);
+    background-color: transparent;
+    z-index: 10;
+    pointer-events: none;
+}
+
+@media (max-width: 1180px) {
+    .tutorial-header-regular {
+        top: 7%;
+    }
+}
+
+@media (max-height: 520px) {
+    .tutorial-header-regular {
+        top: 0.2%;
+    }
+}
+
+.tutorial-header-large {
+    position: absolute; 
+    left: 50%;
+    top: 4%;
+    transform: translateX(-50%);
+    font-size: 2.2vw;
+    font-weight: bold;
+    font-family: var(--font-family);
+    color: var(--secondary-color);
+    background-color: transparent;
+    z-index: 10;
+    pointer-events: none;
+}
+
+@media (max-width: 1180px) {
+    .tutorial-header-large {
+        top: 4%;
+    }
+}
+
+@media (max-height: 520px) {
+    .tutorial-header-large {
+        top: 0.3%;
+    }
+}
+
+.tutorial-header-tall {
+    position: absolute; 
+    left: 50%;
+    top: 1%;
+    transform: translateX(-50%);
+    font-size: 2.2vw;
+    font-weight: bold;
+    font-family: var(--font-family);
+    color: var(--secondary-color);
+    background-color: transparent;
+    z-index: 10;
+    pointer-events: none;
+}
+
+@media (max-width: 1180px) {
+    .tutorial-header-tall {
+        top: 1.5%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .tutorial-header-tall {
+        top: 5%;
+    }
+}
+
+@media (max-height: 520px) {
+    .tutorial-header-tall {
+        top: 0.1%;
+    }
 }

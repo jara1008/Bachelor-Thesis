@@ -255,18 +255,16 @@ function TutorialActivity6({ difficulty, onComplete }) {
 
     return (
         <div className="container">
-            <div className="white-box-large">
+            <span className="tutorial-header-large">TUTORIAL</span>
+            <div className="white-box-large" style={{ boxShadow: "var(--default-highlight)" }} >
                 <HomeLink />
                 {difficulty==="easy" && <span className="title-text">{tutorialStepsEasy[tutorialProgress]['message']}</span>}
                 {difficulty==="hard" && <span className="title-text">{tutorialStepsHard[tutorialProgress]['message']}</span>}
                 {difficulty === 'hard' && (
                     <div style={{ display: "flex", justifyContent: "space-around", width: "100%" }}>
-                    <button  className={`header-button ${tutorialProgress === 2 ? 'highlighted' : ''}`} style={{ left: "25%", marginTop: "2vh" }}
+                    <button  className={`header-button ${tutorialProgress === 2 ? 'highlighted' : ''}`} style={{ marginTop: "1vh" }}
                         onClick={() => continueTutorial()}
                         disabled={tutorialProgress !== 2}>
-                        Tauschen
-                    </button>
-                    <button className="header-button" style={{ left: "75%", marginTop: "2vh" }}>
                         Tauschen
                     </button>
                 </div>

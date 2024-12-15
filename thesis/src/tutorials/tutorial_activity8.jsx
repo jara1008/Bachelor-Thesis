@@ -396,7 +396,8 @@ function TutorialActivity8({ difficulty, onComplete }) {
 
     return (
         <div className="container" >
-            <div className="white-box-regular" >
+            <span className="tutorial-header-regular">TUTORIAL</span>
+            <div className="white-box-regular" style={{ boxShadow: "var(--default-highlight)" }} >
                 <HomeLink />
                 {difficulty === "easy" && <>
                     <span className="title-text">{tutorialStepsEasy[tutorialProgress]['message']}</span>

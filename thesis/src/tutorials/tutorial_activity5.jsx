@@ -63,7 +63,8 @@ function TutorialActivity5({ difficulty, onComplete }) {
 
     return (
         <div className="container">
-            <div className="white-box-regular">
+            <span className="tutorial-header-regular">TUTORIAL</span>
+            <div className="white-box-regular" style={{ boxShadow: "var(--default-highlight)" }} >
                 <HomeLink />
                 {difficulty==='easy' && <span className="title-text">{tutorialStepsEasy[tutorialProgress]['message']}</span>}
                 {difficulty==='hard' && <span className="title-text">{tutorialStepsHard[tutorialProgress]['message']}</span>}
