@@ -213,38 +213,54 @@ function Activity8({ difficulty }) {
     }
 
     const renderGrid = () => (
-        <div className='grid'>
-            <div style={{ display: 'flex', flexDirection: 'column', height: '37vw', width: '37vw' }}>{
-                Array.from({ length: 12 }).map((_, id) => (
-                    <div key={id} style={{ display: 'flex', height: '2.5vw', width: '37vw' }}>{
-                        Array.from({ length: 12 }).map((_, id2) => (
-                            <div className='rectangle2' key={[id, id2]} style={{
-                                ...borderstyle(id, id2),
-                                height: '2.5vw', width: '2.5vw',
-                                fontSize: '2.5vh',
-                                justifyContent: 'flex-start',
-                                alignItems: 'flex-start',
-                                position: 'relative'
-                            }}>
+        <div className="grid">
+            <div style={{ display: "flex", flexDirection: "column", height: "37vw", width: "37vw" }}>
+                {Array.from({ length: 12 }).map((_, id) => (
+                    <div key={id} style={{ display: "flex", height: "2.5vw", width: "37vw" }}>
+                        {Array.from({ length: 12 }).map((_, id2) => (
+                            <div
+                                className="rectangle2"
+                                key={[id, id2]}
+                                style={{
+                                    ...borderstyle(id, id2),
+                                    height: "2.5vw",
+                                    width: "2.5vw",
+                                    fontSize: "2.5vh",
+                                    justifyContent: "flex-start",
+                                    alignItems: "flex-start",
+                                    position: "relative",
+                                }}
+                            >
+                                {/* Car */}
                                 {id2 - 5 === car2d[0] && 5 - id === car2d[1] && (
-                                    <img src={car} alt="car" style={{
-                                        position: 'absolute',
-                                        top: '50%',
-                                        left: '50%',
-                                        transform: 'translate(-10%, 0)',
-                                        width: '3.5vw',
-                                        height: '2vw',
-                                        zIndex: 1
-                                    }} />
+                                    <img
+                                        src={car}
+                                        alt="car"
+                                        style={{
+                                            position: "absolute",
+                                            top: "50%",
+                                            left: "50%",
+                                            transform: "translate(-10%, 0)",
+                                            width: "3.5vw",
+                                            height: "2vw",
+                                            zIndex: 1,
+                                        }}
+                                    />
                                 )}
+                                {/* Tree */}
                                 {id === 6 && id2 === 6 && (
-                                    <img src={tree} alt="tree" style={{
-                                        position: 'absolute',
-                                        transform: 'translate(-50%, -50%)',
-                                        width: '3.5vw',
-                                        height: '3.5vw'
-                                    }} />
+                                    <img
+                                        src={tree}
+                                        alt="tree"
+                                        style={{
+                                            position: "absolute",
+                                            transform: "translate(-50%, -50%)",
+                                            width: "3.5vw",
+                                            height: "3.5vw",
+                                        }}
+                                    />
                                 )}
+                                {/* Triangles and Plus/Minus Signs */}
                                 {id === 6 && id2 === 11 && (
                                     <>
                                         <div className="triangle right"></div>
@@ -269,35 +285,49 @@ function Activity8({ difficulty }) {
                                         <div className="plus-sign up">+</div>
                                     </>
                                 )}
+                                {/* Horizontal Numbers */}
                                 {id === 6 && id2 !== 0 && id2 !== 6 && (
-                                    <div style={{
-                                        position: 'absolute',
-                                        transform: 'translate(0.3vw, -0.3vw)',
-                                        fontWeight: 'bold',
-                                        zIndex: 2,
-                                        color: (id2 - 6) < 0 ? 'red' : 'blue'
-                                    }}>
+                                    <div
+                                        style={{
+                                            position: "absolute",
+                                            transform: "translate(-50%, -50%)",
+                                            fontWeight: "bold",
+                                            textAlign: "center",
+                                            zIndex: 2,
+                                            backgroundColor: 'var(--secondary-color)',
+                                            padding: "0vw 0.2vw",
+                                            borderRadius: "0.2vw",
+                                            color: id2 - 6 < 0 ? "red" : "blue",
+                                        }}
+                                    >
                                         {Math.abs(id2 - 6)}
                                     </div>
                                 )}
+                                {/* Vertical Numbers */}
                                 {id2 === 6 && id !== 0 && id !== 6 && (
-                                    <div style={{
-                                        position: 'absolute',
-                                        transform: 'translate(0.3vw, -0.3vw)',
-                                        fontWeight: 'bold',
-                                        zIndex: 2,
-                                        color: (6 - id) < 0 ? 'red' : 'blue'
-                                    }}>
+                                    <div
+                                        style={{
+                                            position: "absolute",
+                                            transform: "translate(-65%, -50%)",
+                                            fontWeight: "bold",
+                                            zIndex: 2,
+                                            backgroundColor: 'var(--secondary-color)',
+                                            padding: "0vw 0.2vw",
+                                            borderRadius: "0.2vw",
+                                            color: 6 - id < 0 ? "red" : "blue",
+                                        }}
+                                    >
                                         {Math.abs(6 - id)}
                                     </div>
                                 )}
                             </div>
-                        ))
-                    }</div>
-                ))
-            }</div>
+                        ))}
+                    </div>
+                ))}
+            </div>
         </div>
-    );    
+    );
+    
 
     const [clickedTop, setClickedTop] = useState(-1)
     const [clickedMid, setClickedMid] = useState(-1)
