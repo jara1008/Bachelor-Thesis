@@ -177,7 +177,7 @@ function TutorialActivity10({ difficulty, onComplete }) {
                             <div className="input-row-A10">
                                 <input
                                     type="text"
-                                    className={`input-A10 ${(tutorialProgress==='easy' && (tutorialProgress === 2 || tutorialProgress === 4)) ? 'highlighted' : ''}`}
+                                    className={`input-A10 ${((difficulty==='easy' && tutorialProgress === 2) || (difficulty==='easy' && tutorialProgress === 4)) ? 'highlighted' : ''}`}
                                     style={{ backgroundColor: 'var(--primary-color)' }}
                                     value={blueSquareValues.blue2}
                                     onChange={e => handleBlueSquareChange('blue2', e.target.value)}

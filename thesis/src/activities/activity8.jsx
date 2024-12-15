@@ -470,7 +470,7 @@ function Activity8({ difficulty }) {
             <div className="white-box-regular" >
                 <HomeLink />
                 {difficulty === "easy" && <>
-                    <span className="title-text">Wo ist das Auto? Wähle die richtigen Kästchen aus: </span>
+                    <span className="title-text">Wo ist das Auto? Wähle 3 mal das richtige Kästchen aus:</span>
                     {renderNumberLine()}
                     {renderRectangles()}
                     {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} />}
@@ -481,7 +481,7 @@ function Activity8({ difficulty }) {
                     </button>
                 </>}
                 {difficulty === "hard" && <div>
-                    <span className="title-text">Wähle die richtigen Kästchen aus: </span>
+                    <span className="title-text">Wähle 3 mal das richtige Kästchen aus:</span>
                     <div style={{ display: 'flex' }}>
                         {renderGrid()}
                         {renderRectanglesHard()}

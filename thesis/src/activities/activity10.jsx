@@ -54,7 +54,10 @@ function Activity10({ difficulty }) {
         setCorrectnessLabel(true);
         const { col1, col2, col3, col4 } = columnValues;
         const number = parseInt(`${col1}${col2}${col3}${col4}`, 10);
-        if ((numberLarge - numberSmall) === number) {
+        const largeNumber = parseInt(numberLarge.join(''), 10);
+        const smallNumber = parseInt(numberSmall.join(''), 10);
+        console.log(largeNumber, smallNumber, number)
+        if ((largeNumber - smallNumber) === number) {
             setIsCorrect(true);
         } else {
             setIsCorrect(false);

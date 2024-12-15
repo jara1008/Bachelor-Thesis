@@ -215,7 +215,7 @@ function Activity6({ difficulty }) {
                 )}
                 {difficulty === 'hard' && (
                     <div className="title-text">
-                        Klicke auf die Münzen, um sie zu streichen. Tausche zu grosse Münzen um. Löse die Rechnung:
+                        Klicke auf die Münzen, um sie zu streichen. Tausche eine grössere für kleinere falls nötig. Löse die Rechnung:
                     </div>
                 )}
 

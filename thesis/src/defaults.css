@@ -155,7 +155,7 @@ body, html {
 
 .overlay-content {
     background: var(--secondary-color);
-    padding: 0.4vw 0vw 0.4vw 0vw;
+    padding: 0.4vw 1vw 0.4vw 1vw;
     border-radius: 10px;
     box-shadow: var(--box-shadow-default);
     font-family: var(--font-family);
@@ -167,6 +167,7 @@ body, html {
     display: flex; 
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     border: 2px solid var(--text-color);
 }
 
@@ -273,4 +274,15 @@ body, html {
     .tutorial-header-tall {
         top: 0.1%;
     }
+}
+
+.stars-container2 {
+    display: flex;
+    justify-content: space-around; 
+    margin-bottom: 0.5em; 
+}
+
+.star2 {
+    font-size: 2rem;
+    color: gold; 
 }

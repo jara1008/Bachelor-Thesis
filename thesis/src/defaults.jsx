@@ -2,7 +2,8 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import home_icon from './images/home_icon.png';
-import questionmark_icon from './images/questionmark_icon.png'
+import questionmark_icon from './images/questionmark_icon.png';
+import star from './images/star.svg';
 import './defaults.css';
 
 /* default variables */
@@ -81,8 +82,21 @@ export const CorrectnessLabel = ({ message, isVisible, top = '80%', left = '76%'
 
     return (
         <div className="overlay" style={{ top: top, left: left, height: height, width: width }} >
-            <div className="overlay-content" >
-                {message}
+            <div
+                className="overlay-content"
+                style={{
+                    backgroundColor: message === "Richtig!" ? "#d4edda" : 'var(--secondary-color)'
+                }}
+            >
+                {message === "Richtig!" ? (
+                    <div className="star-container2">
+                        <img src={star} alt="star2" style={{ width: '3vh' }} />
+                        <span>{message}</span>
+                        <img src={star} alt="star2" style={{ width: '3vh' }} />
+                    </div>
+                    ) : (
+                        <span>{message}</span>
+                    )}
             </div>
         </div>
     );

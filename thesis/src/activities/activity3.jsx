@@ -213,7 +213,7 @@ function Activity3({ difficulty }) {
             <div className="white-box-large">
                 <HomeLink />
                 {difficulty === 'easy' && <div className='title-text' style={{ marginBottom: '5vh' }}>Klicke auf die Münzen, um sie zu streichen. Wähle {"<, >, ="} passend:</div>}
-                {difficulty === 'hard' && <div className='title-text'>Klicke auf die Münzen, um sie zu streichen. Tausche zu grosse Münzen um. Wähle {"<, >, ="} passend:</div>}
+                {difficulty === 'hard' && <div className='title-text'>Klicke auf die Münzen, um sie zu streichen. Tausche eine grössere für kleinere falls nötig. Wähle {"<, >, ="} passend:</div>}
                 {difficulty === 'hard' && (
                     <div style={{ display: "flex", justifyContent: "space-around", width: "100%" }}>
                         <button onClick={handleConversionLeft} className="header-button" style={{ left: "25%", marginTop: "2vh" }}>

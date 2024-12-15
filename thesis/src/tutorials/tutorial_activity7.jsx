@@ -178,10 +178,10 @@ function TutorialActivity7({ difficulty, onComplete }) {
                                 <th style={{ border: 'none' }}></th>
                             </tr>
                             <tr>
-                                <th>1000</th>
-                                <th>100</th>
-                                <th>10</th>
-                                <th>1</th>
+                                <th style={{ backgroundColor: 'var(--primary-color)' }}>1000</th>
+                                <th style={{ backgroundColor: 'var(--primary-color)' }}>100</th>
+                                <th style={{ backgroundColor: 'var(--primary-color)' }}>10</th>
+                                <th style={{ backgroundColor: 'var(--primary-color)' }}>1</th>
                             </tr>
                         </thead>
                     )}
@@ -197,9 +197,9 @@ function TutorialActivity7({ difficulty, onComplete }) {
                                 <th style={{ border: 'none' }}></th>
                             </tr>
                             <tr>
-                                <th>100</th>
-                                <th>10</th>
-                                <th>1</th>
+                                <th style={{ backgroundColor: 'var(--primary-color)' }}>100</th>
+                                <th style={{ backgroundColor: 'var(--primary-color)' }}>10</th>
+                                <th style={{ backgroundColor: 'var(--primary-color)' }}>1</th>
                             </tr>
                         </thead>
                     )}

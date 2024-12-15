@@ -190,10 +190,12 @@ function Activity1({ difficulty }) {
             if (firstCloudCount > secondCloudCount && (!isCheckedLeft || isCheckedRight)) {
                 setIsLeftChecked(false);
                 setIsRightChecked(false);
+                setDisplayCorrectness(true);
                 return;
             } else if (secondCloudCount > firstCloudCount && (!isCheckedRight || isCheckedLeft)) {
                 setIsLeftChecked(false);
                 setIsRightChecked(false);
+                setDisplayCorrectness(true);
                 return;
             }
         } else {

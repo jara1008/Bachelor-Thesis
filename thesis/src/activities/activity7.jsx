@@ -189,8 +189,8 @@ function Activity7({ difficulty }) {
                 <HomeLink top="-6%" />
                 <span className="title-text">Löse die Rechnung:</span>
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} top="82%" left="78%" />}
-                {hintSwap && <CorrectnessLabel message="Hier kannst du etwas tauschen!" isVisible={true} top="82%" left="78%" />}
-                {hintNoSwap && <CorrectnessLabel message="Hier kannst du nichts tauschen!" isVisible={true} top="82%" left="78%" />}
+                {hintSwap && <CorrectnessLabel message="Hier kannst du etwas tauschen!" isVisible={true} top="82%" left="76%" width="14vw"/>}
+                {hintNoSwap && <CorrectnessLabel message="Hier sollst du nicht tauschen!" isVisible={true} top="82%" left="76%" width="14vw"/>}
                 {hintCheckLastRow && <CorrectnessLabel message="Überprüfe die letzte Reihe!" isVisible={true} top="82%" left="78%" />}
 
                 <table className="number-table-A7">
@@ -203,10 +203,10 @@ function Activity7({ difficulty }) {
                                 <th style={{ border: 'none' }}></th>
                             </tr>
                             <tr>
-                                <th>1000</th>
-                                <th>100</th>
-                                <th>10</th>
-                                <th>1</th>
+                                <th style={{ backgroundColor: 'var(--primary-color)' }}>1000</th>
+                                <th style={{ backgroundColor: 'var(--primary-color)' }}>100</th>
+                                <th style={{ backgroundColor: 'var(--primary-color)' }}>10</th>
+                                <th style={{ backgroundColor: 'var(--primary-color)' }}>1</th>
                             </tr>
                         </thead>}
                     {nrCols === 3 &&
@@ -217,9 +217,9 @@ function Activity7({ difficulty }) {
                                 <th style={{ border: 'none' }}></th>
                             </tr>
                             <tr>
-                                <th>100</th>
-                                <th>10</th>
-                                <th>1</th>
+                                <th style={{ backgroundColor: 'var(--primary-color)' }}>100</th>
+                                <th style={{ backgroundColor: 'var(--primary-color)' }}>10</th>
+                                <th style={{ backgroundColor: 'var(--primary-color)' }}>1</th>
                             </tr>
                         </thead>}
                     <tbody>

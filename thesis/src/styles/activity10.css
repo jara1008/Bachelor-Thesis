@@ -10,7 +10,7 @@
 
 .number-box-A10 {
     border: 2px solid black;
-    text-align: right;
+    text-align: left;
     display: inline-block;
     width: 100%;
 }
@@ -29,7 +29,7 @@
     align-items: flex-end;
     gap: 1.5vh;
     padding-top: 2vh;
-    padding-left: 2vw;
+    padding-left: 5vw;
 }
 
 .input-row-A10 {
@@ -63,18 +63,28 @@
 
 .minus-top-A10{
     position: relative;
-    font-size: 3vw;
+    font-size: 4vw;
     font-family: var(--font-family);
+    font-weight: bold;
     left: -1vw;
-    color: blue;
+    top: -1.5vh;
+    color: red;
 }
 
 .minus-bot-A10{
     position: relative;
-    font-size: 3vw;
+    font-size: 4vw;
     font-family: var(--font-family);
-    top: -1vh;
-    color: blue;
+    font-weight: bold;
+    top: -3vh;
+    color: red;
+}
+
+
+@media (max-width: 1180px) {
+    .minus-bot-A10 {
+        top: -2vh;
+    }
 }
 
 .invert-button-A10 {
@@ -92,7 +102,7 @@
     width: 4.5vw;
 }
 
-@media (max-width: 1124px) {
+@media (max-width: 1180px) {
     .invert-button-A10 {
         top: 12vh;
         left: 50vw;
