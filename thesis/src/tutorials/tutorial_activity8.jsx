@@ -242,7 +242,9 @@ function TutorialActivity8({ difficulty, onComplete }) {
                                 {id === 6 && id2 !== 0 && id2 !== 6 && (
                                     <div style={{
                                         position: 'absolute',
-                                        transform: 'translate(0.3vw, -0.3vw)',
+                                        transform: "translate(-65%, -50%)",
+                                        backgroundColor: 'var(--secondary-color)',
+                                        padding: "0vw 0.2vw",
                                         fontWeight: 'bold',
                                         zIndex: 2,
                                         color: (id2 - 6) < 0 ? 'red' : 'blue',
@@ -255,7 +257,9 @@ function TutorialActivity8({ difficulty, onComplete }) {
                                 {id2 === 6 && id !== 0 && id !== 6 && (
                                     <div style={{
                                         position: 'absolute',
-                                        transform: 'translate(0.3vw, -0.3vw)',
+                                        transform: "translate(-50%, -50%)",
+                                        backgroundColor: 'var(--secondary-color)',
+                                        padding: "0vw 0.2vw",
                                         fontWeight: 'bold',
                                         zIndex: 2,
                                         color: (6 - id) < 0 ? 'red' : 'blue',

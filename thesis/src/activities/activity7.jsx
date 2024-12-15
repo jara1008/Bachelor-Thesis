@@ -125,7 +125,7 @@ function Activity7({ difficulty }) {
         }
 
         // Increase the next value by 10
-        if (currentTopValues[index] < 1 || currentTopValues[index+1]+10 > 10 || currentBotValues[index+1]===0) {
+        if (currentTopValues[index] < 1 || currentTopValues[index+1]+10 > 10 || (currentBotValues[index+1]===0 && currentBotValues[index+2]===0)) {
             setHintNoSwap(true);
                 setTimeout(() => {
                     setHintNoSwap(false);
