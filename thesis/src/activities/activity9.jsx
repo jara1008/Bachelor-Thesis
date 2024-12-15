@@ -67,7 +67,6 @@ function Activity9({ difficulty }) {
     const checkAllCoinsCrossed = () => {
         const leftCoinCount = leftCoinsTen + leftCoinsOne;
         const crossedLeftCoins = Array.from(activeCoins).filter(coin => coin.startsWith('left')).length;
-        console.log(crossedLeftCoins, (leftCoinCount));
         return crossedLeftCoins === (leftCoinCount - 1);
     };
 
@@ -108,7 +107,6 @@ function Activity9({ difficulty }) {
     const handleCoinClick = (type, denomination, index) => {
         const coinKey = `${type}-${denomination}-${index}`;
         const oppositeType = type === 'left' ? 'right' : 'left';
-        console.log(type)
         if ((Array.from(activeCoins).length/2 === leftCoinsOne+leftCoinsTen) && type==='right') { return }
 
         setActiveCoins(prevActiveCoins => {
@@ -152,7 +150,6 @@ function Activity9({ difficulty }) {
                     setRightCoinsVisibleOne(prevCount => prevCount - 1);
                 }
             }
-            console.log(activeCoins)
 
             if (checkAllCoinsCrossed()) {
                 setAllCoinsCrossed(true);

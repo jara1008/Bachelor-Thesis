@@ -191,7 +191,7 @@ function Activity7({ difficulty }) {
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} top="82%" left="78%" />}
                 {hintSwap && <CorrectnessLabel message="Hier kannst du etwas tauschen!" isVisible={true} top="82%" left="76%" width="14vw"/>}
                 {hintNoSwap && <CorrectnessLabel message="Hier sollst du nicht tauschen!" isVisible={true} top="82%" left="76%" width="14vw"/>}
-                {hintCheckLastRow && <CorrectnessLabel message="Überprüfe die letzte Reihe!" isVisible={true} top="82%" left="78%" />}
+                {hintCheckLastRow && <CorrectnessLabel message="Überprüfe die letzten zwei Reihen!" isVisible={true} top="82%" left="78%" />}
 
                 <table className="number-table-A7">
                     {nrCols === 4 &&
