@@ -59,7 +59,7 @@ function Overview() {
                 height: "10vw",
                 width: "10vw",
                 transform: 'translate(-50%, -50%)',
-                top: '10%',
+                top: '14%',
                 filter: 'drop-shadow(8px 8px 4px #00000040)'
             }} />
             <div className="progress-line">
