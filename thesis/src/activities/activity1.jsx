@@ -8,9 +8,9 @@ import star from "../images/star.svg";
 
 /* define fixed positions for stars */
 const leftCloudPositions = [
-    { top: 52, left: 18 }, { top: 27, left: 32 }, { top: 40, left: 6 },
-    { top: 48, left: 28 }, { top: 16, left: 25 }, { top: 32, left: 14 },
-    { top: 35, left: 36 }
+    { top: 52, left: 15 }, { top: 27, left: 32 }, { top: 40, left: 6 },
+    { top: 48, left: 26 }, { top: 16, left: 25 }, { top: 32, left: 14 },
+    { top: 35, left: 33 }
 ];
 const rightCloudPositions = [
     { top: 25, left: 67 }, { top: 12, left: 77 }, { top: 50, left: 71 },

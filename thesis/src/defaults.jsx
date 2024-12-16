@@ -12,7 +12,10 @@ export const checkButtonTop = 92;
 /* default components */
 export const HomeLink = ({ top = '-6.5%' }) => {
     const { level, difficulty } = useParams();
-    const levelNr = level.match(/\d+$/)?.[0];
+    let levelNr = level.match(/\d+$/)?.[0];
+    if (levelNr==='10') {
+        levelNr = 0;
+    }
     const tutorialPath = `/tutorial/${levelNr}${difficulty}`;
     const isActivity = level.startsWith('activity') && difficulty!==undefined;
     console.log(difficulty)
