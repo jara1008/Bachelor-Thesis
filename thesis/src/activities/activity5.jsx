@@ -78,7 +78,7 @@ function Activity5({ difficulty }) {
                 {!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} />}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default"
                     style={{ top: `${checkButtonTop}%`, left: '50%' }} >
-                    {isCorrect ? "Weiter" : "Prüfen"}
+                    {isCorrect ? "🌟 Weiter 🌟" : "Prüfen"}
                 </button>
             </div>
         </div>

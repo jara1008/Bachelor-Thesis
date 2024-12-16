@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import '../styles/activity6.css';
 import '../defaults.css';
-import { HomeLink, EndOfGame, CorrectnessLabel, checkButtonTop, HintLabel } from '../defaults';
+import { HomeLink, EndOfGame, CorrectnessLabel, checkButtonTop } from '../defaults';
 import { predefinedSetsA6 } from './predefinedSets.jsx';
 
 function Activity6({ difficulty }) {
@@ -172,16 +172,12 @@ function Activity6({ difficulty }) {
     const handleConversion = () => {
         if ((leftCoinsVisibleOne > 0 && rightCoinsVisibleOne > 0) || (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen > 0)) {
             setHintCrossAllCoins(true);
-            setTimeout(() => {
-                setHintCrossAllCoins(false);
-            }, 5000);
+            setHintNothingToSwap(false);
             return;
         }
         if (leftCoinsVisibleTen === 0 || leftCoinsVisibleOne > 0 || rightCoinsVisibleOne === 0) {
             setHintNothingToSwap(true);
-            setTimeout(() => {
-                setHintNothingToSwap(false);
-            }, 5000);
+            setHintCrossAllCoins(false);
         }
 
         if (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen === 0 && leftCoinsVisibleOne === 0) {
@@ -276,13 +272,13 @@ function Activity6({ difficulty }) {
                     <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} left="79.5%" />
                 )}
                 {hintNothingToSwap && (
-                    <HintLabel message="Hier kannst du nichts tauschen!" isVisible={true} left="73.5%" top="76%" />
+                    <CorrectnessLabel message="Hier kannst du nichts tauschen!" isVisible={true} left="73.5%" top="76%" />
                 )}
                 {hintCrossAllCoins && (
-                    <HintLabel message="Streiche zuerst so viele Münzen, wie du kannst!" isVisible={true} left="73.5%" top="76%" />
+                    <CorrectnessLabel message="Streiche zuerst so viele Münzen, wie du kannst!" isVisible={true} left="73.5%" top="76%" />
                 )}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" style={{ top: `${checkButtonTop}%`, left: '50%' }}>
-                    {isCorrect ? "Weiter" : "Prüfen"}
+                    {isCorrect ? "🌟 Weiter 🌟" : "Prüfen"}
                 </button>
             </div>
         </div>

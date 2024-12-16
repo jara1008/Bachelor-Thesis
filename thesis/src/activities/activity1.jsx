@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import "../styles/activity1.css";
 import "../defaults.css";
-import { HomeLink, EndOfGame, CorrectnessLabel, checkButtonTop, HintLabel } from "../defaults.jsx";
+import { HomeLink, EndOfGame, CorrectnessLabel, checkButtonTop } from "../defaults.jsx";
 import { predefinedSetsA1 } from "./predefinedSets.jsx";
 import cloud from "../images/cloud.png";
 import star from "../images/star.svg";
@@ -36,7 +36,7 @@ function Activity1({ difficulty }) {
     const [secondCloudCount, setSecondCloudCount] = useState(0); /* track #stars in right cloud */
     const [isCheckedLeft, setIsLeftChecked] = useState(false);
     const [isCheckedRight, setIsRightChecked] = useState(false);
-
+    
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 }); /* mouse position */
     const [inputValue, setInputValue] = useState('');
     const touchEventRef = useRef(false);
@@ -331,13 +331,13 @@ function Activity1({ difficulty }) {
                     )}
                     {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} top="76%" left="77%" />}
                     {!isCorrect && displayCorrectness && !hintClickBox && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top="76%" left="77%" />}
-                    {hintClickBox && difficulty === 'easy' && <HintLabel message="Wähle das richtige Kästchen an!" isVisible={true} />}
-                    {hintClickBox && difficulty === 'hard' && <HintLabel message="Wähle <, =, > passend!" isVisible={true} />}
-                    {hintConnectStars && <HintLabel message="Verbinde die Sterne miteinander!" isVisible={true} />}
+                    {hintClickBox && difficulty === 'easy' && <CorrectnessLabel message="Wähle das richtige Kästchen an!" isVisible={true} />}
+                    {hintClickBox && difficulty === 'hard' && <CorrectnessLabel message="Wähle <, =, > passend!" isVisible={true} />}
+                    {hintConnectStars && <CorrectnessLabel message="Verbinde die Sterne miteinander!" isVisible={true} />}
                 </div>
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default"
                     style={{ top: `${checkButtonTop}%`, left: '50%' }} >
-                    {isCorrect ? "Weiter" : "Prüfen"}
+                    {isCorrect ? "🌟 Weiter 🌟" : "Prüfen"}
                 </button>
             </div>
         </div>

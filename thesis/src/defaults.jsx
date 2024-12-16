@@ -3,7 +3,6 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import home_icon from './images/home_icon.png';
 import questionmark_icon from './images/questionmark_icon.png';
-import star from './images/star.svg';
 import './defaults.css';
 
 /* default variables */
@@ -58,57 +57,49 @@ const incrementHighestUnlockedLevel = (currentLevelNr, difficulty) => {
     }
 };
 
-export const EndOfGame = ({ levelName, levelNr, difficulty }) => (
-    <div className="container">
-        <div className="white-box-regular">
-            <HomeLink />
-            <div className="congratulation-message">
-                Gratulation! Du hast das Level { levelName } geschafft!
-                { /* Add party icon */ }
-            </div>
-            <Link to={"/"}>
-                <button className='button-default'
-                    style={{ top: '90%', left: '50%' }} 
-                    onClick={incrementHighestUnlockedLevel(levelNr, difficulty==='easy' ? 0 : 1)}>
-                    zur Übersicht
-                </button>
-            </Link>
-        </div>
-    </div>
-);
-
-export const CorrectnessLabel = ({ message, isVisible, top = '80%', left = '76%', height = '12vh', width = '13vw' }) => {
-    if (!isVisible) return null;
+export const EndOfGame = ({ levelName, levelNr, difficulty }) => {
+    const isEasy = difficulty === 'easy';
 
     return (
-        <div className="overlay" style={{ top: top, left: left, height: height, width: width }} >
-            <div
-                className="overlay-content"
-                style={{
-                    backgroundColor: message === "Richtig!" ? "#d4edda" : 'var(--secondary-color)'
-                }}
-            >
-                {message === "Richtig!" ? (
-                    <div className="star-container2">
-                        <img src={star} alt="star2" style={{ width: '3vh' }} />
-                        <span>{message}</span>
-                        <img src={star} alt="star2" style={{ width: '3vh' }} />
-                    </div>
-                    ) : (
-                        <span>{message}</span>
-                    )}
+        <div className="container">
+            <div className="white-box-regular" style={{ display: 'flex', alignItems: 'center' }}>
+                <span className="congratulation-title">🌟  Herzlichen Glückwunsch!  🌟</span>
+                <span className="congratulation-message">
+                    Du hast das Level <strong>{levelName}</strong> erfolgreich gemeistert!
+                </span>
+                <Link to="/">
+                    <button
+                        className="button-default"
+                        style={{ top: `${checkButtonTop}%` }}
+                        onClick={() => incrementHighestUnlockedLevel(levelNr, isEasy ? 0 : 1)}
+                    >
+                        🌟 Zur Übersicht 🌟
+                    </button>
+                </Link>
             </div>
         </div>
     );
 };
 
-export const HintLabel = ({ message, isVisible, top = '73%', left = '71%', height = '15vh', width = '17vw' }) => {
+export const CorrectnessLabel = ({ message, isVisible, height = '15vh', width = '15vw' }) => {
     if (!isVisible) return null;
-
+    
     return (
-        <div className="overlay" style={{ top: top, left: left, height: height, width: width }} >
-            <div className="overlay-content" >
-                {message}
+        <div className="overlay" style={{ height: height, width: width }} >
+            <div
+                className="overlay-content"
+                style={{
+                    backgroundColor: message === "Richtig!" ? "#d4edda" : 'var(--secondary-color)',
+                    zIndex: '100'
+                }}
+            >
+                {message === "Richtig!" ? (
+                    <div className="star-container2">
+                        <span style={{ fontWeight: 'bold' }}>🌟 {message} 🌟</span>
+                    </div>
+                    ) : (
+                        <span>{message}</span>
+                    )}
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/activity10.css';
 import '../defaults.css';
-import { HomeLink, EndOfGame, CorrectnessLabel, HintLabel, checkButtonTop } from '../defaults';
+import { HomeLink, EndOfGame, CorrectnessLabel, checkButtonTop } from '../defaults';
 import { predefinedSetsA10 } from './predefinedSets.jsx';
 
 function Activity10({ difficulty }) {
@@ -93,6 +93,8 @@ function Activity10({ difficulty }) {
         setCorrectnessLabel(false);
         setIsCorrect(false);
         setMinus(false);
+        setIncorrectFields([]);
+        setIncorrectBlueFields([]);
 
         if (roundCount < selectedSet.length - 1) {
             setRoundCount(roundCount + 1);
@@ -113,7 +115,7 @@ function Activity10({ difficulty }) {
                 <HomeLink />
                 <span className="title-text">Führe eine schriftliche Subtraktion durch:</span>
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} />}
-                {!isCorrect && displayCorrectness && <HintLabel message="Überprüfe die markierten Kästchen!" isVisible={true} left="70%" top="76.5%" />}
+                {!isCorrect && displayCorrectness && <CorrectnessLabel message="Überprüfe die markierten Kästchen!" isVisible={true} left="70%" top="76.5%" />}
 
                 <div className="number-container-A10">
                     <div>
@@ -249,7 +251,7 @@ function Activity10({ difficulty }) {
 
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default"
                     style={{ top: `${checkButtonTop}%`, left: '50%' }} >
-                    {isCorrect ? "Weiter" : "Prüfen"}
+                    {isCorrect ? "🌟 Weiter 🌟" : "Prüfen"}
                 </button>
             </div>
         </div>

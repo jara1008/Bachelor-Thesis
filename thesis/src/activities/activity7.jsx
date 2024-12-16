@@ -62,22 +62,23 @@ function Activity7({ difficulty }) {
         if (hasOnlyZeroValue && sol === input) {
             setCorrectnessLabel(true);
             setIsCorrect(true);
+            setHintNoSwap(false);
+            setHintCheckLastRow(false);
+            setHintSwap(false);
             setIncorrectFields([]);
         } else {
             const currentTopValues = rows[rows.length - 1].valuesTop.map(value => { return parseInt(value, 10)});
             const currentBotValues = rows[rows.length - 1].valuesBottom.map(value => { return parseInt(value, 10)});  
             if (checkIntermediate(currentTopValues, currentBotValues)) {
                 setHintSwap(true);
-                setTimeout(() => {
-                    setHintSwap(false);
-                }, 5000);
+                setHintCheckLastRow(false);
+                setHintNoSwap(false);
                 return;
             }
             else {
                 setHintCheckLastRow(true);
-                setTimeout(() => {
-                    setHintCheckLastRow(false);
-                }, 5000);
+                setHintNoSwap(false);
+                setHintSwap(false);
             }
         
             /*const newInputRow = { type: 'input', valuesTop: Array(nrCols).fill(''), valuesBottom: Array(nrCols).fill('') };
@@ -121,18 +122,16 @@ function Activity7({ difficulty }) {
         
         if (!checkIntermediate(currentTopValues, currentBotValues)) {
             setHintCheckLastRow(true);
-            setTimeout(() => {
-                setHintCheckLastRow(false);
-            }, 5000)
+            setHintNoSwap(false);
+            setHintSwap(false);
             return;
         }
 
         // Increase the next value by 10
         if (currentTopValues[index] < 1 || currentTopValues[index+1]+10 > 10 || (currentBotValues[index+1]===0 && currentBotValues[index+2]===0)) {
             setHintNoSwap(true);
-                setTimeout(() => {
-                    setHintNoSwap(false);
-                }, 5000);
+            setHintSwap(false);
+            setHintCheckLastRow(false);
             return;
         }
         currentTopValues[index] = currentTopValues[index]-1;
@@ -212,7 +211,7 @@ function Activity7({ difficulty }) {
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} top="82%" left="78%" />}
                 {hintSwap && <CorrectnessLabel message="Hier kannst du etwas tauschen!" isVisible={true} top="82%" left="76%" width="14vw"/>}
                 {hintNoSwap && <CorrectnessLabel message="Hier sollst du nicht tauschen!" isVisible={true} top="82%" left="76%" width="14vw"/>}
-                {hintCheckLastRow && <CorrectnessLabel message="Überprüfe die letzten zwei Reihen!" isVisible={true} top="82%" left="78%" />}
+                {hintCheckLastRow && <CorrectnessLabel message="Überprüfe die markierten Kästchen!" isVisible={true} top="82%" left="78%" />}
 
                 <table className="number-table-A7">
                     {nrCols === 4 &&
@@ -293,7 +292,7 @@ function Activity7({ difficulty }) {
 
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default"
                     style={{ top: '94%', left: '50%' }} >
-                    {isCorrect ? "Weiter" : "Prüfen"}
+                    {isCorrect ? "🌟 Weiter 🌟" : "Prüfen"}
                 </button>
             </div>
         </div>

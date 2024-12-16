@@ -144,7 +144,7 @@ function Activity2({ difficulty }) {
                     className="button-default"
                     style={{ top: `${checkButtonTop}%`, left: '50%' }}
                 >
-                    {isCorrect ? 'Weiter' : 'Prüfen'}
+                    {isCorrect ? "🌟 Weiter 🌟" : 'Prüfen'}
                 </button>
             </div>
         </div>
