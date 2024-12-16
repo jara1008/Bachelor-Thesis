@@ -15,6 +15,8 @@ function Activity7({ difficulty }) {
     const nrCols = difficulty === 'hard' ? 4 : 3;
     const [lastAcceptedTopValues, setLastAcceptedTopValues] = useState(Array(nrCols).fill(0));
     const [lastAcceptedBotValues, setLastAcceptedBotValues] = useState(Array(nrCols).fill(0));
+    const [incorrectFields, setIncorrectFields] = useState([]);
+    const [currentRowIndex, setCurrentRowIndex] = useState(0);
 
     /* Hints */
     const [hintSwap, setHintSwap] = useState(false);
@@ -56,12 +58,14 @@ function Activity7({ difficulty }) {
     const checkInput = () => {
         const sol = parseInt(numberLarge.join('')) - parseInt(numberSmall.join(''));
         const input = parseInt(rows[rows.length - 1].valuesTop.join(''));
-        if (sol === input) {
+        const hasOnlyZeroValue = rows[rows.length - 1].valuesBottom.map(value => parseInt(value, 10)).every(value => value === 0);
+        if (hasOnlyZeroValue && sol === input) {
             setCorrectnessLabel(true);
             setIsCorrect(true);
+            setIncorrectFields([]);
         } else {
-            const currentTopValues = rows[rows.length - 1].valuesTop.map(value => parseInt(value, 10) || 0);
-            const currentBotValues = rows[rows.length - 1].valuesBottom.map(value => parseInt(value, 10) || 0);
+            const currentTopValues = rows[rows.length - 1].valuesTop.map(value => { return parseInt(value, 10)});
+            const currentBotValues = rows[rows.length - 1].valuesBottom.map(value => { return parseInt(value, 10)});  
             if (checkIntermediate(currentTopValues, currentBotValues)) {
                 setHintSwap(true);
                 setTimeout(() => {
@@ -88,6 +92,7 @@ function Activity7({ difficulty }) {
         } else {
             setRoundCount(selectedSet.length); // End game condition
         }
+        setCurrentRowIndex(0);
     };
 
     const handleRowInputChangeTop = (rowIndex, colIndex, event) => {
@@ -107,14 +112,12 @@ function Activity7({ difficulty }) {
         const newRowValues = [...rows];
         // Parse the current value to an integer
         var currentTopValues = newRowValues[newRowValues.length - 1].valuesTop.map(value => {
-            const parsedValue = parseInt(value, 10);
-            return isNaN(parsedValue) ? 0 : parsedValue;
+            return parseInt(value, 10);
         });
-
+        
         var currentBotValues = newRowValues[newRowValues.length - 1].valuesBottom.map(value => {
-            const parsedValue = parseInt(value, 10);
-            return isNaN(parsedValue) ? 0 : parsedValue;
-        });
+            return parseInt(value, 10);
+        });        
         
         if (!checkIntermediate(currentTopValues, currentBotValues)) {
             setHintCheckLastRow(true);
@@ -151,29 +154,47 @@ function Activity7({ difficulty }) {
 
         setLastAcceptedTopValues(currentTopValues);
         setLastAcceptedBotValues(currentBotValues);
-        console.log(lastAcceptedBotValues, lastAcceptedTopValues, currentTopValues, currentBotValues)
+        setCurrentRowIndex(currentRowIndex+2);
     };
 
     const checkIntermediate = (currentTopValues, currentBotValues) => {
+        setIncorrectFields([]);
+        let isIncorrect = false;
         for (let i = 0; i < currentTopValues.length; i++) {
             const topNr = lastAcceptedTopValues[i];
             const botNr = lastAcceptedBotValues[i];
             if (botNr < topNr) {
-                if (topNr - botNr !== currentTopValues[i] || currentBotValues[i] !== 0) {
-                    setCorrectnessLabel(true);
-                    return false;
+                if (topNr - botNr !== currentTopValues[i]) {
+                    setIncorrectFields(prev => [...prev, i]);
+                    isIncorrect = true;
+                }
+                if (currentBotValues[i] !== 0) {
+                    setIncorrectFields(prev => [...prev, i+4]);
+                    isIncorrect = true;
                 }
             } else if (botNr > topNr) {
-                if (botNr - topNr !== currentBotValues[i] || currentTopValues[i] !== 0) {
-                    setCorrectnessLabel(true);
-                    return false;
+                if (botNr - topNr !== currentBotValues[i]) {
+                    setIncorrectFields(prev => [...prev, i+4]);
+                    isIncorrect = true;
+                }
+                if (currentTopValues[i] !== 0) {
+                    setIncorrectFields(prev => [...prev, i]);
+                    isIncorrect = true;
                 }
             } else if (botNr === topNr) {
-                if (currentBotValues[i] !== 0 || currentTopValues[i] !== 0) {
-                    setCorrectnessLabel(true);
-                    return false;
+                if (currentBotValues[i] !== 0) {
+                    setIncorrectFields(prev => [...prev, i+4]);
+                    isIncorrect = true;
+                }
+                if (currentTopValues[i] !== 0) {
+                    setIncorrectFields(prev => [...prev, i]);
+                    isIncorrect = true;
                 }
             }
+        }
+        if (isIncorrect) {
+            setCorrectnessLabel(true);
+            return false;
         }
         setCorrectnessLabel(false);
         return true;
@@ -244,13 +265,14 @@ function Activity7({ difficulty }) {
                                                 value={value}
                                                 onChange={(event) => handleRowInputChangeTop(rowIndex, index, event)}
                                                 className="input-field-A7"
+                                                style = {{ border: (rowIndex===currentRowIndex && incorrectFields.includes(index)) ? '2px solid red' : '1px solid var(--text-color)' }}
                                             />
                                             <input
                                                 type="text"
                                                 value={row.valuesBottom[index]}
                                                 onChange={(event) => handleRowInputChangeBottom(rowIndex, index, event)}
                                                 className="input-field-A7"
-                                                style={{ marginTop: '5px' }}
+                                                style={{ marginTop: '5px', border: (rowIndex===currentRowIndex && incorrectFields.includes(index+4)) ? '2px solid red' : '1px solid var(--text-color)' }}
                                             />
                                             <span className="minus-sign-A7" style={{ display: 'inline-block' }}>-</span>
                                         </td>
