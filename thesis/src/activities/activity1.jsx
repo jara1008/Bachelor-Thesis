@@ -188,13 +188,9 @@ function Activity1({ difficulty }) {
             setHintClickBox(false);
 
             if (firstCloudCount > secondCloudCount && (!isCheckedLeft || isCheckedRight)) {
-                setIsLeftChecked(false);
-                setIsRightChecked(false);
                 setDisplayCorrectness(true);
                 return;
             } else if (secondCloudCount > firstCloudCount && (!isCheckedRight || isCheckedLeft)) {
-                setIsLeftChecked(false);
-                setIsRightChecked(false);
                 setDisplayCorrectness(true);
                 return;
             }
@@ -213,6 +209,7 @@ function Activity1({ difficulty }) {
                 setIsCorrect(true);
             } else {
                 setIsCorrect(false);
+                setDisplayCorrectness(true);
                 return;
             }
         }
@@ -330,8 +327,8 @@ function Activity1({ difficulty }) {
                         </div>
                     )}
                     {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} top="76%" left="77%" />}
-                    {!isCorrect && displayCorrectness && !hintClickBox && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} top="76%" left="77%" />}
-                    {hintClickBox && difficulty === 'easy' && <CorrectnessLabel message="Wähle das richtige Kästchen an!" isVisible={true} />}
+                    {!isCorrect && displayCorrectness && !hintClickBox && <CorrectnessLabel message="Überprüfe das Kästchen!" isVisible={true} top="76%" left="77%" />}
+                    {hintClickBox && difficulty === 'easy' && <CorrectnessLabel message="Wähle das richtige Kästchen aus!" isVisible={true} />}
                     {hintClickBox && difficulty === 'hard' && <CorrectnessLabel message="Wähle <, =, > passend!" isVisible={true} />}
                     {hintConnectStars && <CorrectnessLabel message="Verbinde die Sterne miteinander!" isVisible={true} />}
                 </div>

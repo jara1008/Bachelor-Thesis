@@ -137,8 +137,7 @@ function Activity2({ difficulty }) {
                     </div>
                 )}
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} />}
-                {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} />}
-                {hintAllBoxes && <CorrectnessLabel message="Fülle alle Kästchen!" isVisible={true} />}
+                {((!!!isCorrect && displayCorrectness) || hintAllBoxes) && <CorrectnessLabel message="Überprüfe die Kästchen!" isVisible={true} />}
                 <button
                     onClick={isCorrect ? handleNext : checkInput}
                     className="button-default"

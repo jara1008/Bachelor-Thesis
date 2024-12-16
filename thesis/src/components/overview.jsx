@@ -56,8 +56,8 @@ function Overview() {
             <img src={planet} alt="Planet" style={{
                 position: 'absolute',
                 left: '28.25%',
-                height: "20vw",
-                width: "20vw",
+                height: "18vw",
+                width: "18vw",
                 transform: 'translate(-50%, -50%)',
                 top: '14%',
                 filter: 'drop-shadow(8px 8px 4px #00000040)'

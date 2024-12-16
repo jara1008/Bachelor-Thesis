@@ -81,7 +81,7 @@ export const EndOfGame = ({ levelName, levelNr, difficulty }) => {
     );
 };
 
-export const CorrectnessLabel = ({ message, isVisible, height = '15vh', width = '15vw' }) => {
+export const CorrectnessLabel = ({ message, isVisible, height = '15vh', width = '14vw' }) => {
     if (!isVisible) return null;
     
     return (
@@ -95,7 +95,7 @@ export const CorrectnessLabel = ({ message, isVisible, height = '15vh', width = 
             >
                 {message === "Richtig!" ? (
                     <div className="star-container2">
-                        <span style={{ fontWeight: 'bold' }}>🌟 {message} 🌟</span>
+                        <span style={{ fontWeight: 'bold' }}>🌟{message}🌟</span>
                     </div>
                     ) : (
                         <span>{message}</span>

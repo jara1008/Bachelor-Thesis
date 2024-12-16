@@ -75,7 +75,7 @@ function Activity5({ difficulty }) {
                     = {numbers.largeNum}
                 </div>
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} />}
-                {!isCorrect && displayCorrectness && <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} />}
+                {!isCorrect && displayCorrectness && <CorrectnessLabel message="Überprüfe das Kästchen!" isVisible={true} />}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default"
                     style={{ top: `${checkButtonTop}%`, left: '50%' }} >
                     {isCorrect ? "🌟 Weiter 🌟" : "Prüfen"}

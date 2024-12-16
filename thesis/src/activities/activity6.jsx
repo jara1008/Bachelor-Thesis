@@ -24,6 +24,7 @@ function Activity6({ difficulty }) {
     /* Hints */
     const [hintCrossAllCoins, setHintCrossAllCoins] = useState(false);
     const [hintNothingToSwap, setHintNothingToSwap] = useState(false); 
+    const [hintSomethingToSwap, setHintSomethingToSwap] = useState(false);
 
     useEffect(() => {
         const sets = difficulty === 'easy' ? predefinedSetsA6.easy : predefinedSetsA6.hard;
@@ -153,12 +154,22 @@ function Activity6({ difficulty }) {
 
     const checkInput = () => {
         setCorrectnessLabel(true);
+        setHintCrossAllCoins(false);
+        setHintNothingToSwap(false);
+        setHintSomethingToSwap(false);
         const leftVal = leftCoinsOne + leftCoinsTen * 10;
         const rightVal = rightCoinsOne + rightCoinsTen * 10;
         if (parseInt(inputValue) === leftVal - rightVal) {
             setIsCorrect(true);
+            setHintCrossAllCoins(false);
+            setHintNothingToSwap(false);
         } else {
-            setIsCorrect(false);
+            if ((leftCoinsVisibleOne>0 && rightCoinsVisibleOne>0) || (leftCoinsVisibleTen>0 && rightCoinsVisibleTen>0)) {
+                setHintCrossAllCoins(true);
+            }
+            if ((leftCoinsVisibleTen>0 && leftCoinsVisibleOne===0 && rightCoinsVisibleOne>0)) {
+                setHintSomethingToSwap(true);
+            }
         }
     };
 
@@ -170,14 +181,16 @@ function Activity6({ difficulty }) {
     };
 
     const handleConversion = () => {
-        if ((leftCoinsVisibleOne > 0 && rightCoinsVisibleOne > 0) || (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen > 0)) {
-            setHintCrossAllCoins(true);
-            setHintNothingToSwap(false);
-            return;
-        }
         if (leftCoinsVisibleTen === 0 || leftCoinsVisibleOne > 0 || rightCoinsVisibleOne === 0) {
             setHintNothingToSwap(true);
             setHintCrossAllCoins(false);
+            setHintSomethingToSwap(false);
+        }
+        if ((leftCoinsVisibleOne > 0 && rightCoinsVisibleOne > 0) || (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen > 0)) {
+            setHintCrossAllCoins(true);
+            setHintNothingToSwap(false);
+            setHintSomethingToSwap(false);
+            return;
         }
 
         if (leftCoinsVisibleTen > 0 && rightCoinsVisibleTen === 0 && leftCoinsVisibleOne === 0) {
@@ -269,13 +282,16 @@ function Activity6({ difficulty }) {
                     <CorrectnessLabel message="Richtig!" isVisible={true} left="79.5%" />
                 )}
                 {!isCorrect && displayCorrectness && (
-                    <CorrectnessLabel message="Versuche es nochmal!" isVisible={true} left="79.5%" />
+                    <CorrectnessLabel message="Überprüfe das Kästchen!" isVisible={true} left="79.5%" />
                 )}
                 {hintNothingToSwap && (
-                    <CorrectnessLabel message="Hier kannst du nichts tauschen!" isVisible={true} left="73.5%" top="76%" />
+                    <CorrectnessLabel message="Hier sollst du nicht tauschen!" isVisible={true} left="73.5%" top="76%" />
                 )}
                 {hintCrossAllCoins && (
-                    <CorrectnessLabel message="Streiche zuerst so viele Münzen, wie du kannst!" isVisible={true} left="73.5%" top="76%" />
+                    <CorrectnessLabel message="Streiche so viele Münzen, wie du kannst!" isVisible={true} left="73.5%" top="76%" />
+                )}
+                {hintSomethingToSwap && (
+                    <CorrectnessLabel message="Hier kannst du tauschen!" isVisible={true} left="73.5%" top="76%" />
                 )}
                 <button onClick={isCorrect ? handleNext : checkInput} className="button-default" style={{ top: `${checkButtonTop}%`, left: '50%' }}>
                     {isCorrect ? "🌟 Weiter 🌟" : "Prüfen"}
