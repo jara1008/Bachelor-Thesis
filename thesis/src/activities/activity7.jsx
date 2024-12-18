@@ -144,9 +144,13 @@ function Activity7({ difficulty }) {
             bottom: currentBotValues[idx]
         }));
         newRowsCopy.push(newRow);
-
+        console.log("INDEX:" ,index)
         // Add a new row with input fields
-        const newInputRow = { type: 'input', valuesTop: Array(nrCols).fill(''), valuesBottom: Array(nrCols).fill('') };
+        const newInputRow = {
+            type: 'input',
+            valuesTop: currentTopValues.map((value, idx) => idx===index+1 ? '' : value),
+            valuesBottom: currentBotValues.map((value, idx) => idx===index+1 ? '' : value)
+        };
         newRowsCopy.push(newInputRow);
 
         setRows(newRowsCopy);

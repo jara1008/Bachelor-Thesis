@@ -50,7 +50,7 @@ export const HomeLink = ({ top = '-6.5%' }) => {
 
 const incrementHighestUnlockedLevel = (currentLevelNr, difficulty) => {
     let currentLevel = parseInt(localStorage.getItem('highestUnlockedLevel')) || 1;
-    if (currentLevelNr >= currentLevel) {
+    if (currentLevelNr >= currentLevel && currentLevelNr < 9) {
         currentLevel += 1;
         localStorage.setItem('highestUnlockedLevel', currentLevel);
     }
@@ -62,6 +62,7 @@ const incrementHighestUnlockedLevel = (currentLevelNr, difficulty) => {
 
 export const EndOfGame = ({ levelName, levelNr, difficulty }) => {
     const isEasy = difficulty === 'easy';
+    incrementHighestUnlockedLevel(levelNr, isEasy ? 0 : 1)
 
     return (
         <div className="container">
@@ -74,7 +75,6 @@ export const EndOfGame = ({ levelName, levelNr, difficulty }) => {
                     <button
                         className="button-default"
                         style={{ top: `${checkButtonTop}%` }}
-                        onClick={() => incrementHighestUnlockedLevel(levelNr, isEasy ? 0 : 1)}
                     >
                         🌟 Zur Übersicht 🌟
                     </button>

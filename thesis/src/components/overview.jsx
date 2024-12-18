@@ -75,7 +75,7 @@ function Overview() {
                     position: 'relative',
                     height: "4.5vw",
                     width: "4.5vw",
-                    transform: "translate(-100%, -35%)", // Center the rocket image on the dot
+                    transform: "translate(-100%, -35%)", 
                     top: rocketPositionTop,
                 }} />
             </div>

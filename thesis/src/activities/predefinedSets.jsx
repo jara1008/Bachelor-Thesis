@@ -729,7 +729,7 @@ const predefinedSetsA9 = {
             { leftValue: 1, rightValue: 3 },
             { leftValue: 11, rightValue: 25 },
             { leftValue: 8, rightValue: 28 },
-            { leftValue: 6, rightValue: 21 },
+            { leftValue: 3, rightValue: 26 },
             { leftValue: 13, rightValue: 28 },
             { leftValue: 10, rightValue: 17 },
             { leftValue: 2, rightValue: 24 }
@@ -749,7 +749,7 @@ const predefinedSetsA9 = {
             { leftValue: 13, rightValue: 23 },
             { leftValue: 4, rightValue: 19 },
             { leftValue: 11, rightValue: 23 },
-            { leftValue: 17, rightValue: 24 },
+            { leftValue: 13, rightValue: 24 },
             { leftValue: 4, rightValue: 19 }
         ],
         [
@@ -763,7 +763,7 @@ const predefinedSetsA9 = {
         ],
         [
             { leftValue: 4, rightValue: 6 },
-            { leftValue: 9, rightValue: 23 },
+            { leftValue: 9, rightValue: 29 },
             { leftValue: 12, rightValue: 26 },
             { leftValue: 2, rightValue: 22 },
             { leftValue: 5, rightValue: 17 },

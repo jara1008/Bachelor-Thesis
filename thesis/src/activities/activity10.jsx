@@ -60,27 +60,30 @@ function Activity10({ difficulty }) {
         const columnArray = [col1, col2, col3, col4];
         const blueArray = [blueSquareValues.blue3, blueSquareValues.blue2, blueSquareValues.blue1, 0].map(value => value === '' ? 0 : parseInt(value));
         let minusOne = 0;
+        let isWrong = false;
         for (let i = 3; i >= 0; i--) {
             if (blueArray[i] !== minusOne) {
                 setIncorrectBlueFields(prev => [...prev, i]);
+                isWrong = true;
             }
-            if (numberLarge[i] < numberSmall[i]) {
+            if (numberLarge[i] < numberSmall[i] || (numberLarge[i] === numberSmall[i] && minusOne===1)) {
                 if (numberLarge[i] + 10 - numberSmall[i] - minusOne !== parseInt(columnArray[i], 10)) {
                     setIncorrectFields(prev => [...prev, i]);
+                    isWrong = true;
                 }
                 minusOne = 1;
             } else {
                 if (numberLarge[i] - numberSmall[i] - minusOne !== parseInt(columnArray[i], 10)) {
                     setIncorrectFields(prev => [...prev, i]);
+                    isWrong = true;
                 }
                 minusOne = 0;
             }
-        }
-        console.log(incorrectBlueFields)     
+        }   
         const largeNumber = parseInt(numberLarge.join(''), 10);
         const smallNumber = parseInt(numberSmall.join(''), 10);
         const number = parseInt(`${col1}${col2}${col3}${col4}`, 10);
-        if ((largeNumber - smallNumber) === number) {
+        if ((largeNumber - smallNumber) === number && !!!isWrong) {
             setIsCorrect(true);
         } else {
             setIsCorrect(false);

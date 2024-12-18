@@ -53,7 +53,6 @@ const GameWrapper = () => {
         }
         const newProgress = [...tutorialProgress];
         const arrPos = (isEasy ? number : number+10);
-        console.log("POS:" + arrPos, " " + difficulty);
         newProgress[arrPos] = 1;
         setTutorialProgress(newProgress);
         navigate(`/activity${number}/${difficulty.slice(1)}`);
