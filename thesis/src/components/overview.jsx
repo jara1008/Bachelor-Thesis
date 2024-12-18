@@ -7,6 +7,7 @@ import planet from "../images/planet.png";
 import star_empty from "../images/star_empty.svg";
 import star from "../images/star.svg";
 import lock from "../images/lock.png";
+import crown from "../images/crown.png";
 
 function Overview() {
     const [boxes] = useState([
@@ -29,9 +30,11 @@ function Overview() {
     // Get the highest unlocked level from local storage or set it to 1 if not available
     const highestUnlockedLevel = parseInt(localStorage.getItem('highestUnlockedLevel')) || 1;
 
+    let allLevelsPlayed = true;
     // Initialize the difficulty array with values from local storage or default to -1
     const difficulty = Array.from({ length: 9 }, (_, i) => {
         const storedValue = localStorage.getItem(`difficulty_${i + 1}`);
+        if (storedValue < 1) { allLevelsPlayed = false }
         return storedValue !== null ? parseInt(storedValue) : -1;
     });
 
@@ -53,13 +56,14 @@ function Overview() {
 
     return (
         <div className="overview">
+            {allLevelsPlayed && <img src={crown} alt="Crown" className="crown" />}
             <img src={planet} alt="Planet" style={{
                 position: 'absolute',
                 left: '28.25%',
                 height: "18vw",
                 width: "18vw",
                 transform: 'translate(-50%, -50%)',
-                top: '14%',
+                top: '16vh',
                 filter: 'drop-shadow(8px 8px 4px #00000040)'
             }} />
             <div className="progress-line">
