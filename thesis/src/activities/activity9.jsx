@@ -65,10 +65,12 @@ function Activity9({ difficulty }) {
     const leftVal = leftCoinsOne + leftCoinsTen * 10;
     const rightVal = rightCoinsOne + rightCoinsTen * 10;
 
-    const checkAllCoinsCrossed = () => {
+    const checkAllCoinsCrossed = (newActiveCoins) => {
         const leftCoinCount = leftCoinsTen + leftCoinsOne;
-        const crossedLeftCoins = Array.from(activeCoins).filter(coin => coin.startsWith('left')).length;
-        return crossedLeftCoins === (leftCoinCount - 1);
+        const crossedLeftCoins = newActiveCoins.size/2;
+        console.log(newActiveCoins)
+        console.log("CROSSED:" , crossedLeftCoins)
+        return crossedLeftCoins === leftCoinCount;
     };
 
     const CoinRowUpper = ({ coinsTen, coinsOne, type }) => (
@@ -152,7 +154,7 @@ function Activity9({ difficulty }) {
                 }
             }
 
-            if (checkAllCoinsCrossed()) {
+            if (checkAllCoinsCrossed(newActiveCoins)) {
                 setAllCoinsCrossed(true);
             } else {
                 setAllCoinsCrossed(false);
