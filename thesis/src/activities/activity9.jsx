@@ -81,6 +81,7 @@ function Activity9({ difficulty }) {
                 const className = `coin-A9 ${type}-coin ${isActive ? 'active-coin-A9' : ''}`;
                 return (
                     <div key={`ten-${i}`} className={className}
+                        style = {{ cursor: 'pointer' }}
                         onClick={() => handleCoinClick(type, 'tens', i)}>10</div>
                 );
             })}
@@ -90,6 +91,7 @@ function Activity9({ difficulty }) {
                 const className = `coin-A9 ${type}-coin ${isActive ? 'active-coin-A9' : ''}`;
                 return (
                     <div key={`one-${i}`} className={className}
+                        style = {{ cursor: 'pointer' }}
                         onClick={() => handleCoinClick(type, 'ones', i)}>1</div>
                 );
             })}
