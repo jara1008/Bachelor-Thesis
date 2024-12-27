@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import "./overview.css";
+import "../defaults.css";
 import rocket from "../images/rocket.png";
 import planet from "../images/planet.png";
 import star_empty from "../images/star_empty.svg";
@@ -56,7 +57,7 @@ function Overview() {
 
     const handleDownloadPDF = () => {
         const link = document.createElement('a');
-        link.href = '/Zusatz_Aktivitäten_Tutorials.pdf';
+        link.href = link.href = `${process.env.PUBLIC_URL}/Zusatz_Aktivitäten_Tutorials.pdf`;
         link.download = 'Zusatz_Aktivitäten_und_Tutorials.pdf';
         document.body.appendChild(link); 
         link.click(); 
@@ -75,7 +76,7 @@ function Overview() {
                     padding: '10px 15px',
                     fontSize: '14px',
                     backgroundColor: 'transparent',
-                    color: '--var(secondary-color)',
+                    color: 'var(--secondary-color)',
                     border: 'none',
                     cursor: 'pointer'
                 }}
