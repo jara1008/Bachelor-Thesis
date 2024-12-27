@@ -16,7 +16,7 @@ const tutorialStepsHard = [
 ];
 
 function TutorialActivity5({ difficulty, onComplete }) {
-    const [numbers] = useState((difficulty==='easy' && { largeNum: 17, smallNum: 11 }) || (difficulty==='hard' && { largeNum: 118, smallNum: 105 }));
+    const [numbers] = useState((difficulty==='easy' && { largeNum: 17, smallNum: 11 }) || (difficulty==='hard' && { largeNum: 48, smallNum: 35 }));
     const [inputValue, setInputValue] = useState('');
     const [tutorialProgress, setTutorialProgress] = useState(0);
     const [buttonText, setButtonText] = useState('Weiter');

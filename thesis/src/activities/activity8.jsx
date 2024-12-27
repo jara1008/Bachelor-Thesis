@@ -507,7 +507,7 @@ function Activity8({ difficulty }) {
                     {!!!isCorrect && displayCorrectness && <CorrectnessLabel message="Überprüfe die Kästchen!" isVisible={true} />}
                     <button onClick={isCorrect ? handleNext : checkInput} className="button-default"
                         style={{ top: `${checkButtonTop}%`, left: '50%' }} >
-                        {isCorrect ? "Weiter" : "Prüfen"}
+                        {isCorrect ? "🌟 Weiter 🌟" : "Prüfen"}
                     </button>
                 </>}
                 {difficulty === "hard" && <div>

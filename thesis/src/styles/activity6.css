@@ -36,7 +36,7 @@
 
 .equal-sign{
     position: fixed;
-    left: 24%;
+    left: 25%;
     font-size: 2.5vw;
     font-family: var(--font-family);
     color: var(--text-color);

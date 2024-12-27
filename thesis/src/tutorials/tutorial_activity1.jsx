@@ -18,7 +18,8 @@ const rightCloudPositions = [
 ];
 
 const starSize = 4; // Size of the star in percentage
-const yOffset = 1; // Additional y-axis offset in percentage to shift the lines downwards
+const yOffset = 3; // Additional y-axis offset in percentage to shift the lines downwards
+const xOffset = 2; // Additional x-axis offset in percentage to shift the lines to the left
 
 const tutorialStepsEasy = [
     { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
@@ -158,7 +159,12 @@ function TutorialActivity1({ difficulty, onComplete }) {
         );
     }, [handleStarClick, handleTouchStart, tutorialProgress]);
     
-         
+    const calculateCoordinates = (position, svgRect) => {
+        return {
+            x: ((position.left + xOffset) / 100) * svgRect.width,
+            y: ((position.top + yOffset) / 100) * svgRect.height,
+        };
+    };
 
     useEffect(() => {
         const handleMouseMove = (event) => {
@@ -232,7 +238,7 @@ function TutorialActivity1({ difficulty, onComplete }) {
                         className="info-input-A1"
                         readOnly={true}
                     />}
-                    <img src={cloud} alt="Cloud" className='cloud-A1' style={{ left: "0%" }} />
+                    <img src={cloud} alt="Cloud" className='cloud-A1' style={{ left: "0%", marginTop: "3vh" }} />
                     {allStars.left}
                     {difficulty === 'easy' && <input
                         type="checkbox"
@@ -250,21 +256,41 @@ function TutorialActivity1({ difficulty, onComplete }) {
                         transition: 'box-shadow 0.3s ease-in-out'
                     }}
                     />}
-                    <img src={cloud} alt="Cloud" className='cloud-A1' style={{ right: "1%" }} />
+                    <img src={cloud} alt="Cloud" className='cloud-A1' style={{ right: "1%", marginTop: "3vh" }} />
                     {allStars.right}
                     <svg ref={svgRef} style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%", pointerEvents: "none" }}>
-                        {lines.map((line, index) => (
-                            <line key={index}
-                                x1={`calc(${line.start.left}% + ${starSize / 2}%)`} y1={`calc(${line.start.top}% + ${starSize / 2 + yOffset}%)`}
-                                x2={`calc(${line.end.left}% + ${starSize / 2}%)`} y2={`calc(${line.end.top}% + ${starSize / 2 + yOffset}%)`}
-                                stroke="black" strokeWidth="2" />
-                        ))}
-                        {firstPos && !secondPos && (
-                            <line
-                                x1={`calc(${firstPos.left}% + ${starSize / 2}%)`} y1={`calc(${firstPos.top}% + ${starSize / 2 + yOffset}%)`}
-                                x2={`${mousePos.x}px`} y2={`${mousePos.y}px`}
-                                stroke="black" strokeWidth="2" />
-                        )}
+                        {lines.map((line, index) => {
+                            const svgRect = svgRef.current.getBoundingClientRect();
+                            const startCoords = calculateCoordinates(line.start, svgRect);
+                            const endCoords = calculateCoordinates(line.end, svgRect);
+
+                            return (
+                                <line
+                                    key={index}
+                                    x1={startCoords.x}
+                                    y1={startCoords.y}
+                                    x2={endCoords.x}
+                                    y2={endCoords.y}
+                                    stroke="black"
+                                    strokeWidth="2"
+                                />
+                            );
+                        })}
+                        {firstPos && !secondPos && (() => {
+                            const svgRect = svgRef.current.getBoundingClientRect();
+                            const startCoords = calculateCoordinates(firstPos, svgRect);
+
+                            return (
+                                <line
+                                    x1={startCoords.x}
+                                    y1={startCoords.y}
+                                    x2={mousePos.x}
+                                    y2={mousePos.y}
+                                    stroke="black"
+                                    strokeWidth="2"
+                                />
+                            );
+                        })()}
                     </svg>
                     {difficulty === 'hard' && (
                         <div>

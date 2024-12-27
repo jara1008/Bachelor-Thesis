@@ -310,6 +310,9 @@ function TutorialActivity6({ difficulty, onComplete }) {
                         placeholder=""
                         onChange={handleInputChange}
                         className={`info-input-A6 ${(difficulty==='easy' && tutorialProgress === 3) || (difficulty==='hard' && tutorialProgress === 4) ? 'highlighted' : ''}`}
+                        style={{
+                            marginLeft: `${leftVal < 10 ? '5vw' : '3vw'}` //adapt margin based on numbers for better visuals
+                        }}
                         disabled={(difficulty==='easy' && tutorialProgress !== 3) || (difficulty==='hard' && tutorialProgress !== 4)} 
                     />
                 </div>

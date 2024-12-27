@@ -302,86 +302,86 @@ const predefinedSetsA3 = {
 const predefinedSetsA5 = {
     easy: [
         [
-            { largeNum: 50, smallNum: 20 }, { largeNum: 75, smallNum: 24 }, { largeNum: 90, smallNum: 38 },
-            { largeNum: 63, smallNum: 16 }, { largeNum: 96, smallNum: 68 }
+            { smallNum: 10, largeNum: 20 }, { smallNum: 4, largeNum: 9 }, { smallNum: 6, largeNum: 18 },
+            { smallNum: 3, largeNum: 16 }, { smallNum: 6, largeNum: 20 }
         ],
         [
-            { largeNum: 70, smallNum: 20 }, { largeNum: 95, smallNum: 42 }, { largeNum: 62, smallNum: 25 },
-            { largeNum: 87, smallNum: 34 }, { largeNum: 71, smallNum: 25 }
+            { smallNum: 7, largeNum: 10 }, { smallNum: 10, largeNum: 20 }, { smallNum: 2, largeNum: 15 },
+            { smallNum: 7, largeNum: 19 }, { smallNum: 3, largeNum: 20 }
         ],
         [
-            { largeNum: 55, smallNum: 25 }, { largeNum: 56, smallNum: 25 }, { largeNum: 90, smallNum: 31 },
-            { largeNum: 41, smallNum: 16 }, { largeNum: 36, smallNum: 29 }
+            { smallNum: 5, largeNum: 10 }, { smallNum: 10, largeNum: 20 }, { smallNum: 3, largeNum: 14 },
+            { smallNum: 11, largeNum: 20 }, { smallNum: 6, largeNum: 19 }
         ],
         [
-            { largeNum: 20, smallNum: 15 }, { largeNum: 66, smallNum: 41 }, { largeNum: 64, smallNum: 27 },
-            { largeNum: 42, smallNum: 34 }, { largeNum: 72, smallNum: 31 }
+            { smallNum: 2, largeNum: 10 }, { smallNum: 15, largeNum: 20 }, { smallNum: 10, largeNum: 20 },
+            { smallNum: 12, largeNum: 18 }, { smallNum: 2, largeNum: 17 }
         ],
         [
-            { largeNum: 50, smallNum:42 }, { largeNum: 77, smallNum: 17 }, { largeNum: 51, smallNum: 32 },
-            { largeNum: 62, smallNum: 17 }, { largeNum: 82, smallNum: 37 }
+            { smallNum: 10, largeNum: 20 }, { smallNum: 7, largeNum: 10 }, { smallNum: 1, largeNum: 20 },
+            { smallNum: 2, largeNum: 13 }, { smallNum: 12, largeNum: 20 }
         ],
         [
-            { largeNum: 10, smallNum: 2 }, { largeNum: 97, smallNum: 47 }, { largeNum: 70, smallNum: 28 },
-            { largeNum: 62, smallNum: 35 }, { largeNum: 45, smallNum: 18 }
+            { smallNum: 10, largeNum: 20 }, { smallNum: 7, largeNum: 10 }, { smallNum: 17, largeNum: 20 },
+            { smallNum: 2, largeNum: 15 }, { smallNum: 5, largeNum: 20 }
         ],
         [
-            { largeNum: 17, smallNum: 10 }, { largeNum: 78, smallNum: 28 }, { largeNum: 83, smallNum: 61 },
-            { largeNum: 63, smallNum: 18 }, { largeNum: 83, smallNum: 38 }
+            { smallNum: 7, largeNum: 10 }, { smallNum: 10, largeNum: 20 }, { smallNum: 12, largeNum: 16 },
+            { smallNum: 3, largeNum: 18 }, { smallNum: 8, largeNum: 19 }
         ],
         [
-            { largeNum: 23, smallNum: 13 }, { largeNum: 58, smallNum: 43 }, { largeNum: 71, smallNum: 29 },
-            { largeNum: 91, smallNum: 36 }, { largeNum: 62, smallNum: 13 }
+            { smallNum: 3, largeNum: 10 }, { smallNum: 10, largeNum: 20 }, { smallNum: 9, largeNum: 20 },
+            { smallNum: 11, largeNum: 16 }, { smallNum: 2, largeNum: 19 }
         ],
         [
-            { largeNum: 10, smallNum: 8 }, { largeNum: 50, smallNum: 35 }, { largeNum: 57, smallNum: 34 },
-            { largeNum: 64, smallNum: 19 }, { largeNum: 74, smallNum: 59 }
+            { smallNum: 8, largeNum: 10 }, { smallNum: 10, largeNum: 20 }, { smallNum: 17, largeNum: 20 },
+            { smallNum: 4, largeNum: 19 }, { smallNum: 14, largeNum: 18 }
         ],
         [
-            { largeNum: 30, smallNum: 15 }, { largeNum: 50, smallNum: 43 }, { largeNum: 72, smallNum: 30 },
-            { largeNum: 92, smallNum: 37 }, { largeNum: 83, smallNum: 34 }
+            { smallNum: 10, largeNum: 20 }, { smallNum: 6, largeNum: 10 }, { smallNum: 12, largeNum: 20 },
+            { smallNum: 12, largeNum: 17 }, { smallNum: 3, largeNum: 14 }
         ]
     ],
     hard: [
         [
-            { largeNum: 200, smallNum: 150 }, { largeNum: 305, smallNum: 250 }, { largeNum: 451, smallNum: 438 },
-            { largeNum: 624, smallNum: 571 }, { largeNum: 867, smallNum: 489 }
+            { smallNum: 20, largeNum: 50 }, { smallNum: 40, largeNum: 57 }, { smallNum: 51, largeNum: 78 },
+            { smallNum: 14, largeNum: 22 }, { smallNum: 67, largeNum: 83 }
         ],
         [
-            { largeNum: 220, smallNum: 170 }, { largeNum: 320, smallNum: 275 }, { largeNum: 565, smallNum: 517 },
-            { largeNum: 625, smallNum: 511 }, { largeNum: 811, smallNum: 618 }
+            { smallNum: 20, largeNum: 70 }, { smallNum: 60, largeNum: 75 }, { smallNum: 65, largeNum: 97 },
+            { smallNum: 15, largeNum: 21 }, { smallNum: 65, largeNum: 81 }
         ],
         [
-            { largeNum: 240, smallNum: 180 }, { largeNum: 340, smallNum: 285 }, { largeNum: 976, smallNum: 917 },
-            { largeNum: 629, smallNum: 101 }, { largeNum: 991, smallNum: 624 }
+            { smallNum: 40, largeNum: 80 }, { smallNum: 40, largeNum: 55 }, { smallNum: 43, largeNum: 75 },
+            { smallNum: 12, largeNum: 21 }, { smallNum: 47, largeNum: 64 }
         ],
         [
-            { largeNum: 260, smallNum: 190 }, { largeNum: 365, smallNum: 290 }, { largeNum: 182, smallNum: 124 },
-            { largeNum: 931, smallNum: 540 }, { largeNum: 824, smallNum: 635 }
+            { smallNum: 60, largeNum: 90 }, { smallNum: 80, largeNum: 92 }, { smallNum: 32, largeNum: 54 },
+            { smallNum: 16, largeNum: 24 }, { smallNum: 48, largeNum: 65 }
         ],
         [
-            { largeNum: 280, smallNum: 200 }, { largeNum: 380, smallNum: 305 }, { largeNum: 236, smallNum: 207 },
-            { largeNum: 999, smallNum: 320 }, { largeNum: 276, smallNum: 134 }
+            { smallNum: 80, largeNum: 90 }, { smallNum: 80, largeNum: 95 }, { smallNum: 36, largeNum: 67 },
+            { smallNum: 18, largeNum: 27 }, { smallNum: 76, largeNum: 92 }
         ],
         [
-            { largeNum: 300, smallNum: 210 }, { largeNum: 400, smallNum: 315 }, { largeNum: 533, smallNum: 505 },
-            { largeNum: 233, smallNum: 190 }, { largeNum: 501, smallNum: 112 }
+            { smallNum: 30, largeNum: 90 }, { smallNum: 70, largeNum: 86 }, { smallNum: 33, largeNum: 65 },
+            { smallNum: 13, largeNum: 22 }, { smallNum: 74, largeNum: 92 }
         ],
         [
-            { largeNum: 320, smallNum: 220 }, { largeNum: 425, smallNum: 320 }, { largeNum: 887, smallNum: 818 },
-            { largeNum: 665, smallNum: 421 }, { largeNum: 865, smallNum: 628 }
+            { smallNum: 20, largeNum: 80 }, { smallNum: 50, largeNum: 63 }, { smallNum: 78, largeNum: 99 },
+            { smallNum: 17, largeNum: 24 }, { smallNum: 65, largeNum: 82 }
         ],
         [
-            { largeNum: 340, smallNum: 230 }, { largeNum: 445, smallNum: 330 }, { largeNum: 364, smallNum: 327 },
-            { largeNum: 670, smallNum: 568 }, { largeNum: 943, sallNum: 677 }
+            { smallNum: 40, largeNum: 70 }, { smallNum: 40, largeNum: 58 }, { smallNum: 64, largeNum: 97 },
+            { smallNum: 16, largeNum: 25 }, { smallNum: 53, sallNum: 71 }
         ],
         [
-            { largeNum: 360, smallNum: 240 }, { largeNum: 465, smallNum: 340 }, { largeNum: 732, smallNum: 709 },
-            { largeNum: 689, smallNum: 447 }, { largeNum: 586, smallNum: 408 }
+            { smallNum: 30, largeNum: 40 }, { smallNum: 60, largeNum: 74 }, { smallNum: 32, largeNum: 59 },
+            { smallNum: 19, largeNum: 27 }, { smallNum: 56, largeNum: 73 }
         ],
         [
-            { largeNum: 380, smallNum: 250 }, { largeNum: 485, smallNum: 350 }, { largeNum: 843, smallNum: 806 },
-            { largeNum: 702, smallNum: 311 }, { largeNum: 781, smallNum: 695 }
+            { smallNum: 40, largeNum: 80 }, { smallNum: 30, largeNum: 43 }, { smallNum: 43, largeNum: 76 },
+            { smallNum: 16, largeNum: 23 }, { smallNum: 67, largeNum: 95 }
         ]
     ]
 };
@@ -396,12 +396,12 @@ const predefinedSetsA6 = {
         [
             { left: 9, right: 1 }, { left: 16, right: 10 }, { left: 22, right: 12 },
             { left: 19, right: 16 }, { left: 18, right: 11 }, { left: 24, right: 12 },
-            { left: 27, right: 21 }, { left: 3, right: 9 }
+            { left: 27, right: 21 }, { left: 9, right: 3 }
         ],
         [
             { left: 6, right: 4 }, { left: 14, right: 10 }, { left: 24, right: 14 },
             { left: 19, right: 12 }, { left: 25, right: 23 }, { left: 9, right: 5 },
-            { left: 21, right: 10 }, { left: 3, right: 9 }
+            { left: 21, right: 10 }, { left: 9, right: 3 }
         ],
         [
             { left: 9, right: 2 }, { left: 11, right: 10 }, { left: 17, right: 11 },
@@ -436,7 +436,7 @@ const predefinedSetsA6 = {
         [
             { left: 9, right: 7 }, { left: 15, right: 10 }, { left: 16, right: 14 },
             { left: 28, right: 24 }, { left: 28, right: 15 }, { left: 17, right: 13 },
-            { left: 20, right: 3 }, { left: 3, right: 9 }
+            { left: 19, right: 3 }, { left: 3, right: 9 }
         ]
     ],
     hard: [
@@ -631,14 +631,14 @@ const predefinedSetsA7 = {
             { large: 6712, small: 3487 },
             { large: 7710, small: 6693 },
             { large: 3237, small: 2956 },
-            { large: 9400, small: 6457 },
+            { large: 9500, small: 6457 },
             { large: 8824, small: 1234 }
         ],
         [
             { large: 5345, small: 3306 },
             { large: 6529, small: 4734 },
             { large: 5706, small: 4619 },
-            { large: 1051, small: 394 },
+            { large: 1051, small: 344 },
             { large: 7225, small: 6282 },
             { large: 8824, small: 1234 }
         ],
@@ -664,12 +664,12 @@ const predefinedSetsA7 = {
 const predefinedSetsA8 = {
     easy: [
         [{ number: -3 }, { number: 2 }, { number: 7 }, { number: 5 }, { number: -2 }, { number: 3 }, { number: -4 }, { number: -1 }],
-        [{ number: -2 }, { number: 3 }, { number: -5 }, { number: -7 }, { number: -1 }, { number: 2 }, { number: -6 }, { number: -1 }],
+        [{ number: -3 }, { number: 3 }, { number: -5 }, { number: -7 }, { number: -1 }, { number: 2 }, { number: -6 }, { number: -1 }],
         [{ number: 1 }, { number: -4 }, { number: 3 }, { number: -2 }, { number: -7 }, { number: -3 }, { number: 2 }, { number: -1 }],
         [{ number: -1 }, { number: 4 }, { number: -3 }, { number: 3 }, { number: -2 }, { number: -7 }, { number: -5 }, { number: -1 }],
         [{ number: -6 }, { number: 1 }, { number: -4 }, { number: 3 }, { number: 7 }, { number: 2 }, { number: -2 }, { number: -1 }],
         [{ number: 2 }, { number: -1 }, { number: 4 }, { number: -5 }, { number: 3 }, { number: -4 }, { number: -7 }, { number: -1 }],
-        [{ number: -2 }, { number: 5 }, { number: 7 }, { number: 4 }, { number: -1 }, { number: 2 }, { number: -6 }, { number: -1 }],
+        [{ number: -4 }, { number: 5 }, { number: 7 }, { number: 4 }, { number: -1 }, { number: 2 }, { number: -6 }, { number: -1 }],
         [{ number: 3 }, { number: -4 }, { number: -7 }, { number: -1 }, { number: 4 }, { number: -3 }, { number: 1 }, { number: -1 }],
         [{ number: -1 }, { number: 3 }, { number: 7 }, { number: 2 }, { number: -2 }, { number: 4 }, { number: -3 }, { number: -1 }],
         [{ number: -5 }, { number: 2 }, { number: -1 }, { number: -7 }, { number: -4 }, { number: 1 }, { number: -6 }, { number: -1 }]

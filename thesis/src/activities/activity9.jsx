@@ -264,7 +264,7 @@ function Activity9({ difficulty }) {
                     />
                 </div>
                 {isCorrect && displayCorrectness && <CorrectnessLabel message="Richtig!" isVisible={true} left="79.5%" />}
-                {!isCorrect && displayCorrectness && <CorrectnessLabel message="Überprüfe die Kästchen!" isVisible={true} left="79.5%" />}
+                {!isCorrect && displayCorrectness && <CorrectnessLabel message="Überprüfe das Kästchen!" isVisible={true} left="79.5%" />}
                 {hintNothingToSwap && <CorrectnessLabel message="Hier sollst du nicht tauschen!" isVisible={true} left="73.5%" top="76%" />}
                 {hintCrossAllCoins && <CorrectnessLabel message="Streiche so viele Münzen, wie du kannst!" isVisible={true} left="73.5%" top="76%" />}
                 {hintSomethingToSwap && <CorrectnessLabel message="Hier kannst du tauschen!" isVisible={true} left="73.5%" top="76%" />}

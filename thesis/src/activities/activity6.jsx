@@ -274,6 +274,9 @@ function Activity6({ difficulty }) {
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder=""
                         className="info-input-A6"
+                        style={{
+                            marginLeft: `${leftVal < 10 ? '5vw' : '3vw'}` //adapt margin based on numbers for better visuals
+                        }}
                         readOnly={isCorrect}
                     />
                 </div>
