@@ -33,10 +33,14 @@ const TutorialActivity2 = ({ difficulty, onComplete }) => {
         setInputValue(value);
     };
 
+    const setDifference = (value) => {
+        setDifferenceValue(value);
+        if (value==='1') { continueTutorial() };
+    }
+
     const continueTutorial = () => {
         if (difficulty==='hard' && tutorialProgress===4) {
-            if (differenceValue !== '1') { return }
-            setDifferenceValue(1);
+            console.log("HERE")
             setButtonText('Prüfen');
         }
         if (tutorialProgress===3) {
@@ -105,7 +109,7 @@ const TutorialActivity2 = ({ difficulty, onComplete }) => {
                         <input
                             type="text"
                             value={differenceValue}
-                            onChange={(e) => setDifferenceValue(e.target.value)}
+                            onChange={(e) => setDifference(e.target.value)}
                             placeholder=""
                             className={`info-input-A2 ${tutorialProgress === 4 ? 'highlighted' : ''}`}
                             readOnly={tutorialProgress!==4}
