@@ -54,8 +54,34 @@ function Overview() {
         }
     }, [dots, highestUnlockedLevel, numberOfDots]);
 
+    const handleDownloadPDF = () => {
+        const link = document.createElement('a');
+        link.href = '/Zusatz_Aktivitäten_Tutorials.pdf';
+        link.download = 'Zusatz_Aktivitäten_und_Tutorials.pdf';
+        document.body.appendChild(link); 
+        link.click(); 
+        document.body.removeChild(link); 
+    };    
+
     return (
         <div className="overview">
+            <button 
+                onClick={handleDownloadPDF} 
+                className="more-info-button"
+                style={{
+                    position: 'absolute',
+                    top: '10px',
+                    right: '10px',
+                    padding: '10px 15px',
+                    fontSize: '14px',
+                    backgroundColor: 'transparent',
+                    color: '--var(secondary-color)',
+                    border: 'none',
+                    cursor: 'pointer'
+                }}
+            >
+                Mehr Info
+            </button>
             {allLevelsPlayed && <img src={crown} alt="Crown" className="crown" />}
             <img src={planet} alt="Planet" style={{
                 position: 'absolute',
