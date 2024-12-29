@@ -1,3 +1,5 @@
+/* predefinedSets.jsx */
+/* defines the possible sets of numbers for each activity and difficulty */
 const predefinedSetsA1 = {
   easy: [
     [

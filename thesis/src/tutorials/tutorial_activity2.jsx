@@ -1,3 +1,5 @@
+/* tutorial_activity2.jsx */
+/* inital structure from activity2.jsx */
 import React, { useState } from "react";
 import "../styles/activity2.css";
 import { HomeLink } from "../defaults";

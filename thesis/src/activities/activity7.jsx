@@ -1,3 +1,4 @@
+/* activity7.jsx */
 import React, { useState, useEffect, useCallback } from "react";
 import "../styles/activity7.css";
 import "../defaults.css";
@@ -14,10 +15,10 @@ function Activity7({ difficulty }) {
   const [selectedSet, setSelectedSet] = useState([]);
   const nrCols = difficulty === "hard" ? 4 : 3;
   const [lastAcceptedTopValues, setLastAcceptedTopValues] = useState(
-    Array(nrCols).fill(0),
+    Array(nrCols).fill(0)
   );
   const [lastAcceptedBotValues, setLastAcceptedBotValues] = useState(
-    Array(nrCols).fill(0),
+    Array(nrCols).fill(0)
   );
   const [incorrectFields, setIncorrectFields] = useState([]);
   const [currentRowIndex, setCurrentRowIndex] = useState(0);
@@ -27,6 +28,7 @@ function Activity7({ difficulty }) {
   const [hintNoSwap, setHintNoSwap] = useState(false);
   const [hintCheckLastRow, setHintCheckLastRow] = useState(false);
 
+  /* selects a predefined set of numbers */
   useEffect(() => {
     const sets =
       difficulty === "easy" ? predefinedSetsA7.easy : predefinedSetsA7.hard;
@@ -34,6 +36,8 @@ function Activity7({ difficulty }) {
     setSelectedSet(randomSet);
   }, [difficulty]);
 
+  /* renders new numbers for each round */
+  /* AI: chatGPT made the parsing from the numbers to be displayed nicely in the table */
   const generateNewNumbers = useCallback(() => {
     if (selectedSet.length > 0) {
       const { large, small } = selectedSet[roundCount];
@@ -70,6 +74,7 @@ function Activity7({ difficulty }) {
     generateNewNumbers();
   }, [generateNewNumbers]);
 
+  /* checks if the exercise was solved correctly */
   const checkInput = () => {
     const sol = parseInt(numberLarge.join("")) - parseInt(numberSmall.join(""));
     const input = parseInt(rows[rows.length - 1].valuesTop.join(""));
@@ -90,7 +95,7 @@ function Activity7({ difficulty }) {
       const currentBotValues = rows[rows.length - 1].valuesBottom.map(
         (value) => {
           return parseInt(value, 10);
-        },
+        }
       );
       if (checkIntermediate(currentTopValues, currentBotValues)) {
         setHintSwap(true);
@@ -102,42 +107,43 @@ function Activity7({ difficulty }) {
         setHintNoSwap(false);
         setHintSwap(false);
       }
-
-      /*const newInputRow = { type: 'input', valuesTop: Array(nrCols).fill(''), valuesBottom: Array(nrCols).fill('') };
-            setRows([newInputRow]);*/
     }
   };
 
+  /* updates roundCount and triggers the generation of the next numbers */
   const handleNext = () => {
     if (roundCount < selectedSet.length - 1) {
       generateNewNumbers();
       setRoundCount((prevCount) => prevCount + 1);
     } else {
-      setRoundCount(selectedSet.length); // End game condition
+      setRoundCount(selectedSet.length); /* End game condition */
     }
     setCurrentRowIndex(0);
   };
 
+  /* handles the insertion of numbers in the input fields for the top row */
   const handleRowInputChangeTop = (rowIndex, colIndex, event) => {
     const newRows = [...rows];
     newRows[rowIndex].valuesTop[colIndex] = event.target.value;
     setRows(newRows);
   };
 
+  /* handles the insertion of numbers in the input fields for the bottom row */
   const handleRowInputChangeBottom = (rowIndex, colIndex, event) => {
     const newRows = [...rows];
     newRows[rowIndex].valuesBottom[colIndex] = event.target.value;
     setRows(newRows);
   };
 
+  /* this function is triggered upon clicking a "Tauschen" button */
   const handleDecrease = (index) => {
-    // Create a copy of the current input values
+    /* Create a copy of the current input values */
     const newRowValues = [...rows];
-    // Parse the current value to an integer
+    /* Parse the current value to an integer */
     var currentTopValues = newRowValues[newRowValues.length - 1].valuesTop.map(
       (value) => {
         return parseInt(value, 10);
-      },
+      }
     );
 
     var currentBotValues = newRowValues[
@@ -153,7 +159,7 @@ function Activity7({ difficulty }) {
       return;
     }
 
-    // Increase the next value by 10
+    /* Increase the next value by 10 */
     if (
       currentTopValues[index] < 1 ||
       currentTopValues[index + 1] + 10 > 10 ||
@@ -167,7 +173,7 @@ function Activity7({ difficulty }) {
     currentTopValues[index] = currentTopValues[index] - 1;
     currentTopValues[index + 1] += 10;
 
-    // Add new rows
+    /* Add new rows */
     const newRowsCopy = [...rows];
     const newRow = currentTopValues.map((value, idx) => ({
       top: value,
@@ -175,14 +181,14 @@ function Activity7({ difficulty }) {
     }));
     newRowsCopy.push(newRow);
     console.log("INDEX:", index);
-    // Add a new row with input fields
+    /* Add a new row with input fields */
     const newInputRow = {
       type: "input",
       valuesTop: currentTopValues.map((value, idx) =>
-        idx === index + 1 ? "" : value,
+        idx === index + 1 ? "" : value
       ),
       valuesBottom: currentBotValues.map((value, idx) =>
-        idx === index + 1 ? "" : value,
+        idx === index + 1 ? "" : value
       ),
     };
     newRowsCopy.push(newInputRow);
@@ -194,6 +200,9 @@ function Activity7({ difficulty }) {
     setCurrentRowIndex(currentRowIndex + 2);
   };
 
+  /* after clicking "Tauschen" the current input values are checked for correctness */
+  /* the new row is only generated if the last one is correct */
+  /* incorrect fields get indentified and marked */
   const checkIntermediate = (currentTopValues, currentBotValues) => {
     setIncorrectFields([]);
     let isIncorrect = false;
@@ -237,6 +246,7 @@ function Activity7({ difficulty }) {
     return true;
   };
 
+  /* game is finished */
   if (roundCount >= Math.max(1, selectedSet.length - 1)) {
     return (
       <EndOfGame
@@ -247,6 +257,7 @@ function Activity7({ difficulty }) {
     );
   }
 
+  /* renders all visible components on the page */
   return (
     <div className="container">
       <div className="white-box-tall">
@@ -287,6 +298,7 @@ function Activity7({ difficulty }) {
           />
         )}
 
+        {/* AI: the structure of the table was originally made by ChatGPT to give a quick start */}
         <table className="number-table-A7">
           {nrCols === 4 && (
             <thead>

@@ -1,3 +1,4 @@
+/* gameWrapper.jsx */
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Activity1 from "../activities/activity1";
@@ -19,7 +20,7 @@ import TutorialActivity8 from "../tutorials/tutorial_activity8";
 import TutorialActivity9 from "../tutorials/tutorial_activity9";
 import TutorialActivity10 from "../tutorials/tutorial_activity10";
 
-// Basic localstorage function to store arrays
+/* Basic localstorage function to store arrays */
 const useLocalStorage = (key, initialValue) => {
   const [value, setValue] = useState(() => {
     const storedValue = localStorage.getItem(key);
@@ -46,8 +47,10 @@ const GameWrapper = () => {
   const navigate = useNavigate();
   const [tutorialProgress, setTutorialProgress] = useLocalStorage(
     "tutorialProgress",
-    Array(20).fill(0),
+    Array(20).fill(0)
   );
+  /* if the easy tutorial was played the positon of the array at the tutorial number gets set to 1 */
+  /* if the hard tutorial was played the positon of the array at the tutorial number + 10 gets set to 1 */
   function increaseProgress() {
     var number = parseInt(difficulty.substring(0, 1));
     const isEasy = difficulty.substring(1, 5) === "easy";
@@ -60,6 +63,8 @@ const GameWrapper = () => {
     setTutorialProgress(newProgress);
     navigate(`/activity${number}/${difficulty.slice(1)}`);
   }
+  /* nested switch statement to route to tutorial or activity */
+  /* after a played activity the path gets updates and routes to the according activity */
   const getGameComponent = () => {
     switch (level) {
       case "activity1":

@@ -1,3 +1,4 @@
+/* activity5.jsx */
 import React, { useState, useEffect, useCallback } from "react";
 import "../styles/activity5.css";
 import "../defaults.css";
@@ -17,6 +18,7 @@ function Activity5({ difficulty }) {
   const [displayCorrectness, setCorrectnessLabel] = useState(false);
   const [selectedSet, setSelectedSet] = useState([]);
 
+  /* load a predefined set of numbers */
   useEffect(() => {
     const sets =
       difficulty === "easy" ? predefinedSetsA5.easy : predefinedSetsA5.hard;
@@ -24,6 +26,7 @@ function Activity5({ difficulty }) {
     setSelectedSet(randomSet);
   }, [difficulty]);
 
+  /* sets the numbers for the current round and resets variables */
   const generateNewNumbers = useCallback(() => {
     if (selectedSet.length > 0) {
       setNumbers(selectedSet[roundCount]);
@@ -41,6 +44,7 @@ function Activity5({ difficulty }) {
     setInputValue(e.target.value);
   };
 
+  /* checks if the exercise was correctly solved */
   const checkInput = () => {
     setCorrectnessLabel(true);
     if (parseInt(inputValue) === numbers.largeNum - numbers.smallNum) {
@@ -50,14 +54,16 @@ function Activity5({ difficulty }) {
     }
   };
 
+  /* increases the number of the current round */
   const handleNext = () => {
     if (roundCount < selectedSet.length - 1) {
       setRoundCount((prevCount) => prevCount + 1);
     } else {
-      setRoundCount(selectedSet.length); // End game condition
+      setRoundCount(selectedSet.length); /* End game condition */
     }
   };
 
+  /* game is finished */
   if (roundCount >= Math.max(1, selectedSet.length)) {
     /* Message that the game is completed */
     return (
@@ -69,6 +75,7 @@ function Activity5({ difficulty }) {
     );
   }
 
+  /* renders all the visible components of the page */
   return (
     <div className="container">
       <div className="white-box-regular">

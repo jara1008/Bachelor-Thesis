@@ -1,3 +1,5 @@
+/* tutorial_activity7.jsx */
+/* inital structure from activity7.jsx */
 import React, { useState } from "react";
 import "../styles/activity7.css";
 import "../defaults.css";
@@ -46,10 +48,10 @@ const tutorialStepsHard = [
 
 function TutorialActivity7({ difficulty, onComplete }) {
   const [numberLarge] = useState(
-    difficulty === "easy" ? [2, 0, 2] : [6, 4, 5, 0],
+    difficulty === "easy" ? [2, 0, 2] : [6, 4, 5, 0]
   );
   const [numberSmall] = useState(
-    difficulty === "easy" ? [1, 2, 1] : [3, 0, 1, 5],
+    difficulty === "easy" ? [1, 2, 1] : [3, 0, 1, 5]
   );
   const nrCols = difficulty === "hard" ? 4 : 3;
   const [rows, setRows] = useState([

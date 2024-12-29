@@ -1,7 +1,8 @@
 /* defaults.css */
+/* import font */
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
-/* define variables */
+/* define default variables */
 :root {
   --primary-color: #bfc4f2;
   --secondary-color: #eceefa;

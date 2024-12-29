@@ -1,3 +1,4 @@
+/* activity1.jsx */
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import "../styles/activity1.css";
 import "../defaults.css";
@@ -31,9 +32,9 @@ const rightCloudPositions = [
   { top: 21, left: 84 },
 ];
 
-const starSize = 4; // Size of the star in percentage
-const yOffset = 3; // Additional y-axis offset in percentage to shift the lines downwards
-const xOffset = 2; // Additional x-axis offset in percentage to shift the lines to the left
+const starSize = 4; /* Size of the star in percentage */
+const yOffset = 3; /* Additional y-axis offset in percentage to shift the lines downwards */
+const xOffset = 2; /* Additional x-axis offset in percentage to shift the lines to the left */
 
 function Activity1({ difficulty }) {
   const [allStars, setAllStars] = useState({
@@ -44,7 +45,7 @@ function Activity1({ difficulty }) {
   const [secondPos, setSecondPos] = useState(null); /* end point of a line */
   const [lines, setLines] = useState([]); /* stored lines */
   const [connectedStars, setConnectedStars] = useState(
-    new Set(),
+    new Set()
   ); /* tracks connected stars */
   const firstPosRef = useRef(firstPos);
   const svgRef = useRef(null);
@@ -71,6 +72,7 @@ function Activity1({ difficulty }) {
   const [hintClickBox, setHintClickBox] = useState(false);
   const [hintConnectStars, setHintConnectStars] = useState(false);
 
+  /* loads the numbers of stars to be generated */
   useEffect(() => {
     const sets =
       difficulty === "easy" ? predefinedSetsA1.easy : predefinedSetsA1.hard;
@@ -78,6 +80,7 @@ function Activity1({ difficulty }) {
     setSelectedSet(randomSet);
   }, [difficulty]);
 
+  /* upon clicking a star this function checks for validity */
   const handleStarPosition = useCallback(
     (position) => {
       if (!firstPosRef.current) {
@@ -87,7 +90,7 @@ function Activity1({ difficulty }) {
         if (
           firstPosRef.current.cloudSide !== position.cloudSide &&
           !connectedStars.has(
-            `${firstPosRef.current.top}-${firstPosRef.current.left}`,
+            `${firstPosRef.current.top}-${firstPosRef.current.left}`
           ) &&
           !connectedStars.has(`${position.top}-${position.left}`)
         ) {
@@ -99,7 +102,7 @@ function Activity1({ difficulty }) {
           setConnectedStars((prevConnectedStars) => {
             const newConnectedStars = new Set(prevConnectedStars);
             newConnectedStars.add(
-              `${firstPosRef.current.top}-${firstPosRef.current.left}`,
+              `${firstPosRef.current.top}-${firstPosRef.current.left}`
             );
             newConnectedStars.add(`${position.top}-${position.left}`);
             return newConnectedStars;
@@ -108,9 +111,10 @@ function Activity1({ difficulty }) {
         setFirstPos(null);
       }
     },
-    [connectedStars],
+    [connectedStars]
   );
 
+  /* triggers the behaviour if a star is clicked */
   const handleStarClick = useCallback(
     (e, position) => {
       if (touchEventRef.current) {
@@ -119,18 +123,21 @@ function Activity1({ difficulty }) {
       }
       handleStarPosition(position);
     },
-    [handleStarPosition],
+    [handleStarPosition]
   );
 
+  /* triggers the behaviour if a star was touched (touch event on a touchscreen) */
+  /* used such that no click event is triggered but only a touch event */
   const handleTouchStart = useCallback(
     (e, position) => {
       e.preventDefault();
       touchEventRef.current = true;
       handleStarPosition(position);
     },
-    [handleStarPosition],
+    [handleStarPosition]
   );
 
+  /* renders the used number of stars at the beginning of each round */
   const generateStars = useCallback(
     (count, positions, cloudSide) => {
       return positions.slice(0, count).map((pos, index) => (
@@ -151,10 +158,13 @@ function Activity1({ difficulty }) {
         />
       ));
     },
-    [handleStarClick, handleTouchStart],
+    [handleStarClick, handleTouchStart]
   );
 
+  /* dynamic line rendering */
+  /* AI: the computations for the correct mouse position and the svgRef were done with ChatGPT */
   useEffect(() => {
+    /* if played if a mouse */
     const handleMouseMove = (event) => {
       if (svgRef.current) {
         const rect = svgRef.current.getBoundingClientRect();
@@ -165,6 +175,7 @@ function Activity1({ difficulty }) {
       }
     };
 
+    /* if played with a touchscreen */
     const handleTouchMove = (event) => {
       if (svgRef.current && event.touches.length === 1) {
         const rect = svgRef.current.getBoundingClientRect();
@@ -184,6 +195,8 @@ function Activity1({ difficulty }) {
     };
   }, []);
 
+  /* Computes the correct screen cordinates to connect the stars */
+  /* AI: ChatGPT assistance */
   const calculateCoordinates = (position, svgRect) => {
     return {
       x: ((position.left + xOffset) / 100) * svgRect.width,
@@ -203,6 +216,7 @@ function Activity1({ difficulty }) {
     setSecondCloudCount(rightCount);
   }, [roundCount, selectedSet]);
 
+  /* checks if the activity is done */
   useEffect(() => {
     if (selectedSet.length === 0) return;
     generateNewCounts();
@@ -213,12 +227,12 @@ function Activity1({ difficulty }) {
       const starsInFirstCloud = generateStars(
         firstCloudCount,
         leftCloudPositions,
-        "left",
+        "left"
       );
       const starsInSecondCloud = generateStars(
         secondCloudCount,
         rightCloudPositions,
-        "right",
+        "right"
       );
 
       setAllStars({ left: starsInFirstCloud, right: starsInSecondCloud });
@@ -229,6 +243,7 @@ function Activity1({ difficulty }) {
     firstPosRef.current = firstPos;
   }, [firstPos]);
 
+  /* checks if exercise was correctly solved and enabled needed hints */
   const checkInput = () => {
     if (lines.length === 0) {
       setHintConnectStars(true);
@@ -287,6 +302,7 @@ function Activity1({ difficulty }) {
     setIsCorrect(true);
   };
 
+  /* resets all varibales and loads the next exercise */
   const handleNext = () => {
     generateNewCounts();
 
@@ -294,12 +310,12 @@ function Activity1({ difficulty }) {
       const starsInFirstCloud = generateStars(
         firstCloudCount,
         leftCloudPositions,
-        "left",
+        "left"
       );
       const starsInSecondCloud = generateStars(
         secondCloudCount,
         rightCloudPositions,
-        "right",
+        "right"
       );
 
       setAllStars({ left: starsInFirstCloud, right: starsInSecondCloud });
@@ -320,7 +336,9 @@ function Activity1({ difficulty }) {
   const handleLeftCheckboxChange = (event) => {
     if (event.target.checked) {
       setIsLeftChecked(true);
-      setIsRightChecked(false); // Uncheck the right checkbox when left is checked
+      setIsRightChecked(
+        false
+      ); /* Uncheck the right checkbox when left is checked */
     } else {
       setIsLeftChecked(false);
     }
@@ -329,7 +347,9 @@ function Activity1({ difficulty }) {
   const handleRightCheckboxChange = (event) => {
     if (event.target.checked) {
       setIsRightChecked(true);
-      setIsLeftChecked(false); // Uncheck the left checkbox when right is checked
+      setIsLeftChecked(
+        false
+      ); /* Uncheck the left checkbox when right is checked */
     } else {
       setIsRightChecked(false);
     }
@@ -351,6 +371,7 @@ function Activity1({ difficulty }) {
     );
   }
 
+  /* renders all the visible components of the page */
   return (
     <div className="container">
       <div className="white-box-regular">
@@ -451,6 +472,7 @@ function Activity1({ difficulty }) {
                 />
               );
             })}
+            {/* AI: coordinates computation made with ChatGPT */}
             {firstPos &&
               !secondPos &&
               (() => {

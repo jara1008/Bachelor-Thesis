@@ -1,3 +1,4 @@
+/* activity8.jsx */
 import React, { useState, useEffect, useCallback } from "react";
 import "../styles/activity8.css";
 import "../defaults.css";
@@ -17,12 +18,19 @@ function Activity8({ difficulty }) {
   const [displayCorrectness, setCorrectnessLabel] = useState(false);
   const [selectedSet, setSelectedSet] = useState([]);
   const [carIndex, setCarIndex] = useState(0);
-  const [isLeftRed, setIsLeftRed] = useState(Math.random() < 0.5);
-  const [isLeftLeft, setIsLeftLeft] = useState(Math.random() < 0.5);
-  const [isLeftPos, setIsLeftPos] = useState(Math.random() < 0.5);
+  const [isLeftRed, setIsLeftRed] = useState(
+    Math.random() < 0.5
+  ); /* randomize if the red number is in the left field */
+  const [isLeftLeft, setIsLeftLeft] = useState(
+    Math.random() < 0.5
+  ); /* randomize if the arrow pointing to the left is in the left field */
+  const [isLeftPos, setIsLeftPos] = useState(
+    Math.random() < 0.5
+  ); /* randomize if the negative number is in the left field */
   const [rectangleValues, setRectangleValues] = useState([]);
   const [car2d, setCar2d] = useState([1, 1]);
 
+  /* selects a predefined set of numbers */
   useEffect(() => {
     const sets =
       difficulty === "easy" ? predefinedSetsA8.easy : predefinedSetsA8.hard;
@@ -30,6 +38,7 @@ function Activity8({ difficulty }) {
     setSelectedSet(randomSet);
   }, [difficulty]);
 
+  /* reset the variables, set the car to its no position, reshuffle the order of numbers in the selection field */
   const generateNewNumbers = useCallback(() => {
     if (selectedSet.length > 0) {
       const { number } = selectedSet[roundCount];
@@ -81,6 +90,7 @@ function Activity8({ difficulty }) {
     }
   }, [selectedSet, roundCount]);
 
+  /* set new car position in the 2D grid */
   const generateNewNumbersHard = useCallback(() => {
     if (selectedSet.length > 0) {
       const { x, y } = selectedSet[roundCount];
@@ -88,6 +98,7 @@ function Activity8({ difficulty }) {
     }
   }, [selectedSet, roundCount]);
 
+  /* set new car position based on difficulty */
   useEffect(() => {
     if (difficulty === "easy") {
       generateNewNumbers();
@@ -96,6 +107,7 @@ function Activity8({ difficulty }) {
     }
   }, [generateNewNumbers, generateNewNumbersHard, difficulty]);
 
+  /* render the line with numbers for the easy version (including tree and car) */
   const renderNumberLine = () => (
     <div>
       <img
@@ -134,6 +146,7 @@ function Activity8({ difficulty }) {
     </div>
   );
 
+  /* render the rectangles for the easy version to select from */
   const renderRectangles = () => {
     return (
       <div className="rectangle-container">
@@ -161,6 +174,7 @@ function Activity8({ difficulty }) {
     );
   };
 
+  /* if a field is clicked it should be marked blue */
   const handleSquareClick = (index, side) => {
     setRectangleValues((prev) =>
       prev.map((rect, idx) => {
@@ -193,10 +207,11 @@ function Activity8({ difficulty }) {
           }
         }
         return rect;
-      }),
+      })
     );
   };
 
+  /* check if the correct fields where selected */
   const checkInput = () => {
     setCorrectnessLabel(true);
     if (carIndex < 0) {
@@ -224,11 +239,13 @@ function Activity8({ difficulty }) {
     }
   };
 
+  /* increade roundCount */
   const handleNext = () => {
     setRoundCount((prevRoundCount) => prevRoundCount + 1);
     generateNewNumbers();
   };
 
+  /* render 2D grid, make the x- and y-axis bolder */
   const borderstyle = (x, y) => {
     let borderBottom = "none";
     let borderRight = "none";
@@ -244,6 +261,7 @@ function Activity8({ difficulty }) {
     };
   };
 
+  /* function to render 2D grid */
   const renderGrid = () => (
     <div className="grid">
       <div
@@ -370,10 +388,12 @@ function Activity8({ difficulty }) {
     </div>
   );
 
+  /* track which rectangle was clicked per row  (for the hard version) */
   const [clickedTop, setClickedTop] = useState(-1);
   const [clickedMid, setClickedMid] = useState(-1);
   const [clickedBot, setClickedBot] = useState(-1);
 
+  /* define the values in the rectangles for the hard version */
   const rectangleValuesHard = [
     {
       leftValueTop: [Math.abs(car2d[0]), Math.abs(car2d[1])],
@@ -411,6 +431,7 @@ function Activity8({ difficulty }) {
     },
   ];
 
+  /* upon clicking a rectangle in the hard version this function is called */
   const handleClickHard = (i, x) => {
     if (i === 0) {
       setClickedTop(x);
@@ -421,6 +442,7 @@ function Activity8({ difficulty }) {
     }
   };
 
+  /* render the rectangles and its values for the hard version */
   const renderRectanglesHard = () => {
     return (
       <div
@@ -541,6 +563,7 @@ function Activity8({ difficulty }) {
     );
   };
 
+  /* check if the exercise was solved correctly for the hard version */
   const checkInputHard = () => {
     setCorrectnessLabel(true);
     if (
@@ -578,6 +601,7 @@ function Activity8({ difficulty }) {
     }
   };
 
+  /* reset variables and load next exercise for the hard version */
   const handleNextHard = () => {
     setIsCorrect(false);
     setCorrectnessLabel(false);
@@ -590,6 +614,7 @@ function Activity8({ difficulty }) {
     setClickedBot(-1);
   };
 
+  /* game is finished */
   if (roundCount >= Math.max(1, selectedSet.length - 1)) {
     /* Message that the game is completed */
     return (

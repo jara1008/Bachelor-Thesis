@@ -6,12 +6,14 @@ import questionmark_icon from "./images/questionmark_icon.png";
 import "./defaults.css";
 
 /* default variables */
-export const ROUNDCOUNT = 7;
 export const checkButtonTop = 92;
 
 /* default components */
+
+/* defines the position and routing of the top right hand icons */
 export const HomeLink = ({ top = "-6.5%" }) => {
   const { level, difficulty } = useParams();
+  /* AI: level matching was made by ChatGPT */
   let levelNr = level.match(/\d+$/)?.[0];
   if (levelNr === "10") {
     levelNr = 0;
@@ -44,6 +46,7 @@ export const HomeLink = ({ top = "-6.5%" }) => {
   );
 };
 
+/* upon arriving at the gratulation message, the highest unlocked level nr increases accordingly */
 const incrementHighestUnlockedLevel = (currentLevelNr, difficulty) => {
   let currentLevel =
     parseInt(localStorage.getItem("highestUnlockedLevel")) || 1;
@@ -57,6 +60,7 @@ const incrementHighestUnlockedLevel = (currentLevelNr, difficulty) => {
   }
 };
 
+/* upon completing an activity the gratulation message is loaded */
 export const EndOfGame = ({ levelName, levelNr, difficulty }) => {
   const isEasy = difficulty === "easy";
   incrementHighestUnlockedLevel(levelNr, isEasy ? 0 : 1);
@@ -86,6 +90,7 @@ export const EndOfGame = ({ levelName, levelNr, difficulty }) => {
   );
 };
 
+/* error messages and correctness label is rendered */
 export const CorrectnessLabel = ({
   message,
   isVisible,
@@ -116,6 +121,7 @@ export const CorrectnessLabel = ({
   );
 };
 
+/* returns a message to use larger screen, if current screen size is to small to play properly */
 export const ScreenSizeMessage = () => {
   return (
     <div className="container">

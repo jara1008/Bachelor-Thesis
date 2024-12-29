@@ -1,3 +1,5 @@
+/* tutorial_activity8.jsx */
+/* inital structure from activity8.jsx */
 import React, { useState } from "react";
 import "../styles/activity8.css";
 import "../defaults.css";

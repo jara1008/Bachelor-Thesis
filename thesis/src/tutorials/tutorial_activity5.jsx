@@ -1,3 +1,5 @@
+/* tutorial_activity5.jsx */
+/* inital structure from activity5.jsx */
 import React, { useState } from "react";
 import "../styles/activity5.css";
 import "../defaults.css";
@@ -18,7 +20,7 @@ const tutorialStepsHard = [
 function TutorialActivity5({ difficulty, onComplete }) {
   const [numbers] = useState(
     (difficulty === "easy" && { largeNum: 17, smallNum: 11 }) ||
-      (difficulty === "hard" && { largeNum: 48, smallNum: 35 }),
+      (difficulty === "hard" && { largeNum: 48, smallNum: 35 })
   );
   const [inputValue, setInputValue] = useState("");
   const [tutorialProgress, setTutorialProgress] = useState(0);

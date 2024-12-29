@@ -1,3 +1,4 @@
+/* activity10.jsx */
 import React, { useState, useEffect } from "react";
 import "../styles/activity10.css";
 import "../defaults.css";
@@ -20,17 +21,23 @@ function Activity10({ difficulty }) {
     col2: "",
     col3: "",
     col4: "",
-  });
+  }); /* tracks the values in the input fields */
   const [blueSquareValues, setBlueSquareValues] = useState({
     blue1: "",
     blue2: "",
     blue3: "",
-  });
-  const [minus, setMinus] = useState(false);
+  }); /* tracks the numbers in the assisting blue fields */
+  const [minus, setMinus] =
+    useState(false); /* enables the big red "-" in the hard version */
   const [selectedSet, setSelectedSet] = useState([]);
-  const [incorrectFields, setIncorrectFields] = useState([]);
-  const [incorrectBlueFields, setIncorrectBlueFields] = useState([]);
+  const [incorrectFields, setIncorrectFields] = useState(
+    []
+  ); /* tracks the wrong fields to mark them */
+  const [incorrectBlueFields, setIncorrectBlueFields] = useState(
+    []
+  ); /* tracks the wrong assisting fields to mark them */
 
+  /* a set of numbers is selected */
   useEffect(() => {
     const sets =
       difficulty === "easy" ? predefinedSetsA10.easy : predefinedSetsA10.hard;
@@ -38,6 +45,7 @@ function Activity10({ difficulty }) {
     setSelectedSet(randomSet);
   }, [difficulty]);
 
+  /* numbers get parsed into an array with four distinct digits */
   useEffect(() => {
     if (selectedSet.length > 0) {
       const { numberLarge, numberSmall } = selectedSet[roundCount];
@@ -46,6 +54,7 @@ function Activity10({ difficulty }) {
     }
   }, [selectedSet, roundCount]);
 
+  /* changes the input of a colum */
   const handleInputChange = (column, value) => {
     setColumnValues((prevState) => ({
       ...prevState,
@@ -53,6 +62,7 @@ function Activity10({ difficulty }) {
     }));
   };
 
+  /* changes the input of a blue field */
   const handleBlueSquareChange = (blueSquare, value) => {
     setBlueSquareValues((prevState) => ({
       ...prevState,
@@ -60,6 +70,7 @@ function Activity10({ difficulty }) {
     }));
   };
 
+  /* changes the order of the numbers in the rectangle */
   const invertNumbers = () => {
     let swap = numberSmall;
     setNumberSmall(numberLarge);
@@ -67,6 +78,7 @@ function Activity10({ difficulty }) {
     setMinus(!minus);
   };
 
+  /* checks if an exercise was solved correctly, tracks the wrong numbers to mark them red */
   const checkInput = () => {
     setCorrectnessLabel(true);
     setIncorrectFields([]);
@@ -119,6 +131,7 @@ function Activity10({ difficulty }) {
     }
   };
 
+  /* resets the variables and increases the roundCount */
   const handleNext = () => {
     setColumnValues({ col1: "", col2: "", col3: "", col4: "" });
     setBlueSquareValues({ blue1: "", blue2: "", blue3: "" });
@@ -131,11 +144,11 @@ function Activity10({ difficulty }) {
     if (roundCount < selectedSet.length - 1) {
       setRoundCount(roundCount + 1);
     } else {
-      // End of game logic
       setRoundCount(selectedSet.length);
     }
   };
 
+  /* game is finished */
   if (roundCount >= Math.max(1, selectedSet.length - 1)) {
     /* Message that the game is completed */
     return (
@@ -147,6 +160,7 @@ function Activity10({ difficulty }) {
     );
   }
 
+  /* renders all the visible components of the page */
   return (
     <div className="container">
       <div className="white-box-regular">

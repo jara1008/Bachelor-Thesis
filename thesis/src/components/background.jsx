@@ -3,6 +3,7 @@ import "./background.css";
 import sparkle from "../images/sparkle.svg";
 
 function Background() {
+  /* white dots */
   const [ellipses_white] = useState([
     { top: "12%", left: "17%", width: "25px", height: "25px", blur: "5px" },
     { top: "30%", left: "10%", width: "18px", height: "18px", blur: "4px" },
@@ -15,6 +16,7 @@ function Background() {
     { top: "90%", left: "93%", width: "25px", height: "25px", blur: "5px" },
   ]);
 
+  /* blue blurry ellipses for a cloudy background */
   const [ellipses_blue] = useState([
     { top: "8%", left: "90%", width: "400px", height: "400px", blur: "100px" },
     { top: "30%", left: "2%", width: "350px", height: "350px", blur: "100px" },
@@ -23,6 +25,7 @@ function Background() {
     { top: "85%", left: "85%", width: "400px", height: "400px", blur: "100px" },
   ]);
 
+  /* white stars in the background */
   const [sparkles] = useState([
     { top: "18%", left: "5%", size: "8%", opacity: "0.9" },
     { top: "40%", left: "85%", size: "10%", opacity: "0.9" },
@@ -33,6 +36,8 @@ function Background() {
     { top: "5%", left: "76%", size: "5%", opacity: "0.9" },
   ]);
 
+  /* predefined objects are rendered on top of a dark blue background */
+  /* this is rendered in the background of every other components */
   return (
     <div className="background">
       <div>

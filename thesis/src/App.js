@@ -1,15 +1,18 @@
+/* App.js */
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ScreenSizeMessage } from "./defaults";
 import "./App.css";
+import { ScreenSizeMessage } from "./defaults";
 import Background from "./components/background";
 import Overview from "./components/overview";
 import DifficultySelection from "./components/difficultySelection";
 import GameWrapper from "./components/gameWrapper";
 
+/* Entrance point of the application */
 const App = () => {
   const [isScreenSmall, setIsScreenSmall] = useState(false);
 
+  /* Check for big enough screen size, thresholdes were picked by trial and error */
   const checkScreenSize = () => {
     if (window.innerWidth < 600 || window.innerHeight < 360) {
       setIsScreenSmall(true);
@@ -26,6 +29,8 @@ const App = () => {
     };
   }, []);
 
+  /* load the background and the overview page, defines routing */
+  /* AI: the routing was generated with assistance of chatGPT */
   return (
     <div>
       <Background />

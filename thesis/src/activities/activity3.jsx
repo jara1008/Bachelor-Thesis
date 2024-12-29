@@ -12,15 +12,23 @@ import { predefinedSetsA3 } from "./predefinedSets.jsx";
 function Activity3({ difficulty }) {
   const [roundCount, setRoundCount] = useState(0);
   const [selectedSet, setSelectedSet] = useState([]);
-  const [leftCoinsTen, setLeftCoinsTen] = useState(0);
-  const [leftCoinsOne, setLeftCoinsOne] = useState(0);
-  const [rightCoinsTen, setRightCoinsTen] = useState(0);
-  const [rightCoinsOne, setRightCoinsOne] = useState(0);
+  const [leftCoinsTen, setLeftCoinsTen] =
+    useState(0); /* tracks of many 10-coins are on the left side */
+  const [leftCoinsOne, setLeftCoinsOne] =
+    useState(0); /* tracks of many 1-coins are on the left side */
+  const [rightCoinsTen, setRightCoinsTen] =
+    useState(0); /* tracks of many 10-coins are on the right side */
+  const [rightCoinsOne, setRightCoinsOne] =
+    useState(0); /* tracks of many 1-coins are on the right side */
   const [activeCoins, setActiveCoins] = useState(new Set());
-  const [leftCoinsVisibleOne, setLeftCoinsVisibleOne] = useState(0);
-  const [leftCoinsVisibleTen, setLeftCoinsVisibleTen] = useState(0);
-  const [rightCoinsVisibleOne, setRightCoinsVisibleOne] = useState(0);
-  const [rightCoinsVisibleTen, setRightCoinsVisibleTen] = useState(0);
+  const [leftCoinsVisibleOne, setLeftCoinsVisibleOne] =
+    useState(0); /* tracks of many 1-coins are visible on the left side */
+  const [leftCoinsVisibleTen, setLeftCoinsVisibleTen] =
+    useState(0); /* tracks of many 10-coins are visible on the left side */
+  const [rightCoinsVisibleOne, setRightCoinsVisibleOne] =
+    useState(0); /* tracks of many 1-coins are visible on the right side */
+  const [rightCoinsVisibleTen, setRightCoinsVisibleTen] =
+    useState(0); /* tracks of many 10-coins are visible on the right side */
   const [isCorrect, setIsCorrect] = useState(false);
   const [displayCorrectness, setCorrectnessLabel] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -30,6 +38,7 @@ function Activity3({ difficulty }) {
   const [hintNothingToSwap, setHintNothingToSwap] = useState(false);
   const [hintSomethingToSwap, setHintSomethingToSwap] = useState(false);
 
+  /* picks a set of predefined cases */
   useEffect(() => {
     const sets =
       difficulty === "easy" ? predefinedSetsA3.easy : predefinedSetsA3.hard;
@@ -37,6 +46,7 @@ function Activity3({ difficulty }) {
     setSelectedSet(randomSet);
   }, [difficulty]);
 
+  /* computes the nr of coins rendered based on the displayed value */
   useEffect(() => {
     if (selectedSet.length > 0) {
       const { left, right } = selectedSet[roundCount];
@@ -51,6 +61,8 @@ function Activity3({ difficulty }) {
     }
   }, [selectedSet, roundCount]);
 
+  /* renders the upper row of coins */
+  /* AI: ChatGPT was used for the tracking of active coins by className */
   function CoinRowUpper({ coinsTen, coinsOne, type }) {
     return (
       <div className="coin-stack-A3">
@@ -88,6 +100,7 @@ function Activity3({ difficulty }) {
     );
   }
 
+  /* renders the lower row of coins */
   function CoinRowLower({ coinsTen, coinsOne, type }) {
     return (
       <div className="coin-stack-A3">
@@ -105,6 +118,8 @@ function Activity3({ difficulty }) {
     );
   }
 
+  /* function that handles the conversion of a 10-coint to ten 1-coins of the left side */
+  /* useful hint are enabled, for example when nothing should be swaped */
   function handleConversionLeft() {
     if (
       leftCoinsVisibleTen === 0 ||
@@ -135,6 +150,8 @@ function Activity3({ difficulty }) {
     }
   }
 
+  /* function that handles the conversion of a 10-coint to ten 1-coins on the right side */
+  /* useful hint are enabled, for example when nothing should be swaped */
   function handleConversionRight() {
     if (
       rightCoinsVisibleTen === 0 ||
@@ -165,6 +182,9 @@ function Activity3({ difficulty }) {
     }
   }
 
+  /* handles the crossing of coins by adding the not crossed coins to an active set */
+  /* updates the number of visible coins */
+  /* AI: for the tracking of the coins by key ChatGPT was used */
   function handleCoinClick(type, denomination, index) {
     const coinKey = `${type}-${denomination}-${index}`;
     const oppositeType = type === "left" ? "right" : "left";
@@ -227,6 +247,7 @@ function Activity3({ difficulty }) {
     setInputValue(value);
   };
 
+  /* checks if exercise was correctly solved */
   function checkInput() {
     setHintNothingToSwap(false);
     setHintCrossAllCoins(false);
@@ -260,6 +281,7 @@ function Activity3({ difficulty }) {
     }
   }
 
+  /* resets the variables for the next round */
   function handleNext() {
     setRoundCount((prev) => prev + 1);
     setActiveCoins(new Set());
@@ -271,6 +293,7 @@ function Activity3({ difficulty }) {
     setHintSomethingToSwap(false);
   }
 
+  /* game is finished */
   if (roundCount >= Math.max(1, selectedSet.length - 1)) {
     return (
       <EndOfGame
@@ -281,6 +304,7 @@ function Activity3({ difficulty }) {
     );
   }
 
+  /* renders all the visible components of the page */
   return (
     <div className="container">
       <div className="white-box-large">

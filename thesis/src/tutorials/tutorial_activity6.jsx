@@ -1,3 +1,5 @@
+/* tutorial_activity6.jsx */
+/* inital structure from activity6.jsx */
 import React, { useState } from "react";
 import "../styles/activity6.css";
 import "../defaults.css";

@@ -1,3 +1,4 @@
+/* activity2.jsx */
 import React, { useState, useEffect, useCallback } from "react";
 import "../styles/activity2.css";
 import {
@@ -12,8 +13,10 @@ function Activity2({ difficulty }) {
   const [numCubesFirstRow, setNumCubesFirstRow] = useState(0);
   const [numCubesSecondRow, setNumCubesSecondRow] = useState(0);
   const [inputValue, setInputValue] = useState("");
-  const [isCorrect, setIsCorrect] = useState(false);
-  const [displayCorrectness, setCorrectnessLabel] = useState(false);
+  const [isCorrect, setIsCorrect] =
+    useState(false); /* checks for correctness */
+  const [displayCorrectness, setCorrectnessLabel] =
+    useState(false); /* displayes a correctness message */
   const [roundCount, setRoundCount] = useState(0);
   const [differenceValue, setDifferenceValue] = useState("");
   const [selectedSet, setSelectedSet] = useState([]);
@@ -29,6 +32,7 @@ function Activity2({ difficulty }) {
     setSelectedSet(randomSet);
   }, [difficulty]);
 
+  /* resets variables and loads next set of numbers */
   const shuffleCubes = useCallback(() => {
     if (selectedSet.length > 0) {
       const { first, second } = selectedSet[roundCount];
@@ -45,6 +49,7 @@ function Activity2({ difficulty }) {
     shuffleCubes();
   }, [shuffleCubes]);
 
+  /* checks if exercise was solved correctly and enables needed hints */
   const checkInput = () => {
     if (
       difficulty === "hard" &&
@@ -75,15 +80,18 @@ function Activity2({ difficulty }) {
     }
   };
 
+  /* upon clicking a <, =, > button this sets the value into the input field */
   const handleButtonClick = (value) => {
     setInputValue(value);
   };
 
+  /* checks if more rounds are to be played and called shuffleCubes to trigger the next round */
   const handleNext = () => {
     setRoundCount((prevRoundCount) => prevRoundCount + 1);
     shuffleCubes();
   };
 
+  /* The game is finished */
   if (roundCount >= Math.max(1, selectedSet.length - 1)) {
     /* Message that the game is completed */
     return (
@@ -95,6 +103,7 @@ function Activity2({ difficulty }) {
     );
   }
 
+  /* renders all the visible components of the page */
   return (
     <div className="container">
       <div className="white-box-regular">

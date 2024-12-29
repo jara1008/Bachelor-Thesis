@@ -1,3 +1,4 @@
+/* activity9.jsx */
 import React, { useState, useEffect, useCallback } from "react";
 import "../styles/activity9.css";
 import "../defaults.css";
@@ -9,18 +10,27 @@ import {
 } from "../defaults";
 import { predefinedSetsA9 } from "./predefinedSets.jsx";
 
+/* this component is similar to activity6.jsx and activity3.jsx */
 function Activity9({ difficulty }) {
   const [selectedSet, setSelectedSet] = useState([]);
   const [roundCount, setRoundCount] = useState(0);
   const [activeCoins, setActiveCoins] = useState(new Set());
-  const [leftCoinsTen, setLeftCoinsTen] = useState(0);
-  const [leftCoinsOne, setLeftCoinsOne] = useState(0);
-  const [rightCoinsTen, setRightCoinsTen] = useState(0);
-  const [rightCoinsOne, setRightCoinsOne] = useState(0);
-  const [leftCoinsVisibleOne, setLeftCoinsVisibleOne] = useState(0);
-  const [leftCoinsVisibleTen, setLeftCoinsVisibleTen] = useState(0);
-  const [rightCoinsVisibleOne, setRightCoinsVisibleOne] = useState(0);
-  const [rightCoinsVisibleTen, setRightCoinsVisibleTen] = useState(0);
+  const [leftCoinsTen, setLeftCoinsTen] =
+    useState(0); /* same as activity3.jsx */
+  const [leftCoinsOne, setLeftCoinsOne] =
+    useState(0); /* same as activity3.jsx */
+  const [rightCoinsTen, setRightCoinsTen] =
+    useState(0); /* same as activity3.jsx */
+  const [rightCoinsOne, setRightCoinsOne] =
+    useState(0); /* same as activity3.jsx */
+  const [leftCoinsVisibleOne, setLeftCoinsVisibleOne] =
+    useState(0); /* same as activity3.jsx */
+  const [leftCoinsVisibleTen, setLeftCoinsVisibleTen] =
+    useState(0); /* same as activity3.jsx */
+  const [rightCoinsVisibleOne, setRightCoinsVisibleOne] =
+    useState(0); /* same as activity3.jsx */
+  const [rightCoinsVisibleTen, setRightCoinsVisibleTen] =
+    useState(0); /* same as activity3.jsx */
   const [isCorrect, setIsCorrect] = useState(false);
   const [displayCorrectness, setCorrectnessLabel] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -31,6 +41,7 @@ function Activity9({ difficulty }) {
   const [hintNothingToSwap, setHintNothingToSwap] = useState(false);
   const [hintSomethingToSwap, setHintSomethingToSwap] = useState(false);
 
+  /* selects a predefined set of numbers */
   useEffect(() => {
     const sets =
       difficulty === "easy" ? predefinedSetsA9.easy : predefinedSetsA9.hard;
@@ -38,6 +49,8 @@ function Activity9({ difficulty }) {
     setSelectedSet(randomSet);
   }, [difficulty]);
 
+  /* new nr of coins is computed based on the given number */
+  /* variables are reset */
   const generateNewNumbers = useCallback(() => {
     if (selectedSet.length > 0 && roundCount < selectedSet.length) {
       const { leftValue, rightValue } = selectedSet[roundCount];
@@ -71,6 +84,7 @@ function Activity9({ difficulty }) {
   const leftVal = leftCoinsOne + leftCoinsTen * 10;
   const rightVal = rightCoinsOne + rightCoinsTen * 10;
 
+  /* checks if all coins in the bottom row are crossed */
   const checkAllCoinsCrossed = (newActiveCoins) => {
     const leftCoinCount = leftCoinsTen + leftCoinsOne;
     const crossedLeftCoins = newActiveCoins.size / 2;
@@ -79,6 +93,7 @@ function Activity9({ difficulty }) {
     return crossedLeftCoins === leftCoinCount;
   };
 
+  /* renders the upper coin row */
   const CoinRowUpper = ({ coinsTen, coinsOne, type }) => (
     <div className="coin-stack-A9">
       {Array.from({ length: coinsTen }, (_, i) => {
@@ -114,6 +129,7 @@ function Activity9({ difficulty }) {
     </div>
   );
 
+  /* renders the lower coin row */
   const CoinRowLower = ({ coinsTen, coinsOne, type }) => (
     <div className="coin-stack-A9">
       {Array.from({ length: coinsTen }, (_, i) => (
@@ -129,6 +145,7 @@ function Activity9({ difficulty }) {
     </div>
   );
 
+  /* handles a coin click and updates the activeCoinSet with tracks all the not crossed coins */
   const handleCoinClick = (type, denomination, index) => {
     const coinKey = `${type}-${denomination}-${index}`;
     const oppositeType = type === "left" ? "right" : "left";
@@ -198,6 +215,8 @@ function Activity9({ difficulty }) {
     });
   };
 
+  /* upon clicking "Tauschen" this function is called */
+  /* checks if swapping is needed, if it is needed it swaps one 10-coin to ten 1-coins */
   const handleConversion = () => {
     setHintCrossAllCoins(false);
     setHintNothingToSwap(false);
@@ -234,6 +253,7 @@ function Activity9({ difficulty }) {
     }
   };
 
+  /* checks if exercise was solved correctly */
   const checkInput = () => {
     setHintCrossAllCoins(false);
     setHintNothingToSwap(false);
@@ -259,14 +279,14 @@ function Activity9({ difficulty }) {
     }
   };
 
+  /* after on exercise was solved correctly, this increases the roundCount */
   const handleNext = () => {
     if (roundCount < selectedSet.length - 1) {
       setRoundCount(roundCount + 1);
-    } else {
-      // End game condition
     }
   };
 
+  /* game is finished */
   if (roundCount >= Math.max(1, selectedSet.length - 1)) {
     return (
       <EndOfGame
@@ -277,6 +297,7 @@ function Activity9({ difficulty }) {
     );
   }
 
+  /* renders all visible components of the page */
   return (
     <div className="container">
       <div className="white-box-large">
@@ -396,6 +417,7 @@ function Activity9({ difficulty }) {
             readOnly={isCorrect}
           />
         </div>
+        {/* here are all the hints rendered */}
         {isCorrect && displayCorrectness && (
           <CorrectnessLabel message="Richtig!" isVisible={true} left="79.5%" />
         )}

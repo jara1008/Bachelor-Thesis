@@ -1,3 +1,4 @@
+/* difficultySelections.jsx */
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./difficultySelection.css";
@@ -5,7 +6,9 @@ import "../defaults.css";
 import { HomeLink } from "../defaults";
 import star from "../images/star.svg";
 
-// Basic localstorage function to store arrays
+/* Basic localstorage function to store arrays */
+/* Handles the watched tutorials in the local storage */
+/* AI: chatGPT was used to guarantee the correct access to the local storage */
 const useLocalStorage = (key, initialValue) => {
   const [value, setValue] = useState(() => {
     const storedValue = localStorage.getItem(key);
@@ -22,20 +25,22 @@ const useLocalStorage = (key, initialValue) => {
 
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(value));
-    console.log(key);
   }, [key, value]);
 
   return [value, setValue];
 };
 
 function DifficultySelection() {
+  /* this creates an array to track the played tutorials if it doesn't exist yet */
   const [tutorialProgress] = useLocalStorage(
     "tutorialProgress",
-    Array(18).fill(0),
+    Array(18).fill(0)
   );
   const { level, title } = useParams();
   const navigate = useNavigate();
 
+  /* upon clicking on a difficulty this handles the further routing */
+  /* AI: for correct routing ChatGPT was used */
   const handleSelection = (selectedDifficulty) => {
     const number = parseInt(level.slice(-1));
     let arrPos = number;
@@ -51,6 +56,7 @@ function DifficultySelection() {
     }
   };
 
+  /* visible components of the difficulty selection page which appears after selecting a level in the overview page */
   return (
     <div className="container">
       <div className="white-box-small">

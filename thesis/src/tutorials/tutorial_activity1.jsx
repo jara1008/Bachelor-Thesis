@@ -1,3 +1,5 @@
+/* tutorial_activity1.jsx */
+/* inital structure from activity1.jsx */
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import "../styles/activity1.css";
 import "../defaults.css";
@@ -25,10 +27,11 @@ const rightCloudPositions = [
   { top: 21, left: 84 },
 ];
 
-const starSize = 4; // Size of the star in percentage
-const yOffset = 3; // Additional y-axis offset in percentage to shift the lines downwards
-const xOffset = 2; // Additional x-axis offset in percentage to shift the lines to the left
+const starSize = 4; /* Size of the star in percentage */
+const yOffset = 3; /* Additional y-axis offset in percentage to shift the lines downwards */
+const xOffset = 2; /* Additional x-axis offset in percentage to shift the lines to the left */
 
+/* instructions displayed in the header for each step */
 const tutorialStepsEasy = [
   { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
   { message: "Verknüpfe Sterne, indem du sie anklickst." },
@@ -53,7 +56,7 @@ function TutorialActivity1({ difficulty, onComplete }) {
   const [secondPos] = useState(null); /* end point of a line */
   const [lines, setLines] = useState([]); /* stored lines */
   const [connectedStars, setConnectedStars] = useState(
-    new Set(),
+    new Set()
   ); /* tracks connected stars */
   const firstPosRef = useRef(firstPos);
   const svgRef = useRef(null);
@@ -96,7 +99,7 @@ function TutorialActivity1({ difficulty, onComplete }) {
         if (
           firstPosRef.current.cloudSide !== position.cloudSide &&
           !connectedStars.has(
-            `${firstPosRef.current.top}-${firstPosRef.current.left}`,
+            `${firstPosRef.current.top}-${firstPosRef.current.left}`
           ) &&
           !connectedStars.has(`${position.top}-${position.left}`)
         ) {
@@ -108,7 +111,7 @@ function TutorialActivity1({ difficulty, onComplete }) {
           setConnectedStars((prevConnectedStars) => {
             const newConnectedStars = new Set(prevConnectedStars);
             newConnectedStars.add(
-              `${firstPosRef.current.top}-${firstPosRef.current.left}`,
+              `${firstPosRef.current.top}-${firstPosRef.current.left}`
             );
             newConnectedStars.add(`${position.top}-${position.left}`);
             return newConnectedStars;
@@ -118,7 +121,7 @@ function TutorialActivity1({ difficulty, onComplete }) {
         continueTutorial();
       }
     },
-    [connectedStars, continueTutorial],
+    [connectedStars, continueTutorial]
   );
 
   const handleStarClick = useCallback(
@@ -129,7 +132,7 @@ function TutorialActivity1({ difficulty, onComplete }) {
       }
       handleStarPosition(position);
     },
-    [handleStarPosition],
+    [handleStarPosition]
   );
 
   const handleTouchStart = useCallback(
@@ -138,7 +141,7 @@ function TutorialActivity1({ difficulty, onComplete }) {
       touchEventRef.current = true;
       handleStarPosition(position);
     },
-    [handleStarPosition],
+    [handleStarPosition]
   );
 
   const generateStars = useCallback(() => {
@@ -253,12 +256,12 @@ function TutorialActivity1({ difficulty, onComplete }) {
       const starsInFirstCloud = generateStars(
         firstCloudCount,
         leftCloudPositions,
-        "left",
+        "left"
       );
       const starsInSecondCloud = generateStars(
         secondCloudCount,
         rightCloudPositions,
-        "right",
+        "right"
       );
 
       setAllStars({ left: starsInFirstCloud, right: starsInSecondCloud });
@@ -276,6 +279,7 @@ function TutorialActivity1({ difficulty, onComplete }) {
 
   return (
     <div className="container">
+      {/* Indication we are in the tutorial mode */}
       <span className="tutorial-header-regular">TUTORIAL</span>
       <div
         className="white-box-regular"

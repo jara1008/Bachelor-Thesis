@@ -1,3 +1,4 @@
+/* activity6.jsx */
 import React, { useState, useEffect, useCallback } from "react";
 import "../styles/activity6.css";
 import "../defaults.css";
@@ -9,21 +10,33 @@ import {
 } from "../defaults";
 import { predefinedSetsA6 } from "./predefinedSets.jsx";
 
+/* this exercise recycled a lot from activity3.jsx */
 function Activity6({ difficulty }) {
   const [activeCoins, setActiveCoins] = useState(new Set());
   const [roundCount, setRoundCount] = useState(0);
-  const [leftCoinsTen, setLeftCoinsTen] = useState(0);
-  const [leftCoinsOne, setLeftCoinsOne] = useState(0);
-  const [rightCoinsTen, setRightCoinsTen] = useState(0);
-  const [rightCoinsOne, setRightCoinsOne] = useState(0);
-  const [leftCoinsVisibleOne, setLeftCoinsVisibleOne] = useState(0);
-  const [leftCoinsVisibleTen, setLeftCoinsVisibleTen] = useState(0);
-  const [rightCoinsVisibleOne, setRightCoinsVisibleOne] = useState(0);
-  const [rightCoinsVisibleTen, setRightCoinsVisibleTen] = useState(0);
+  const [leftCoinsTen, setLeftCoinsTen] =
+    useState(0); /* same as activity3.jsx */
+  const [leftCoinsOne, setLeftCoinsOne] =
+    useState(0); /* same as activity3.jsx */
+  const [rightCoinsTen, setRightCoinsTen] =
+    useState(0); /* same as activity3.jsx */
+  const [rightCoinsOne, setRightCoinsOne] =
+    useState(0); /* same as activity3.jsx */
+  const [leftCoinsVisibleOne, setLeftCoinsVisibleOne] =
+    useState(0); /* same as activity3.jsx */
+  const [leftCoinsVisibleTen, setLeftCoinsVisibleTen] =
+    useState(0); /* same as activity3.jsx */
+  const [rightCoinsVisibleOne, setRightCoinsVisibleOne] =
+    useState(0); /* same as activity3.jsx */
+  const [rightCoinsVisibleTen, setRightCoinsVisibleTen] =
+    useState(0); /* same as activity3.jsx */
   const [isCorrect, setIsCorrect] = useState(false);
   const [displayCorrectness, setCorrectnessLabel] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [displayMinus, setDisplayMinus] = useState(true);
+  const [displayMinus, setDisplayMinus] =
+    useState(
+      true
+    ); /* lets the "-" disappear if no coins are left on the right side */
   const [selectedSet, setSelectedSet] = useState([]);
 
   /* Hints */
@@ -31,6 +44,7 @@ function Activity6({ difficulty }) {
   const [hintNothingToSwap, setHintNothingToSwap] = useState(false);
   const [hintSomethingToSwap, setHintSomethingToSwap] = useState(false);
 
+  /* selects a predefined set of numbers */
   useEffect(() => {
     const sets =
       difficulty === "easy" ? predefinedSetsA6.easy : predefinedSetsA6.hard;
@@ -38,6 +52,7 @@ function Activity6({ difficulty }) {
     setSelectedSet(randomSet);
   }, [difficulty]);
 
+  /* same as activity3.jsx */
   const generateNewNumbers = useCallback(() => {
     if (selectedSet.length > 0) {
       const { left, right } = selectedSet[roundCount];
@@ -50,6 +65,7 @@ function Activity6({ difficulty }) {
       setRightCoinsVisibleTen(Math.floor(right / 10));
       setRightCoinsVisibleOne(right % 10);
 
+      /* variables are reset for the next round */
       setDisplayMinus(true);
       setActiveCoins(new Set());
       setIsCorrect(false);
@@ -62,6 +78,7 @@ function Activity6({ difficulty }) {
     generateNewNumbers();
   }, [generateNewNumbers]);
 
+  /* similar to activity3.jsx */
   const CoinRowUpper = ({ coinsTen, coinsOne, type }) => (
     <div className="coin-stack-A6">
       {Array.from({ length: coinsTen }, (_, i) => {
@@ -97,6 +114,7 @@ function Activity6({ difficulty }) {
     </div>
   );
 
+  /* similar to activity3.jsx */
   const CoinRowLower = ({ coinsTen, coinsOne, type }) => (
     <div className="coin-stack-A6">
       {Array.from({ length: coinsTen }, (_, i) => (
@@ -112,6 +130,7 @@ function Activity6({ difficulty }) {
     </div>
   );
 
+  /* similar to activity3.jsx */
   const handleCoinClick = (type, denomination, index) => {
     let nrRightTens = rightCoinsVisibleTen;
     let nrRightOnes = rightCoinsVisibleOne;
@@ -181,6 +200,7 @@ function Activity6({ difficulty }) {
     });
   };
 
+  /* checks if exercise was solved correctly, enables useful hints if not */
   const checkInput = () => {
     setCorrectnessLabel(true);
     setHintCrossAllCoins(false);
@@ -209,6 +229,7 @@ function Activity6({ difficulty }) {
     }
   };
 
+  /* increases roundCount and triggers the generation of new nubers */
   const handleNext = () => {
     if (roundCount < selectedSet.length - 1) {
       setRoundCount((prevCount) => prevCount + 1);
@@ -216,6 +237,7 @@ function Activity6({ difficulty }) {
     generateNewNumbers();
   };
 
+  /* similar to activity3.jsx */
   const handleConversion = () => {
     if (
       leftCoinsVisibleTen === 0 ||
@@ -253,6 +275,7 @@ function Activity6({ difficulty }) {
     }
   };
 
+  /* game is finished */
   if (roundCount >= Math.max(1, selectedSet.length - 1)) {
     return (
       <EndOfGame
@@ -263,9 +286,11 @@ function Activity6({ difficulty }) {
     );
   }
 
+  /* numbers to be dispplayed are computed */
   const leftVal = leftCoinsOne + leftCoinsTen * 10;
   const rightVal = rightCoinsOne + rightCoinsTen * 10;
 
+  /* renders all visible components on the page */
   return (
     <div className="container">
       <div className="white-box-large">
@@ -349,12 +374,13 @@ function Activity6({ difficulty }) {
             placeholder=""
             className="info-input-A6"
             style={{
-              marginLeft: `${leftVal < 10 ? "5vw" : "3vw"}`, //adapt margin based on numbers for better visuals
+              marginLeft: `${leftVal < 10 ? "5vw" : "3vw"}` /* adapt margin based on numbers for better visuals */,
             }}
             readOnly={isCorrect}
           />
         </div>
 
+        {/* hint rendering based on some conditions */}
         {isCorrect && displayCorrectness && (
           <CorrectnessLabel message="Richtig!" isVisible={true} left="79.5%" />
         )}
