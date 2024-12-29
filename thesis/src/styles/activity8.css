@@ -1,64 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
 .number-line {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start; 
-    background-color: var(--text-color);
-    border-radius: 10px;
-    height: 3px; 
-    left: 5%;  
-    position: relative;
-    top: 5vh;  
-    width: 90%;  
-    transform: translateY(-50%); 
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: var(--text-color);
+  border-radius: 10px;
+  height: 3px;
+  left: 5%;
+  position: relative;
+  top: 5vh;
+  width: 90%;
+  transform: translateY(-50%);
 }
 
 .number-dot {
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-    color: var(--text-color);
-    font-size: 25px;
-    font-family: var(--font-family);
-    position: relative;
-    padding: 2%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  font-size: 25px;
+  font-family: var(--font-family);
+  position: relative;
+  padding: 2%;
 }
 
 .number-dot::before {
-    content: ''; 
-    width: 0.7vw; 
-    height: 0.7vw; 
-    background-color: var(--text-color); 
-    border-radius: 50%; 
-    position: absolute;
-    top: 3%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
+  content: "";
+  width: 0.7vw;
+  height: 0.7vw;
+  background-color: var(--text-color);
+  border-radius: 50%;
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .blue-dot::before {
-  background-color: blue;  
+  background-color: blue;
 }
 
 .blue-dot {
-  color: blue; 
+  color: blue;
 }
 
 .red-dot::before {
-  background-color: red;  
+  background-color: red;
 }
 
 .red-dot {
-  color: red; 
+  color: red;
 }
 
 .car_img {
   position: absolute;
-  top: -2vw; 
+  top: -2vw;
   left: 50%;
-  transform: translateX(-50%); 
+  transform: translateX(-50%);
   width: 4vw;
   height: auto;
 }
@@ -86,7 +86,7 @@
   background-color: var(--secondary-color);
   border: 1.5px solid var(--text-color);
   cursor: pointer;
-  font-size: 2.5vw; 
+  font-size: 2.5vw;
   font-family: var(--font-family);
   font-weight: bold;
 }
@@ -100,10 +100,10 @@
 }
 
 .black-text {
-  color: var(--text-color); 
+  color: var(--text-color);
 }
 
-.grid{
+.grid {
   width: 60%;
   height: 100%;
   display: flex;
@@ -136,7 +136,7 @@
   background-color: var(--secondary-color);
   border: 1.5px solid var(--text-color);
   cursor: pointer;
-  font-size: 2vw; 
+  font-size: 2vw;
   font-family: var(--font-family);
   font-weight: bold;
   color: black;

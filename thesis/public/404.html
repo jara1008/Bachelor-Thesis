@@ -1,13 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=%PUBLIC_URL%/index.html">
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=%PUBLIC_URL%/index.html" />
     <script>
       console.log("404.html loaded. Redirecting to index.html...");
-      (function() {
-        var redirect = window.location.pathname.replace(/^(\/[^\/]+)\/.*$/, "$1");
-        window.location.href = redirect + '/';
+      (function () {
+        var redirect = window.location.pathname.replace(
+          /^(\/[^\/]+)\/.*$/,
+          "$1",
+        );
+        window.location.href = redirect + "/";
       })();
     </script>
   </head>

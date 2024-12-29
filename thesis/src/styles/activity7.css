@@ -1,42 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
 .number-table-A7 {
-    width: 55%;
-    margin: 0% auto;
-    border-collapse: collapse;
-    text-align: center;
+  width: 55%;
+  margin: 0% auto;
+  border-collapse: collapse;
+  text-align: center;
 }
 
 .number-table-A7 th,
 .number-table-A7 td {
-    border: 1px solid var(--text-color);
-    padding: 0.3vh;
-    width: 25%;
-    font-family: var(--font-family);
-    font-size: 3vh;
-    left: 0;
+  border: 1px solid var(--text-color);
+  padding: 0.3vh;
+  width: 25%;
+  font-family: var(--font-family);
+  font-size: 3vh;
+  left: 0;
 }
 
 .minus-sign-A7 {
-    position: absolute;
-    left: 25%; 
-    font-family: var(--font-family);
-    font-size: 3vh;
+  position: absolute;
+  left: 25%;
+  font-family: var(--font-family);
+  font-size: 3vh;
 }
 
 .input-field-A7 {
-    width: 55%;
-    box-sizing: border-box;
-    font-family: var(--font-family);
-    font-size: 3vh;
-    text-align: center;
-    background-color: var(--secondary-color);
-    border: 1px solid var(--text-color);
-    border-radius: 5%;
+  width: 55%;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+  font-size: 3vh;
+  text-align: center;
+  background-color: var(--secondary-color);
+  border: 1px solid var(--text-color);
+  border-radius: 5%;
 }
 
 @media (max-width: 1124px) {
-    .input-field-A7 {
-        font-size: 2vh;
-    }
+  .input-field-A7 {
+    font-size: 2vh;
+  }
 }

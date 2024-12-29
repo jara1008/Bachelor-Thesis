@@ -1,82 +1,82 @@
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
 .coin-row-A9 {
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    gap: 0.3vw;
-    width: 90%;
-    margin-left: 5%;
-    margin-top: 0.2vw; 
-    top: var(--top, 15%);
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.3vw;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 0.2vw;
+  top: var(--top, 15%);
 }
 
 .coin-stack-A9 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.1vw;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1vw;
+  width: 100%;
 }
 
 .coin-A9 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.7vw;
-    height: 2.7vw;
-    background-color: var(--primary-color);
-    border: 2px solid var(--text-color);
-    border-radius: 50%;
-    font-size: 2vw;
-    font-family: var(--font-family);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.7vw;
+  height: 2.7vw;
+  background-color: var(--primary-color);
+  border: 2px solid var(--text-color);
+  border-radius: 50%;
+  font-size: 2vw;
+  font-family: var(--font-family);
 }
 
 .active-coin-A9 {
-    background-color: red;
+  background-color: red;
 }
 
 .info-input-A9 {
-    width: 8vw; 
-    height: 4vw;
-    text-align: center; 
-    border-radius: 5%;
-    background-color: var(--secondary-color);
-    border: 2px solid var(--text-color);
-    font-size: 4vw; 
-    font-family: var(--font-family);
-    color: var(--text-color);
-    position: absolute;
-    left: 6%;
-    top: 75%;
-    transform: translate(-50%, -50%);
+  width: 8vw;
+  height: 4vw;
+  text-align: center;
+  border-radius: 5%;
+  background-color: var(--secondary-color);
+  border: 2px solid var(--text-color);
+  font-size: 4vw;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  position: absolute;
+  left: 6%;
+  top: 75%;
+  transform: translate(-50%, -50%);
 }
 
 .coin-row-divider {
-    border: 1px solid black;
-    width: 100%;
-    margin-top: 0.5vw;
+  border: 1px solid black;
+  width: 100%;
+  margin-top: 0.5vw;
 }
 
 .symbol-A9 {
-    position: absolute;
-    font-weight: bold;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-family);
-    font-size: 3vw;
-    color: var(--text-color);
-    letter-spacing: 2px;
-    left: var(--left, 50%);
-    top: var(--top, 50%);
+  position: absolute;
+  font-weight: bold;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-family);
+  font-size: 3vw;
+  color: var(--text-color);
+  letter-spacing: 2px;
+  left: var(--left, 50%);
+  top: var(--top, 50%);
 }
 
 .text-wrapper-A9 {
-    display: flex;
-    width: 37%;
-    position: relative;
-    font-size: 2.5vw;
-    font-family: var(--font-family);
-    color: var(--text-color);
-    font-weight: bold;
-    margin-top: 2vw;
+  display: flex;
+  width: 37%;
+  position: relative;
+  font-size: 2.5vw;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  font-weight: bold;
+  margin-top: 2vw;
 }

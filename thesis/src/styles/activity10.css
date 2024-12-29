@@ -1,121 +1,120 @@
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
 .number-container-A10 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2vh;
 }
 
 .number-box-A10 {
-    border: 2px solid black;
-    text-align: left;
-    display: inline-block;
-    width: 100%;
+  border: 2px solid black;
+  text-align: left;
+  display: inline-block;
+  width: 100%;
 }
 
 .number-A10 {
-    font-size: 3vw;
-    font-family: var(--font-family);
-    display: block;
+  font-size: 3vw;
+  font-family: var(--font-family);
+  display: block;
 }
 
 .input-fields-A10 {
-    position: relative;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 1.5vh;
-    padding-top: 2vh;
-    padding-left: 5vw;
+  position: relative;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.5vh;
+  padding-top: 2vh;
+  padding-left: 5vw;
 }
 
 .input-row-A10 {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.7vw; 
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.7vw;
 }
 
 .input-A10 {
-    width: 3vw;
-    height: 3vw;
-    font-size: 2.5vw;
-    text-align: center;
-    background-color: var(--secondary-color);
-    border-radius: 10%;
-    border: 1px solid var(--text-color);
-    font-family: var(--font-family);
-    color: var(--text-color);
+  width: 3vw;
+  height: 3vw;
+  font-size: 2.5vw;
+  text-align: center;
+  background-color: var(--secondary-color);
+  border-radius: 10%;
+  border: 1px solid var(--text-color);
+  font-family: var(--font-family);
+  color: var(--text-color);
 }
 
 @media (max-width: 1124px) {
-    .input-A10 {
-        width: 3vw;
-    }
+  .input-A10 {
+    width: 3vw;
+  }
 }
 
 .coin-row-divider-A10 {
-    border: 1px solid black;
-    width: 100%;
+  border: 1px solid black;
+  width: 100%;
 }
 
-.minus-top-A10{
-    position: relative;
-    font-size: 4vw;
-    font-family: var(--font-family);
-    font-weight: bold;
-    left: -1vw;
-    top: -1.5vh;
-    color: red;
+.minus-top-A10 {
+  position: relative;
+  font-size: 4vw;
+  font-family: var(--font-family);
+  font-weight: bold;
+  left: -1vw;
+  top: -1.5vh;
+  color: red;
 }
 
-.minus-bot-A10{
-    position: relative;
-    font-size: 4vw;
-    font-family: var(--font-family);
-    font-weight: bold;
-    top: -3vh;
-    color: red;
+.minus-bot-A10 {
+  position: relative;
+  font-size: 4vw;
+  font-family: var(--font-family);
+  font-weight: bold;
+  top: -3vh;
+  color: red;
 }
-
 
 @media (max-width: 1180px) {
-    .minus-bot-A10 {
-        top: -2vh;
-    }
+  .minus-bot-A10 {
+    top: -2vh;
+  }
 }
 
 .invert-button-A10 {
-    position: absolute;
-    top: 15vh;
-    left: 43vw;
-    padding: 0vh 0vw 0.4vh 0vw;
-    font-size: 2vw;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    border: none;
-    cursor: pointer;
-    border-radius: 20%;
-    height: 4.5vw;
-    width: 4.5vw;
+  position: absolute;
+  top: 15vh;
+  left: 43vw;
+  padding: 0vh 0vw 0.4vh 0vw;
+  font-size: 2vw;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+  border-radius: 20%;
+  height: 4.5vw;
+  width: 4.5vw;
 }
 
 @media (max-width: 1180px) {
-    .invert-button-A10 {
-        top: 12vh;
-        left: 50vw;
-    }
+  .invert-button-A10 {
+    top: 12vh;
+    left: 50vw;
   }
+}
 
 .number-row-A10 {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .number-A10-tutorial {
-    font-size: 3vw;
-    font-family: var(--font-family);
-    display: block;
+  font-size: 3vw;
+  font-family: var(--font-family);
+  display: block;
 }

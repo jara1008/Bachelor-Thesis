@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
 .coin-row-A3 {
   display: flex;
@@ -21,7 +21,7 @@
   justify-content: center;
   width: 2.7vw;
   height: 2.7vw;
-  background-color: var(--primary-color);;
+  background-color: var(--primary-color);
   border: 2px solid var(--text-color);
   border-radius: 50%;
   font-size: 2vw;
@@ -72,7 +72,7 @@
 
 @media (max-width: 1124px) {
   .info-input-A3 {
-      width: 3vw;
+    width: 3vw;
   }
 }
 
