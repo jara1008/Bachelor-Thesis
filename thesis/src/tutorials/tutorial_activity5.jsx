@@ -13,7 +13,7 @@ const tutorialStepsEasy = [
 
 const tutorialStepsHard = [
   { message: 'Klicke auf "Weiter" um das Tutorial zu starten.' },
-  { message: "Um wie viel muss 105 ergänzt werden, damit wir 118 erhalten?" },
+  { message: "Um wie viel muss 35 ergänzt werden, damit wir 48 erhalten?" },
   { message: "Klicke auf Prüfen, um die Aufgabe abzuschliessen." },
 ];
 
